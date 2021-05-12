@@ -142,7 +142,7 @@ You can launch the bot with `node shard.js`
 
 ### Emojis 
 - You can change the emojis in:
-1- `assets/emojis.json`
+1- `assets/emojis.json` <br>
 2- `data/emoji.js`
 
 ### Colors
