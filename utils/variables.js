@@ -3,10 +3,10 @@ let token;
 let mongodb;
 
 if (config.dev) {
-    token = config.token;
+    token = config.main_token;
     mongodb = config.mongodb_url;
 } if (!config.dev) {
-    token = config.token
+    token = config.main_token
     mongodb = config.mongodb_url
     
 };
