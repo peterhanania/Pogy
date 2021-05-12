@@ -1,0 +1,77 @@
+<%- include("partials/head", { bot, user, path, description, title: "Pogy - Stats", twitter, url, image }) %>
+
+
+<%- include("partials/footer") %>
+ <div id="content"><iframe src="https://p.datadoghq.com/sb/ms97lhcfwyn4s5m6-6f116a90f59792de7e482df20bc00624?amp%3Btheme=dark&from_ts=1618208565617&live=true&to_ts=1618212165617&tv_mode=false&theme=dark" style="position: absolute; height: 100%; border: none; width: 100%"></iframe></div>
+<style>
+
+#content{
+padding-left: 40px;
+padding-right: 40px;
+width:100%;
+height:100%;
+}
+
+details + details {
+  margin-top: 20px;
+}
+
+details[open] {
+  min-height: 50px;
+  background-color: #2f2f2f;
+  box-shadow: 2px 2px 20px rgba(0,0,0,.2);
+}
+
+details p {
+  color: #ffffff;
+  font-weight: 300;
+}
+
+summary {
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+summary:focus {
+  outline: none;
+  
+}
+
+summary:focus::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 0 5px rebeccapurple;
+}
+
+summary::-webkit-details-marker {
+  display: none
+}
+
+.control-icon {
+  fill: rebeccapurple;
+  transition: .3s ease;
+  pointer-events: none;
+}
+
+.control-icon-close {
+  display: none;
+}
+
+details[open] .control-icon-close {
+  display: initial;
+  transition: .3s ease;
+}
+
+details[open] .control-icon-expand {
+  display: none;
+}
+</style>

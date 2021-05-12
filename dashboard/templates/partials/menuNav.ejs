@@ -1,0 +1,196 @@
+<nav class="nav" role="navigation">
+<span class="logo"><span class="name"><b class="button-menu"><i style="color: white" class="fa fa-bars"></i></b></span></span>
+<link rel="icon"
+    type="image/png"
+    href="https://<%= hostname %>/logo.png">
+<div id="mobile">
+<nav class="header__nav nav-bar">
+		<div class="toggle-menu">
+			<div class="line line1"></div>
+			<div class="line line2"></div>
+			<div class="line line3"></div>
+		</div>
+		<ul class="nav-list">
+			<li class="nav-list-item"><a href="/" class="nav-link">Home</a></li>
+			<li class="nav-list-item"><a href="/support" class="nav-link">Support</a></li>
+			<li class="nav-list-item"><a href="/commands" class="nav-link">Commands</a></li>
+      <li class="nav-list-item"><a style="color: red" href="/logout" class="nav-link">Logout</a></li>
+		</ul>
+	</nav>
+</div>
+<ul class="menu">
+<% if (user) { %>
+<li><a href="https://<%= hostname %>/server" target="_blank" rel="noopener">Support</a></li>
+ <li><a href="https://<%= hostname %>/commands" target="_blank" rel="noopener">Commands</a></li>
+<% if (user.avatar) {
+ avatar = "https://cdn.discordapp.com/avatars/" + user.id + "/" + user.avatar + ".png?size=128";
+} else {
+ avatar = "https://cdn.glitch.com/82fe990a-7942-42e3-9790-39807ccdb9f6%2Ficon-404.png?v=1602412158188";
+}
+%>
+<a class="avatar-container dropdownHead" id="dropdownHead" onclick="dropdown(this)"><img class="user-avatar" src="<%= avatar %>"/><span class="user-name"><%= user.username %>#<%= user.discriminator %></span></a>
+<% } else { %>
+ <li><a href="https://<%= hostname %>/support" target="_blank" rel="noopener">Support</a></li>
+ <li><a href="https://<%= hostname %>/commands" target="_blank" rel="noopener">Commands</a></li>
+ <li><a href="https://<%= hostname %>/login">Login</a></li>
+<% } %>
+
+</ul>
+
+<ul class="dropdown" id="dropdown">
+<div class="cross-container"><div class="cross"></div></div>
+<% if (path === "/dashboard") { %>
+ <span><a class="dropdown-li" href="https://<%= hostname %>/">
+ <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg> Home</a></span>
+<% } else if (path !== "/") { %>
+ <span><a class="dropdown-li" href="https://<%= hostname %>/"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg> Home</a></span>
+ <span><a class="dropdown-li" href="https://<%= hostname %>/dashboard"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg> My Servers</a></span>
+<% } else { %>
+ <span><a class="dropdown-li" href="https://<%= hostname %>/dashboard"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg> My Servers</a></span>
+<% } %>
+
+<span><a class="dropdown-li logout" href="https://<%= hostname %>/logout" class="logout"><svg width="20" height="20" viewBox="0 0 98.28 68.04"><path fill="none" d="M82.78 0h15.5v68.04h-15.5z"/><path d="M0 0h.51v68.04H0zM56 47.11V60.1H8.39V7.94H56v12.99h7.88V0H.51v68.04h63.37V47.11H56z"/><path fill="none" d="M0 0h22.97v68.04H0z"/><path d="M41.87 38.04h40.85l-9.93 9.9 5.63 5.67 19.35-19.49-19.35-19.48-5.63 5.57L82.51 30H41.87v8.04z"/></svg> Logout</a></span>
+</ul>
+</nav>
+<script>
+var toggleButton = document.querySelector('.toggle-menu');
+var navBar = document.querySelector('.nav-bar');
+toggleButton.addEventListener('click', function () {
+	navBar.classList.toggle('toggle');
+});
+</script>
+<style>
+@media (min-width: 950px) {
+.nav li {
+float: left;
+}
+.nav li a {
+padding: 20px 30px;
+}
+.nav .menu {
+clear: none;
+float: right;
+max-height: none;
+}
+.nav .menu-icon {
+display: none;
+}
+}
+
+.nav-bar {
+border-top: 60px;
+	position: absolute;
+	background-color: #2f2f2f;
+	top: 0;
+	right: 100%;
+	height: 100vh;
+	width: 250px;
+	display: flex;
+	transition: position 2.9s;
+	-webkit-transition: position 2.9s;
+	-moz-transition: position 2.9s;
+	-ms-transition: position 2.9s;
+	-o-transition: position 2.9s;
+}
+
+.toggle {
+	left: 0;
+	box-shadow: 1px 0 15px 2px rgba(0, 0, 0, 0.4);
+
+}
+
+.toggle-menu {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	width: 40px;
+	height: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+    padding: 2px 2px 2px 3px;
+	border-radius: 5px;
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+
+.line {
+	width: 100%;
+	height: 3px;
+	border-radius: 5px;
+	background-color: #fff;
+	transition: transform 0.2s ease-out;
+	-webkit-transition: transform 0.2s ease-out;
+	-moz-transition: transform 0.2s ease-out;
+	-ms-transition: transform 0.2s ease-out;
+	-o-transition: transform 0.2s ease-out;
+}
+
+.toggle .line1 {
+	background-color: #000000;
+	transform: scale(0.9) rotateZ(-45deg) translate(-6px, 4px);
+}
+
+.toggle .line2 {
+	display: none;
+}
+
+.toggle .line3 {
+	background-color: #000000;
+	transform: scale(0.9) rotateZ(45deg) translate(-6px, -4px);
+}
+
+.toggle .toggle-menu {
+	background-color: white;
+}
+
+.nav-list {
+	list-style: none;
+}
+
+.nav-list-item {
+	padding: 10px 0;
+}
+
+.nav-link {
+	color: #fff;
+	font-size: 22px;
+	text-decoration: none;
+	position: relative;
+	padding-bottom: 4px;
+}
+
+.nav-link::before {
+	position: absolute;
+	content: '';
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 1px;
+	background-color: #fff;
+	transform: scaleX(0);
+	transition: transform 0.4s ease-in-out;
+	transform-origin: left;
+	-webkit-transition: transform 0.4s ease-in-out;
+	-moz-transition: transform 0.4s ease-in-out;
+	-ms-transition: transform 0.4s ease-in-out;
+	-o-transition: transform 0.4s ease-in-out;
+}
+
+.nav-link:hover::before {
+	transform: scaleX(1);
+}
+
+#mobile {
+display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  #mobile {
+    display: block;
+  }
+}
+</style>

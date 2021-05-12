@@ -1,0 +1,34 @@
+<%- include("partials/head", { bot, user, path, title: "Pogy - Dashboard" }) %>
+<div class="content">
+
+<h2>Select a server to Apply to</h2>
+
+<div class="servers">
+<% user.guilds.forEach(guild => { %>
+
+<% if (!bot.guilds.cache.get(guild.id)) {
+ return
+ }
+%>
+
+<% if (guild.icon) {
+ iconurl = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ".png??size=512";
+} else {
+ iconurl = "https://cdn.glitch.com/82fe990a-7942-42e3-9790-39807ccdb9f6%2Ficon-404-dark.png?v=1602427904949";
+}
+%>
+<div class="server">
+  <div class="icon-and-name">
+<img class="server-icon" src="<%= iconurl %>" alt="<% guild.name %>"/>
+  <p class="guild-name"><%= guild.name %></p>
+  </div>
+  <% if (bot.guilds.cache.get(guild.id)) { %>
+    <a class="edit button" href="/apply/<%= guild.id %>">Apply</a>
+  <% } %>
+</div>
+  <% }); %>
+</div>
+
+
+
+<%- include("partials/footer") %>

@@ -1,0 +1,132 @@
+<%- include("partials/head", { bot, user, path, description, title: "Pogy - Apply"}) %>
+
+        <link rel="stylesheet" href="<%domain%>/css/appeal.css" />
+  
+
+
+    <body>
+        <div class="container-contact">
+            <div class="wrap-contact">
+            
+     <form class="contact-form validate-form" id="form" role="form" action="/apply/<%= guild.id %>/" method="POST">
+
+
+                    <span class="contact-form-title"></span>
+                         <% if (alert) { %>
+<h3><%= id %></h3>
+<style>
+body.done .contact-form-title {
+    content: "<%= alert %>"!important;
+}
+body.done .contact-form-title::after {
+    content: "<%= alert %>"!important;
+}
+</style>
+<script> document.body.classList.add('done') </script>
+
+
+
+<% }  %>
+
+                    <% if (!app || !app.questions.length || app.questions.length === 0 || app.questions.length < 1) { %>
+<h3> The current guild does not have any application at the moment. </h3>
+            <% } else { %>
+
+                     <% if (!bot.channels.cache.has(app.appLogs)) { %>
+<h3> The app Log channel was deleted which is the reason you can't apply to the current form. Please make sure to let an admin know. </h3>
+ <% } else if(app.appToggle === false) { %>
+
+<h3> The current guild's application Status is closed. Come back later.</h3>
+
+
+  <% } else { %>
+            <% for (let i = 0; app.questions.length  > i; i++) {%>
+             
+                      <div class="wrap-input">
+                        <span class="label">Question #<%= i + 1 %></span>
+                        <h3><%= app.questions[i]%></h3>
+                        <textarea class="input" name="<%= i + 1 %>" placeholder="Your Answer to question #<%= i + 1 %>" maxlength="1024" required></textarea>
+                                            <span class="input-line"></span>
+
+                    </div>
+
+                 <%  } %>
+                    <div>
+      <span id="captcha" style="color:red"></span>
+      <br>
+      <div id="example1"></div>
+     </div>
+       <br>
+                    <br>
+                     <br>
+                    <br>
+                      <br>
+                      <br>
+                    <div class="container-contact-form-btn">
+                    
+      
+                        <button type="submit" name="form">Submit</button>
+                    </div>
+                </form>
+              <% } %>
+            <% } %>
+            </div>
+        </div>
+    
+    </body>
+</html>
+    <script type="text/javascript">
+      var verifyCallback = function(response) {
+        alert(response);
+      };
+      var widgetId1;
+      var widgetId2;
+      var onloadCallback = function() {
+        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+        widgetId1 = grecaptcha.render('example1', {
+          'sitekey' : '6LfG_H8aAAAAAKFRc2P0w5-slk2yz--FCuhQhS4O',
+          'theme' : 'dark'
+        });
+        widgetId2 = grecaptcha.render(document.getElementById('example2'), {
+          'sitekey' : '6LfG_H8aAAAAAKFRc2P0w5-slk2yz--FCuhQhS4O'
+        });
+        grecaptcha.render('example3', {
+          'sitekey' : '6LfG_H8aAAAAAKFRc2P0w5-slk2yz--FCuhQhS4O',
+          'callback' : verifyCallback,
+          'theme' : 'dark'
+        });
+      };
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
+
+  <%- include("partials/footer") %>
+  <style>
+  .contact-form-title::after {
+    content: "Apply in <%= guild.name %>";
+}
+</style>
+<script>
+window.onload = () => {
+    
+    document.querySelector('form').addEventListener('submit', e => {
+e.preventDefault();  
+var v = grecaptcha.getResponse();
+if(v.length == 0)
+{
+    document.getElementById('captcha').innerHTML="Invalid Captcha Attempt.";
+    return false;
+
+ }
+
+document.getElementById("form").submit();
+    });
+    
+}
+
+  
+
+</script>

@@ -1,0 +1,2280 @@
+<head>
+<link rel="icon"
+    type="image/png"
+    href="<%=domain%>/logo.png"> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+</head>
+<%- include("../partials/dashMenu", { bot, user, path, description, title: `Pogy - Dashboard`, twitter, url})%>
+
+
+
+
+<% if(guild.channels.cache.filter(m => m.type === 'text').size > 0) { %>
+
+
+<% if (guild.icon) {
+ iconurl = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ".png??size=512";
+} else {
+ iconurl = "https://cdn.glitch.com/82fe990a-7942-42e3-9790-39807ccdb9f6%2Ficon-404-dark.png?v=1602427904949";
+}
+%>
+
+<link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;500&display=swap" rel="stylesheet">
+
+<div class="container" style="padding-top: 80px;">
+  <div class="main">
+    <div class="sidebar">
+      <ul>
+            <div class="guild">
+<img class="server-image" src="<%= iconurl %>" alt="<% guild.name %>"/>
+<p class="server-name" style = "font-size: 26px;"><%= guild.name %></p>
+</div>
+        <p>Settings</p>
+        <li><a href="/dashboard/<%= guild.id %>"><span><i class="fa fa-gear" style="color: white; font-size: 17px"></i> Bot Settings</span></a></li>
+
+        <li><a href="/dashboard/<%= guild.id %>/commands" ><span><i class="fa fa-wrench" style="color: white; font-size: 17px"></i> Commands</span></a></li>
+
+        <li><a href="/dashboard/<%= guild.id %>/welcome"><span><i class="fa fa-sign-out" style="color: white; font-size: 17px"></i> Welcome</span></a></li>
+
+        <li><a href="/dashboard/<%= guild.id %>/members" ><span><i class="fa fa-users" style="color: white; font-size: 17px"></i> Members</span></a></li>
+
+
+        <p>Moderation</p>
+
+        <li><a  href="/dashboard/<%= guild.id %>/automod" ><span><i class="fa fa-shield" style="color: white; font-size: 17px"></i> Auto Mod</span></a></li>
+
+        <li><a  href="/dashboard/<%= guild.id %>/moderation" ><span><i class="	fa fa-legal" style="color: white; font-size: 17px"></i> Moderation</span></a></li>
+
+        <li><a  href="/dashboard/<%= guild.id %>/logging" ><span><i class="	fa fa-book" style="color: white; font-size: 17px"></i> Logging</span></a></li>
+
+        <li><a href="/dashboard/<%= guild.id %>/autorole" ><span><i class="fa fa-user-plus" style="color: white; font-size: 17px"></i> Auto Role</span></a></li>
+
+        <li><a href="/dashboard/<%= guild.id %>/altdetector" ><span><i class="fa fa-address-card" style="color: white; font-size: 17px"></i> Alt Detector</span></a></li>
+
+
+        <p>Utilities</p>
+
+        <li><a href="/dashboard/<%= guild.id %>/reactionroles" ><span><i class="	fa fa-support" style="color: white; font-size: 17px" ></i> Reaction Roles</span></a></li>
+
+        <li><a href="/dashboard/<%= guild.id %>/levels" ><span><i class="fa fa-signal" style="color: white; font-size: 17px"></i> Levels</span></a></li>
+
+        <li><a href="/dashboard/<%= guild.id %>/embeds" ><span><i class="	fa fa-image" style="color: white; font-size: 17px"></i> Embeds</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/tickets" ><span><i class="	fa fa-ticket" style="color: white; font-size: 17px"></i> Tickets</span></a></li>
+        <li><a class="active" href="/dashboard/<%= guild.id %>/applications" ><span><i class="	fa fa-file-text" style="color: white; font-size: 17px"></i> Applications</span></a></li>
+        <p>Channels</p>
+        <li><a href="/dashboard/<%= guild.id %>/Suggestions" ><span><i class="fa fa-lightbulb-o" style="color: white; font-size: 17px"></i> Suggestions</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/reports" ><span><i class="	fa fa-exclamation-triangle" style="color: white; font-size: 17px"></i> Server Reports</span></a></li>
+      </ul>
+
+    </div>
+
+
+
+
+
+
+<div class="rr" id="rr-ready">
+<form role="form" action="/dashboard/<%= guild.id %>/applications" method="POST">
+
+
+
+  <% if (alert) { %>
+<div class="banner">
+    <div class="banner__content">
+      <div class="banner__text">
+        <%= alert %>
+      </div>
+      <button class="banner__close" type="button">
+        <span class="material-icons">
+          close
+        </span>
+      </button>
+    </div>
+  </div>
+<% }  %>
+<div class="top-rr">
+<h3>Server Applications</h3>
+</div>
+
+<div class="form-group mb-30" style="padding-top: 20px;">
+
+<div class="rr-box">
+<div class="col-md-4" style=
+"background-color:#2f2f2f;
+ box-shadow: 2px 2px 2px #2f2f2f; 
+ border-radius: 5px;
+ margin-right: 17px;
+ width: 45%;
+ 
+
+
+ 
+  ">
+<h3 class="rr-box-title">Main Settings</h3>
+<p style="padding-left: 40px;">Pick Your application Settings in the guild.</p>
+
+  <div style="padding-top: 30px">
+</div>
+<p style="padding-left: 40px;">Application Log</p>
+ <select class="select" name="log">
+             <% if(app.appLogs && bot.channels.cache.has(app.appLogs)){ %>
+                                                    <option selected="selected">#<%= bot.channels.cache.get(app.appLogs).name %></option>
+                                                    <% guild.channels.cache.filter((ch) => ch.type === "text" && ch.id !== app.appLogs).forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); %>
+                                                        <option>Disabled</option>
+                                                <% } else { %>
+                                                    <option selected="selected">Disabled</option>
+                                                    <% guild.channels.cache.filter((ch) => ch.type === "text").forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); %>
+                                                <% } %>
+</select>
+<p style="padding-left: 40px;">Add role if accepted</p>
+ <select name="add_role">
+           
+             <% if(app.add_role && guild.roles.cache.has(app.add_role)){ %>
+                                                    <option style="color: <%= guild.roles.cache.get(app.add_role).hexColor === "#000000" ? {r:255,g:255,b:255} : guild.roles.cache.get(app.add_role).hexColor%>" selected="selected">@<%= guild.roles.cache.get(app.add_role).name %></option>
+                                                    <% guild.roles.cache.filter((r) => r.id !== app.add_role && r.name !== "@everyone" && !r.managed).forEach((r) => { %>
+                                                       <option style="color: <%= r.hexColor === "#000000" ? {r:255,g:255,b:255} : r.hexColor%>">@<%= r.name %></option>
+                                                   
+                                                    <% }); %>
+                                                        <option>Disabled</option>
+                                                    <% } else { %>
+                                                    <option selected="selected">Disabled</option>
+                                                    <% guild.roles.cache.filter((r) => r.id !== guild.roles.cache.filter((r) => r.name !== "@everyone").first().id && r.name !== "@everyone" && !r.managed).forEach((r) => { %>
+                                                      <option style="color: <%= r.hexColor === "#000000" ? {r:255,g:255,b:255} : r.hexColor%>">@<%= r.name %></option>
+                                                    <% }); %>
+                                                <% } %>>
+                                              
+                                           
+
+</select>
+</select>
+<p style="padding-left: 40px;">Remove Role if Declined</p>
+ <select  name="remove_role">
+           
+             <% if(app.remove_role && guild.roles.cache.has(app.remove_role)){ %>
+                                                    <option style="color: <%= guild.roles.cache.get(app.remove_role).hexColor === "#000000" ? {r:255,g:255,b:255} : guild.roles.cache.get(app.remove_role).hexColor%>" selected="selected">@<%= guild.roles.cache.get(app.remove_role).name %></option>
+                                                    <% guild.roles.cache.filter((r) => r.id !== app.remove_role && r.name !== "@everyone" && !r.managed).forEach((r) => { %>
+                                                       <option style="color: <%= r.hexColor === "#000000" ? {r:255,g:255,b:255} : r.hexColor%>">@<%= r.name %></option>
+                                                   
+                                                    <% }); %>
+                                                        <option>Disabled</option>
+                                                    <% } else { %>
+                                                    <option selected="selected">Disabled</option>
+                                                    <% guild.roles.cache.filter((r) => r.id !== guild.roles.cache.filter((r) => r.name !== "@everyone").first().id && r.name !== "@everyone" && !r.managed).forEach((r) => { %>
+                                                      <option style="color: <%= r.hexColor === "#000000" ? {r:255,g:255,b:255} : r.hexColor%>">@<%= r.name %></option>
+                                                    <% }); %>
+                                                <% } %>>
+                                              
+                                           
+
+</select>
+</select>
+<div style="padding-left: 40px">
+<p>Application Status</p>
+<% if(app.appToggle === true) { %>
+<input id="c1" name="toggle" type="checkbox" class="switch" checked>
+<% } else { %>
+<input id="c1" name="toggle" type="checkbox" class="switch">
+<% } %>
+<div style="padding-top: 10px"></div>
+<p>DM user when accepted / declined </p>
+<% if(app.dm === true) { %>
+<input id="c2" name="dm" type="checkbox" class="switch" checked>
+<% } else { %>
+<input id="c2" name="dm" type="checkbox" class="switch">
+<% }  %>
+</div>
+<div style="padding-top: 10px"></div>
+
+<div style="
+  color:hsla(210,8%,51%,.13);
+  background-color: hsla(210,8%,51%,.13);
+  box-shadow: none!important;
+  margin-left: 40px;
+  margin-right: 40px;
+  height: 7px;
+  border-radius: 5px;"></div>
+
+
+ 
+  <div class="row justify-content-center" style="    padding-bottom: 20px;"></div>
+<button class="save" name="save" type="submit">Save Changes</button>
+  <div class="row justify-content-center" style="    padding-bottom: 20px;"></div>
+</div>
+
+
+</div>
+
+ 
+
+<div class="rr-box">
+<div class="col-md-4" style="background-color:#2f2f2f; box-shadow: 2px 2px 2px #2f2f2f; border-radius: 5px;  width: 45%; margin-right: 17px;">
+<h3 class="rr-box-title">Available Questions</h3>
+ <p style="padding-left: 40px;">Displays all available questions.<br><br><i class="fa fa-chevron-circle-right" style="font-size:16px"></i>To add a question use <%= settings.prefix %>addquestion [question]<br><i class="fa fa-chevron-circle-right" style="font-size:16px"></i>To remove a question use <%= settings.prefix %>remquestion [number]</p>
+  <div style="padding-top: 30px">
+</div>
+<% if(app.questions.length) {%>
+ <% for (let i = 0; app.questions.length  > i; i++) { %>
+
+<div style="padding-left: 40px; padding-bottom: 10px">
+<h4>Question <%= i + 1 %></h4>
+<p><%= app.questions[i] %></p>
+</div>
+
+ <% } %>
+ <% } else { %>
+<p style="padding-left: 40px;">No questions found.</p>
+ <% } %>
+
+  </div>
+</div>
+</div>
+
+
+
+
+</form>
+
+<!-- end -->
+  </div>
+</div>
+
+<% } else { %>
+<p class="no-js">Make sure the guild has 1 channel, So please create a channel before accessing our dashboard</p>
+<% } %>
+
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/wow/0.1.12/wow.min.js'></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Hind Vadodara", -apple-system, BlinkMacSystemFont, Segoe UI,
+    Helvetica Neue, Arial, sans-serif;
+}
+button:focus { outline: none; }
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.main {
+  height: calc(100% - 50px);
+  display: flex;
+  flex: 1;
+}
+
+ @media only screen and (max-width:  1200px) { 
+ .col-md-4{
+  width: 100% !important;
+  }
+  .container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-wrap: wrap;
+  overflow-x: visible;
+  overflow-y: visible;
+}
+
+}
+
+
+
+.sidebar {
+  height: 100%;
+  width: 220px;
+  box-sizing: border-box;
+  box-shadow: 0 0 2rem 0 rgb(0 0 0 / 5%);
+  overflow: hidden;
+  transition: width 0.5s ease;
+  overflow-y: scroll;
+}
+.container.nav-closed .sidebar,
+.container.nav-closed .header-logo {
+  width: 0;
+}
+.top-rr{
+border-bottom: 1px solid #555
+}
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+.sidebar ul li {
+  display: flex;
+  align-items: center;
+}
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  white-space: nowrap;
+}
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+  background: #2f2f2f;
+}
+.sidebar ul li span {
+  margin-left: 16px;
+  font-size: 16px;
+  font-weight: 100;
+}
+.sidebar ul li i {
+  font-size: 18px;
+  color: #111;
+  font-weight: normal;
+}
+.header {
+  height: 50px;
+  background: #2f2f2f;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-basis: 100%;
+}
+.sidebar ul li a.active i {
+  color: purple;
+}
+.site-logo {
+  height: 32px;
+  width: 32px;
+  min-height: 32px;
+  min-width: 32px;
+  margin: 0 18px 0 15px;
+}
+.site-logo path {
+  fill: #fff;
+}
+.site-title {
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+.page-content {
+  padding: 10px 20px;
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1;
+}
+.page-content h1 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+}
+.header-search {
+  height: 100%;
+  align-items: center;
+  display: flex;
+  padding: 0 20px;
+  flex: 1;
+}
+.header-search .button-menu {
+  width: 23px;
+  height: 23px;
+  margin-right: 15px;
+  background-color: #2f2f2f;
+  border: 0;
+  cursor: pointer;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  width: 220px;
+  overflow: hidden;
+  transition: width 0.5s ease;
+}
+.header-search input[type="search"] {
+  height: 100%;
+  width: 300px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 100;
+  background: none;
+  border: none;
+  color: #fff;
+}
+.header-search input[type="search"]:focus {
+  outline: none;
+}
+.header-search input[type="search"]::placeholder {
+  color: #ccc;
+}
+.header-search .button-menu:focus {
+  outline: none;
+  border: none;
+}
+.header-search .button-menu svg path {
+  fill: #fff;
+}
+@media screen and (max-width: 991px) {
+  .page-content {
+    width: 100vw;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header-logo {
+    display: none;
+  }
+}
+.drop {
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.drop.open {
+  z-index: 100;
+}
+.drop.open .drop-screen {
+  z-index: 100;
+  display: block;
+}
+.drop.open .drop-options {
+  z-index: 200;
+  max-height: 200px;
+}
+.drop.open .drop-display {
+  z-index: 200;
+  border-color: #465;
+}
+.drop select {
+  display: none;
+}
+.drop .drop-screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  display: none;
+  z-index: 1;
+}
+
+.link {
+  text-align: center;
+  margin: 20px 0px;
+  color:#8CACD7;
+}
+.rr {
+    width: 100%;
+    height: 100%;
+    padding-right: 15px;
+    padding-left: 40px;
+    overflow-x: scroll;
+    padding-top: 40px;
+    
+    }
+
+
+
+
+
+
+
+.rr-box:hover{
+
+
+}
+.rr-box-title{
+text-align: center;
+padding-top: 20px
+}
+
+.drop .drop-display {
+  position: relative;
+  padding: 0px 20px 5px 5px;
+  border: 4px solid #444;
+  width: 100%;
+  background: #FFF;
+  z-index: 1;
+  margin: 0px;
+  font-size: 16px;
+  min-height: 58px;
+}
+.drop .drop-display:hover:after {
+  opacity: 0.75;
+}
+.drop .drop-display:after {
+  font-family: 'Material Icons';
+  content: "\e5c6";
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  font-size: 24px;
+  color: #444;
+}
+.drop .drop-display .item {
+  position: relative;
+  display: inline-block;
+  border: 2px solid #333;
+  margin: 5px 5px -4px 0px;
+  padding: 0px 25px 0px 10px;
+  overflow: hidden;
+  height: 40px;
+  line-height: 36px;
+}
+.drop .drop-display .item .btnclose {
+  color: #444;
+  position: absolute;
+  font-size: 16px;
+  right: 5px;
+  top: 10px;
+  cursor: pointer;
+}
+.drop .drop-display .item .btnclose:hover {
+  opacity: 0.75;
+}
+.drop .drop-display .item.remove {
+  -webkit-animation: removeSelected 0.2s, hide 1s infinite;
+          animation: removeSelected 0.2s, hide 1s infinite;
+  -webkit-animation-delay: 0s, 0.2s;
+          animation-delay: 0s, 0.2s;
+}
+.drop .drop-display .item.add {
+  -webkit-animation: addSelected 0.2s;
+          animation: addSelected 0.2s;
+}
+.drop .drop-display .item.hide {
+  display: none;
+}
+.drop .drop-options {
+  background: #444;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  width: 100%;
+  max-height: 0px;
+  overflow-y: auto;
+  transition: all 0.25s linear;
+  z-index: 1;
+}
+.drop .drop-options a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 20px;
+  color: white;
+  position: relative;
+  max-height: 40px;
+  transition: all 1s;
+  overflow: hidden;
+}
+.drop .drop-options a:hover {
+  background: #465;
+  cursor: pointer;
+}
+.drop .drop-options a.remove {
+  -webkit-animation: removeOption 0.2s;
+          animation: removeOption 0.2s;
+  max-height: 0px;
+}
+.drop .drop-options a.add {
+  -webkit-animation: addOption 0.2s;
+          animation: addOption 0.2s;
+}
+.drop .drop-options a.hide {
+  display: none;
+}
+
+@-webkit-keyframes pop {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes removeOption {
+  from {
+    max-height: 40px;
+  }
+  to {
+    max-height: 0px;
+  }
+}
+@keyframes removeOption {
+  from {
+    max-height: 40px;
+  }
+  to {
+    max-height: 0px;
+  }
+}
+@-webkit-keyframes addOption {
+  from {
+    max-height: 0px;
+  }
+  to {
+    max-height: 40px;
+  }
+}
+@keyframes addOption {
+  from {
+    max-height: 0px;
+  }
+  to {
+    max-height: 40px;
+  }
+}
+@-webkit-keyframes removeSelected {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+@keyframes removeSelected {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+@-webkit-keyframes addSelected {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes addSelected {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes hide {
+  from, to {
+    max-height: 0px;
+    max-width: 0px;
+    padding: 0px;
+    margin: 0px;
+    border-width: 0px;
+  }
+}
+@keyframes hide {
+  from, to {
+    max-height: 0px;
+    max-width: 0px;
+    padding: 0px;
+    margin: 0px;
+    border-width: 0px;
+  }
+}
+
+.fa{
+  line-height:30px;
+  font-size:30px;
+  display:inline-bloxk;
+  width:35px;
+  height:35px;
+}
+.hidden{
+  display:none;
+}
+
+
+.pointer-cursor{
+   cursor: pointer; cursor: hand;
+}
+.close{
+
+    float:right;
+    color: #b94b45;
+    cursor: pointer; cursor: hand;
+}
+
+.alert-message{
+  background-color: #f2dede;
+  border: 1px solid rgba(#34495e, 0.25);
+  color: #b94b45;
+  border-radius: 3px;
+  line-height:30px;
+  position: absolute;
+  top: 0; left: 0;
+  display:block;
+  width:100%;
+  padding: 12px;
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, .9);
+  box-shadow: 0px 10px 50px rgba(0,0,0,.6);
+  background:#34495e;
+}
+
+@keyframes closing {
+  from {
+    opacity: 1; 
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes moving {
+  0%, 90% { top: 0; left: 0; }
+  100%  { top: -100px; left: 0; }
+}
+
+* {
+  box-sizing: border-box;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.alertpremium {
+  width: 1000px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+.alertpremium.premium{
+  background-color: rgba(248, 215, 218, 1);
+  border-color: rgba(220, 53, 69, 1);
+  color: rgba(114, 28, 36,1);
+}
+.alertparagraph{
+    display: inline;
+}
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 45%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+
+.pogy:hover {
+  opacity: 0.5;
+-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+}
+
+.server-image {
+width: 119px;
+margin-left: 0;
+margin-right: 0;
+height: 119px;
+border-radius: 50%;
+transition: transform .2s; /* Animation */
+}
+.server-image:hover {
+transform: scale(1.1); 
+}
+
+.guild {
+text-align: center;
+}
+
+.members {
+display: flex;
+-webkit-box-align: center;
+align-items: center;
+}
+
+
+ /*
+=====
+DEPENDENCES
+=====
+*/
+
+/* 
+helper to reset default browser's styles from headings
+*/
+
+.r-title{
+    margin-top: var(--rTitleMarginTop, 0) !important;
+    margin-bottom: var(--rTitleMarginBottom, 0) !important;
+}
+
+/* 
+helper to hide elements that are available only for screen readers. 
+*/
+
+.screen-reader{
+  width: var(--screenReaderWidth, 1px) !important;
+  height: var(--screenReaderHeight, 1px) !important;
+  padding: var(--screenReaderPadding, 0) !important;
+  border: var(--screenReaderBorder, none) !important;
+
+  position: var(--screenReaderPosition, absolute) !important;
+  clip: var(--screenReaderClip, rect(1px, 1px, 1px, 1px)) !important;
+  overflow: var(--screenReaderOverflow, hidden) !important;
+}
+
+/*
+=====
+POPUP
+=====
+*/
+
+/*
+1. Creating the top and bottom gaps for the modal so that content doesn't touches window's edges
+*/
+
+.popup:not(:target){
+  display: none;
+}
+
+.popup:target{
+  width: 100%;
+  height: 100vh;
+  
+  display: flex;
+ 
+  position: fixed;
+  top: 0;
+  right: 0;  
+}
+
+.popup::before{
+  content: "";
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff;
+
+  position: fixed;
+  left: 0;
+  top: 50%;
+}
+
+.popup::after{
+  content: "";
+  width: 0;
+  height: 2px;
+  background-color: #f0f0f0;
+
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+}
+
+.popup__container{
+  box-sizing: border-box;  
+  padding: 5% 15%;
+
+  height: calc(100vh - 40px); /* 1 */
+  margin: auto; /* 1 */
+  overflow: auto; /* 1 */
+  overscroll-behavior: contain; /* 1 */
+}
+
+.popup__title{
+  --rTitleMarginBottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.popup__close{
+  width: 2rem;
+  height: 2rem;
+
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTE5IDYuNDFMMTcuNTkgNSAxMiAxMC41OSA2LjQxIDUgNSA2LjQxIDEwLjU5IDEyIDUgMTcuNTkgNi40MSAxOSAxMiAxMy40MSAxNy41OSAxOSAxOSAxNy41OSAxMy40MSAxMnoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==);
+}
+
+/*
+animation
+*/
+
+.popup::before{
+  will-change: height, top;
+  animation: open-animation .6s cubic-bezier(0.83, 0.04, 0, 1.16) .65s both;
+}
+
+.popup::after{
+  will-change: width, opacity;
+  animation: line-animation .6s cubic-bezier(0.83, 0.04, 0, 1.16) both;
+}
+
+@keyframes line-animation{
+
+  0%{
+    width: 0;
+    opacity: 1;
+  }
+
+  99%{
+    width: 100%;
+    opacity: 1;
+  }
+
+  100%{
+    width: 100%;
+    opacity: 0;
+  }  
+}
+
+@keyframes open-animation{
+
+  0%{
+    height: 0;
+    top: 50%;
+  }
+
+  100%{
+    height: 100vh;
+    top: 0;
+  }
+}
+
+.popup__container{
+  animation: fade .5s ease-out 1.3s both;
+}
+
+@keyframes fade{
+
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+}
+.rr-body{
+  padding-top: 20px;
+    padding-left: 40px;
+  padding-right: 40px;
+  width: 100% !important;
+}
+
+.dk_label {
+  padding-right: 12px;
+  
+
+}
+
+/*not part of default style*/
+.dk_container {
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 10px;
+  outline: none;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100% !important;
+
+}
+
+.dk_toggle {
+  background-color: #222222;
+    
+  color: white;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 11px 45px 11px 13px;
+  text-decoration: none;
+  white-space: nowrap;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-backface-visibility: hidden;
+}
+.dk_toggle:hover, .dk_toggle:focus, .dk_toggle .dk_focus .dk_toggle {
+  background-color: #222222;
+  color: white;
+  outline: none;
+}
+.dk_toggle:active {
+  background-color: #222222;
+  outline: none;
+}
+.dk_toggle:active .select-icon {
+  border-left-color: transparent;
+}
+
+.select-icon {
+  background: #222222 url("https://i.imgur.com/kXsFVER.png") no-repeat right center;
+  border-left: 2px solid #222222;
+  border-radius: 0 6px 6px 0;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 42px;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-backface-visibility: hidden;
+}
+
+.dk_open {
+  z-index: 10;
+}
+.dk_open .dk_toggle {
+  background-color: #222222;
+}
+.dk_open .dk_toggle .select-icon {
+  background-color: #222222;
+  border-left-color: transparent;
+}
+
+.dk_options {
+  padding-top: 26px !important;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100% !important;
+  
+}
+.dk_options:before {
+  content: "";
+  border-style: solid;
+  border-width: 0 9px 9px 9px;
+  border-color: transparent;
+  height: 0px;
+  position: absolute;
+  left: 15px;
+  top: 5px;
+  width: 0px;
+}
+.dk_options:before {
+  left: auto;
+  right: 12px;
+}
+.dk_options li {
+  padding-bottom: 3px;
+}
+.dk_options a {
+  border-radius: 3px;
+  color: white;
+  display: block;
+  padding: 5px 9px;
+  text-decoration: none;
+}
+.dk_options a:hover {
+  background-color: #222222;
+}
+
+.dk_option_current a {
+  background-color: #222222
+}
+
+.dk_options_inner {
+  background-color: #2f2f2f;
+  border-radius: 5px;
+  margin: 0;
+  max-height: 244px;
+  padding: 3px 3px 0;
+}
+
+.dk_touch .dk_options {
+  max-height: 250px;
+}
+
+.dk_container {
+  display: none;
+  position: relative;
+  vertical-align: middle;
+}
+.dk_container.dk_shown {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+.dk_container[class*="span"] {
+  float: none;
+  margin-left: 0;
+}
+
+.dk_toggle {
+  display: block;
+  position: relative;
+}
+
+.dk_open {
+  position: relative;
+}
+.dk_open .dk_options {
+  margin-top: -1px;
+  opacity: 1;
+  z-index: 10;
+  display: block\9;
+}
+.dk_open .dk_label {
+  color: inherit;
+}
+.banner {
+  background: #009579;
+  text-align: left;
+}
+
+.banner__content {
+  padding: 16px;
+  width: 100%;
+  display: flex;
+  align-items: left;
+}
+
+.banner__text {
+  flex-grow: 1;
+  line-height: 1.4;
+  font-family: "Quicksand", sans-serif;
+}
+
+.banner__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.banner__text,
+.banner__close > span {
+  color: #ffffff;
+}
+
+.dk_options {
+  margin-top: -21px;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  width: 220px;
+  z-index: -100;
+  display: none\9;
+  -webkit-transition: 0.3s ease-out;
+  -moz-transition: 0.3s ease-out;
+  -o-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  -webkit-backface-visibility: hidden;
+}
+.select-right .dk_options {
+  left: auto;
+  right: 0;
+}
+.save {
+      width:50%;
+    margin-left:25%;
+    margin-right:25%;
+    border-radius: 3px;
+    font-size: 17px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    transition: border 180ms ease-out 0s, background 180ms ease-out 0s;
+    color: #fff;
+    background-color: #43b581;
+    border: none;
+    cursor: pointer;
+    min-height: 32px;
+    min-width: 60px;
+
+}
+.save:hover{
+  transform: translateY(1px);
+}
+
+.reset {
+      width:50%;
+    margin-left:25%;
+    margin-right:25%;
+    border-radius: 3px;
+    font-size: 17px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    transition: border 180ms ease-out 0s, background 180ms ease-out 0s;
+    color: #fff;
+    background-color: #ed4337;
+    border: none;
+    cursor: pointer;
+    min-height: 32px;
+    min-width: 60px;
+
+}
+.reset:hover{
+  transform: translateY(1px);
+}
+.dk_options a {
+  display: block;
+}
+
+.dk_options_inner {
+  overflow: auto;
+  outline: none;
+  position: relative;
+}
+
+.dk_touch .dk_options {
+  overflow: hidden;
+  
+}
+
+.dk_touch .dk_options_inner {
+  max-height: none;
+  overflow: visible;
+}
+
+.dk_fouc select {
+  position: relative;
+  top: -99999em;
+  visibility: hidden;
+}
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type=checkbox],
+input[type=radio] {
+    --active: #275EFE;
+    --active-inner: #fff;
+    --focus: 2px rgba(39, 94, 254, .3);
+    --border: #BBC1E1;
+    --border-hover: #275EFE;
+    --background: #fff;
+    --disabled: #F6F8FF;
+    --disabled-inner: #E1E6F9;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 21px;
+    outline: none;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid var(--bc, var(--border));
+    background: var(--b, var(--background));
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+  }
+  input[type=checkbox]:after,
+input[type=radio]:after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+  }
+  input[type=checkbox]:checked,
+input[type=radio]:checked {
+    --b: var(--active);
+    --bc: var(--active);
+    --d-o: .3s;
+    --d-t: .6s;
+    --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+  }
+  input[type=checkbox]:disabled,
+input[type=radio]:disabled {
+    --b: var(--disabled);
+    cursor: not-allowed;
+    opacity: 0.9;
+  }
+  input[type=checkbox]:disabled:checked,
+input[type=radio]:disabled:checked {
+    --b: var(--disabled-inner);
+    --bc: var(--border);
+  }
+  input[type=checkbox]:disabled + label,
+input[type=radio]:disabled + label {
+    cursor: not-allowed;
+  }
+  input[type=checkbox]:hover:not(:checked):not(:disabled),
+input[type=radio]:hover:not(:checked):not(:disabled) {
+    --bc: var(--border-hover);
+  }
+  input[type=checkbox]:focus,
+input[type=radio]:focus {
+    outline: none;
+  }
+  input[type=checkbox]:not(.switch),
+input[type=radio]:not(.switch) {
+    width: 21px;
+  }
+  input[type=checkbox]:not(.switch):after,
+input[type=radio]:not(.switch):after {
+    opacity: var(--o, 0);
+  }
+  input[type=checkbox]:not(.switch):checked,
+input[type=radio]:not(.switch):checked {
+    --o: 1;
+  }
+  input[type=checkbox] + label,
+input[type=radio] + label {
+    font-size: 14px;
+    line-height: 21px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    margin-left: 4px;
+  }
+
+  input[type=checkbox]:not(.switch) {
+    border-radius: 7px;
+  }
+  input[type=checkbox]:not(.switch):after {
+    width: 5px;
+    height: 9px;
+    border: 2px solid var(--active-inner);
+    border-top: 0;
+    border-left: 0;
+    left: 7px;
+    top: 4px;
+    transform: rotate(var(--r, 20deg));
+  }
+  input[type=checkbox]:not(.switch):checked {
+    --r: 43deg;
+  }
+  input[type=checkbox].switch {
+    width: 38px;
+    border-radius: 11px;
+  }
+  input[type=checkbox].switch:after {
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background: var(--ab, var(--border));
+    transform: translateX(var(--x, 0));
+  }
+  input[type=checkbox].switch:checked {
+    --ab: var(--active-inner);
+    --x: 17px;
+  }
+  input[type=checkbox].switch:disabled:not(:checked):after {
+    opacity: 0.6;
+  }
+
+  input[type=radio] {
+    border-radius: 50%;
+  }
+  input[type=radio]:after {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: var(--active-inner);
+    opacity: 0;
+    transform: scale(var(--s, 0.7));
+  }
+  input[type=radio]:checked {
+    --s: .5;
+  }
+}
+
+
+</style>
+
+
+<%- include("../partials/footer") %>
+<script>
+let menuButton = document.querySelector(".button-menu");
+let container = document.querySelector(".container");
+let pageContent = document.querySelector(".page-content");
+let responsiveBreakpoint = 991;
+
+if (window.innerWidth <= responsiveBreakpoint) {
+  container.classList.add("nav-closed");
+}
+
+menuButton.addEventListener("click", function () {
+  container.classList.toggle("nav-closed");
+});
+
+pageContent.addEventListener("click", function () {
+  if (window.innerWidth <= responsiveBreakpoint) {
+    container.classList.add("nav-closed");
+  }
+});
+
+
+window.addEventListener("resize", function () {
+  if (window.innerWidth > responsiveBreakpoint) {
+    container.classList.remove("nav-closed");
+  }
+});
+</script>
+
+<script>
+// Flat UI pack related JS
+
+$(function () {
+    // Custom selects
+    $("select").dropkick();
+});
+
+/**
+ * DropKick
+ *
+ * Highly customizable <select> lists
+ * https://github.com/JamieLottering/DropKick
+ *
+ * &copy; 2011 Jamie Lottering <https://github.com/JamieLottering>
+ *                        <https://twitter.com/JamieLottering>
+ * 
+ */
+(function ($, window, document) {
+
+  document.documentElement.className = document.documentElement.className + ' dk_fouc';
+  
+  var
+    // Public methods exposed to $.fn.dropkick()
+    methods = {},
+
+    // Cache every <select> element that gets dropkicked
+    lists   = [],
+
+    // Convenience keys for keyboard navigation
+    keyMap = {
+      'left'  : 37,
+      'up'    : 38,
+      'right' : 39,
+      'down'  : 40,
+      'enter' : 13
+    },
+
+    // HTML template for the dropdowns
+    dropdownTemplate = [
+      '<div class="dk_container {{ classname }}" id="dk_container_{{ id }}" tabindex="{{ tabindex }}">',
+        '<a class="dk_toggle">',
+          '<span class="dk_label">{{ label }}</span>',
+          '<span class="select-icon"></span>',
+        '</a>',
+        '<div class="dk_options">',
+          '<ul class="dk_options_inner">',
+          '</ul>',
+        '</div>',
+      '</div>'
+    ].join(''),
+
+    // HTML template for dropdown options
+    optionTemplate = '<li class="{{ current }}"><a data-dk-dropdown-value="{{ value }}">{{ text }}</a></li>',
+
+    // Some nice default values
+    defaults = {
+      startSpeed : 100,  // I recommend a high value here, I feel it makes the changes less noticeable to the user
+      theme  : false,
+      change : false
+    },
+
+    // Make sure we only bind keydown on the document once
+    keysBound = false
+  ;
+
+  // Called by using $('foo').dropkick();
+  methods.init = function (settings) {
+    settings = $.extend({}, defaults, settings);
+
+    return this.each(function () {
+      var
+        // The current <select> element
+        $select = $(this),
+
+        // Store a reference to the originally selected <option> element
+        $original = $select.find(':selected').first(),
+
+        // Save all of the <option> elements
+        $options = $select.find('option'),
+
+        // We store lots of great stuff using jQuery data
+        data = $select.data('dropkick') || {},
+
+        // This gets applied to the 'dk_container' element
+        id = $select.attr('id') || $select.attr('name'),
+
+        // This gets updated to be equal to the longest <option> element
+        width  = settings.width || $select.outerWidth(),
+
+        // Check if we have a tabindex set or not
+        tabindex  = $select.attr('tabindex') ? $select.attr('tabindex') : '',
+
+        // Check if we have a class name set or not
+        classname  = $select.attr('class') ? $select.attr('class') : '',
+
+        // The completed dk_container element
+        $dk = false,
+
+        theme
+      ;
+
+      // Dont do anything if we've already setup dropkick on this element
+      if (data.id) {
+        return $select;
+      } else {
+        data.settings  = settings;
+        data.tabindex  = tabindex;
+        data.classname = classname;
+        data.id        = id;
+        data.$original = $original;
+        data.$select   = $select;
+        data.value     = _notBlank($select.val()) || _notBlank($original.attr('value'));
+        data.label     = $original.text();
+        data.options   = $options;
+      }
+
+      // Build the dropdown HTML
+      $dk = _build(dropdownTemplate, data);
+
+      // Make the dropdown fixed width if desired
+      $dk.find('.dk_toggle').css({
+        // Disable inline width since it should fill all available parrent space
+        // 'width' : width + 'px'
+      });
+
+      // Hide the <select> list and place our new one in front of it
+      $select.before($dk);
+
+      // Update the reference to $dk
+      $dk = $('#dk_container_' + id).addClass('dk_shown');
+
+      // Save the current theme
+      theme = settings.theme ? settings.theme : 'default';
+      $dk.addClass('dk_theme_' + theme);
+      data.theme = theme;
+
+      // Save the updated $dk reference into our data object
+      data.$dk = $dk;
+
+      // Save the dropkick data onto the <select> element
+      $select.data('dropkick', data);
+
+      // Do the same for the dropdown, but add a few helpers
+      $dk.data('dropkick', data);
+
+      lists[lists.length] = $select;
+
+      // Focus events
+      $dk.bind('focus.dropkick', function (e) {
+        $dk.addClass('dk_focus');
+      }).bind('blur.dropkick', function (e) {
+        $dk.removeClass('dk_open dk_focus');
+      });
+
+      setTimeout(function () {
+        $select.hide();
+      }, 0);
+    });
+  };
+
+  // Allows dynamic theme changes
+  methods.theme = function (newTheme) {
+    var
+      $select   = $(this),
+      list      = $select.data('dropkick'),
+      $dk       = list.$dk,
+      oldtheme  = 'dk_theme_' + list.theme
+    ;
+
+    $dk.removeClass(oldtheme).addClass('dk_theme_' + newTheme);
+
+    list.theme = newTheme;
+  };
+
+  // Reset all <selects and dropdowns in our lists array
+  methods.reset = function () {
+    for (var i = 0, l = lists.length; i < l; i++) {
+      var
+        listData  = lists[i].data('dropkick'),
+        $dk       = listData.$dk,
+        $current  = $dk.find('li').first()
+      ;
+
+      $dk.find('.dk_label').text(listData.label);
+      $dk.find('.dk_options_inner').animate({ scrollTop: 0 }, 0);
+
+      _setCurrent($current, $dk);
+      _updateFields($current, $dk, true);
+    }
+  };
+
+  // Expose the plugin
+  $.fn.dropkick = function (method) {
+    if (methods[method]) {
+      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+    } else if (typeof method === 'object' || ! method) {
+      return methods.init.apply(this, arguments);
+    }
+  };
+
+  // private
+  function _handleKeyBoardNav(e, $dk) {
+    var
+      code     = e.keyCode,
+      data     = $dk.data('dropkick'),
+      options  = $dk.find('.dk_options'),
+      open     = $dk.hasClass('dk_open'),
+      current  = $dk.find('.dk_option_current'),
+      first    = options.find('li').first(),
+      last     = options.find('li').last(),
+      next,
+      prev
+    ;
+
+    switch (code) {
+      case keyMap.enter:
+        if (open) {
+          _updateFields(current.find('a'), $dk);
+          _closeDropdown($dk);
+        } else {
+          _openDropdown($dk);
+        }
+        e.preventDefault();
+      break;
+
+      case keyMap.up:
+        prev = current.prev('li');
+        if (open) {
+          if (prev.length) {
+            _setCurrent(prev, $dk);
+          } else {
+            _setCurrent(last, $dk);
+          }
+        } else {
+          _openDropdown($dk);
+        }
+        e.preventDefault();
+      break;
+
+      case keyMap.down:
+        if (open) {
+          next = current.next('li').first();
+          if (next.length) {
+            _setCurrent(next, $dk);
+          } else {
+            _setCurrent(first, $dk);
+          }
+        } else {
+          _openDropdown($dk);
+        }
+        e.preventDefault();
+      break;
+
+      default:
+      break;
+    }
+  }
+
+  // Update the <select> value, and the dropdown label
+  function _updateFields(option, $dk, reset) {
+    var value, label, data;
+
+    value = option.attr('data-dk-dropdown-value');
+    label = option.text();
+    data  = $dk.data('dropkick');
+
+    $select = data.$select;
+    $select.val(value);
+
+    $dk.find('.dk_label').text(label);
+
+    reset = reset || false;
+
+    if (data.settings.change && !reset) {
+      data.settings.change.call($select, value, label);
+    }
+  }
+
+  // Set the currently selected option
+  function _setCurrent($current, $dk) {
+    $dk.find('.dk_option_current').removeClass('dk_option_current');
+    $current.addClass('dk_option_current');
+
+    _setScrollPos($dk, $current);
+  }
+
+  function _setScrollPos($dk, anchor) {
+    var height = anchor.prevAll('li').outerHeight() * anchor.prevAll('li').length;
+    $dk.find('.dk_options_inner').animate({ scrollTop: height + 'px' }, 0);
+  }
+
+  // Close a dropdown
+  function _closeDropdown($dk) {
+    $dk.removeClass('dk_open');
+  }
+
+  // Open a dropdown
+  function _openDropdown($dk) {
+    var data = $dk.data('dropkick');
+    $dk.find('.dk_options').css({ top : $dk.find('.dk_toggle').outerHeight() - 1 });
+    $dk.toggleClass('dk_open');
+
+  }
+
+  /**
+   * Turn the dropdownTemplate into a jQuery object and fill in the variables.
+   */
+  function _build (tpl, view) {
+    var
+      // Template for the dropdown
+      template  = tpl,
+      // Holder of the dropdowns options
+      options   = [],
+      $dk
+    ;
+
+    template = template.replace('{{ id }}', view.id);
+    template = template.replace('{{ label }}', view.label);
+    template = template.replace('{{ tabindex }}', view.tabindex);
+    template = template.replace('{{ classname }}', view.classname);
+
+    if (view.options && view.options.length) {
+      for (var i = 0, l = view.options.length; i < l; i++) {
+        var
+          $option   = $(view.options[i]),
+          current   = 'dk_option_current',
+          oTemplate = optionTemplate
+        ;
+
+        oTemplate = oTemplate.replace('{{ value }}', $option.val());
+        oTemplate = oTemplate.replace('{{ current }}', (_notBlank($option.val()) === view.value) ? current : '');
+        oTemplate = oTemplate.replace('{{ text }}', $option.text());
+
+        options[options.length] = oTemplate;
+      }
+    }
+
+    $dk = $(template);
+    $dk.find('.dk_options_inner').html(options.join(''));
+
+    return $dk;
+  }
+
+  function _notBlank(text) {
+    return ($.trim(text).length > 0) ? text : false;
+  }
+
+  $(function () {
+
+    // Handle click events on the dropdown toggler
+    $(document).on('click', '.dk_toggle', function (e) {
+      var $dk  = $(this).parents('.dk_container').first();
+
+      _openDropdown($dk);
+
+      if ("ontouchstart" in window) {
+        $dk.addClass('dk_touch');
+        $dk.find('.dk_options_inner').addClass('scrollable vertical');
+      }
+
+      e.preventDefault();
+      return false;
+    });
+
+    // Handle click events on individual dropdown options
+    $(document).on('click', '.dk_options a', function (e) {
+      var
+        $option = $(this),
+        $dk     = $option.parents('.dk_container').first(),
+        data    = $dk.data('dropkick')
+      ;
+    
+      _closeDropdown($dk);
+      _updateFields($option, $dk);
+      _setCurrent($option.parent(), $dk);
+    
+      e.preventDefault();
+      return false;
+    });
+
+    // Setup keyboard nav
+    $(document).bind('keydown.dk_nav', function (e) {
+      var
+        // Look for an open dropdown...
+        $open    = $('.dk_container.dk_open'),
+
+        // Look for a focused dropdown
+        $focused = $('.dk_container.dk_focus'),
+
+        // Will be either $open, $focused, or null
+        $dk = null
+      ;
+
+      // If we have an open dropdown, key events should get sent to that one
+      if ($open.length) {
+        $dk = $open;
+      } else if ($focused.length && !$open.length) {
+        // But if we have no open dropdowns, use the focused dropdown instead
+        $dk = $focused;
+      }
+
+      if ($dk) {
+        _handleKeyBoardNav(e, $dk);
+      }
+    });
+  });
+})(jQuery, window, document);
+
+// #stuff
+
+/* ===========================================================
+ * bootstrap-tooltip.js v2.3.0
+ * https://twitter.github.com/bootstrap/javascript.html#tooltips
+ * Inspired by the original jQuery.tipsy by Jason Frame
+ * ===========================================================
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================== */
+
+
+!function ($) {
+
+  "use strict"; // jshint ;_;
+
+
+ /* TOOLTIP PUBLIC CLASS DEFINITION
+  * =============================== */
+
+  var Tooltip = function (element, options) {
+    this.init('tooltip', element, options)
+  }
+
+  Tooltip.prototype = {
+
+    constructor: Tooltip
+
+  , init: function (type, element, options) {
+      var eventIn
+        , eventOut
+        , triggers
+        , trigger
+        , i
+
+      this.type = type
+      this.$element = $(element)
+      this.options = this.getOptions(options)
+      this.enabled = true
+
+      triggers = this.options.trigger.split(' ')
+
+      for (i = triggers.length; i--;) {
+        trigger = triggers[i]
+        if (trigger == 'click') {
+          this.$element.on('click.' + this.type, this.options.selector, $.proxy(this.toggle, this))
+        } else if (trigger != 'manual') {
+          eventIn = trigger == 'hover' ? 'mouseenter' : 'focus'
+          eventOut = trigger == 'hover' ? 'mouseleave' : 'blur'
+          this.$element.on(eventIn + '.' + this.type, this.options.selector, $.proxy(this.enter, this))
+          this.$element.on(eventOut + '.' + this.type, this.options.selector, $.proxy(this.leave, this))
+        }
+      }
+
+      this.options.selector ?
+        (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
+        this.fixTitle()
+    }
+
+  , getOptions: function (options) {
+      options = $.extend({}, $.fn[this.type].defaults, this.$element.data(), options)
+
+      if (options.delay && typeof options.delay == 'number') {
+        options.delay = {
+          show: options.delay
+        , hide: options.delay
+        }
+      }
+
+      return options
+    }
+
+  , enter: function (e) {
+      var self = $(e.currentTarget)[this.type](this._options).data(this.type)
+
+      if (!self.options.delay || !self.options.delay.show) return self.show()
+
+      clearTimeout(this.timeout)
+      self.hoverState = 'in'
+      this.timeout = setTimeout(function() {
+        if (self.hoverState == 'in') self.show()
+      }, self.options.delay.show)
+    }
+
+  , leave: function (e) {
+      var self = $(e.currentTarget)[this.type](this._options).data(this.type)
+
+      if (this.timeout) clearTimeout(this.timeout)
+      if (!self.options.delay || !self.options.delay.hide) return self.hide()
+
+      self.hoverState = 'out'
+      this.timeout = setTimeout(function() {
+        if (self.hoverState == 'out') self.hide()
+      }, self.options.delay.hide)
+    }
+
+  , show: function () {
+      var $tip
+        , pos
+        , actualWidth
+        , actualHeight
+        , placement
+        , tp
+        , e = $.Event('show')
+
+      if (this.hasContent() && this.enabled) {
+        this.$element.trigger(e)
+        if (e.isDefaultPrevented()) return
+        $tip = this.tip()
+        this.setContent()
+
+        if (this.options.animation) {
+          $tip.addClass('fade')
+        }
+
+        placement = typeof this.options.placement == 'function' ?
+          this.options.placement.call(this, $tip[0], this.$element[0]) :
+          this.options.placement
+
+        $tip
+          .detach()
+          .css({ top: 0, left: 0, display: 'block' })
+
+        this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+
+        pos = this.getPosition()
+
+        actualWidth = $tip[0].offsetWidth
+        actualHeight = $tip[0].offsetHeight
+
+        switch (placement) {
+          case 'bottom':
+            tp = {top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2}
+            break
+          case 'top':
+            tp = {top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2}
+            break
+          case 'left':
+            tp = {top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth}
+            break
+          case 'right':
+            tp = {top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width}
+            break
+        }
+
+        this.applyPlacement(tp, placement)
+        this.$element.trigger('shown')
+      }
+    }
+
+  , applyPlacement: function(offset, placement){
+      var $tip = this.tip()
+        , width = $tip[0].offsetWidth
+        , height = $tip[0].offsetHeight
+        , actualWidth
+        , actualHeight
+        , delta
+        , replace
+
+      $tip
+        .offset(offset)
+        .addClass(placement)
+        .addClass('in')
+
+      actualWidth = $tip[0].offsetWidth
+      actualHeight = $tip[0].offsetHeight
+
+      if (placement == 'top' && actualHeight != height) {
+        offset.top = offset.top + height - actualHeight
+        replace = true
+      }
+
+      if (placement == 'bottom' || placement == 'top') {
+        delta = 0
+
+        if (offset.left < 0){
+          delta = offset.left * -2
+          offset.left = 0
+          $tip.offset(offset)
+          actualWidth = $tip[0].offsetWidth
+          actualHeight = $tip[0].offsetHeight
+        }
+
+        this.replaceArrow(delta - width + actualWidth, actualWidth, 'left')
+      } else {
+        this.replaceArrow(actualHeight - height, actualHeight, 'top')
+      }
+
+      if (replace) $tip.offset(offset)
+    }
+
+  , replaceArrow: function(delta, dimension, position){
+      this
+        .arrow()
+        .css(position, delta ? (50 * (1 - delta / dimension) + "%") : '')
+    }
+
+  , setContent: function () {
+      var $tip = this.tip()
+        , title = this.getTitle()
+
+      $tip.find('.tooltip-inner')[this.options.html ? 'html' : 'text'](title)
+      $tip.removeClass('fade in top bottom left right')
+    }
+
+  , hide: function () {
+      var that = this
+        , $tip = this.tip()
+        , e = $.Event('hide')
+
+      this.$element.trigger(e)
+      if (e.isDefaultPrevented()) return
+
+      $tip.removeClass('in')
+
+      function removeWithAnimation() {
+        var timeout = setTimeout(function () {
+          $tip.off($.support.transition.end).detach()
+        }, 500)
+
+        $tip.one($.support.transition.end, function () {
+          clearTimeout(timeout)
+          $tip.detach()
+        })
+      }
+
+      $.support.transition && this.$tip.hasClass('fade') ?
+        removeWithAnimation() :
+        $tip.detach()
+
+      this.$element.trigger('hidden')
+
+      return this
+    }
+
+  , fixTitle: function () {
+      var $e = this.$element
+      if ($e.attr('title') || typeof($e.attr('data-original-title')) != 'string') {
+        $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
+      }
+    }
+
+  , hasContent: function () {
+      return this.getTitle()
+    }
+
+  , getPosition: function () {
+      var el = this.$element[0]
+      return $.extend({}, (typeof el.getBoundingClientRect == 'function') ? el.getBoundingClientRect() : {
+        width: el.offsetWidth
+      , height: el.offsetHeight
+      }, this.$element.offset())
+    }
+
+  , getTitle: function () {
+      var title
+        , $e = this.$element
+        , o = this.options
+
+      title = $e.attr('data-original-title')
+        || (typeof o.title == 'function' ? o.title.call($e[0]) :  o.title)
+
+      return title
+    }
+
+  , tip: function () {
+      return this.$tip = this.$tip || $(this.options.template)
+    }
+
+  , arrow: function(){
+      return this.$arrow = this.$arrow || this.tip().find(".tooltip-arrow")
+    }
+
+  , validate: function () {
+      if (!this.$element[0].parentNode) {
+        this.hide()
+        this.$element = null
+        this.options = null
+      }
+    }
+
+  , enable: function () {
+      this.enabled = true
+    }
+
+  , disable: function () {
+      this.enabled = false
+    }
+
+  , toggleEnabled: function () {
+      this.enabled = !this.enabled
+    }
+
+  , toggle: function (e) {
+      var self = e ? $(e.currentTarget)[this.type](this._options).data(this.type) : this
+      self.tip().hasClass('in') ? self.hide() : self.show()
+    }
+
+  , destroy: function () {
+      this.hide().$element.off('.' + this.type).removeData(this.type)
+    }
+
+  }
+
+
+ /* TOOLTIP PLUGIN DEFINITION
+  * ========================= */
+
+  var old = $.fn.tooltip
+
+  $.fn.tooltip = function ( option ) {
+    return this.each(function () {
+      var $this = $(this)
+        , data = $this.data('tooltip')
+        , options = typeof option == 'object' && option
+      if (!data) $this.data('tooltip', (data = new Tooltip(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.tooltip.Constructor = Tooltip
+
+  $.fn.tooltip.defaults = {
+    animation: true
+  , placement: 'top'
+  , selector: false
+  , template: '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+  , trigger: 'hover focus'
+  , title: ''
+  , delay: 0
+  , html: false
+  , container: false
+  }
+
+
+ /* TOOLTIP NO CONFLICT
+  * =================== */
+
+  $.fn.tooltip.noConflict = function () {
+    $.fn.tooltip = old
+    return this
+  }
+
+}(window.jQuery);
+</script>
+
+
+
+  <script type="text/javascript">
+	
+document.querySelector(".banner__close").addEventListener("click", function () {
+  this.closest(".banner").style.display = "none";
+});
+
+	</script>
+
+

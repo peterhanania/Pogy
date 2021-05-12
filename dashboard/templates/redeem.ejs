@@ -1,0 +1,55 @@
+<%- include("partials/head", { bot, user, path, title: "Pogy - Redeem" }) %>
+<div class="content">
+
+<h2>SELECT A SERVER</h2>
+
+
+<div class="servers">
+<% user.guilds.forEach(guild => {
+ const permsOnGuild = new perms(guild.permissions);
+ if(!permsOnGuild.has("MANAGE_GUILD")) {
+ return
+ }
+%>
+  <% if (!bot.guilds.cache.get(guild.id)) { 
+    return
+   } %>
+<% if (guild.icon) {
+ iconurl = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ".png??size=512";
+} else {
+ iconurl = "https://cdn.glitch.com/82fe990a-7942-42e3-9790-39807ccdb9f6%2Ficon-404-dark.png?v=1602427904949";
+}
+%>
+<div class="server">
+  <div class="icon-and-name">
+<img class="server-icon" src="<%= iconurl %>" alt="<% guild.name %>"/>
+  <p class="guild-name"><%= guild.name %></p>
+  </div>
+  <% if (bot.guilds.cache.get(guild.id)) { %>
+    <a class="edit button" href="/redeem/<%= guild.id %>">Redeem</a>
+  <% } %>
+</div>
+  <% }); %>
+</div>
+
+
+
+<%- include("partials/footer") %>
+<script>
+    function PopupCenter(e, n, t, i) {
+        var o = void 0 != window.screenLeft ? window.screenLeft : screen.left,
+            d = void 0 != window.screenTop ? window.screenTop : screen.top,
+            c = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width,
+            w = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height,
+            r = c / 2 - t / 2 + o, h = w / 2 - i / 2 + d,
+            s = window.open(e, n, "scrollbars=yes, width=" + t + ", height=" + i + ", top=" + h + ", left=" + r);
+        window.focus && s.focus()
+    }
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;
+600&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;
+600&display=swap');
+
+</style>

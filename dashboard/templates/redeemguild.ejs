@@ -1,0 +1,691 @@
+
+<%- include("partials/head", { bot, user, path, title: "Pogy - Redeem" }) %>
+<link rel="icon"
+    type="image/png"
+    href="<%domain%>/logo.png">
+    <body>
+  
+  <% if(!alert && settings.isPremium === "true") { %>
+   <div class="container-contact">
+            <div class="wrap-contact">
+                
+                    <span class="contact-form-title">Already Premium</span>
+                    <h4><%= guild.name %> Is already a premium guild.</h4>
+
+</div>
+</div>
+  <% } else if(alert) { %>
+   <div class="container-contact">
+            <div class="wrap-contact">
+                
+                <span class="contact-form-title">Congrats!</span>
+                    <h4><%= guild.name %> Is now a premium guild!</h4>
+
+</div>
+</div>
+
+
+                    
+
+  <% } else { %>
+     <form id="form" role="form" action="/redeem/<%= guild.id %>" method="POST">
+   <div class="container-contact">
+            <div class="wrap-contact">
+                
+                    <span class="contact-form-title">Guild: <%= guild.name %></span>
+<div class="wrapper">
+
+  
+<ol class="ProgressBar">
+  <li class="ProgressBar-step">
+    <svg class="ProgressBar-icon"><use xlink:href="#checkmark-bold"/></svg>
+    <span class="ProgressBar-stepLabel">Summary</span>
+  </li>
+  <li class="ProgressBar-step">
+    <svg class="ProgressBar-icon"><use xlink:href="#checkmark-bold"/></svg>
+    <span class="ProgressBar-stepLabel">Redeem</span>
+  </li>
+
+</ol>
+  
+
+</div>
+
+
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>  
+<div id="1">         
+<h3 id="table-heading">Order Summary</h3>
+<table aria-labelledby="table-heading">
+	<tr>
+		<th scope="row">1 Year Premium (1 Server)</th>
+		<td>29.99$</td>
+	</tr>
+	<tr>
+		<th scope="row">Free Coupon</th>
+		<td>-29.99$</td>
+	</tr>
+	<tr>
+		<th scope="row">Total</th>
+		<td>0$</td>
+	</tr>
+</table>
+</div>
+
+<div style="display: none" id="2">
+
+<h5 style="padding-left: 40px" class="table">
+You are currently purchasing Premium to <%=guild.name%>, as you will not be able to go back when redeemed. Finally, to redeem Premium Please click on the button Below! 
+</h5>
+<div style="padding-top: 20px"></div>
+<p style="color: red" id="understand"></p>
+<div class="custom-control custom-checkbox mb-1">
+    <input type="checkbox" class="custom-control-input" id="customCheck">
+    <label class="custom-control-label" for="customCheck"> I Understand that the following action is irreversible</label>
+</div>
+<div style="padding-top: 40px"></div>
+<button id="button" type="button" name="form">Redeem</button>
+<div style="padding-top: 120px"></div>
+</div>
+
+<p style="text-align: center; padding-top: 20px;">
+  <button id="previous" type="button">Previous</button>
+  <button id="advance" type="button">Next</button>
+</p>
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="checkmark-bold" viewBox="0 0 24 24">
+    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/>
+  </symbol>
+</svg>
+</div>
+</div>
+</form>
+ <% } %>
+</html>
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Heebo|Ubuntu:700&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+:root {
+    --server-hover: #2b2b2b;
+    --mainBackground: #21222C;
+    --font1: 'Heebo', sans-serif;
+    --font2: 'Ubuntu', sans-serif;
+    --font3: 'Poppins', sans-serif;
+    --font4: Montserrat, sans-serif;
+    --defaultColor: rgb(192, 204, 209);
+    --font5: "Open Sans", "Helvetica Neue", "Segoe UI", "Calibri", "Arial", sans-serif;
+    --scrollbar: #222;
+--scrollbar-thumb: #2b2b2b;
+--scrollbar-hover: #363636;
+--scrollbar-active: #454545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: var(--font3);
+    scrollbar-color: #353535 transparent;
+scrollbar-width: thin;
+
+}
+
+::-webkit-scrollbar {
+width: 16px;
+background-color: var(--scrollbar);
+cursor: pointer;
+}
+table {
+	 border: 1px solid #ddd;
+	 width: 100%;
+	 padding: 1em;
+}
+ th {
+	 text-align: left;
+	 font-weight: normal;
+}
+.table{
+	 border: 1px solid #ddd;
+	 width: 100%;
+	 padding: 1em;
+}
+ td {
+	 text-align: right;
+}
+ td, th {
+	 border-bottom: 1px dotted #ddd;
+	 margin: 0;
+	 line-height: 2em;
+}
+ tr:last-of-type th, tr:last-of-type td {
+	 border: 0;
+	 font-weight: bold;
+}
+ 
+::-webkit-scrollbar-thumb {
+background-color: var(--scrollbar-thumb);
+height: 16px;
+background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background-color: var(--scrollbar-hover);
+}
+
+::-webkit-scrollbar-thumb:active {
+background-color: var(--scrollbar-active);
+}
+
+.hover{
+display: flex;
+flex: 1 1 0%;
+height: 60px;
+-webkit-box-align: center;
+align-items: center;
+-webkit-box-pack: justify;
+padding: 1em;
+border-radius: 5px;
+transition: border 180ms ease-out 0s, background 180ms ease-out 0s;
+margin-bottom: 5px;
+}
+.hover:hover{
+background-color: var(--server-hover);
+}
+
+
+body {
+    background-color: #2f2f2f;
+}
+
+a {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.7;
+    transition: all .4s;
+}
+
+a:focus {
+    outline: none!important;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+ul, li {
+    margin: 0;
+    list-style-type: none;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+textarea {
+    border: none;
+    outline: none;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 200px;
+}
+
+textarea:focus, input:focus {
+    border-color: transparent!important;
+}
+
+button {
+  display: inline-block;
+  font-family: Whitney, "Open Sans", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  border-radius: 3px;
+  cursor: pointer;
+  height: 45px;
+  width: 200px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: #43b581;
+  border: 2px solid #43b581;
+  color: #fff;
+}
+
+
+button:hover {
+    cursor: pointer;
+ transform: translateY(1px);
+}
+
+iframe {
+    border: none!important;
+}
+
+.container {
+    max-width: 1200px
+}
+
+.container-contact {
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    padding: 15px;
+    flex-wrap: wrap;
+    background: 0 0;
+    min-height: 100vh;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+#1 {
+display: block;
+}
+
+#2 {
+display: none;
+}
+
+
+.contact-map {
+    top: 0;
+    left: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.wrap-contact {
+    width: 1170px;
+    position: relative;
+    border-radius: 10px;
+    background: #222222;
+    padding: 82px 180px 33px;
+    box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.103);
+}
+
+.contact-form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 68px;
+    justify-content: space-between;
+}
+
+
+
+.contact-form-title {
+    width: 100%;
+    color: #fff;
+    display: block;
+    font-size: 39px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+    padding-bottom: 44px;
+    font-family: var(--font3);
+}
+
+.wrap-input {
+    width: 100%;
+    position: relative;
+    margin-bottom: 65px;
+    padding-bottom: 13px;
+}
+
+.rs1-wrap-input {
+    width: calc((100% - 30px)/2);
+}
+
+.label {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding-left: 5px;
+}
+
+.input {
+    width: 100%;
+    color: #fff;
+    display: block;
+    padding: 0 5px;
+    font-size: 18px;
+    background: 0 0;
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.input-line {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.input-line::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transition: all .4s;
+    background: linear-gradient(90deg, #5a5460, #4f4c62);
+}
+
+input.input {
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+textarea.input {
+    padding-top: 9px;
+    margin-top: 10px;
+    min-height: 110px;
+    border-radius: 5px;
+    padding-bottom: 13px;
+}
+
+.container-contact-form-btn {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -25px;
+}
+
+.contact-form-btn {
+    height: 50px;
+    color: #fff;
+    display: flex;
+    font-size: 16px;
+    padding: 0 20px;
+    line-height: 1.2;
+    min-width: 160px;
+    transition: all .5s;
+    border-radius: 25px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 10px 0 #0000000f;
+    background: linear-gradient(150deg, #3f3b44, #3c3748);
+}
+
+.contact-form-btn:hover {
+    box-shadow: 0 10px 10px 0 #1f1d2275;
+}
+
+.contact-form-btn:hover i {
+    transform: translateX(10px);
+}
+
+@media(max-width:992px) {
+    .wrap-contact {
+        padding: 82px 80px 33px;
+    }
+}
+
+@media(max-width:768px) {
+    .rs1-wrap-input {
+        width: 100%;
+    }
+}
+
+@media(max-width:576px) {
+    .wrap-contact {
+        padding: 82px 15px 33px;
+    }
+    .contact-form-title::after {
+        font-size: 35px;
+        font-weight: 600;
+        content: "Redeem Premium";
+    }
+}
+
+.validate-input {
+    position: relative;
+}
+
+.alert-validate::before {
+    top: 58%;
+    right: 2px;
+    opacity: 0;
+    max-width: 70%;
+    font-size: 13px;
+    color: #c80000;
+    line-height: 1.4;
+    text-align: left;
+    visibility: hidden;
+    position: absolute;
+    border-radius: 2px;
+    pointer-events: none;
+    background-color: #fff;
+    transition: opacity .4s;
+    padding: 4px 25px 4px 10px;
+    transform: translateY(-50%);
+    border: 1px solid #c80000;
+    content: attr(data-validate);
+}
+
+.contact-more {
+    color: #757184;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#summary {
+
+
+
+}
+.ProgressBar {
+	 margin: 0 auto;
+	 padding: 2em 0 3em;
+	 list-style: none;
+	 position: relative;
+	 display: flex;
+	 justify-content: space-between;
+}
+ .ProgressBar-step {
+	 text-align: center;
+	 position: relative;
+	 width: 100%;
+}
+ .ProgressBar-step:before, .ProgressBar-step:after {
+	 content: "";
+	 height: 0.5em;
+	 background-color: #9f9fa3;
+	 position: absolute;
+	 z-index: 1;
+	 width: 100%;
+	 left: -50%;
+	 top: 50%;
+	 transform: translateY(-50%);
+	 transition: all 0.25s ease-out;
+}
+ .ProgressBar-step:first-child:before, .ProgressBar-step:first-child:after {
+	 display: none;
+}
+ .ProgressBar-step:after {
+	 background-color: #00637c;
+	 width: 0%;
+}
+ .ProgressBar-step.is-complete + .ProgressBar-step.is-current:after, .ProgressBar-step.is-complete + .ProgressBar-step.is-complete:after {
+	 width: 100%;
+}
+ .ProgressBar-icon {
+	 width: 1.5em;
+	 height: 1.5em;
+	 background-color: #9f9fa3;
+	 fill: #9f9fa3;
+	 border-radius: 50%;
+	 padding: 0.5em;
+	 max-width: 100%;
+	 z-index: 10;
+	 position: relative;
+	 transition: all 0.25s ease-out;
+}
+ .is-current .ProgressBar-icon {
+	 fill: #00637c;
+	 background-color: #00637c;
+}
+ .is-complete .ProgressBar-icon {
+	 fill: #dbf1ff;
+	 background-color: #00637c;
+}
+ .ProgressBar-stepLabel {
+	 display: block;
+	 text-transform: uppercase;
+	 color: #9f9fa3;
+	 position: absolute;
+	 padding-top: 0.5em;
+	 width: 100%;
+	 transition: all 0.25s ease-out;
+}
+ .is-current > .ProgressBar-stepLabel, .is-complete > .ProgressBar-stepLabel {
+	 color: #00637c;
+}
+ .wrapper {
+	 max-width: 1000px;
+	 margin: 4em auto;
+	 font-size: 16px;
+}
+ 
+.contact-more-highlight {
+    color: #8a7b9d;
+}
+
+body.full-screen .wrap-contact {
+    width: 100%;
+    height: 100%;
+}
+
+body.full-screen .container-contact {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body.done form>div {
+    display: none !important;
+}
+
+
+</style>
+<script>
+
+const button = document.getElementById("button");
+
+button.onclick = function() {
+
+const check = document.getElementById("customCheck");
+const error = document.getElementById("understand");
+
+
+
+if(check.checked == false) {
+ error.innerHTML="Please check the checkbox below.";
+} else {
+document.getElementById("form").submit();
+}
+
+};
+</script>
+<script>
+let a = 1;
+  var $bar = $(".ProgressBar");
+
+ $bar.children().first().addClass("is-current");
+ 
+ const advance = document.getElementById("advance")
+ const previous = document.getElementById("previous")
+
+previous.style.display = "none";
+$("#advance").on("click", function() {
+
+
+
+  if ($bar.children(".is-current").length > 0) {
+    $bar.children(".is-current").removeClass("is-current").addClass("is-complete").next().addClass("is-current");
+
+   $bar.children(".is-current").removeClass("is-current").addClass("is-complete").next().addClass("is-current");
+
+
+
+  } else {
+    $bar.children().first().addClass("is-current");
+    
+  }
+
+  let b = ++a;
+  
+  const payment1 = document.getElementById("1");
+  const payment2 = document.getElementById("2");
+
+
+
+  if(b > 1) {
+payment2.style.display = "block"; 
+payment1.style.display = "none"; 
+advance.style.display = "none";
+previous.style.display = "block";
+
+  } else {
+payment1.style.display = "block"; 
+payment2.style.display = "none"; 
+
+  }
+
+});
+
+$("#previous").on("click", function() {
+  if ($bar.children(".is-current").length > 0) {
+    $bar.children(".is-current").removeClass("is-current").prev().removeClass("is-complete").addClass("is-current");
+      
+  } else {
+    $bar.children(".is-complete").last().removeClass("is-complete").addClass("is-current");
+       $bar.children(".is-complete").last().removeClass("is-complete").addClass("is-current");
+  }
+
+    let b = --a;
+  
+  const payment1 = document.getElementById("1");
+  const payment2 = document.getElementById("2");
+
+  if(b > 1) {
+payment2.style.display = "block"; 
+payment1.style.display = "none";
+previous.style.display = "block";
+
+
+  } else {
+payment1.style.display = "block"; 
+payment2.style.display = "none"; 
+advance.style.display = "block";
+previous.style.display = "none";
+  }
+
+
+});
+</script>
+<%- include("partials/footer") %>

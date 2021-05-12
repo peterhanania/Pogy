@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon"
+    type="image/png"
+    href="https://<%=hostname%>/logo.png">
+<title><%= title %></title>
+<link rel="stylesheet" type="text/css" href="https://<%= hostname %>/css/style.css">
+<% if (analitics) { %>
+<%- include('./analytics.ejs') %>
+<% } %>
+<%- include("./seo", { bot, user, path, description, title, twitter, url, image:`${https}${hostname}/logo.png`}) %>
+</head>
+<body>
+<script type="text/javascript">var preload = document.createElement('div'); preload.className = "preloader"; preload.innerHTML = '</div><div class="spinner"></div>'; document.body.appendChild(preload); window.addEventListener('load', function() { preload.className +=  ' fade'; setTimeout(function(){ preload.style.display = 'none'; },600); 
+})</script>
+<noscript><div class="no-js">To view the page please enable javascript in your browser.</div></noscript>
+<%- include("./menuNav", { bot, user, path, url, image, name, tag }) %>
+<div class="blur" id="body-blur"></div>
+<%- title === "Dashboard" ? "" : "" %>

@@ -1,0 +1,283 @@
+<!-- Taken from https://github.com/Glitchii/embedbuilder
+all credit goes to Ace.
+https://github.com/Glitchii  -->
+<% if(guild.channels.cache.filter(m => m.type === 'text').size > 0) { %>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+        <link rel="icon" type="image/png" href="<%= hostname %>/logo.png" />
+        <title>Pogy - Embed Builder</title>
+        <link rel="stylesheet" href="<%=domain%>/css/embed-css.css" />
+        <script>
+            const guildID = "<%= guild.id %>";
+        </script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+        <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/javascript/javascript.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/material-darker.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/scroll/simplescrollbars.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/scroll/simplescrollbars.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/edit/matchbrackets.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/brace-fold.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/foldgutter.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/foldgutter.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/foldcode.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/lint/json-lint.min.js"></script>
+        <script src="https://unpkg.com/jsonlint@1.6.3/web/jsonlint.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/lint/lint.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/lint/lint.min.js"></script>
+        <script src="<%=domain%>/libs/color-picker/color-picker.min.js"></script>
+        <link rel="stylesheet" href="<%=domain%>/libs/color-picker/color-picker.min.css" />
+        <script src="<%=domain%>/js/embed-components.js"></script>
+        <script src="<%=domain%>/js/embed-builder.js"></script>
+    </head>
+<noscript>
+<div class="no-js">
+To view the page please enable javascript in your browser
+</div></noscript>
+    <body class="gui empty">
+        <div class="mainBuilder">
+            <section class="side1">
+                <div class="chooser">
+                    <div class="back"></div>
+                    <div class="gui opt">
+                        <p>GUI</p>
+                    </div>
+                    <div class="json opt">
+                        <p>JSON</p>
+                    </div>
+                    <div class="clear">
+                        <svg title="clear everything" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" xml:space="preserve">
+                            <g>
+                                <path
+                                    d="M740.4,401.4c-46-25.4-92.5-49.9-139.1-74.2c-36.3-18.9-73.3-19.2-110-0.9c-22,11-38.8,27.5-50.4,49.9c116.5,62,232.2,123.6,348.7,185.6c2.2-5.1,4.4-9.3,6-13.7C816.7,491.3,794.5,431.2,740.4,401.4z" style="fill: #fff;"  ></path>
+                                <path
+                                    d="M875.6,35.1c-9.2-12.8-21.9-20.4-37.2-23.8c-16.7-3.7-26.1,0.2-35,14.3c-53,84.6-106,169.2-159,253.8c-1.7,2.7-3.2,5.4-4.8,8.1c1,1.1,1.5,2,2.3,2.4c36.2,19.3,72.4,38.6,109.1,58.2c1.3-2.1,2-3.1,2.6-4.2c41.6-93.9,83.1-187.8,124.8-281.6C882.7,52.3,881.7,43.5,875.6,35.1z" style="fill: #fff;"  ></path>
+                                <path
+                                    d="M754.3,597.7c7.1-18.1-1.8-38.5-19.9-45.6c-18-7.2-38.5,1.7-45.6,19.8c-3.7,9.4-80.7,208.2-18.2,347.6c-29.6-0.3-76.3-7.1-141.9-31.8c-12.2-38-20.9-97.3,5.7-166.9c0,0-63.7,72.8-74.3,137.5c-13.7-6.6-28-13.8-43-21.8c-15-8.1-28.9-16-42-23.8c48.1-44.6,73.5-137.9,73.5-137.9c-43.3,60.6-97.5,86.2-135.9,97c-57.1-41.1-88.6-76.3-105.1-100.6c150.8-25,273.9-199.1,279.7-207.4c11.1-15.9,7.2-37.9-8.7-48.9c-15.9-11.2-37.8-7.2-49,8.7c-1.4,1.9-137.8,193.7-271.7,179.5c-10.4-1.1-21,2.5-28.6,10c-7.5,7.5-11.3,17.9-10.2,28.5c1.3,12.4,19.5,125.3,264.8,256.9C522.1,972.6,615.5,990,672.6,990c44.3,0,66.9-10.4,71.7-13c9.4-4.9,16-13.8,18.1-24.3c2.1-10.4-0.7-21.2-7.5-29.4C668.7,819.5,753.5,599.9,754.3,597.7z" style="fill: #fff;"  ></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="pickerToggle">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+                            <path
+                                style="fill: #d8d8da;" d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z   M256,336.842c-44.648,0-80.842-36.194-80.842-80.842s36.194-80.842,80.842-80.842s80.842,36.194,80.842,80.842  S300.648,336.842,256,336.842z"  ></path>
+                            <path style="fill: #d4b6e6;" d="M282.947,188.632h220.076C485.09,122.726,441.507,67.394,383.64,34.044L229.053,188.632H282.947z"></path>
+                            <path style="fill: #ebafd1;" d="M229.053,188.632L383.639,34.044C346.068,12.39,302.482,0,256,0c-23.319,0-45.899,3.135-67.368,8.978  v220.075L229.053,188.632z"></path>
+                            <path style="fill: #e07188;" d="M188.632,229.053V8.978C122.726,26.91,67.394,70.493,34.045,128.36l154.586,154.588V229.053z"></path>
+                            <g>
+                                <polygon style="fill: #d8d8da;" points="188.632,229.053 229.053,188.633 282.947,188.633 282.947,188.632 229.053,188.632  "></polygon>
+                                <polygon style="fill: #d8d8da;" points="229.053,323.367 188.632,282.947 229.053,323.368 282.947,323.368 323.368,282.947    282.947,323.367  "></polygon>
+                            </g>
+                            <path style="fill: #b4d8f1;" d="M503.024,188.632H282.947v0.001h0.958l39.463,40.42L477.955,383.64  C499.611,346.068,512,302.482,512,256C512,232.681,508.865,210.099,503.024,188.632z"></path>
+                            <path style="fill: #acfff4;" d="M323.368,282.947v220.075c65.905-17.932,121.238-61.517,154.586-119.382L323.368,229.053V282.947z"></path>
+                            <path style="fill: #95d5a7;" d="M282.947,323.368L128.361,477.956C165.932,499.61,209.518,512,256,512  c23.319,0,45.899-3.135,67.368-8.977V282.947L282.947,323.368z"></path>
+                            <path style="fill: #f8e99b;" d="M229.053,323.368H8.976C26.91,389.274,70.493,444.606,128.36,477.956l154.588-154.588H229.053z"></path>
+                            <path style="fill: #efc27b;" d="M188.632,282.947L34.045,128.36C12.389,165.932,0,209.518,0,256c0,23.319,3.135,45.901,8.976,67.368  h220.076L188.632,282.947z"></path>
+                            <polygon style="fill: #d8d8da;" points="283.905,188.633 282.947,188.633 323.368,229.053 "></polygon>
+                            <path style="fill: #b681d5;" d="M503.024,188.632C485.09,122.726,441.507,67.394,383.64,34.044L256,161.684v26.947h26.947H503.024z"></path>
+                            <path style="fill: #e592bf;" d="M383.639,34.044C346.068,12.39,302.482,0,256,0v161.684L383.639,34.044z"></path>
+                            <path style="fill: #80cb93;" d="M256,350.316V512c23.319,0,45.899-3.135,67.368-8.977V282.947l-40.421,40.421L256,350.316z"></path>
+                            <polygon style="fill: #f6e27d;" points="282.947,323.368 256,323.368 256,350.316 "></polygon>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                        </svg>
+                    </div>
+                </div>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <div class="dropdown" style="float: right;">
+                    <button class="dropbtn">Go back</button>
+                    <div class="dropdown-content">
+                        <a href="/">Home</a>
+                        <a href="/dashboard">Dashboard</a>
+                        <a style="color: #ff5151;" href="/logout">Logout</a>
+                    </div>
+                </div>
+
+                <div class="top item">
+                    <div class="gui"></div>
+                    <div class="editorHolder"></div>
+                </div>
+                <div class="bottom item">
+                    <div class="colrs">
+                        <div></div>
+                        <div class="col colLeft">
+                            <div class="picker">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" x="0" y="0" viewBox="0 0 390.954 390.955" xml:space="preserve">
+                                    <g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                            <g>
+                                                <path
+                                                    d="M377.314,27.704C360.761,0.494,325.283-8.145,298.076,8.41l-52.561,31.977l-3.607-5.932    c-10.484-17.229-32.947-22.7-50.179-12.218C174.5,32.72,169.032,55.184,179.512,72.415l7.162,11.771L60.314,161.652    c-11.612,7.065-30.483,32.364-35.989,39.95c-2.97,4.09-3.191,9.563-0.565,13.881l24.784,40.738    c2.627,4.317,7.591,6.637,12.587,5.88c9.269-1.402,40.41-6.529,52.024-13.596l126.357-77.467l7.161,11.771    c10.481,17.229,32.946,22.7,50.178,12.217c17.229-10.481,22.699-32.946,12.217-50.177l-3.607-5.93l52.561-31.978    C385.229,90.389,393.868,54.912,377.314,27.704z M100.124,227.084l-0.694-59.882l85.469-52.59    c0.715,8.641,3.392,17.25,8.204,25.161c4.812,7.911,11.229,14.245,18.571,18.853L100.124,227.084z" fill="#ffffff" data-original="#000000"  ></path>
+                                                <path
+                                                    d="M52.666,276.584c-1.823-1.458-4.413-1.459-6.238-0.003C44.745,277.922,5.23,309.82,5.23,343.554    c0,27.909,18.223,47.4,44.314,47.4c26.836,0,46.314-19.936,46.314-47.4C95.859,311.472,54.43,277.995,52.666,276.584z     M55.582,378.402c-0.414,0.104-0.829,0.155-1.237,0.155c-2.231,0-4.266-1.506-4.842-3.769c-0.68-2.672,0.931-5.389,3.6-6.075    c0.915-0.241,20.916-5.754,20.913-25.823c0-2.762,2.237-5,4.999-5.001c2.762,0,5.001,2.238,5.001,4.999    C84.02,365.254,65.417,375.898,55.582,378.402z" fill="#ffffff" data-original="#000000"  ></path>
+                                            </g>
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                        <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="colr" style="background: #41f097;"></div>
+                        </div>
+                        <div class="col colRight">
+                            <div class="colBack">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" xml:space="preserve">
+                                    <g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="m377 91h-362c-8.291 0-15 6.709-15 15v30c0 8.291 6.709 15 15 15h362c41.353 0 75 33.647 75 75s-33.647 75-75 75h-121v-45c0-5.742-3.281-10.986-8.452-13.491s-11.323-1.846-15.85 1.714l-94.995 75c-3.604 2.842-5.698 7.192-5.698 11.777s2.095 8.936 5.698 11.777l94.995 75c4.554 3.569 10.688 4.222 15.85 1.714 5.171-2.504 8.452-7.749 8.452-13.491v-45h121c74.443 0 135-60.557 135-135s-60.557-135-135-135z" fill="#ffffff" data-original="#000000"  ></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="cTop">
+                                <h2>Embed Colour</h2>
+                                <p class="desc">Pick the embed colour</p>
+                            </div>
+                            <div class="pallets">
+                                <div class="colr" class="colr" style="background: #00bb9c;"></div>
+                                <div class="colr" style="background: #00cb74;"></div>
+                                <div class="colr" style="background: #0098d9;"></div>
+                                <div class="colr" style="background: #a05bb4;"></div>
+                                <div class="colr" style="background: #f52565;"></div>
+                                <div class="colr" style="background: #f6c42f;"></div>
+                                <div class="colr" style="background: #ef7f31;"></div>
+                                <div class="colr" style="background: #f24e43;"></div>
+                                <div class="colr" style="background: #93a5a6;"></div>
+                                <div class="colr" style="background: #5c7d8a;"></div>
+                                <div class="colr" style="background: #00806a;"></div>
+                                <div class="colr" style="background: #008a4e;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="side2">
+                <div class="msgEmbed">
+                    <div class="contents">
+                        <img src="<%= domain %>/logo.png" class="avatar" alt=" " />
+                        <h2>
+                            <span class="username" role="button">Pogy</span><span class="botTag"><span class="botText" style="top: 1.12px;">✓ BOT</span></span>
+                            <span class="timeText"></span>
+                        </h2>
+                    </div>
+                    <div class="markup messageContent"></div>
+                    <div class="container">
+                        <div class="embed markup">
+                            <div class="embedGrid">
+                                <div class="embedAuthor embedMargin"></div>
+                                <div class="embedTitle embedMargin"></div>
+                                <div class="embedDescription embedMargin"></div>
+                                <div class="embedFields"></div>
+                                <img class="imageWrapper clickable embedMedia embedImage" />
+                                <img class="imageWrapper clickable embedThumbnail" />
+                                <div class="embedFooter embedMargin"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="emptyTxt">poggers.</div>
+                </div>
+                <div class="bottomSide">
+                    <div class="notification">There is an error</div>
+                </div>
+
+                <div class="done">
+                    <div>
+                        <div class="channels">
+                            <div class="selectOptions">
+                                <h5>Select a channel</h5>
+
+                             <% guild.channels.cache.filter((ch) => ch.type === "text").forEach((ch) => { %>
+                                <div type="submit" class="channel">
+                                    <img src="data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 200 200' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' xmlns:serif='http://www.serif.com/' style='fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;'%3E%3Cg transform='matrix(1.20847,0,0,1.20847,-20.1189,-17.9459)'%3E%3Cpath d='M49.055,175C46.462,175 44.499,172.658 44.952,170.105L50,141.667L21.626,141.667C19.037,141.667 17.075,139.332 17.522,136.782L18.98,128.448C19.329,126.455 21.06,125 23.084,125L52.917,125L61.75,75L33.376,75C30.787,75 28.825,72.665 29.272,70.115L30.73,61.782C31.079,59.788 32.81,58.333 34.834,58.333L64.667,58.333L69.973,28.439C70.326,26.449 72.055,25 74.076,25L82.279,25C84.871,25 86.834,27.342 86.381,29.895L81.333,58.333L131.333,58.333L136.64,28.439C136.993,26.449 138.722,25 140.743,25L148.945,25C151.538,25 153.501,27.342 153.048,29.895L148,58.333L176.374,58.333C178.963,58.333 180.925,60.669 180.478,63.218L179.02,71.552C178.672,73.545 176.94,75 174.916,75L145.083,75L136.25,125L164.624,125C167.213,125 169.175,127.335 168.728,129.885L167.27,138.218C166.922,140.212 165.19,141.667 163.166,141.667L133.333,141.667L128.027,171.562C127.674,173.551 125.945,175 123.924,175L115.722,175C113.129,175 111.166,172.658 111.619,170.105L116.667,141.667L66.667,141.667L61.36,171.562C61.007,173.551 59.278,175 57.258,175L49.055,175ZM78.42,75L69.587,125L119.587,125L128.42,75L78.42,75Z' style='fill:white;'/%3E%3C/g%3E%3C/svg%3E" alt="">
+                                    <span data-data="<%= ch.id %>"><%= ch.name %></span>
+                                </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                        <div class="in">
+                            <span></span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 492.004 492.004" xml:space="preserve"  >
+                                <g>
+                                    <g xmlns="http://www.w3.org/2000/svg">
+                                        <g>
+                                            <path
+                                                d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" fill="#ffffff" data-original="#000000"  ></path>
+                                        </g>
+                                    </g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="hook">
+                        <h5>Or Save as Custom Command</h5>
+                        <div class="custom">
+                        <input  placeholder="Custom Command" value="" id="custom-command" class="custom-text" />
+                        <button class="webhook-button-custom" id="save-custom">Save</button>
+                        </div>
+                        <h5>Or Send to webhook</h5>
+                        <input type="password" name="webhook" id="webhook" value="" placeholder="https://discord.com/api/webhooks/..." class="webhook-text" />
+                        <div class="webhook">
+                            <button class="webhook-button" id="sendWebhook" name="sendWebhook">Send Webhook</button>
+                            <button type="button" id="copy" class="webhook-button2">Copy JSON</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
+<title>Pogy - Embed</title>
+<% } else { %>
+<p class="no-js">Make sure the guild has 1 channel, So please create a channel before accessing our dashboard</p>
+<% } %>

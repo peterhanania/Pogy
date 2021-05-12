@@ -1,0 +1,869 @@
+<head>
+<link rel="icon"
+    type="image/png"
+    href="<%=domain%>/logo.png"> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<%- include("../partials/dashMenu", { bot, user, path, description, title: `Pogy - Dashboard`, twitter, url})%>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;500&display=swap" rel="stylesheet">
+<% if (guild.icon) {
+ iconurl = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ".png??size=512";
+} else {
+ iconurl = "https://cdn.glitch.com/82fe990a-7942-42e3-9790-39807ccdb9f6%2Ficon-404-dark.png?v=1602427904949";
+}
+%>
+
+<div class="container" style="padding-top: 80px;">
+  <div class="main">
+    <div class="sidebar">
+      <ul>
+            <div class="guild">
+<img class="server-image" src="<%= iconurl %>" alt="<% guild.name %>"/>
+<p class="server-name" style = "font-size: 26px;"><%= guild.name %></p>
+</div>
+        <p>Settings</p>
+        <li><a href="/dashboard/<%= guild.id %>"><span><i class="fa fa-gear" style="color: white; font-size: 17px"></i> Bot Settings</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/commands" class="active"><span><i class="fa fa-wrench" style="color: white; font-size: 17px"></i> Commands</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/welcome"><span><i class="fa fa-sign-out" style="color: white; font-size: 17px"></i> Welcome</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/members" ><span><i class="fa fa-users" style="color: white; font-size: 17px"></i> Members</span></a></li>
+        <p>Moderation</p>
+        <li><a href="/dashboard/<%= guild.id %>/automod" ><span><i class="fa fa-shield" style="color: white; font-size: 17px"></i> Auto Mod</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/moderation" ><span><i class="	fa fa-legal" style="color: white; font-size: 17px"></i> Moderation</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/logging" ><span><i class="	fa fa-book" style="color: white; font-size: 17px"></i> Logging</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/autorole" ><span><i class="fa fa-user-plus" style="color: white; font-size: 17px"></i> Auto Role</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/altdetector" ><span><i class="fa fa-address-card" style="color: white; font-size: 17px"></i> Alt Detector</span></a></li>
+        <p>Utilities</p>
+        <li><a href="/dashboard/<%= guild.id %>/reactionroles" ><span><i class="	fa fa-support" style="color: white; font-size: 17px" ></i> Reaction Roles</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/levels" ><span><i class="fa fa-signal" style="color: white; font-size: 17px"></i> Levels</span></a></li>
+
+        <li><a href="/dashboard/<%= guild.id %>/embeds" ><span><i class="	fa fa-image" style="color: white; font-size: 17px"></i> Embeds</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/tickets" ><span><i class="	fa fa-ticket" style="color: white; font-size: 17px"></i> Tickets</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/applications" ><span><i class="	fa fa-file-text" style="color: white; font-size: 17px"></i> Applications</span></a></li>
+        <p>Channels</p>
+        <li><a href="/dashboard/<%= guild.id %>/Suggestions" ><span><i class="fa fa-lightbulb-o" style="color: white; font-size: 17px"></i> Suggestions</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/reports" ><span><i class="	fa fa-exclamation-triangle" style="color: white; font-size: 17px"></i> Server Reports</span></a></li>
+      </ul>
+
+    </div>
+      
+          
+<div class="botsettings">
+		  <div class="alert alert-info" role="alert"><i class="fa fa-info-circle" style="font-size: 16px"></i>This Page is currently under Development, feel free to come back later.</div>
+</div>
+
+</div>
+
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/wow/0.1.12/wow.min.js'></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Hind Vadodara", -apple-system, BlinkMacSystemFont, Segoe UI,
+    Helvetica Neue, Arial, sans-serif;
+}
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+button:focus { outline: none; }
+.main {
+  height: calc(100% - 50px);
+  display: flex;
+  flex: 1;
+}
+.botsettings {
+
+	border-radius: 10px;
+  padding-top: 20px;
+  padding-right: 60px;
+  padding-bottom: 60px;
+  padding-left: 60px;
+}
+.alert.alert-info {
+  background-color: rgba(217, 237, 247, 1);
+  color: rgba(49, 112, 143, 1);
+  border-color: rgba(126, 182, 193, 1);
+
+}
+.sidebar {
+  height: 100%;
+  width: 220px;
+  box-sizing: border-box;
+  box-shadow: 0 0 2rem 0 rgb(0 0 0 / 5%);
+  overflow: hidden;
+  transition: width 0.5s ease;
+  overflow-y: scroll;
+}
+.container.nav-closed .sidebar,
+.container.nav-closed .header-logo {
+  width: 0;
+}
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+.sidebar ul li {
+  display: flex;
+  align-items: center;
+}
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  white-space: nowrap;
+}
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+  background: #2f2f2f;
+}
+.sidebar ul li span {
+  margin-left: 16px;
+  font-size: 16px;
+  font-weight: 100;
+}
+.sidebar ul li i {
+  font-size: 18px;
+  color: #111;
+  font-weight: normal;
+}
+.header {
+  height: 50px;
+  background: #2f2f2f;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-basis: 100%;
+}
+.sidebar ul li a.active i {
+  color: purple;
+}
+.site-logo {
+  height: 32px;
+  width: 32px;
+  min-height: 32px;
+  min-width: 32px;
+  margin: 0 18px 0 15px;
+}
+.site-logo path {
+  fill: #fff;
+}
+.site-title {
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+.page-content {
+  padding: 10px 20px;
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1;
+}
+.page-content h1 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+}
+.header-search {
+  height: 100%;
+  align-items: center;
+  display: flex;
+  padding: 0 20px;
+  flex: 1;
+}
+.header-search .button-menu {
+  width: 23px;
+  height: 23px;
+  margin-right: 15px;
+  background-color: #2f2f2f;
+  border: 0;
+  cursor: pointer;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  width: 220px;
+  overflow: hidden;
+  transition: width 0.5s ease;
+}
+.header-search input[type="search"] {
+  height: 100%;
+  width: 300px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 100;
+  background: none;
+  border: none;
+  color: #fff;
+}
+.header-search input[type="search"]:focus {
+  outline: none;
+}
+.header-search input[type="search"]::placeholder {
+  color: #ccc;
+}
+.header-search .button-menu:focus {
+  outline: none;
+  border: none;
+}
+.header-search .button-menu svg path {
+  fill: #fff;
+}
+@media screen and (max-width: 991px) {
+  .page-content {
+    width: 100vw;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header-logo {
+    display: none;
+  }
+}
+.drop {
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.drop.open {
+  z-index: 100;
+}
+.drop.open .drop-screen {
+  z-index: 100;
+  display: block;
+}
+.drop.open .drop-options {
+  z-index: 200;
+  max-height: 200px;
+}
+.drop.open .drop-display {
+  z-index: 200;
+  border-color: #465;
+}
+.drop select {
+  display: none;
+}
+.drop .drop-screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  display: none;
+  z-index: 1;
+}
+
+.link {
+  text-align: center;
+  margin: 20px 0px;
+  color:#8CACD7;
+}
+
+
+.drop .drop-display {
+  position: relative;
+  padding: 0px 20px 5px 5px;
+  border: 4px solid #444;
+  width: 100%;
+  background: #FFF;
+  z-index: 1;
+  margin: 0px;
+  font-size: 16px;
+  min-height: 58px;
+}
+.drop .drop-display:hover:after {
+  opacity: 0.75;
+}
+.drop .drop-display:after {
+  font-family: 'Material Icons';
+  content: "\e5c6";
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  font-size: 24px;
+  color: #444;
+}
+.drop .drop-display .item {
+  position: relative;
+  display: inline-block;
+  border: 2px solid #333;
+  margin: 5px 5px -4px 0px;
+  padding: 0px 25px 0px 10px;
+  overflow: hidden;
+  height: 40px;
+  line-height: 36px;
+}
+.drop .drop-display .item .btnclose {
+  color: #444;
+  position: absolute;
+  font-size: 16px;
+  right: 5px;
+  top: 10px;
+  cursor: pointer;
+}
+.drop .drop-display .item .btnclose:hover {
+  opacity: 0.75;
+}
+.drop .drop-display .item.remove {
+  -webkit-animation: removeSelected 0.2s, hide 1s infinite;
+          animation: removeSelected 0.2s, hide 1s infinite;
+  -webkit-animation-delay: 0s, 0.2s;
+          animation-delay: 0s, 0.2s;
+}
+.drop .drop-display .item.add {
+  -webkit-animation: addSelected 0.2s;
+          animation: addSelected 0.2s;
+}
+.drop .drop-display .item.hide {
+  display: none;
+}
+.drop .drop-options {
+  background: #444;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  width: 100%;
+  max-height: 0px;
+  overflow-y: auto;
+  transition: all 0.25s linear;
+  z-index: 1;
+}
+.drop .drop-options a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 20px;
+  color: white;
+  position: relative;
+  max-height: 40px;
+  transition: all 1s;
+  overflow: hidden;
+}
+.drop .drop-options a:hover {
+  background: #465;
+  cursor: pointer;
+}
+.drop .drop-options a.remove {
+  -webkit-animation: removeOption 0.2s;
+          animation: removeOption 0.2s;
+  max-height: 0px;
+}
+.drop .drop-options a.add {
+  -webkit-animation: addOption 0.2s;
+          animation: addOption 0.2s;
+}
+.drop .drop-options a.hide {
+  display: none;
+}
+
+@-webkit-keyframes pop {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes removeOption {
+  from {
+    max-height: 40px;
+  }
+  to {
+    max-height: 0px;
+  }
+}
+@keyframes removeOption {
+  from {
+    max-height: 40px;
+  }
+  to {
+    max-height: 0px;
+  }
+}
+@-webkit-keyframes addOption {
+  from {
+    max-height: 0px;
+  }
+  to {
+    max-height: 40px;
+  }
+}
+@keyframes addOption {
+  from {
+    max-height: 0px;
+  }
+  to {
+    max-height: 40px;
+  }
+}
+@-webkit-keyframes removeSelected {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+@keyframes removeSelected {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+@-webkit-keyframes addSelected {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes addSelected {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes hide {
+  from, to {
+    max-height: 0px;
+    max-width: 0px;
+    padding: 0px;
+    margin: 0px;
+    border-width: 0px;
+  }
+}
+@keyframes hide {
+  from, to {
+    max-height: 0px;
+    max-width: 0px;
+    padding: 0px;
+    margin: 0px;
+    border-width: 0px;
+  }
+}
+
+.fa{
+  line-height:30px;
+  font-size:30px;
+  display:inline-bloxk;
+  width:35px;
+  height:35px;
+}
+.hidden{
+  display:none;
+}
+
+input[type=checkbox] + label {
+  position:relative;
+} 
+
+input[type=checkbox]:checked + label {
+  animation: closing 0.3s forwards ease-in-out,
+             moving 0.3s forwards ease-in-out;
+} 
+.pointer-cursor{
+   cursor: pointer; cursor: hand;
+}
+.close{
+
+    float:right;
+    color: #b94b45;
+    cursor: pointer; cursor: hand;
+}
+
+.alert-message{
+  background-color: #f2dede;
+  border: 1px solid rgba(#34495e, 0.25);
+  color: #b94b45;
+  border-radius: 3px;
+  line-height:30px;
+  position: absolute;
+  top: 0; left: 0;
+  display:block;
+  width:100%;
+  padding: 12px;
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, .9);
+  box-shadow: 0px 10px 50px rgba(0,0,0,.6);
+  background:#34495e;
+}
+
+@keyframes closing {
+  from {
+    opacity: 1; 
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes moving {
+  0%, 90% { top: 0; left: 0; }
+  100%  { top: -100px; left: 0; }
+}
+
+* {
+  box-sizing: border-box;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.alertpremium {
+  width: 1000px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+.alertpremium.premium{
+  background-color: rgba(248, 215, 218, 1);
+  border-color: rgba(220, 53, 69, 1);
+  color: rgba(114, 28, 36,1);
+}
+.alertparagraph{
+    display: inline;
+}
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+
+.pogy:hover {
+  opacity: 0.5;
+-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+}
+.server-image {
+width: 119px;
+margin-left: 0;
+margin-right: 0;
+height: 119px;
+border-radius: 50%;
+transition: transform .2s; /* Animation */
+}
+.server-image:hover {
+transform: scale(1.1); 
+}
+
+.guild {
+text-align: center;
+}
+
+.members {
+display: flex;
+-webkit-box-align: center;
+align-items: center;
+}
+
+
+ /*
+=====
+DEPENDENCES
+=====
+*/
+
+/* 
+helper to reset default browser's styles from headings
+*/
+
+.r-title{
+    margin-top: var(--rTitleMarginTop, 0) !important;
+    margin-bottom: var(--rTitleMarginBottom, 0) !important;
+}
+
+/* 
+helper to hide elements that are available only for screen readers. 
+*/
+
+.screen-reader{
+  width: var(--screenReaderWidth, 1px) !important;
+  height: var(--screenReaderHeight, 1px) !important;
+  padding: var(--screenReaderPadding, 0) !important;
+  border: var(--screenReaderBorder, none) !important;
+
+  position: var(--screenReaderPosition, absolute) !important;
+  clip: var(--screenReaderClip, rect(1px, 1px, 1px, 1px)) !important;
+  overflow: var(--screenReaderOverflow, hidden) !important;
+}
+
+/*
+=====
+POPUP
+=====
+*/
+
+/*
+1. Creating the top and bottom gaps for the modal so that content doesn't touches window's edges
+*/
+
+.popup:not(:target){
+  display: none;
+}
+
+.popup:target{
+  width: 100%;
+  height: 100vh;
+  
+  display: flex;
+ 
+  position: fixed;
+  top: 0;
+  right: 0;  
+}
+
+.popup::before{
+  content: "";
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff;
+
+  position: fixed;
+  left: 0;
+  top: 50%;
+}
+
+.popup::after{
+  content: "";
+  width: 0;
+  height: 2px;
+  background-color: #f0f0f0;
+
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+}
+
+.popup__container{
+  box-sizing: border-box;  
+  padding: 5% 15%;
+
+  height: calc(100vh - 40px); /* 1 */
+  margin: auto; /* 1 */
+  overflow: auto; /* 1 */
+  overscroll-behavior: contain; /* 1 */
+}
+
+.popup__title{
+  --rTitleMarginBottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.popup__close{
+  width: 2rem;
+  height: 2rem;
+
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTE5IDYuNDFMMTcuNTkgNSAxMiAxMC41OSA2LjQxIDUgNSA2LjQxIDEwLjU5IDEyIDUgMTcuNTkgNi40MSAxOSAxMiAxMy40MSAxNy41OSAxOSAxOSAxNy41OSAxMy40MSAxMnoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==);
+}
+
+/*
+animation
+*/
+
+.popup::before{
+  will-change: height, top;
+  animation: open-animation .6s cubic-bezier(0.83, 0.04, 0, 1.16) .65s both;
+}
+
+.popup::after{
+  will-change: width, opacity;
+  animation: line-animation .6s cubic-bezier(0.83, 0.04, 0, 1.16) both;
+}
+
+@keyframes line-animation{
+
+  0%{
+    width: 0;
+    opacity: 1;
+  }
+
+  99%{
+    width: 100%;
+    opacity: 1;
+  }
+
+  100%{
+    width: 100%;
+    opacity: 0;
+  }  
+}
+
+@keyframes open-animation{
+
+  0%{
+    height: 0;
+    top: 50%;
+  }
+
+  100%{
+    height: 100vh;
+    top: 0;
+  }
+}
+
+.popup__container{
+  animation: fade .5s ease-out 1.3s both;
+}
+
+@keyframes fade{
+
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+}
+
+
+
+
+
+</style>
+
+
+<%- include("../partials/footer") %>
+<script>
+let menuButton = document.querySelector(".button-menu");
+let container = document.querySelector(".container");
+let pageContent = document.querySelector(".page-content");
+let responsiveBreakpoint = 991;
+
+if (window.innerWidth <= responsiveBreakpoint) {
+  container.classList.add("nav-closed");
+}
+
+menuButton.addEventListener("click", function () {
+  container.classList.toggle("nav-closed");
+});
+
+pageContent.addEventListener("click", function () {
+  if (window.innerWidth <= responsiveBreakpoint) {
+    container.classList.add("nav-closed");
+  }
+});
+
+
+window.addEventListener("resize", function () {
+  if (window.innerWidth > responsiveBreakpoint) {
+    container.classList.remove("nav-closed");
+  }
+});
+</script>

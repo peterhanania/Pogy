@@ -1,0 +1,1186 @@
+<%- include("partials/head", { bot, user, path, title: "Pogy - Commands" }) %>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="<%domain%>/js/commands.js"></script>
+      <link rel="stylesheet" href="<%domain%>/css/commands.css">
+   
+  <% var url = urlSite;
+  let prefix = new URL(url).searchParams.get("prefix") 
+  if(!prefix || prefix === null) prefix = `p!`
+  if(prefix.length > 5) prefix = `p!` %> 
+
+
+   </head>
+   
+   <body class="zoomed">
+      </header>
+      <!-- <div class="cmdsBox" >
+         <div class="cmdsBoxInner">
+            <header>
+               <div class="menuIcon">
+                  <div class="menuIconDashes">
+         
+               </div>
+            </header>
+            <div class="cmdsBoxCmdsContainer" style="padding-top: 60px">
+               <div class="cmdFilters">
+                  <div>
+                     <h5>Commands</h5>
+                     <div class="cmdFilter active">
+                        <a href=""><img src="https://troybot.xyz/stuff/imgs/Modules/Cmd.png" alt=""> <span class="cmdFilterName">All Commands</span></a>
+                     </div>
+                     <div class="cmdFilter funSelector">
+                        <a href="#fun"><img src="https://troybot.xyz/stuff/imgs/Modules/Fun.svg" alt=""> <span class="cmdFilterName">Fun Commands</span></a>
+                     </div>
+                     <div class="cmdFilter gamesSelector">
+                        <a href="#games"><img src="https://troybot.xyz/stuff/imgs/Modules/Games.png" alt=""> <span class="cmdFilterName">Games</span></a>
+                     </div>
+                     <div class="cmdFilter serverSelector">
+                        <a href="#server"><img src="https://troybot.xyz/stuff/imgs/Modules/Server.png" alt=""> <span class="cmdFilterName">Server Commands</span></a>
+                     </div>
+                     <div class="cmdFilter moderationSelector">
+                        <a href="#moderation"><img src="https://troybot.xyz/stuff/imgs/Modules/Mod.png" alt=""> <span class="cmdFilterName">Moderation Commands</span></a>
+                     </div>
+                     <div class="cmdFilter infoSelector">
+                        <a href="#info"><img src="https://troybot.xyz/stuff/imgs/Modules/Info.png" alt=""> <span class="cmdFilterName">Info Commands</span></a>
+                     </div>
+                     <div class="cmdFilter musicSelector">
+                        <a href="#music"><img src="https://troybot.xyz/stuff/imgs/Modules/Music.png" alt=""> <span class="cmdFilterName">Music Commands</span></a>
+                     </div>
+                      
+                     <div class="separator"></div>
+                     <h5>Other Stuff</h5>
+                     <div class="cmdFilter">
+                        <a href="/invite"><span class="cmdFilterName">Invite Me</span></a>
+                     </div>
+                     <div class="cmdFilter" style="cursor: pointer;">
+                       <a href="/Dashboard"><span class="cmdFilterName">Dashboard</a></span>
+                     </div>
+                      <div class="cmdFilter" style="cursor: pointer;">
+                       <a href="/"><span class="cmdFilterName">Home</a></span>
+                     </div>
+                  </div>
+               </div>
+               <main>
+                  <div class="cmds">
+                     <div class="cmdCategory" id="fun">
+                        <h5 class="cmdCategoryName">Fun Commands</h5>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix"><%= prefix %></span>color
+                              <div class="cmdDesc">Shows the color of a given hex code</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>color &lt;hex code&gt;</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>color #ffffff</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>dice
+                              <div class="cmdDesc">Chooses a random number from the min/max given. but between 1 and 6 if no min/max given</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>dice [min number] [max number]</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>dice 50 100</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>embed
+                              <div class="cmdDesc">Embed a message. Best to use especially with announcements (can also use Json)</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>embed &lt;channel&gt; [<a target="_blank" style="color: rgb(102, 116, 140);" href="https://glitchii.github.io/embedbuilder/">json</a>]</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">The channel is where the embed will be sent when done. You don't have to use Json but it allows more embed options. To make it easier, you can either send the embed on the website from <a target="_blank" class="lnk" href="https://troybot.xyz/embed/">https://troybot.xyz/embed</a>, or test JSON from <a target="_blank" class="lnk" href="https://glitchii.github.io/embedbuilder/">https://glitchii.github.io/embedbuilder/</a> to send with the embed command.</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>fancytext
+                              <div class="cmdDesc">Converts text into fancy text</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>fancytext &lt;text&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>fight
+                              <div class="cmdDesc">Virtually fight someone with a weapon of your choice to teach them a lesson</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>fight &lt;user&gt; &lt;weapon&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>funfact
+                              <div class="cmdDesc">If you want to know some fun facts.</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>funfact</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>ask
+                              <div class="cmdDesc">Ask me any question, and I may answer (I can even help you with your homework)</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>ask &lt;text&gt;</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>ask What is 1+1</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>cmd
+                              <div class="cmdDesc">Add, edit, or delete a custom command</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>cmd</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">Add: cmd add &lt;command name&gt; &lt;responds&gt;<br>Delete: cmd del &lt;command name&gt;<br>Edit: cmd edit &lt;command name&gt; &lt;new response&gt;
+                                       <div class="someInfo">It's better to use the <a class="lnk" href="/settings">settings</a> page for custom commands</div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>gender
+                              <div class="cmdDesc">Check the gender or a name.</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>gender &lt;name&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>hack
+                              <div class="cmdDesc">Used to hack someone (fake hack)</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>hack &lt;user&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>joke
+                              <div class="cmdDesc">Tells you a random joke</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>joke</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>log
+                              <div class="cmdDesc">Lets you download a log file for the last number of messages you give.</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>log [limit number]</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">If you don't say a number, bot'll try to get 1000 messages if the channel, if they're less than that then it'll get all of them</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>marry
+                              <div class="cmdDesc">Fake marry someone</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>marry &lt;member&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>meme
+                              <div class="cmdDesc">Sends a random meme image</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>meme</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>pin
+                              <div class="cmdDesc">Pins a message or image for you</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>pin [text] [Image]</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>regional
+                              <div class="cmdDesc">Converts text to regional text emojis</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>regional &lt;text&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>reverse
+                              <div class="cmdDesc">Reverse text or an image</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>reverse [text] [image]</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">Use to reverse and image or text, either an image or text must be given, or both but cannot be empty command</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>screenshot
+                              <div class="cmdDesc">Shows a fake screenshot of the member you want saying the text given</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>screenshot &lt;member&gt; &lt;text&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>shorten
+                              <div class="cmdDesc">Shortens a long url, you can use the unshorten command to unshorten the url back</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>shorten &lt;url&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>unshorten
+                              <div class="cmdDesc">Unshorten any shortened URL</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>unshorten &lt;url&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>timer
+                              <div class="cmdDesc">Aliase of the command 'reminder'. Set a timer with optional message to send at duration</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>timer &lt;seconds&gt; [message]</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">Aliase to the reminder command, make the bot remind you something in some seconds you give</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>timer 5s Reminder to do nothing</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>translate
+                              <div class="cmdDesc">Translates words from a different language to a language of your choice</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>translate &lt;to&gt; &lt;text&gt;</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">You can also use 'tr'. The language to translate to must be a language code, eg. instead of English, use en or fr for french<br>You can use the detect command to detect a language</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>tr es Hello<br></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>detect
+                              <div class="cmdDesc">Detects a language text is in</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>detect &lt;text&gt;</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>detect hola</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>weather
+                              <div class="cmdDesc">Shows the weather in a city</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>weather &lt;city&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="cmdCategory" id="games">
+                        <h5 class="cmdCategoryName">Games</h5>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>guess
+                              <div class="cmdDesc">Play a games where you guess a number chosen by the bot</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>guess</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>hangman
+                              <div class="cmdDesc">Play a hangman game.</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>hangman</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>hangman board
+                              <div class="cmdDesc">See the hangman leaderboard</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>hangman board</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">Shows the leaderboard for the top 10 hangman players</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>8ball
+                              <div class="cmdDesc">Ask a yes or no question and the magical 8ball will be answered</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>8ball &lt;question&gt;</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">Answeres are choicen randomly thus not correct, for more accurate asnweres, use the ask command</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>8ball Am I the best?</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>rps
+                              <div class="cmdDesc">Play Rock Paper Scissors</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>rps &lt;choice&gt;</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">You can pick from rock, paper, or scissors after the command. You can also use initals eg. r, p, or s</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>rps p</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="cmdCategory" id="moderation">
+                        <h5 class="cmdCategoryName">Moderation commands</h5>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>ban
+                              <div class="cmdDesc">Ban one or more people from teh server eg.</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>ban &lt;members&gt; [reason]</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">Just like a massban command (an aliase to this command), you can ban more than one person by seperating the names with a space. (Like in example below)</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp">
+                                        <span class="cmdsPrefix">...</span>ban <span class="userMention">@user</span> Spamming<br>
+                                        <span class="cmdsPrefix">...</span>ban <span class="userMention">@user</span> <span class="userMention">@user2</span> Spamming
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>clear
+                              <div class="cmdDesc">Clear a number of messages you want from a channel or users</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>clear &lt;limit&gt; [members]</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">Clear messages from everyone in the current channel or just from one or more people<br>You can clear from more than one person by speratin their names/IDs/ping with a space</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Examples:</span>
+                                    <div class="exComp">
+                                        <span class="cmdsPrefix">...</span>clear 10<br>
+                                        <span class="cmdsPrefix">...</span>clear 10 <span class="userMention">@user</span><br>
+                                        <span class="cmdsPrefix">...</span>clear 10 <span class="userMention">@user</span> <span class="userMention">@user2
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>kick
+                              <div class="cmdDesc">Kick one or more people</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>kick &lt;members&gt; &lt;reason&gt;</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">You can kick more than one people by seperating their names/id/pings with a space eg. (look at the example below)<br>'masskick' command is just an aliase to command.</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp">
+                                       <span class="cmdsPrefix">...</span>kick <span class="userMention">@user</span> Spamming<br>
+                                        <span class="cmdsPrefix">...</span>kick <span class="userMention">@user</span> <span class="userMention">@user2</span> Spamming
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>tempban
+                              <div class="cmdDesc">Ban a member and (s)he'll be unbanned after the seconds given</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>tempban &lt;members&gt; &lt;seconds&gt; &lt;reason&gt;</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp">
+                                       <span class="cmdsPrefix">...</span>tempban <span class="userMention">@user</span> 5 Spamming<br>
+                                       <span class="cmdsPrefix">...</span>tempban <span class="userMention">@user</span> <span class="userMention">@user2</span> 5 Spamming
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>timedban
+                              <div class="cmdDesc">Ban one or more people from the server after certain seconds</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>timedban &lt;members&gt; &lt;seconds&gt; &lt;reason&gt;</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp">
+                                        <span class="cmdsPrefix">...</span>timedban <span class="userMention">@user</span> 5 Spamming<br>
+                                        <span class="cmdsPrefix">...</span>timedban <span class="userMention">@user</span> <span class="userMention">@user2</span> 5 Spamming
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>timedkick
+                              <div class="cmdDesc">Kick one or more people from the server after certain seconds</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>timedkick &lt;members&gt; &lt;seconds&gt; &lt;reason&gt;</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp">
+                                        <span class="cmdsPrefix">...</span>timedkick <span class="userMention">@user</span> 5 Spamming<br>
+                                        <span class="cmdsPrefix">...</span>timedkick <span class="userMention">@user</span> <span class="userMention">@user2</span> 5 Spamming
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>unban
+                              <div class="cmdDesc">Unban one or more banned members by their ID</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>unban &lt;member ID&gt; [reason]</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp">
+                                        <span class="cmdsPrefix">...</span>unban 12345<br>
+                                        <span class="cmdsPrefix">...</span>unban 12345 98765<br>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="cmdCategory" id="music">
+                        <h5 class="cmdCategoryName">Music Commands</h5>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>pause
+                              <div class="cmdDesc">Plays or resumes the current song</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>pause</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>play
+                              <div class="cmdDesc">Plays the desired song</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>play &lt;keyword YouTube or link&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>playing
+                              <div class="cmdDesc">Returns the currently playing music if any</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>playing</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>queue
+                              <div class="cmdDesc">Returns the current queue</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>queue</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>resume
+                              <div class="cmdDesc">Plays or resumes the current song</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>resume</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>skip
+                              <div class="cmdDesc">Skips the current song</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>skip</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>stop
+                              <div class="cmdDesc">Disconnects the bot from a voice channel</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>stop</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="cmdCategory" id="server">
+                        <h5 class="cmdCategoryName">Server Commands</h5>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>emoji info
+                              <div class="cmdDesc">Find out info about a <b>custom</b> emoji</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>emoji info &lt;:emoji:&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>emoji add
+                              <div class="cmdDesc">Adds an emoji to the server from an image link so you don't have to save it first</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>emoji add &lt;image link&gt; &lt;name&gt;</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>emoji add https://emoji.gg/assets/emoji/GangstaBlob.png GangstaBlob</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>emoji del
+                              <div class="cmdDesc">Deletes a custom emoji from the server for you, just type the emoji or it's name</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>emoji del &lt;:emoji:&gt;</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>emoji del <img alt=":kekwlaugh:" title=":kekwlaugh:" class="emojiImage 722088222766923847"></div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">If multiple custom emojis have the same name as given, they may both be deleted</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>emoji ren
+                              <div class="cmdDesc">Renames an emoji</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>emoji ren &lt;:emoji:&gt; &lt;new name&gt;</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>emoji ren <img alt=":kekwlaugh:" title=":kekwlaugh:" class="emojiImage 722088222766923847"> laugh</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>emoji copy
+                              <div class="cmdDesc">Copy an emoji from any of the servers bot is in</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>emoji copy &lt;emoji name&gt;</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">The bot'll look through all the servers it is in to find an emoji with the given name, if found bot'll copy that emoji (name and image) and add it to the current server.</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>invite
+                              <div class="cmdDesc">Find out information about a discord invite link.</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>invite &lt;invite&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>newmembers
+                              <div class="cmdDesc">Check the newest server members</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>newmembers &lt;count&gt;</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>server info
+                              <div class="cmdDesc">See information about the server</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>server info</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>server members
+                              <div class="cmdDesc">See info about the server members</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>server members</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>server roles
+                              <div class="cmdDesc">See the roles in the server</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>server roles</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>server emotes
+                              <div class="cmdDesc">See custom emojis in the server</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>server emotes</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>server prefix
+                              <div class="cmdDesc">Change servers prefix</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>server prefix &lt;prefix&gt;</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">You can ping the bot if you need to know the server prefix</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Example:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>server prefix ...</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>server invites
+                              <div class="cmdDesc">See servers active invites</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>server invites</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>user info
+                              <div class="cmdDesc">See information about a server member</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>user info [user]</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">If not member given, bot shows your info</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>user avatar
+                              <div class="cmdDesc">See a server member's avatar image</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>user avatar [user]</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">If not member given, bot shows your avatar</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>user msgs
+                              <div class="cmdDesc">See how many messages a member has sent in the channel</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>user msgs [user]</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">If not member given, bot shows how many messages you sent</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>user perms
+                              <div class="cmdDesc">See someones permissions in the server</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>user perms [user]</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">If not member given, bot shows your server permissions</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="cmdCategory" id="info">
+                        <h5 class="cmdCategoryName">Info Commands</h5>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>feedback
+                              <div class="cmdDesc">Use to send feedback to bot owner</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>feedback &lt;text&gt;</div>
+                                 </div>
+                                 <div class="fullDesc cmdMain">
+                                    <span class="cmdCompTitle">More Info:</span>
+                                    <div class="exComp">You can also send screenshots by sending the image with the command.</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>about
+                              <div class="cmdDesc">Shows some information about the bot</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>about</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>ping
+                              <div class="cmdDesc">See bot's latency</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>ping</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="cmd">
+                           <div class="cmdComps">
+                              <span class="cmdPrefix">...</span>help
+                              <div class="cmdDesc">See the help menu or help with a command by saying its name</div>
+                           </div>
+                           <div class="cmdData">
+                              <div class="cmdComps2">
+                                 <div class="cmdUsage cmdMain">
+                                    <span class="cmdCompTitle">Usage:</span>
+                                    <div class="exComp"><span class="cmdsPrefix">...</span>help [command name]</div>
+                                 </div>
+                                 <div class="cmdExample cmdMain">
+                                    <span class="cmdCompTitle">Examples:</span>
+                                    <div class="exComp">
+                                        <span class="cmdsPrefix">...</span>help<br>
+                                        <span class="cmdsPrefix">...</span>help server info
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                  </div>
+              
+               </main>
+               
+            </div>
+         </div>
+    
+      </div> -->
+      <h1 style="position: fixed; top: 50%; left: 50%;">Soon</h1>
+  
+   </body>
+  
+</html>
+
+
+
+  <%- include("partials/footer") %>

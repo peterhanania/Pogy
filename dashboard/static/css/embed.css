@@ -1,0 +1,168 @@
+a.patreon-link {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  z-index: 10;
+  text-decoration: none;
+}
+.no-js {
+background: #f44336;
+font-family: Roboto-Thin;
+color: #fff;
+text-align: center;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+-ms-flex-align: center;
+-webkit-box-align: center;
+align-items: center;
+justify-content: center;
+position: fixed;
+user-select: none;
+height: 100%;
+width: 100%;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+z-index: 999999;
+}
+.badge-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+.badge-container .badge-icon {
+  background: url("https://s3.amazonaws.com/patreon_public_assets/toolbox/patreon_white.png") center center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 20px;
+}
+.badge-container .badge-text {
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
+  padding: 2px;
+  color: #fff;
+}
+.badge-container .badge-text.badge-text-bottom {
+  position: relative;
+  top: -2px;
+}
+
+.preview {
+  background: #36393e;
+  display: flex;
+  box-orient: vertical;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  max-width: 520px;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.side-colored {
+  width: 4px;
+  border-radius: 3px 0 0 3px;
+  background: #4f545c;
+}
+
+.embed {
+  border-radius: 0 3px 3px 0;
+  background: rgba(46, 48, 54, 0.3);
+  border-color: rgba(46, 48, 54, 0.6);
+  display: flex;
+  padding: 8px 10px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+.embed .card-block {
+  padding: 0;
+  display: flex;
+  margin-bottom: 10px;
+}
+.embed a {
+  color: #0096cf;
+}
+.embed img.embed-thumb {
+  max-height: 80px;
+  max-width: 80px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-left: 20px;
+}
+.embed .embed-footer {
+  font-size: 12px;
+}
+.embed .embed-footer span {
+  color: rgba(255, 255, 255, 0.6);
+}
+.embed .embed-inner .embed-title {
+  color: #fff;
+}
+.embed .embed-inner .embed-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.embed .embed-inner .embed-author img.embed-author-icon {
+  margin-right: 9px;
+  width: 20px;
+  height: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 50%;
+}
+.embed .embed-inner .embed-author .embed-author-name {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff !important;
+}
+.embed .embed-inner .fields {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  box-lines: miltiple;
+  margin-top: -10px;
+}
+.embed .embed-inner .fields .field {
+  flex: 0;
+  box-flex: 1;
+  padding-top: 10px;
+  max-width: 506px;
+  min-width: 100%;
+}
+.embed .embed-inner .fields .field.inline {
+  box-flex: 1;
+  flex: 1;
+  min-width: 150px;
+  flex-basis: auto;
+}
+.embed .embed-inner .fields .field .field-name {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.embed .embed-inner .fields .field .field-value {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.1em;
+  white-space: pre-wrap;
+  margin-top: 6px;
+  word-wrap: break-word;
+}

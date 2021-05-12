@@ -1,0 +1,2446 @@
+<head>
+<link rel="icon"
+    type="image/png"
+    href="<%=domain%>/logo.png"> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+</head>
+<%- include("../partials/dashMenu", { bot, user, path, description, title: `Pogy - Dashboard`, twitter, url})%>
+
+
+<% if(guild.roles.cache.filter(m => !m.managed && m.name !== "@everyone").size) { %>
+
+<% if(guild.channels.cache.filter(m => m.type === 'text').size > 0) { %>
+
+<% if(guild.channels.cache.filter(m => m.type === 'category').size > 0) { %>
+
+<link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;500&display=swap" rel="stylesheet">
+<% if (guild.icon) {
+ iconurl = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ".png??size=512";
+} else {
+ iconurl = "https://cdn.glitch.com/82fe990a-7942-42e3-9790-39807ccdb9f6%2Ficon-404-dark.png?v=1602427904949";
+}
+%>
+<form role="form" action="/dashboard/<%= guild.id %>/tickets" method="POST">
+<div class="container" style="padding-top: 80px;">
+  <div class="main">
+    <div class="sidebar">
+      <ul>
+            <div class="guild">
+<img class="server-image" src="<%= iconurl %>" alt="<% guild.name %>"/>
+<p class="server-name" style = "font-size: 26px;"><%= guild.name %></p>
+</div>
+        <p>Settings</p>
+        <li><a href="/dashboard/<%= guild.id %>"><span><i class="fa fa-gear" style="color: white; font-size: 17px"></i> Bot Settings</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/commands"><span><i class="fa fa-wrench" style="color: white; font-size: 17px"></i> Commands</span></a></li>
+        <li><a  href="/dashboard/<%= guild.id %>/welcome"><span><i class="fa fa-sign-out" style="color: white; font-size: 17px"></i> Welcome</span></a></li>
+        <li><a  href="/dashboard/<%= guild.id %>/members" ><span><i class="fa fa-users" style="color: white; font-size: 17px"></i> Members</span></a></li>
+        <p>Moderation</p>
+        <li><a href="/dashboard/<%= guild.id %>/automod" ><span><i class="fa fa-shield" style="color: white; font-size: 17px"></i> Auto Mod</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/moderation" ><span><i class="	fa fa-legal" style="color: white; font-size: 17px"></i> Moderation</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/logging" ><span><i class="	fa fa-book" style="color: white; font-size: 17px"></i> Logging</span></a></li>
+        <li><a  href="/dashboard/<%= guild.id %>/autorole" ><span><i class="fa fa-user-plus" style="color: white; font-size: 17px"></i> Auto Role</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/altdetector" ><span><i class="fa fa-address-card" style="color: white; font-size: 17px"></i> Alt Detector</span></a></li>
+        <p>Utilities</p>
+        <li><a href="/dashboard/<%= guild.id %>/reactionroles" ><span><i class="	fa fa-support" style="color: white; font-size: 17px" ></i> Reaction Roles</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/levels" ><span><i class="fa fa-signal" style="color: white; font-size: 17px"></i> Levels</span></a>
+        </li>
+
+        <li><a href="/dashboard/<%= guild.id %>/embeds" ><span><i class="	fa fa-image" style="color: white; font-size: 17px"></i> Embeds</span></a></li>
+        <li><a class="active" href="/dashboard/<%= guild.id %>/tickets" ><span><i class="	fa fa-ticket" style="color: white; font-size: 17px"></i> Tickets</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/applications" ><span><i class="	fa fa-file-text" style="color: white; font-size: 17px"></i> Applications</span></a></li>
+        <p>Channels</p>
+        <li><a href="/dashboard/<%= guild.id %>/Suggestions" ><span><i class="fa fa-lightbulb-o" style="color: white; font-size: 17px"></i> Suggestions</span></a></li>
+        <li><a href="/dashboard/<%= guild.id %>/reports" ><span><i class="	fa fa-exclamation-triangle" style="color: white; font-size: 17px"></i> Server Reports</span></a></li>
+      </ul>
+
+
+
+    </div>
+    
+
+
+  <div class="tickets">
+  <% if (alert) { %>
+<div class="banner" style="text-align: left;">
+    <div class="banner__content">
+      <div class="banner__text">
+        <%= alert %>
+      </div>
+      <button class="banner__close" type="button">
+        <span class="material-icons">
+          close
+        </span>
+      </button>
+    </div>
+  </div>
+<% }  %>
+    <h2 class="tickets-header" style="font-family: 'Cairo', sans-serif">Main Settings</h2>
+<br>
+<p>Welcome Message <a href="/variables" style="color: red">(Check Variables Here)</a></p>
+<textarea style="max-width: 380px; min-width: 380px; height:150px; 
+max-height:200px; min-height:60px; background-color: #2f2f2f; color: white;" id="textarea5"  rows="3" name="ticketWelcomeMessage" class="form-control" required><%= ticket.ticketWelcomeMessage || `Hey {user} Welcome to your ticket!\n\nThank you for creating a ticket, the support team will be with you shortly\n\nIn the mean time, please explain your issue below `%></textarea>
+ <span style="color: white" id='remaining5'></span>
+
+<br>
+<p>
+<input style="background-color: #2f2f2f; color: white;" type="color" name="ticketWelcomeColor" value="<%= ticket.ticketWelcomeColor %>">  Embed Color</p>
+<p>Ticket Logs</p>
+<input style="background-color: #2f2f2f; color: white;" type="color" name="ticketLogColor" value="<%= ticket.ticketLogColor %>">
+<select style="background-color: #2f2f2f; color: white; border-radius: 5px;" class="select" name="ticketChannel">
+<% if(ticket.ticketModlogID && bot.channels.cache.has(ticket.ticketModlogID)){ %>
+<option selected="selected">#<%= bot.channels.cache.get(ticket.ticketModlogID).name %></option>
+                                                    <% guild.channels.cache.filter((ch) => ch.id !== ticket.ticketModlogID && ch.type === "text").forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); %>
+                                                    <% } else { %>
+                                
+                                                    <% guild.channels.cache.filter((ch) => ch.id !== guild.channels.cache.first().id && ch.type === "text").forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); %>
+                                                <% } %>
+                                            </select> 
+<br>
+ <p>Support Role</p>
+ <select style="background-color: #2f2f2f; color: white; border-radius: 5px;" class="select" name="ticketRole">
+ <% if(ticket.supportRoleID && guild.roles.cache.has(ticket.supportRoleID)){ %>
+<option selected="selected">@<%= guild.roles.cache.get(ticket.supportRoleID).name %></option>
+                                                    <% guild.roles.cache.filter((r) => r.id !== ticket.supportRoleID && r.name !== "@everyone" && !r.managed).forEach((r) => { %>
+                                                        <option>@<%= r.name %></option>
+                                                    <% }); } else { %>
+                                                    <option selected="selected">@<%= guild.roles.cache.filter((r) => r.name !== "@everyone" && !r.managed).first().name %></option>
+                                                    <% guild.roles.cache.filter((r) => r.id !== guild.roles.cache.filter((r) => r.name !== "@everyone" && !r.managed).first().id && r.name !== "@everyone" && !r.managed).forEach((r) => { %>
+                                                        <option>@<%= r.name %></option>
+                                                    <% }); %>
+                                                <% } %>
+                                            </select>
+                                            <br>
+<p>Ticket Category</p>
+<select class="select" style="background-color: #2f2f2f; color: white; border-radius: 5px;" name="ticketCategory">
+<% if(ticket.categoryID && bot.channels.cache.has(ticket.categoryID)){ %>
+ <option selected="selected"><%= bot.channels.cache.get(ticket.categoryID).name %></option>
+                                                    <% guild.channels.cache.filter((ch) => ch.id !== ticket.categoryID && ch.type === "category").forEach((ch) => { %>
+                                                        <option><%= ch.name %></option>
+                                                    <% }); } else { %>
+                                                    <option selected="selected"><%= guild.channels.cache.filter((ch) => ch.type === "category").first().name %></option>
+                                                    <% guild.channels.cache.filter((ch) => ch.id !== guild.channels.cache.first().id && ch.type === "category").forEach((ch) => { %>
+                                                        <option><%= ch.name %></option>
+                                                    <% }); %>
+                                                <% } %>
+                                            </select>
+                                            <br>
+<p>Ticket Limit (1 - 5)</p>
+
+<input style="background-color: #2f2f2f; color: white;  border: 2px solid grey; border-radius: 5px " type="number" name="ticketLimit" value="<%= ticket.maxTicket %>" min="1" max="5">
+<br>
+
+<div class="checkbox" style="background-color: #222222; border-radius: 5px; border: 5px">
+<br>
+
+<p > <% if(ticket.ticketPing == "true") { %>
+
+<input name="pingEveryone" class="input-switch" type="checkbox" id="switch1" checked></input><label class="label-switch"for="switch1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                    <% } else { %>
+                                             <input name="pingEveryone" class="input-switch" type="checkbox" id="switch1"></input><label class="label-switch"for="switch1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
+                                                 <% } %>Ping @everyone</p>
+ <% if(ticket.ticketType == "message") { %>
+
+<p> <% if(ticket.requireReason == "true") { %>
+
+
+       <input  name="requireReason" class="input-switch" type="checkbox" id="switch2" checked></input><label class="label-switch"for="switch2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                    <% } else { %>
+                                                          <input  name="requireReason" class="input-switch" type="checkbox" id="switch2"></input><label class="label-switch"for="switch2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                    <% } %>Require Reason  <b><%= settings.prefix %>ticket (reason)</b></p>
+ <% } %>
+
+<p><% if(ticket.ticketClose == "true") { %>
+<input  name="ticketClose" class="input-switch" type="checkbox" id="switch3" checked></input><label class="label-switch"for="switch3" checked>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+
+                                                    <% } else { %>
+                                                      <input name="ticketClose" class="input-switch" type="checkbox" id="switch3"></input><label class="label-switch"for="switch3" checked>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                    <% } %>Allow Users to Close ticket &nbsp;<% if(settings.isPremium == "false"){ %><a href="https://pogy.xyz/premium"><i style="font-size:14px; color: yellow" class="fa">&#xf006;</i></a><% } %></p>
+<br>
+ </div> 
+<br>
+ 
+           
+                                    <div class="box-footer">
+                                        <% if(ticket.ticketToggle == "true"){ %>
+
+                                            <button type="submit" name="ticketDisable" class="disable">Disable</button>
+                                              <% if(ticket.ticketType == "message"){ %>
+   <button type="submit" name="switchReaction" class="update2">Use Reaction</button>
+    <% } else if(ticket.ticketType == "reaction"){ %>
+      <button type="submit" name="switchReaction2" class="update3">Use Message</button>
+   <% }  %>
+                                            <button type="submit" name="ticketUpdate" class="update">Update</button>
+ <button type="submit" name="resetDatabase" class="cd-popup-trigger">Reset Database</button>
+                                        <% } else { %>
+                                            <button type="submit" name="ticketEnable" class="save">Enable</button>
+                                        <% } %>
+                                    </div>
+ 
+                                    
+
+</div>
+  <div class="tickets">
+
+
+<% if(ticket.ticketType == "reaction" && ticket.ticketCustom == "false") { %>   
+<h2 class="tickets-header" style="font-family: 'Cairo', sans-serif">Reaction Panel</h2>
+<br>
+<p><input type="color" style="background-color: #2f2f2f; color: white; border-radius: 5px;"  name="reactionPanelColor" value="<%= ticket.ticketEmbedColor %>">&nbsp; Embed Color</p>
+<p><bold>Reaction Title</bold></p>
+<div class="user-box">
+      <input type="text" style="width: 400px; min-width: 400px; max-width: 400px;background-color: #2f2f2f; color: white; border-radius: 5px;"  class="form-control" name="reactionTitle" value="<%= ticket.ticketTitle || `Server Tickets` %>" placeholder="Reaction Title">
+</div>
+<br>
+<p><bold>Reaction description</bold>(Max 1024)</p>
+<textarea style="background-color: #2f2f2f; color: white; border-radius: 5px; width: 400px; min-width: 400px; max-width: 400px; height: 70px; min-height: 70px; max-height: 150px"; id="textarea6"  rows="3" name="reactionDescription" class="form-control" required><%= ticket.ticketDescription || `Please react to open a ticket!`%></textarea>
+ <span style="color: white" id='remaining6'></span>
+<br>
+
+        <div class="checkbox" style="width: 400px; min-width: 400px; max-width: 400px; background-color: #222222; border-radius: 5px; border: 5px"> 
+        <br>                                   
+        <p><% if(ticket.ticketTimestamp == "true") { %>
+       <input name="ticketTimestamp" class="input-switch" type="checkbox" id="switch4" checked></input><label class="label-switch"for="switch4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+       
+                                                    <% } else { %>
+                                                            <input name="ticketTimestamp" class="input-switch" type="checkbox" id="switch4"></input><label class="label-switch"for="switch4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                    <% } %> &nbsp;Reaction TimeStamp</p>
+           <p>
+         <% if(!!ticket.ticketFooter === true) { %>
+   
+
+             <input name="reactionfooterEmbed" class="input-switch" type="checkbox" onclick="myFunction04()" id="reactionEmbedFooter"  checked></input><label class="label-switch"for="reactionEmbedFooter" checked>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+
+
+             <% } else { %>
+         <input name="reactionfooterEmbed" class="input-switch" type="checkbox" onclick="myFunction04()" id="reactionEmbedFooter" ></input><label class="label-switch"for="reactionEmbedFooter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+         <% } %> &nbsp;Reaction Footer <% if(settings.isPremium == "false"){ %><a href="https://pogy.xyz/premium"><i style="font-size:14px; color: yellow" class="fa">&#xf006;</i></a><% } %></p>                                                 
+
+<div id="reactionEmbedFooterID" style="display:none">
+<div class="user-box">
+      <input style="min-width: 180px;  max-width: 300px; background-color: #2f2f2f; color: white; border-radius: 5px;" type="text" class="form-control" name="reactionmbedFooter" value="<%= ticket.ticketFooter %>" placeholder="Embed Footer">
+</div>
+
+</div>
+<br>
+</div>
+<br>
+<p>Reaction Channel</p>
+<select style="background-color: #2f2f2f; color: white; border-radius: 5px; " class="select" name="ticketChannelReact">
+             <% if(ticket.ticketReactChannel && bot.channels.cache.has(ticket.ticketReactChannel)){ %>
+                                                    <option selected="selected">#<%= bot.channels.cache.get(ticket.ticketReactChannel).name %></option>
+                                                    <% guild.channels.cache.filter((ch) => ch.type === "text" && ch.id !== ticket.ticketReactChannel).forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); %>
+                                                  
+                                                <% } else { %>
+                                          
+                                                    <% guild.channels.cache.filter((ch) => ch.type === "text").forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); %>
+                                                <% } %>
+                                            </select>
+
+<p><bold>Ticket Reaction</bold> &nbsp;<% if(settings.isPremium == "false"){ %><a href="https://pogy.xyz/premium"><i style="font-size:14px; color: yellow" class="fa">&#xf006;</i></a><% } %><p> 
+<select style="background-color: #2f2f2f; color: white; border-radius: 5px; "  name="ticketReaction" class="select">
+<% if(settings.isPremium == "false"){ %>
+
+<% if(ticket.ticketReaction == "🎫"){ %>
+
+  <option selected="selected">🎫</option>
+  <option value="📩">📩</option>
+  <option value="ticketReaction2" disabled>🎟️ (premium)</option>
+  <option value="✅" disabled>✅ (premium)</option>
+  <option value="📻" disabled>📻 (premium)</option>
+  <option value="☑️" disabled>☑️ (premium)</option>
+  <option value="📲" disabled> 📲 (premium)</option>
+  <option value="📟" disabled>📟 (premium)</option>
+  <option value="🆕" disabled>🆕 (premium)</option>
+  <option value="📤" disabled>📤 (premium)</option>
+  <option value="📨" disabled>📨 (premium)</option>
+  <option value="🔑" disabled>🔑 (premium)</option>
+  <option value="🏷️" disabled>🏷️ (premium)</option>
+
+<% } else if(ticket.ticketReaction == "📩")  { %>
+
+  <option value="ticketReaction1">🎫</option>
+  <option selected="selected">📩</option>
+  <option value="ticketReaction2" disabled>🎟️ (premium)</option>
+  <option value="✅" disabled>✅ (premium)</option>
+  <option value="📻" disabled>📻 (premium)</option>
+  <option value="☑️" disabled>☑️ (premium)</option>
+  <option value="📲" disabled> 📲 (premium)</option>
+  <option value="📟" disabled>📟 (premium)</option>
+  <option value="🆕" disabled>🆕 (premium)</option>
+  <option value="📤" disabled>📤 (premium)</option>
+  <option value="📨" disabled>📨 (premium)</option>
+  <option value="🔑" disabled>🔑 (premium)</option>
+  <option value="🏷️" disabled>🏷️ (premium)</option>
+
+
+<% } else { %>
+
+  <option selected="selected">🎫</option>
+  <option value="📩">📩</option>
+  <option value="ticketReaction2" disabled>🎟️ (premium)</option>
+  <option value="✅" disabled>✅ (premium)</option>
+  <option value="📻" disabled>📻 (premium)</option>
+  <option value="☑️" disabled>☑️ (premium)</option>
+  <option value="📲" disabled> 📲 (premium)</option>
+  <option value="📟" disabled>📟 (premium)</option>
+  <option value="🆕" disabled>🆕 (premium)</option>
+  <option value="📤" disabled>📤 (premium)</option>
+  <option value="📨" disabled>📨 (premium)</option>
+  <option value="🔑" disabled>🔑 (premium)</option>
+  <option value="🏷️" disabled>🏷️ (premium)</option>
+
+
+<% } %>
+
+
+
+<% } else { %>
+<% if(ticket.ticketReaction == '🎫'){ %>
+
+<option selected="selected">🎫</option>
+<option value="📩">📩</option>
+<option value="ticketReaction2">🎟️</option>
+
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+<% } else if(ticket.ticketReaction == '🎟️'){%>
+ <option value="ticketReaction1">🎫</option>
+ <option value="📩">📩</option>
+<option selected="selected">🎟️</option> 
+
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+ 
+ <% } else if(ticket.ticketReaction == "📩") { %>
+ <option selected="selected">📩</option>
+ <option value="🎫">🎫</option>
+ <option value="ticketReaction2">🎟️</option>
+
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+
+
+ <% } else if(ticket.ticketReaction == "✅") { %>
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option selected="selected">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "📻") { %>
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option selected="selected">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "☑️") { %>
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option  selected="selected">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "📲") { %>
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option  selected="selected"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "📟") { %>
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option  selected="selected" >📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+ <% } else if(ticket.ticketReaction == "🆕") { %>
+
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option  selected="selected">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "📤") { %>
+
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option  selected="selected">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "📨") { %>
+
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option  selected="selected">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "🔑") { %>
+
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option  selected="selected">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+
+ <% } else if(ticket.ticketReaction == "🏷️") { %>
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option  selected="selected">🏷️</option>
+
+
+
+
+ <% } else { %>    
+
+  <option selected="selected">🎫</option>  
+   <option value="ticketReaction2">🎟️</option>
+<option value="📩">📩</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+                              <% }  %>    
+                               <% }  %>        
+</select>
+<br>
+<br>
+ <% } else if(ticket.ticketType == "reaction" && ticket.ticketCustom == "true") { %>
+
+<h4><u>Custom Message Reaction </u><b style="color:red;">(new)</b></h4>
+<br>
+<br>
+<p>This Feature allows users to open a ticket by <br>reacting to a message of your choice. </p>
+<br>
+<p>Ticket Channel</p>
+<select style="background-color: #2f2f2f; color: white; border-radius: 5px; "   class="select" name="ticketChannelReact">
+             <% if(ticket.ticketReactChannel && bot.channels.cache.has(ticket.ticketReactChannel)){ %>
+                                                    <option selected="selected">#<%= bot.channels.cache.get(ticket.ticketReactChannel).name %></option>
+                                                    <% guild.channels.cache.filter((ch) => ch.type === "text" && ch.id !== ticket.ticketReactChannel).forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); %>
+                                                      
+                                                <% } else { %>
+                                          
+                                                    <% guild.channels.cache.filter((ch) => ch.type === "text").forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); %>
+                                                <% } %>
+                                            </select>
+
+<br>
+<br>
+<p>Message ID</p>
+<div class="user-box">
+      <input style="min-width: 180px;  max-width: 300px; background-color: #2f2f2f; color: white; border-radius: 5px; " class="form-control" type="text" name="messageID" value="<%= ticket.messageID[ticket.messageID.length - 1] %>" placeholder="message ID">
+</div>
+
+<p><bold>Ticket Reaction</bold> &nbsp;<% if(settings.isPremium == "false"){ %><i style="font-size:14px; color: yellow" class="fa">&#xf006;</i><% } %></p> 
+
+<select style="background-color: #2f2f2f; color: white; border-radius: 5px; "  name="ticketReaction" class="select">
+<% if(settings.isPremium == "false"){ %>
+
+<% if(ticket.ticketReaction == "🎫"){ %>
+
+  <option selected="selected">🎫</option>
+  <option value="📩">📩</option>
+  <option value="ticketReaction2" disabled>🎟️ (premium)</option>
+  <option value="✅" disabled>✅ (premium)</option>
+  <option value="📻" disabled>📻 (premium)</option>
+  <option value="☑️" disabled>☑️ (premium)</option>
+  <option value="📲" disabled> 📲 (premium)</option>
+  <option value="📟" disabled>📟 (premium)</option>
+  <option value="🆕" disabled>🆕 (premium)</option>
+  <option value="📤" disabled>📤 (premium)</option>
+  <option value="📨" disabled>📨 (premium)</option>
+  <option value="🔑" disabled>🔑 (premium)</option>
+  <option value="🏷️" disabled>🏷️ (premium)</option>
+
+<% } else if(ticket.ticketReaction == "📩")  { %>
+
+  <option value="ticketReaction1">🎫</option>
+  <option selected="selected">📩</option>
+  <option value="ticketReaction2" disabled>🎟️ (premium)</option>
+  <option value="✅" disabled>✅ (premium)</option>
+  <option value="📻" disabled>📻 (premium)</option>
+  <option value="☑️" disabled>☑️ (premium)</option>
+  <option value="📲" disabled> 📲 (premium)</option>
+  <option value="📟" disabled>📟 (premium)</option>
+  <option value="🆕" disabled>🆕 (premium)</option>
+  <option value="📤" disabled>📤 (premium)</option>
+  <option value="📨" disabled>📨 (premium)</option>
+  <option value="🔑" disabled>🔑 (premium)</option>
+  <option value="🏷️" disabled>🏷️ (premium)</option>
+
+
+<% } else { %>
+
+  <option selected="selected">🎫</option>
+  <option value="📩">📩</option>
+  <option value="ticketReaction2" disabled>🎟️ (premium)</option>
+  <option value="✅" disabled>✅ (premium)</option>
+  <option value="📻" disabled>📻 (premium)</option>
+  <option value="☑️" disabled>☑️ (premium)</option>
+  <option value="📲" disabled> 📲 (premium)</option>
+  <option value="📟" disabled>📟 (premium)</option>
+  <option value="🆕" disabled>🆕 (premium)</option>
+  <option value="📤" disabled>📤 (premium)</option>
+  <option value="📨" disabled>📨 (premium)</option>
+  <option value="🔑" disabled>🔑 (premium)</option>
+  <option value="🏷️" disabled>🏷️ (premium)</option>
+
+
+<% } %>
+
+
+
+<% } else { %>
+<% if(ticket.ticketReaction == '🎫'){ %>
+
+<option selected="selected">🎫</option>
+<option value="📩">📩</option>
+<option value="ticketReaction2">🎟️</option>
+
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+<% } else if(ticket.ticketReaction == '🎟️'){%>
+ <option value="ticketReaction1">🎫</option>
+ <option value="📩">📩</option>
+<option selected="selected">🎟️</option> 
+
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+ 
+ <% } else if(ticket.ticketReaction == "📩") { %>
+ <option selected="selected">📩</option>
+ <option value="🎫">🎫</option>
+ <option value="ticketReaction2">🎟️</option>
+
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+
+
+ <% } else if(ticket.ticketReaction == "✅") { %>
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option selected="selected">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "📻") { %>
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option selected="selected">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "☑️") { %>
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option  selected="selected">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "📲") { %>
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option  selected="selected"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "📟") { %>
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option  selected="selected" >📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+ <% } else if(ticket.ticketReaction == "🆕") { %>
+
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option  selected="selected">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "📤") { %>
+
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option  selected="selected">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "📨") { %>
+
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option  selected="selected">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+ <% } else if(ticket.ticketReaction == "🔑") { %>
+
+
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option  selected="selected">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+
+
+ <% } else if(ticket.ticketReaction == "🏷️") { %>
+
+ <option value="ticketReaction1">📩</option>
+ <option value="🎫">🎫</option>
+ <option  value="ticketReaction2">🎟️</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option  selected="selected">🏷️</option>
+
+
+
+
+ <% } else { %>    
+
+  <option selected="selected">🎫</option>  
+   <option value="ticketReaction2">🎟️</option>
+<option value="📩">📩</option>
+  <option value="✅">✅</option>
+  <option value="📻">📻</option>
+  <option value="☑️">☑️</option>
+  <option value="📲"> 📲</option>
+  <option value="📟">📟</option>
+  <option value="🆕">🆕</option>
+  <option value="📤">📤</option>
+  <option value="📨">📨</option>
+  <option value="🔑">🔑</option>
+  <option value="🏷️">🏷️</option>
+
+                              <% }  %>    
+                               <% }  %>       
+
+</select>
+
+
+<br>
+<br>
+
+
+<!-- end -->
+<% } else {%>
+
+    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+
+
+<% } %>
+
+                                    <div class="box-footer">
+                                        <% if(ticket.ticketToggle == "true"){ %>
+ <% if(ticket.ticketType == "reaction"){ %>
+                                           <button type="submit" name="sendEmbed" class="save">Send</button>
+                                               <% } %> 
+
+
+   <% if(ticket.ticketType == "reaction" && ticket.ticketCustom == "false") { %>                                                                                    <button type="submit" name="useMessage" class="update2">Use Message</button>
+     <% } else if(ticket.ticketType == "reaction" && ticket.ticketCustom == "true") { %> 
+<button type="submit" name="useReaction" class="update2">Use Reaction</button>
+     <% } %>
+                                        <% } else { %>
+
+                                        <% if(ticket.ticketType == "reaction") { %>
+                                          <button class="disable" disabled>Send</button>
+                                           
+                                        <% } %>
+                                          <% } %>
+                                    </div>
+
+
+            
+                                    
+
+<br>
+<br>
+  
+  <div class="cd-popup" role="alert">
+	<div class="cd-popup-container">
+		<p style="color: 2f2f2f">Are you sure you would like to reset server ticketing?</p>
+		<ul class="cd-buttons">
+			<li><button type="submit" name="resetTicket" class="disable2">yes</button></li>
+			<li><button class="save2" type="button" id="close">No</button></li>
+		</ul>
+		<a  class="cd-popup-close img-replace">Close</a>
+	</div> <!-- cd-popup-container -->
+</div>
+
+    </div>
+
+</form>
+</div>
+<% } else { %>
+<p class="no-js">Make sure the guild has 1 category and 1 channel.</p>
+<% } %>
+
+<% } else { %>
+<p class="no-js">Make sure the guild has 1 category and 1 channel.</p>
+<% } %>
+<% } else { %>
+<p class="no-js">Make sure the guild has 1 role.</p>
+<% } %>
+
+<br>
+<br>
+<br>
+
+
+</div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/wow/0.1.12/wow.min.js'></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+.info {
+    color:#fff;
+    background-color:#800080 ;
+    width:20px;
+    height:20px;
+    display:inline-block;
+    border-radius:100%;
+    font-size:15px;
+    text-align:center;
+    text-decoration:none;
+    -webkit-box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
+    box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
+}
+body {
+  font-family: "Hind Vadodara", -apple-system, BlinkMacSystemFont, Segoe UI,
+    Helvetica Neue, Arial, sans-serif;
+}
+.hr {
+    display: block;
+    background-color: #2f2f2f;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+
+}
+
+
+
+
+
+  @media only screen and (max-device-width: 1400px) {
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-wrap: wrap;
+   overflow-x: scroll;
+}
+
+.tickets {
+  float: left;
+  width: 50%;
+  padding:100px;
+  height: 1200px; 
+  position: relative;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  background-color: #2f2f2f;
+  border-radius: .35rem;
+  
+
+}
+  }
+
+  
+  @media only screen and (min-width: 1400px) {
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-wrap: wrap;
+   overflow-x: scroll;
+}
+
+.tickets {
+  float: left;
+  width: 50%;
+  padding: 90px;
+  height: 1000px; 
+  position: relative;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  background-color: #2f2f2f;
+  border-radius: .35rem;
+  
+
+}
+}
+
+.toggle-div{
+width: 70px
+height: 30px
+}
+.input-switch[type=checkbox] {
+	 height: 0;
+	 width: 0;
+	 visibility: hidden;
+}
+ .label-switch{
+	 cursor: pointer;
+	 text-indent: -9999px;
+	 width: 40px;
+	 height: 20px;
+	 background: grey;
+	 display: block;
+	 border-radius: 100px;
+	 position: relative;
+}
+.label-switch:after {
+	 content: '';
+	 position: absolute;
+	 top: 2px;
+	 left: 2px;
+	 width: 12px;
+	 height: 12px;
+	 background: #fff;
+	 border-radius: 40px;
+	 transition: 0.6s;
+}
+ .input-switch:checked + label {
+	 background: #bada55;
+}
+ .input-switch:checked + label:after {
+	 left: calc(100% - 5px);
+	 transform: translateX(-100%);
+}
+.label-switch:active:after {
+	 width: 10px;
+}
+ 
+.save{
+
+display: inline-block;
+  font-family: Whitney, "Open Sans", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  border-radius: 3px;
+  cursor: pointer;
+  height: 45px;
+  width: 200px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+    background-color: #43b581;
+  border: 2px solid #43b581;
+  color: #fff;
+}
+.save:hover {
+transform: translateY(1px);
+}
+
+
+.save2{
+
+display: inline-block;
+  font-family: Whitney, "Open Sans", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  cursor: pointer;
+  height: 45px;
+  width: 200px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+    background-color: #43b581;
+  border: 2px solid #43b581;
+  color: #fff;
+}
+.save2:hover {
+transform: translateY(1px);
+}
+
+
+
+.disable{
+
+display: inline-block;
+  font-family: Whitney, "Open Sans", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  border-radius: 3px;
+  cursor: pointer;
+  height: 45px;
+  width: 100px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: 	#FF0000;
+  border: 2px solid 	#FF0000;
+  color: #fff;
+}
+.disable:hover {
+transform: translateY(1px);
+}
+
+.disable2{
+
+display: inline-block;
+  font-family: Whitney, "Open Sans", Helvetica, sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  height: 45px;
+width: 200px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: 	#FF0000;
+  border: 2px solid 	#FF0000;
+  color: #fff;
+}
+.disable2:hover {
+transform: translateY(1px);
+}
+
+.update{
+
+display: inline-block;
+  font-family: Whitney, "Open Sans", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  border-radius: 3px;
+  cursor: pointer;
+  height: 45px;
+  width: 100px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: 	#1e90ff;
+  border: 2px solid 	#1e90ff;
+  color: #fff;
+  margin: 40px
+}
+.update:hover {
+transform: translateY(1px);
+}
+
+
+
+.update2{
+
+display: inline-block;
+  font-family: Whitney, "Open Sans", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  border-radius: 3px;
+  cursor: pointer;
+  height: 45px;
+  width: 100px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: 	#1e90ff;
+  border: 2px solid 	#1e90ff;
+  color: #fff;
+}
+.update2:hover {
+transform: translateY(1px);
+}
+
+.update3{
+
+   display: inline-block;
+  font-family: Whitney, "Open Sans", Helvetica, sans-serif;
+  font-size: 7pt;
+  border-radius: 3px;
+  cursor: pointer;
+  height: 45px;
+  width: 80px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: 	#1e90ff;
+  border: 2px solid 	#1e90ff;
+  color: #fff;
+}
+.update3:hover {
+transform: translateY(1px);
+}
+.botsettings {
+	border-radius: 10px;
+  padding-top: 20px;
+  padding-right: 60px;
+  padding-bottom: 60px;
+  padding-left: 60px;
+}
+.select-wrapper {
+   color: white;
+	 position: relative;
+	 width: 350px;
+   height: 100px;
+
+}
+ .select-wrapper::after {
+	 color: white;
+	 content: '▾';
+	 margin-right: 10px;
+	 pointer-events: none;
+	 position: absolute;
+	 right: 10px;
+	 top: 7px;
+	 font-size: 28px;
+}
+.select {
+  position: relative;
+  min-width: 186px;
+  min-height: 30px
+}
+.select svg {
+  position: absolute;
+  right: 12px;
+  top: calc(50% - 3px);
+  width: 10px;
+  height: 6px;
+  stroke-width: 2px;
+  stroke: #9098a9;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.select select {
+  -webkit-appearance: none;
+  padding: 7px 40px 7px 12px;
+  width: 100%;
+  border: 1px solid #e8eaed;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 1px 3px -2px #9098a9;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  transition: all 150ms ease;
+}
+.select select:required:invalid {
+  color: #5a667f;
+}
+.select select option {
+  color: #fff;
+}
+option {
+color: #fff;
+}
+.select select option[value=""][disabled] {
+  display: none;
+}
+.select select:focus {
+  outline: none;
+  border-color: #07f;
+  box-shadow: 0 0 0 2px rgba(0,119,255,0.2);
+}
+.select select:hover + svg {
+  stroke: #07f;
+}
+ 
+.main {
+  height: calc(100% - 50px);
+  display: flex;
+  flex: 1;
+}
+
+
+
+
+.tickets-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid #222222;
+
+}
+.welcome:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .tickets {
+    width: 100%;
+  }
+}
+.sidebar {
+  height: 100%;
+  width: 220px;
+  box-sizing: border-box;
+  box-shadow: 0 0 2rem 0 rgb(0 0 0 / 5%);
+  overflow: hidden;
+  transition: width 0.5s ease;
+  overflow-y: scroll !important;
+}
+.container.nav-closed .sidebar,
+.container.nav-closed .header-logo {
+  width: 0;
+}
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+.sidebar ul li {
+  display: flex;
+  align-items: center;
+}
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  white-space: nowrap;
+}
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+  background: #2f2f2f;
+}
+.sidebar ul li span {
+  margin-left: 16px;
+  font-size: 16px;
+  font-weight: 100;
+}
+.sidebar ul li i {
+  font-size: 18px;
+  color: #111;
+  font-weight: normal;
+}
+.header {
+  height: 50px;
+  background: #2f2f2f;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-basis: 100%;
+}
+.sidebar ul li a.active i {
+  color: purple;
+}
+.site-logo {
+  height: 32px;
+  width: 32px;
+  min-height: 32px;
+  min-width: 32px;
+  margin: 0 18px 0 15px;
+}
+.site-logo path {
+  fill: #fff;
+}
+.site-title {
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+.page-content {
+  padding: 10px 20px;
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1;
+}
+.page-content h1 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+}
+.header-search {
+  height: 100%;
+  align-items: center;
+  display: flex;
+  padding: 0 20px;
+  flex: 1;
+}
+.header-search .button-menu {
+  width: 23px;
+  height: 23px;
+  margin-right: 15px;
+  background-color: #2f2f2f;
+  border: 0;
+  cursor: pointer;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  width: 220px;
+  overflow: hidden;
+  transition: width 0.5s ease;
+}
+.header-search input[type="search"] {
+  height: 100%;
+  width: 300px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 100;
+  background: none;
+  border: none;
+  color: #fff;
+}
+.header-search input[type="search"]:focus {
+  outline: none;
+}
+.header-search input[type="search"]::placeholder {
+  color: #ccc;
+}
+.header-search .button-menu:focus {
+  outline: none;
+  border: none;
+}
+.header-search .button-menu svg path {
+  fill: #fff;
+}
+@media screen and (max-width: 991px) {
+  .page-content {
+    width: 100vw;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header-logo {
+    display: none;
+  }
+}
+.drop {
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.drop.open {
+  z-index: 100;
+}
+.drop.open .drop-screen {
+  z-index: 100;
+  display: block;
+}
+.drop.open .drop-options {
+  z-index: 200;
+  max-height: 200px;
+}
+.drop.open .drop-display {
+  z-index: 200;
+  border-color: #465;
+}
+.drop select {
+  display: none;
+}
+.drop .drop-screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  display: none;
+  z-index: 1;
+}
+
+.link {
+  text-align: center;
+  margin: 20px 0px;
+  color:#8CACD7;
+}
+
+
+.drop .drop-display {
+  position: relative;
+  padding: 0px 20px 5px 5px;
+  border: 4px solid #444;
+  width: 100%;
+  background: #FFF;
+  z-index: 1;
+  margin: 0px;
+  font-size: 16px;
+  min-height: 58px;
+}
+.drop .drop-display:hover:after {
+  opacity: 0.75;
+}
+.drop .drop-display:after {
+  font-family: 'Material Icons';
+  content: "\e5c6";
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  font-size: 24px;
+  color: #444;
+}
+.drop .drop-display .item {
+  position: relative;
+  display: inline-block;
+  border: 2px solid #333;
+  margin: 5px 5px -4px 0px;
+  padding: 0px 25px 0px 10px;
+  overflow: hidden;
+  height: 40px;
+  line-height: 36px;
+}
+.drop .drop-display .item .btnclose {
+  color: #444;
+  position: absolute;
+  font-size: 16px;
+  right: 5px;
+  top: 10px;
+  cursor: pointer;
+}
+.drop .drop-display .item .btnclose:hover {
+  opacity: 0.75;
+}
+.drop .drop-display .item.remove {
+  -webkit-animation: removeSelected 0.2s, hide 1s infinite;
+          animation: removeSelected 0.2s, hide 1s infinite;
+  -webkit-animation-delay: 0s, 0.2s;
+          animation-delay: 0s, 0.2s;
+}
+.drop .drop-display .item.add {
+  -webkit-animation: addSelected 0.2s;
+          animation: addSelected 0.2s;
+}
+.drop .drop-display .item.hide {
+  display: none;
+}
+.drop .drop-options {
+  background: #444;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  width: 100%;
+  max-height: 0px;
+  overflow-y: auto;
+  transition: all 0.25s linear;
+  z-index: 1;
+}
+.drop .drop-options a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 20px;
+  color: white;
+  position: relative;
+  max-height: 40px;
+  transition: all 1s;
+  overflow: hidden;
+}
+.drop .drop-options a:hover {
+  background: #465;
+  cursor: pointer;
+}
+.drop .drop-options a.remove {
+  -webkit-animation: removeOption 0.2s;
+          animation: removeOption 0.2s;
+  max-height: 0px;
+}
+.drop .drop-options a.add {
+  -webkit-animation: addOption 0.2s;
+          animation: addOption 0.2s;
+}
+.drop .drop-options a.hide {
+  display: none;
+}
+
+@-webkit-keyframes pop {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes removeOption {
+  from {
+    max-height: 40px;
+  }
+  to {
+    max-height: 0px;
+  }
+}
+@keyframes removeOption {
+  from {
+    max-height: 40px;
+  }
+  to {
+    max-height: 0px;
+  }
+}
+@-webkit-keyframes addOption {
+  from {
+    max-height: 0px;
+  }
+  to {
+    max-height: 40px;
+  }
+}
+@keyframes addOption {
+  from {
+    max-height: 0px;
+  }
+  to {
+    max-height: 40px;
+  }
+}
+@-webkit-keyframes removeSelected {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+@keyframes removeSelected {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+@-webkit-keyframes addSelected {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes addSelected {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes hide {
+  from, to {
+    max-height: 0px;
+    max-width: 0px;
+    padding: 0px;
+    margin: 0px;
+    border-width: 0px;
+  }
+}
+@keyframes hide {
+  from, to {
+    max-height: 0px;
+    max-width: 0px;
+    padding: 0px;
+    margin: 0px;
+    border-width: 0px;
+  }
+}
+
+.fa{
+  line-height:30px;
+  font-size:30px;
+  display:inline-bloxk;
+  width:35px;
+  height:35px;
+}
+.hidden{
+  display:none;
+}
+
+
+.pointer-cursor{
+   cursor: pointer; cursor: hand;
+}
+.close{
+
+    float:right;
+    color: #b94b45;
+    cursor: pointer; cursor: hand;
+}
+
+.alert-message{
+  background-color: #f2dede;
+  border: 1px solid rgba(#34495e, 0.25);
+  color: #b94b45;
+  border-radius: 3px;
+  line-height:30px;
+  position: absolute;
+  top: 0; left: 0;
+  display:block;
+  width:100%;
+  padding: 12px;
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, .9);
+  box-shadow: 0px 10px 50px rgba(0,0,0,.6);
+  background:#34495e;
+}
+
+@keyframes closing {
+  from {
+    opacity: 1; 
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes moving {
+  0%, 90% { top: 0; left: 0; }
+  100%  { top: -100px; left: 0; }
+}
+
+* {
+  box-sizing: border-box;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.alertpremium {
+  width: 1000px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+.alertpremium.premium{
+  background-color: rgba(248, 215, 218, 1);
+  border-color: rgba(220, 53, 69, 1);
+  color: rgba(114, 28, 36,1);
+}
+.alertparagraph{
+    display: inline;
+}
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+
+.pogy:hover {
+  opacity: 0.5;
+-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+}
+.server-image {
+width: 119px;
+margin-left: 0;
+margin-right: 0;
+height: 119px;
+border-radius: 50%;
+transition: transform .2s; /* Animation */
+}
+.server-image:hover {
+transform: scale(1.1); 
+}
+
+.guild {
+text-align: center;
+}
+
+.members {
+display: flex;
+-webkit-box-align: center;
+align-items: center;
+}
+
+
+ /*
+=====
+DEPENDENCES
+=====
+*/
+
+/* 
+helper to reset default browser's styles from headings
+*/
+
+.r-title{
+    margin-top: var(--rTitleMarginTop, 0) !important;
+    margin-bottom: var(--rTitleMarginBottom, 0) !important;
+}
+
+/* 
+helper to hide elements that are available only for screen readers. 
+*/
+
+.screen-reader{
+  width: var(--screenReaderWidth, 1px) !important;
+  height: var(--screenReaderHeight, 1px) !important;
+  padding: var(--screenReaderPadding, 0) !important;
+  border: var(--screenReaderBorder, none) !important;
+
+  position: var(--screenReaderPosition, absolute) !important;
+  clip: var(--screenReaderClip, rect(1px, 1px, 1px, 1px)) !important;
+  overflow: var(--screenReaderOverflow, hidden) !important;
+}
+
+/*
+=====
+POPUP
+=====
+*/
+
+/*
+1. Creating the top and bottom gaps for the modal so that content doesn't touches window's edges
+*/
+
+.popup:not(:target){
+  display: none;
+}
+
+.popup:target{
+  width: 100%;
+  height: 100vh;
+  
+  display: flex;
+ 
+  position: fixed;
+  top: 0;
+  right: 0;  
+}
+
+.popup::before{
+  content: "";
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff;
+
+  position: fixed;
+  left: 0;
+  top: 50%;
+}
+
+.popup::after{
+  content: "";
+  width: 0;
+  height: 2px;
+  background-color: #f0f0f0;
+
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+}
+
+.popup__container{
+  box-sizing: border-box;  
+  padding: 5% 15%;
+
+  height: calc(100vh - 40px); /* 1 */
+  margin: auto; /* 1 */
+  overflow: auto; /* 1 */
+  overscroll-behavior: contain; /* 1 */
+}
+
+.popup__title{
+  --rTitleMarginBottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.popup__close{
+  width: 2rem;
+  height: 2rem;
+
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTE5IDYuNDFMMTcuNTkgNSAxMiAxMC41OSA2LjQxIDUgNSA2LjQxIDEwLjU5IDEyIDUgMTcuNTkgNi40MSAxOSAxMiAxMy40MSAxNy41OSAxOSAxOSAxNy41OSAxMy40MSAxMnoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==);
+}
+
+/*
+animation
+*/
+
+.popup::before{
+  will-change: height, top;
+  animation: open-animation .6s cubic-bezier(0.83, 0.04, 0, 1.16) .65s both;
+}
+
+.popup::after{
+  will-change: width, opacity;
+  animation: line-animation .6s cubic-bezier(0.83, 0.04, 0, 1.16) both;
+}
+
+@keyframes line-animation{
+
+  0%{
+    width: 0;
+    opacity: 1;
+  }
+
+  99%{
+    width: 100%;
+    opacity: 1;
+  }
+
+  100%{
+    width: 100%;
+    opacity: 0;
+  }  
+}
+
+@keyframes open-animation{
+
+  0%{
+    height: 0;
+    top: 50%;
+  }
+
+  100%{
+    height: 100vh;
+    top: 0;
+  }
+}
+
+.popup__container{
+  animation: fade .5s ease-out 1.3s both;
+}
+
+@keyframes fade{
+
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+}
+
+.banner {
+  background: #009579;
+  text-align: left;
+}
+
+.banner__content {
+  padding: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.banner__text {
+  flex-grow: 1;
+  line-height: 1.4;
+  font-family: "Quicksand", sans-serif;
+}
+
+.banner__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.banner__text,
+.banner__close > span {
+  color: #ffffff;
+}
+
+
+
+</style>
+
+
+<%- include("../partials/footer") %>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script>
+jQuery(document).ready(function($){
+
+
+	$('.cd-popup-trigger').on('click', function(event){
+		event.preventDefault();
+		$('.cd-popup').addClass('is-visible');
+	});
+	
+	//close popup
+	$('.cd-popup').on('click', function(event){
+		if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
+			event.preventDefault();
+			$(this).removeClass('is-visible');
+		}
+	});
+	//close popup when clicking the esc keyboard button
+	$(document).keyup(function(event){
+    	if(event.which=='27'){
+    		$('.cd-popup').removeClass('is-visible');
+	    }
+    });
+
+    	$('#close').on('click', function(){
+
+			$('.cd-popup').removeClass('is-visible');
+		
+	});
+  	});
+</script>
+
+<script>
+let menuButton = document.querySelector(".button-menu");
+let container = document.querySelector(".container");
+let pageContent = document.querySelector(".page-content");
+let responsiveBreakpoint = 991;
+
+if (window.innerWidth <= responsiveBreakpoint) {
+  container.classList.add("nav-closed");
+}
+
+menuButton.addEventListener("click", function () {
+  container.classList.toggle("nav-closed");
+});
+
+pageContent.addEventListener("click", function () {
+  if (window.innerWidth <= responsiveBreakpoint) {
+    container.classList.add("nav-closed");
+  }
+});
+
+
+window.addEventListener("resize", function () {
+  if (window.innerWidth > responsiveBreakpoint) {
+    container.classList.remove("nav-closed");
+  }
+});
+</script>
+<script>
+function markRequired() {
+    var control = $(this).children(".form-control");
+    var label = $(this).children("label");
+    if (control.attr("required") == "required") {
+        label.addClass("required");
+    }
+}
+
+function countCharacters() {
+    var max = $(this).attr("maxlength");
+    var length = $(this).val().length;
+    var counter = max - length;
+    var helper = $(this).next(".form-text");
+    // Switch to the singular if there's exactly 1 character remaining
+    if (counter !== 1) {
+        helper.text(counter + " characters remaining");
+    } else {
+        helper.text(counter + " character remaining");
+    }
+    // Make it red if there are 0 characters remaining
+    if (counter === 0) {
+        helper.removeClass("text-muted");
+        helper.addClass("text-danger");
+    } else {
+        helper.removeClass("text-danger");
+        helper.addClass("text-muted");
+    }
+}
+
+$(document).ready(function () {
+    $(".form-group").each(markRequired);
+    $(".form-control").each(countCharacters);
+    $(".form-control").keyup(countCharacters);
+});
+</script>
+
+
+<script>
+
+  function resetEmbed() {
+    $('.embed-inner').html('');
+    $('.embed-footer').remove();
+    $('.embed-thumb').remove();
+  }
+  </script>
+  <script type="text/javascript">
+	
+document.querySelector(".banner__close").addEventListener("click", function () {
+  this.closest(".banner").style.display = "none";
+});
+
+</script>
+
+  <script>
+  function myFunction04() {
+  var checkBox = document.getElementById("reactionEmbedFooter");
+  var text = document.getElementById("reactionEmbedFooterID");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+</script>
+
+
+<style>
+
+.img-replace {
+  /* replace text with an image */
+  display: inline-block;
+  overflow: hidden;
+  text-indent: 100%;
+  color: transparent;
+  white-space: nowrap;
+}
+
+/* -------------------------------- 
+
+xnugget info 
+
+-------------------------------- */
+.cd-nugget-info {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  bottom: 0;
+  left: 0;
+}
+.cd-nugget-info a {
+  position: relative;
+  font-size: 14px;
+  color: #5e6e8d;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.no-touch .cd-nugget-info a:hover {
+  opacity: .8;
+}
+.cd-nugget-info span {
+  vertical-align: middle;
+  display: inline-block;
+}
+.cd-nugget-info span svg {
+  display: block;
+}
+.cd-nugget-info .cd-nugget-info-arrow {
+  fill: #5e6e8d;
+}
+
+
+
+.cd-popup-trigger {
+
+
+display: inline-block;
+  font-family: Whitney, "Open Sans", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  border-radius: 3px;
+  cursor: pointer;
+  height: 45px;
+  width: 200px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: 	#FF0000;
+  border: 2px solid 	#FF0000;
+  color: #fff;
+}
+.cd-popup-trigger:hover {
+transform: translateY(1px);
+}
+
+
+/* -------------------------------- 
+
+xpopup 
+
+-------------------------------- */
+.cd-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(94, 110, 141, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  transition: opacity 0.3s 0s, visibility 0s 0.3s;
+}
+.cd-popup.is-visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+  -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
+  transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+
+.cd-popup-container {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  margin: 4em auto;
+  background: #FFF;
+  border-radius: .25em .25em .4em .4em;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translateY(-40px);
+  -moz-transform: translateY(-40px);
+  -ms-transform: translateY(-40px);
+  -o-transform: translateY(-40px);
+  transform: translateY(-40px);
+  /* Force Hardware Acceleration in WebKit */
+  -webkit-backface-visibility: hidden;
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.cd-popup-container p {
+  padding: 3em 1em;
+}
+.cd-popup-container .cd-buttons:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.cd-popup-container .cd-buttons li {
+  float: left;
+  width: 50%;
+  list-style: none;
+}
+.cd-popup-container .cd-buttons a {
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  text-transform: uppercase;
+  color: #FFF;
+  -webkit-transition: background-color 0.2s;
+  -moz-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+.cd-popup-container .cd-buttons li:first-child a {
+  background: #fc7169;
+  border-radius: 0 0 0 .25em;
+}
+.no-touch .cd-popup-container .cd-buttons li:first-child a:hover {
+  background-color: #fc8982;
+}
+.cd-popup-container .cd-buttons li:last-child a {
+  background: #b6bece;
+  border-radius: 0 0 .25em 0;
+}
+.no-touch .cd-popup-container .cd-buttons li:last-child a:hover {
+  background-color: #c5ccd8;
+}
+.cd-popup-container .cd-popup-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+}
+.cd-popup-container .cd-popup-close::before, .cd-popup-container .cd-popup-close::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  width: 14px;
+  height: 3px;
+  background-color: #8f9cb5;
+}
+.cd-popup-container .cd-popup-close::before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  left: 8px;
+}
+.cd-popup-container .cd-popup-close::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  right: 8px;
+}
+.is-visible .cd-popup-container {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+@media only screen and (min-width: 1170px) {
+  .cd-popup-container {
+    margin: 8em auto;
+  }
+}
+</style>

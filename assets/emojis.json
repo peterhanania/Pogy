@@ -1,0 +1,64 @@
+{
+  "image":"<:image_emoji:788427949509836840>",
+  "currency":"<:currency_emoji:788428132683350058>",
+
+  "games":"<:games_emoji:788428825745817611> ",
+  "admin":"<:admin_emoji:788429031926005790> ",
+  "configs":"<:configs_emoji:788427972628447293>  ",
+  "utils":"<:utils_emoji:788429328039280661> ", 
+  "success": "<:success:788438144818217000>  ",
+
+  "green":"<:greensquare:803527870609489931> ",
+  "red":"<:redsquare:803527843661217802>",
+
+  "dot": "<:purple_pogy_dot:788726274940076082> ",
+  "fail": "<:fail:790491137289879583>  ",
+
+  "misc": "<:speaker:790146754645196800> ",
+  "mod": "<:moderation_emoji:788428121375768586>",
+
+  "pogger1": "<:poggerz:790987235591323659> ",
+  "heartbreak":"<:heartbreak:790987215324184606> ",
+  
+  "lock": "<:lock:790494601189261323>  ",
+  "unlock": "<:unlock:790494567753187338> ",
+
+  "owner": "<:owner:790146744348442624>  ",
+
+  "discord_employee":"<:discordemployee:790152842382934038>  ",
+  "discord_partner": "<:partnered:790152935152680960>",
+  "bughunter_level_1": "<:bughunterl1:790152798623891466>  ",
+  "bughunter_level_2": "<:bughunterl2:790152838763511808> ",
+  "hypesquad_events": "<:hypesquadevents:790152901569282048> ",
+  "house_brilliance": "<:brilliance:790152798288871454>  ",
+  "house_bravery": "<:housebravery:790152899769925643> ",
+  "house_balance": "<:housebalance:790152901259165726>  ",
+  "early_supporter": "<:earlysupporter:790152860742451221> ",
+  "verified_bot": "<:verifiedbot:790152985870991360> ",
+  "verified_developer": "<:verifieddev:790152986382303253> ",
+
+
+  "online": "<:online:790132184018059304> ",
+  "idle": "<:Idle:790132098806972426>  ",
+  "offline": "<:offline:790132057523093515>  ",
+  "dnd": "<:donotdisturb:790132081136893962> ",
+  "verify":"<:success:788438144818217000>",
+
+  "voice": "<:speaker:790146754645196800> ",
+
+  "pong": "<:online:790132184018059304>",
+
+  "altdetector":"<:alt:826845773656096838>",
+  "applications":"<:form:826846790208716831>",
+  "config":"<:configs_emoji:788427972628447293>",
+  "utility":"<:utils_emoji:788429328039280661>",
+  "economy":"<:currency_emoji:788428132683350058>",
+  "fun":"<:fun_emoji:788428109980368916> ",
+  "images":"<:image_emoji:788427949509836840>",
+  "information":"<:information_emoji:788428196528914472> ",
+  "moderation":"<:moderation_emoji:788428121375768586>",
+  "nsfw":"<:nsfw:826845810024644659> ",
+  "reactionrole":"<:reaction_roles:826845827191406694>",
+  "tickets":"<:ticket:826845944669536266>"
+
+}
