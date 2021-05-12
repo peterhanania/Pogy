@@ -161,4 +161,4 @@ Released under the [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html) li
 * **Wlegit** - *developer*  - [github](https://github.com/wlegit)
 * **Slayer** - *Contributor - Command Handler base* [github](https://github.com/GhostSlayer)
 * **Ace** - *Contributor - Embed builder* [github](https://github.com/Glitchii)
-* **Aurolia** - *Dashboard base + css* - [github](https://github.com/aurolia-css/majo-rebuild)
+* **Majo** - *Dashboard base + css* - [github](https://github.com/IgorKowalczyk/)
