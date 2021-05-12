@@ -153,7 +153,7 @@ You can launch the bot with `node shard.js`
 
 ## License
 
-Released under the [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html) license.
+Released under the [Apache License](http://www.apache.org/licenses/LICENSE-2.0) license.
 
 ## Credits
 
