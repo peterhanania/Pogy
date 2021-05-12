@@ -141,7 +141,7 @@ You can launch the bot with `node shard.js`
 **Important Note:** Pogy has so many bugs and requires a lot of js knowledge. You will have some difficulty running the bot if you have no experience in discord.js. 
 
 ### Emojis 
-- You can change the emojis in:
+- You can change the emojis in: <br>
 1- `assets/emojis.json` <br>
 2- `data/emoji.js`
 
