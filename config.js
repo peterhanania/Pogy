@@ -13,4 +13,4 @@ module.exports = {
 }
 
 
-// read more on https://github.com/aurolia-css/majo-rebuild
+// read more on https://github.com/IgorKowalczyk/majobot
