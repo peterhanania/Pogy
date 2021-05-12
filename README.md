@@ -20,7 +20,7 @@
   </a>
 
   <a href="https://github.com/peterhanania/Pogy/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/license-GNU%20GPL%20v3-green" alt="license">
+    <img src="https://img.shields.io/badge/license-Apache%202-blue" alt="license">
   </a>
 
 </div>
