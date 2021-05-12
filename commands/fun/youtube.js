@@ -24,7 +24,7 @@ module.exports = class extends Command {
         
           const language = require(`../../data/language/${guildDB.language}.json`)
 
-          const apiKey = `AIzaSyD5c_0bfLA6Jz7ZSmeCsvn7NEH_VzQeBeM`;
+          const apiKey = ``;
           const videoName = args.join(' ');
           if (!videoName) return message.channel.send(`${language.youtube}`)
           const searchOptions = { maxResults: 1, key: apiKey, type: 'video' };
