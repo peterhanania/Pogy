@@ -5252,7 +5252,7 @@ let voteUser = await client.users.fetch(apiUser.id);
     const minutes = (d.minutes() == 1) ? `${d.minutes()}` : `${d.minutes()}`;
     const seconds = (d.seconds() == 1) ? `${d.seconds()}` : `${d.seconds()}`;
 
-  metrics.init({ apiKey: '9acd8fa5fffc29d9b4014df766ce7acf', host: 'pogy', prefix: 'pogy.' });
+  metrics.init({ apiKey: jsonconfig.datadogApiKey, host: 'pogy', prefix: 'pogy.' });
   function collectMemoryStats() {
       var memUsage = process.memoryUsage();
       metrics.gauge('memory.rss', memUsage.rss);
