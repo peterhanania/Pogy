@@ -1,0 +1,9 @@
+{
+  "main_token": "", // bot main token
+  "mongodb_url": "", //mongo db URL
+  "alexflipnoteApiKey":"", //get from https://discord.gg/bsUDZqUbyz
+  "developers": ["", ""], //developers ID
+  "datadogApiKey": "", // for statistics (optional)
+  "dashboard":"false", 
+  "arc":"" //arc.io source (optional)
+}
