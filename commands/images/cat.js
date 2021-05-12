@@ -22,7 +22,7 @@ module.exports = class extends Command {
     
   
       const language = require(`../../data/language/${guildDB.language}.json`)
-      const apiKey = `ef531f70-1f89-4196-ba72-ced3d2213c09`;
+      const apiKey = ``;
         try {
           const res = await fetch('https://api.thecatapi.com/v1/images/search', { headers: { 'x-api-key': apiKey }});
           const img = (await res.json())[0].url;
