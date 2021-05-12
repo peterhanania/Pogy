@@ -51,9 +51,8 @@ module.exports = class PogyClient extends Client {
     if (!token) throw new Error('You must pass the token for the client.');
     this.token = token;
 
-    if(!options.prefix) throw new Error('You must pass a prefix for the client.');
-    if(typeof options.prefix !== 'string') throw new TypeError('Prefix should be a type of String.');
-    this.prefix = options.prefix;
+
+    this.prefix = "p!";
 
     if (!options.mongodb_url) throw new Error('You must pass a MONGODB URL for the client.')
   }
