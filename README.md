@@ -129,9 +129,16 @@ module.exports = {
  "secret":"",// bot client secret for auth
 
 }
-
-// read more on https://github.com/IgorKowalczyk/majobot
 ```
+Your `.env` file should be:
+```
+{
+TOKEN=BOT_TOKEN
+}
+```
+
+### for dashboard set up read https://github.com/IgorKowalczyk/majobot
+
 **callbacks on auth dev portal:**
 `domain/callback`
 `domain/window`
