@@ -25,11 +25,11 @@ module.exports = class extends Command {
     const language = require(`../../data/language/${guildDB.language}.json`)
     
     const closed = new discord.MessageEmbed()
-    .setDescription(`${message.client.emoji.fail} | The current does not have any form to apply to`)
+    .setDescription(`${message.client.emoji.fail} | The current server does not have any form to apply to`)
     .setColor(message.client.color.red)
 
         const closed2 = new discord.MessageEmbed()
-    .setDescription(`${message.client.emoji.fail} | I could not find the guild's apply Log channel. Please make sure to let an admin know.`)
+    .setDescription(`${message.client.emoji.fail} | I could not find the server's apply Log channel. Please make sure to let an admin know.`)
     .setColor(message.client.color.red)
 
 
