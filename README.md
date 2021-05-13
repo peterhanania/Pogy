@@ -110,8 +110,12 @@ Your `config.json` should look like this:
   "developers": ["", ""], //developers ID
   "datadogApiKey": "", // for statistics (optional)
   "dashboard":"false", 
-  "arc":"" //arc.io source (optional)
+  "prefix":"p!", //prefix
+  "arc":"",//arc.io source (optional)
+  "youtube_key":"", //youtube api key from https://console.cloud.google.com/apis/
+  "cat_api_key":"", // https://thecatapi.com/signup
 }
+
 ```
 
 Your `config.js` should look like this:
