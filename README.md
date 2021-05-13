@@ -136,9 +136,7 @@ module.exports = {
 ```
 Your `.env` file should be:
 ```
-{
 TOKEN=BOT_TOKEN
-}
 ```
 
 ### for dashboard set up read https://github.com/IgorKowalczyk/majobot
