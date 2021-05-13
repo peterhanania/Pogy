@@ -62,7 +62,7 @@ module.exports = class extends Event {
         if (!guild) {
           const newGuild = await Guild.create({
             guildId: message.guild.id,
-            prefix: 'p!',
+            prefix: config.prefix || 'p!',
             language: "english"
           });
         }

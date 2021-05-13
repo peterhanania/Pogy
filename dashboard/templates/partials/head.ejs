@@ -11,7 +11,7 @@
 <% if (analitics) { %>
 <%- include('./analytics.ejs') %>
 <% } %>
-<%- include("./seo", { bot, user, path, description, title, url, image:`${https}${hostname}/logo.png`}) %>
+<%- include("./seo", { arc, bot, user, path, description, title, url, image:`${https}${hostname}/logo.png`}) %>
 </head>
 <body>
 <script type="text/javascript">var preload = document.createElement('div'); preload.className = "preloader"; preload.innerHTML = '</div><div class="spinner"></div>'; document.body.appendChild(preload); window.addEventListener('load', function() { preload.className +=  ' fade'; setTimeout(function(){ preload.style.display = 'none'; },600); 

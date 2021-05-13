@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const config = require('../../config.json');
 
 const guildConfigSchema = mongoose.Schema({
   guildId: {
@@ -13,7 +14,7 @@ const guildConfigSchema = mongoose.Schema({
   prefix: {
     type: mongoose.SchemaTypes.String,
     required: true,
-    default: 'p!'
+    default: config.prefix || 'p!',
   },
   isPremium: {
     type: mongoose.SchemaTypes.String,
