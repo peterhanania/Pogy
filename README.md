@@ -132,7 +132,9 @@ module.exports = {
 
 // read more on https://github.com/IgorKowalczyk/majobot
 ```
-
+**callbacks on auth dev portal:**
+`domain/callback`
+`domain/window`
 
 Pease make sure you have enabled `Privileged Intents` on your Discord [developer portal](https://discordapp.com/developers/applications/). You can find these intents under the "Bot" section, and there are two ticks you have to switch on. For more information on Gateway Intents, check out [this](https://discordjs.guide/popular-topics/intents.html#the-intents-bit-field-wrapper) link.
 
