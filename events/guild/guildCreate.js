@@ -122,9 +122,11 @@ welcomeClient.send({
         avatarURL: 'https://pogy.xyz/logo.png',
         embeds: [welcomeEmbed],
 })
+
+if(config.datadogApiKey){
       metrics.init({ apiKey: this.client.config.datadogApiKey, host: 'pogy', prefix: 'pogy.' });
       metrics.increment('guildCreate');
-    
+}
       const embed = new Discord.MessageEmbed()
       .setColor('GREEN')
       .setDescription(`I have joined the ${guild.name} server.\n\nID: ${guild.id}`)

@@ -35,9 +35,11 @@ Logging.findOneAndDelete({
       guildId: guild.id,
     }).catch(()=>{});
 
+if(config.datadogApiKey){
       metrics.init({ apiKey: this.client.config.datadogApiKey, host: 'pogy', prefix: 'pogy.' });
       metrics.increment('guildDelete');
-    
+}
+
       const embed = new Discord.MessageEmbed()
       .setColor('RED')
       .setDescription(`I have left the ${guild.name} server.`)

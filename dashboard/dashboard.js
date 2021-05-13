@@ -5252,6 +5252,7 @@ let voteUser = await client.users.fetch(apiUser.id);
     const minutes = (d.minutes() == 1) ? `${d.minutes()}` : `${d.minutes()}`;
     const seconds = (d.seconds() == 1) ? `${d.seconds()}` : `${d.seconds()}`;
 
+if(config.datadogApiKey){
   metrics.init({ apiKey: jsonconfig.datadogApiKey, host: 'pogy', prefix: 'pogy.' });
   function collectMemoryStats() {
       var memUsage = process.memoryUsage();
@@ -5266,4 +5267,5 @@ let voteUser = await client.users.fetch(apiUser.id);
 
   };
   setInterval(collectMemoryStats, 5000);
+  }
   }

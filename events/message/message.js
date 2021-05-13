@@ -47,8 +47,11 @@ module.exports = class extends Event {
 
       if (!message.guild) return;
       
-      metrics.init({ apiKey: this.client.config.datadogApiKey, host: 'pogy', prefix: 'pogy.' });
+      if(config.datadogApiKey){
+    metrics.init({ apiKey: this.client.config.datadogApiKey, host: 'pogy', prefix: 'pogy.' });
 
+      }
+  
       const mentionRegex = RegExp(`^<@!?${this.client.user.id}>$`);
       const mentionRegexPrefix = RegExp(`^<@!?${this.client.user.id}>`);
     
@@ -83,8 +86,10 @@ module.exports = class extends Event {
         message.channel.send(embed);
       }
 
+if(config.datadogApiKey){
       // Add increment after every fucking message lmfao!
      metrics.increment('messages_seen');
+}
 
       // Filters
       if (settings && await inviteFilter(message)) return;
@@ -362,7 +367,9 @@ return message.channel.send(embed)
           if (!this.client.config.developers.includes(message.author.id)) return
         }
 
+if(config.datadogApiKey){
        metrics.increment('commands_served');
+}
 
         if (command.disabled) return message.channel.send(`The owner has disabled the following command for now. Try again Later!\n\nFor Updates: https://discord.gg/FqdH4sfKBg`)
         if (command.nsfwOnly && !message.channel.nsfw && message.guild) return message.channel.send(`${nsfwplease[Math.round(Math.random() * (nsfwplease.length - 1))]}`)
@@ -372,12 +379,17 @@ return message.channel.send(embed)
         await this.runCommand(message, cmd, args)
 
         .catch(error => {
+          if(config.datadogApiKey){
         metrics.increment('command_error');
+          }
+
           return this.client.emit("commandError", error, message, cmd);
         })
       }
     } catch(error) {
+      if(config.datadogApiKey){
        metrics.increment('command_error');
+      }
       return this.client.emit("fatalError", error, message);
     }
   } 

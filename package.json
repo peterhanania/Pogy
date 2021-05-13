@@ -19,6 +19,7 @@
     "chalk": "^4.1.0",
     "chatcord": "0.0.5",
     "common-tags": "^1.8.0",
+    "connect-mongo": "^4.4.1",
     "crypto": "^1.0.1",
     "datadog-metrics": "^0.8.2",
     "date-and-time": "^0.14.2",
