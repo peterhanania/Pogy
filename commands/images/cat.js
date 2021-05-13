@@ -2,6 +2,7 @@ const Command = require('../../structures/Command');
 const request = require('request-promise-native');
 const fetch = require('node-fetch');
 const Guild = require('../../database/schemas/Guild');
+const config = require('../../config.json');
 const discord = require('discord.js');
 module.exports = class extends Command {
     constructor(...args) {
@@ -22,7 +23,7 @@ module.exports = class extends Command {
     
   
       const language = require(`../../data/language/${guildDB.language}.json`)
-      const apiKey = ``;
+      const apiKey = config.cat_api_key;
         try {
           const res = await fetch('https://api.thecatapi.com/v1/images/search', { headers: { 'x-api-key': apiKey }});
           const img = (await res.json())[0].url;

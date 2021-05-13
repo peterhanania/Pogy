@@ -5,6 +5,7 @@ const { MessageEmbed } = require('discord.js');
 const discord = require("discord.js");
 const search = require('youtube-search');
 const he = require('he');
+const config = require('../../config.json');
 module.exports = class extends Command {
     constructor(...args) {
       super(...args, {
@@ -24,7 +25,7 @@ module.exports = class extends Command {
         
           const language = require(`../../data/language/${guildDB.language}.json`)
 
-          const apiKey = ``;
+          const apiKey = config.youtube_key;
           const videoName = args.join(' ');
           if (!videoName) return message.channel.send(`${language.youtube}`)
           const searchOptions = { maxResults: 1, key: apiKey, type: 'video' };
@@ -38,7 +39,6 @@ module.exports = class extends Command {
           const embed = new discord.MessageEmbed()
             .setTitle(decodedTitle)
             .setURL(result.link)
-            .setThumbnail('https://github.com/peterhanania/pictures/blob/main/yt.png?raw=true')
             .setDescription(result.description)
             .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
             .setTimestamp()
