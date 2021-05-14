@@ -113,7 +113,7 @@ Your `config.json` should look like this:
   "prefix":"p!", //prefix
   "arc":"",//arc.io source (optional)
   "youtube_key":"", //youtube api key from https://console.cloud.google.com/apis/
-  "cat_api_key":"", // https://thecatapi.com/signup
+  "cat_api_key":"" // https://thecatapi.com/signup
 }
 
 ```
@@ -130,7 +130,7 @@ module.exports = {
  "port":"5003",
 
  "client_id":"", // bot client ID
- "secret":"",// bot client secret for auth
+ "secret":""// bot client secret for auth
 
 }
 ```
