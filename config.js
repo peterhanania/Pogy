@@ -8,9 +8,9 @@ module.exports = {
  "port":"5003",
 
  "client_id":"", // bot client ID
- "secret":"",// bot client secret for auth
+ "secret":"" // bot client secret for auth
 
 }
 
 
-// read more on https://github.com/IgorKowalczyk/majobot
+// for dashboard, read more on https://github.com/IgorKowalczyk/majobot
