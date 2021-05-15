@@ -1,9 +1,10 @@
 const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, label, printf } = format;
 const Discord = require('discord.js');
-const webhookClient = new Discord.WebhookClient('', '');
-const chalk = require('chalk');
 const config = require('./../config.json');
+const webhookClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
+const chalk = require('chalk');
+
 
 const myFormat = printf(({ level, message, label, timestamp }) => {
   webhookClient.send(`${timestamp} [${label}] ${message}`)
