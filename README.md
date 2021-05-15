@@ -36,6 +36,8 @@
   •
   <a href="#license">License</a>
   •
+  <a href="#donate">Donate</a>
+  •
   <a href="#credits">Credits</a>
 </p>
 
@@ -166,6 +168,10 @@ You can launch the bot with `node shard.js`
 ## License
 
 Released under the [Apache License](http://www.apache.org/licenses/LICENSE-2.0) license.
+
+## Donate
+
+You can donate Pogy and make it stronger than ever [by clicking here](https://paypal.me/pogybot)!
 
 ## Credits
 
