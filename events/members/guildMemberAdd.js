@@ -326,7 +326,7 @@ let text = welcome.welcomeMessage.replace(/{user}/g, `${member}`)
     }
 }
     
-    if(guildDB && guildDB.autorole && guildDB.autoroleToggle === true) {
+    if(guildDB && guildDB.autoroleToggle && guildDB.autoroleToggle === true) {
       if(guildDB.autoroleID) {
         let role = member.guild.roles.cache.get(guildDB.autoroleID)
         if(role) {
