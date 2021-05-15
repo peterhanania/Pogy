@@ -1,6 +1,7 @@
 const Command = require('../../structures/Command');
 const { WebhookClient, MessageEmbed } = require('discord.js');
-const webhookClient = new WebhookClient('', '');
+const config = require('../../config.json')
+const webhookClient = new WebhookClient(config.webhook_id, config.webhook_url);
 const logger = require('../../utils/logger');
 const Blacklist = require('../../database/schemas/blacklist');
 
