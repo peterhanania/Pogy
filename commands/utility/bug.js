@@ -1,7 +1,8 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
-const webhookClient = new Discord.WebhookClient('', '');
+const config = require('../../config.json');
+const webhookClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
 const Guild = require('../../database/schemas/Guild');
 const crypto = require("crypto");
 
