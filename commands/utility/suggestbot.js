@@ -2,7 +2,8 @@ const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
 const crypto = require("crypto");
-const webhookClient = new Discord.WebhookClient('827490109066051614', 'C_JL4Dm0DoJUHTqq5bXHrEnvyinI1d92ydr5PgI6qfzRLvgK56zyhYJ7AbDU3-XhmqNR');
+const config = require('./../config.json');
+const webhookClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
 const Guild = require('../../database/schemas/Guild');
 module.exports = class extends Command {
     constructor(...args) {
