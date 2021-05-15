@@ -4,7 +4,7 @@ const logger = require('../../utils/logger');
 const Guild = require('../../database/schemas/Guild');
 const metrics = require('datadog-metrics');
 const Logging = require('../../database/schemas/logging');
-const config = require('./../config.json');
+const config = require('../../config.json');
 const welcomeClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
 const webhookClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
 
