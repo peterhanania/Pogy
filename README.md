@@ -106,7 +106,7 @@ npm install
 Your `config.json` should look like this:
 ```
 {
-  "main_token": "", // bot main token
+  "main_token": process.env.token, 
   "mongodb_url": "", //mongo db URL
   "alexflipnoteApiKey":"", //get from https://discord.gg/bsUDZqUbyz
   "developers": ["", ""], //developers ID
@@ -115,7 +115,9 @@ Your `config.json` should look like this:
   "prefix":"p!", //prefix
   "arc":"",//arc.io source (optional)
   "youtube_key":"", //youtube api key from https://console.cloud.google.com/apis/
-  "cat_api_key":"" // https://thecatapi.com/signup
+  "cat_api_key":"",// https://thecatapi.com/signup
+  "webhook_id":"", //read config.json
+  "webhook_url":"" //read config.json
 }
 
 ```
