@@ -3,8 +3,9 @@ const Event = require('../structures/Event');
 const logger = require('../utils/logger');
 const Maintenance = require('../database/schemas/maintenance')
 const MessageEmbed = require('discord.js');
-const Discord = require('discord.js')
-const webhookClient = new Discord.WebhookClient('', '');
+const Discord = require('discord.js');
+const config = require('./../config.json');
+const webhookClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
 
 module.exports = class extends Event {
     async run(rl) {
