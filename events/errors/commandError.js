@@ -1,6 +1,6 @@
 const Event = require('../../structures/Event');
 const Discord = require('discord.js');
-const config = require('./../config.json');
+const config = require('../../config.json');
 const webhookClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
 
 module.exports = class extends Event {
