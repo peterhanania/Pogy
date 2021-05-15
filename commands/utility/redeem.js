@@ -1,9 +1,10 @@
 const Command = require('../../structures/Command');
 const Guild = require('../../database/schemas/Guild');
 const Premium = require('../../database/schemas/GuildPremium');
-const moment = require("moment")
+const moment = require("moment");
+const config = require('../../config.json');
 const Discord = require('discord.js');
-const webhookClient = new Discord.WebhookClient('', '');
+const webhookClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
 let uniqid = require('uniqid');
 module.exports = class extends Command {
     constructor(...args) {
