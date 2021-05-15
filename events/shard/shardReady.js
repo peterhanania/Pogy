@@ -8,9 +8,9 @@ const BlacklistModel = require('../../database/schemas/blacklist');
 
 const Guild = require('../../database/schemas/Guild');
 const { WebhookClient, MessageEmbed } = require('discord.js');
-const webhookClient = new WebhookClient('', '');
+const webhookClient = new WebhookClient(config.webhook_id, config.webhook_url);
 const Maintenance = require('../../database/schemas/maintenance')
-const premiumrip = new WebhookClient('', '');
+const premiumrip = new WebhookClient(config.webhook_id, config.webhook_url);
 const moment = require(`moment`)
 const fetchAll = require('../../data/structures/fetchAll');
 const emojiArray = require('../../data/structures/optionArray');
