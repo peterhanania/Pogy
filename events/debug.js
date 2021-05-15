@@ -1,7 +1,7 @@
 const muteModel = require('../models/mute');
 const Event = require('../structures/Event');
 const Discord = require('discord.js');
-const config = require('../../config.json');
+const config = require('../config.json');
 const webhookClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
 const logger = require('../utils/logger');
 const Maintenance = require('../database/schemas/maintenance')
