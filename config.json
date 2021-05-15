@@ -8,5 +8,19 @@
   "prefix":"p!", //prefix
   "arc":"",//arc.io source (optional)
   "youtube_key":"", //youtube api key from https://console.cloud.google.com/apis/
-  "cat_api_key":"" // https://thecatapi.com/signup
+  "cat_api_key":"",// https://thecatapi.com/signup
+  "webhook_id":"", //read down
+  "webhook_url":"" //read down
 }
+
+
+/*
+
+Webhooks:
+
+Let's say the webhook is https://discord.com/api/webhooks/816749354005299310/kxlyH1zDXyJUZxzYfzbfULggsWqXW0kkKsC-uHQ0ujm4pBJC6EBbysBx1ycnMiz9OujI
+
+webhook_id Will be 816749354005299310
+webhook_url will be kxlyH1zDXyJUZxzYfzbfULggsWqXW0kkKsC-uHQ0ujm4pBJC6EBbysBx1ycnMiz9OujI
+
+*/
