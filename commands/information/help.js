@@ -58,7 +58,7 @@ module.exports = class extends Command {
       if (!args || args.length < 1) {
 
         let categories;
-        categories = this.client.utils.removeDuplicates(this.client.commands.filter(cmd => cmd.category !== 'Owner').map(cmd => cmd.category));
+        categories = this.client.utils.removeDuplicates(this.client.commands.map(cmd => cmd.category));
 
         for (const category of categories) {
           embed.addField(`${emoji[category.split(" ").join("").toLowerCase()]} **${capitalize(category)}**`, `\`${prefix}help ${category.toLowerCase()}\``, true)
@@ -88,6 +88,26 @@ embed.addField(
         embed.setTitle(` ${emojis.altdetector} - Alt Detector`)
         embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "alt detector").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(9 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
+
+        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+        embed.setTimestamp()
+        embed.addField(
+        '\u200b', 
+        '**[Invite](https://invite.pogy.xyz) | ' +
+        '[Support Server](https://pogy.xyz/support) | ' +
+        '[Dashboard](https://pogy.xyz/dashboard)**'
+      );
+        return message.channel.send(embed)
+
+      } else if(args && args[0].toLowerCase() == "owner"){
+
+        if(!this.client.config.developers.includes(message.author.id)) return message.channel.send(`${message.client.emoji.fail} | You are not allowed to view this category`)
+
+
+
+        embed.setTitle(`Owner Commands`)
+        embed.setDescription(this.client.commands.filter(cmd => 
+            cmd.category.toLowerCase() === "owner").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(11 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
         embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
         embed.setTimestamp()
