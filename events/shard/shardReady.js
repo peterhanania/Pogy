@@ -124,95 +124,8 @@ await logging.save().catch(()=>{})
                     }
                 }
             }
-    }, 5000)
+    }, 120000)
   
-
-// Blacklist User Timeout
-
-//setInterval(async () => 
-
-const now1 = new Date()
-
-const conditional1 = {
-    length: {
-        $lt: now1
-    },
-    isBlacklisted: true,
-    type: "user"
-}
-const results1 = await BlacklistModel.find(conditional1)
-
-if (results1 && results1.length) {
-    for (const resultz of results) {
-        const { discordId } = resultz
-
-        try {
-            await BlacklistModel.deleteOne(conditional)
-        } catch (e) {
-            console.log(e)
-        }
-
-logger.info(`User of ID ${discordId} got Unblacklisted!`, { label: 'Unblacklist' })
-const embedz = new MessageEmbed()
-.setTitle(`User Unblacklisted!`)
-.setDescription(`User of ID ${discordId} Got Unblacklisted! (<@${discordId}>)`)
-.setFooter(`https://pogy.xyz`)
-.setColor('green')
-        webhookClient.send({
-          username: 'Pogy User Blacklists',
-          avatarURL: `${this.client.domain}/logo.png`,
-          embeds: [embedz]
-        });
-    }
-
-}
-
-//}, 60000)
-
-
-// Blacklist Guild Timeout
-
-//setInterval(async () => {
-
-const now = new Date()
-
-const conditional = {
-    length: {
-        $lt: now
-    },
-    isBlacklisted: true,
-    type: "guild"
-}
-const results = await BlacklistModel.find(conditional)
-
-if (results && results.length) {
-    for (const result of results) {
-        const { guildId } = result
-
-        try {
-            await BlacklistModel.deleteOne(conditional)
-        } catch (e) {
-            console.log(e)
-        }
-
-logger.info(`Guild of ID ${guildId} got Unblacklisted!`, { label: 'Unblacklist' })
-
-const embed = new MessageEmbed()
-.setTitle(`Server Unblacklisted!`)
-.setDescription(`Guild **${guildId}** Got Unblacklisted!`)
-.setFooter(`https://pogy.xyz`)
-.setColor('green')
-
-        webhookClient.send({
-          username: 'Pogy Guild Unblacklist',
-          avatarURL:`${this.client.domain}/logo.png`,
-          embeds: [embed]
-        });
-    }
-
-}
-
-//}, 60000)
 
 
 //premium
@@ -279,7 +192,7 @@ if(guildPremium){
     }
 }
 
-}, 60000)
+}, 500000)
 //POLL INTERVAL
 
  setInterval(async () => {
@@ -365,7 +278,7 @@ await poll.deleteOne().catch(() => {});
                 }
             }
         }
-    }, 15000);
+    }, 60000);
 
 
 
