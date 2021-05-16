@@ -32,37 +32,20 @@ module.exports = class extends Command {
       if (args.length < 1) return message.channel.send(`Please provide me with a user or guild blacklist`)
       if (args.length < 2) return message.channel.send(`Provide me with a user`)
       if (args.length < 4) return message.channel.send(`Provide me with a reason`)
-      if (args.length < 3) return message.channel.send(`Provide me with a time duration`)
 
- if (!msRegex.test(args[2])) return message.channel.send(`Provide me with a valid time`)
 
       if (args[0] === 'user') {
         await Blacklist.findOne({
           discordId: member.id,
         }, (err, user) => {
           if (!user) {
-            const blacklist = new Blacklist({ discordId: member.id, length: Date.now() + ms(msRegex.exec(args[2])[1]), type: 'user', isBlacklisted: true, reason })
+            const blacklist = new Blacklist({ discordId: member.id, length: Date.now(), type: 'user', isBlacklisted: true, reason })
             blacklist.save()
           } else {
-            user.updateOne({ type: 'user', isBlacklisted: true, reason,length: Date.now() + ms(msRegex.exec(args[2])[1]), })
+            user.updateOne({ type: 'user', isBlacklisted: true, reason,length: Date.now(), })
           }
         });
 
-        setTimeout(async () => {
-        const isMuted = await Blacklist.findOne({
-        discordId: member.id,
-    })
-    
-     await isMuted.deleteOne().catch(err => console.log(err))
-
-       const embedd = new MessageEmbed()
-       .setDescription(`${member.user.tag} Got unblacklisted!`)
-        webhookClient.send({
-          username: 'Pogy',
-          avatarURL: `${message.client.domain}/logo.png`,
-          embeds: [embedd]
-        });
-        }, ms(msRegex.exec(args[2])[1]))
 
         message.channel.send({
           embed: {
@@ -95,28 +78,14 @@ module.exports = class extends Command {
           guildId: guild,
         }, (err, server) => {
           if (!server) {
-            const blacklist = new Blacklist({ guildId: guild.id, length: Date.now() + ms(msRegex.exec(args[2])[1]), type: 'guild', isBlacklisted: true, reason })
+            const blacklist = new Blacklist({ guildId: guild.id, length: Date.now(), type: 'guild', isBlacklisted: true, reason })
             blacklist.save()
           } else {
-            server.updateOne({ type: 'guild', isBlacklisted: true, reason, length: Date.now() + ms(msRegex.exec(args[2])[1]), })
+            server.updateOne({ type: 'guild', isBlacklisted: true, reason, length: Date.now(), })
           }
         });
         
-                setTimeout(async () => {
-        const isMuted = await Blacklist.findOne({
-        guildId: guild,
-    })
-    
-     await isMuted.deleteOne().catch(err => console.log(err))
-
-       const embedd = new MessageEmbed()
-       .setDescription(`Guild ${guild.name} Got unblacklisted!`)
-        webhookClient.send({
-          username: 'Pogy Blacklists',
-          avatarURL: `${message.client.domain}/logo.png`,
-          embeds: [embedd]
-        });
-        }, ms(msRegex.exec(args[2])[1]));
+               
 
         message.channel.send({
           embed: {
