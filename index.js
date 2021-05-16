@@ -2,8 +2,6 @@ const PogyClient = require("./Pogy");
 const config = require("./config.json");
 const domain = require("./config.js");
 
-var express = require('express');
-
 
 const Pogy = new PogyClient(config);
 
@@ -22,17 +20,10 @@ jointocreate(client);
 Pogy.react = new Map()
 Pogy.fetchforguild = new Map()
 
-//Pogy.cachedMessageReactions = new Map();
-//Pogy.on('debug', console.log)/*
-
 if(config.dashboard === "true"){
     const Dashboard = require("./dashboard/dashboard");
     Dashboard(client); 
 }
-
-
-//const api = require("./api/test.js")
-
 
         
 Pogy.start();
