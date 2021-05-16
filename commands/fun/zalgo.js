@@ -8,7 +8,7 @@ module.exports = class extends Command {
     constructor(...args) {
       super(...args, {
         name: 'zalgo',
-        aliases:'zalgolize',
+        aliases: ['zalgolize'],
         description: 'Make the bot zalgolize a message',
         category: 'Fun',
         cooldown: 3
