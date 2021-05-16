@@ -1,5 +1,7 @@
 const PogyClient = require("./Pogy");
 const config = require("./config.json");
+const domain = require("./config.js");
+
 var express = require('express');
 
 
@@ -8,7 +10,7 @@ const Pogy = new PogyClient(config);
 const color = require("./data/colors");
 Pogy.color = color;
 
-Pogy.domain = `https://pogy.xyz`;
+Pogy.domain = domain.domain || `https://pogy.xyz`;
 
 const emoji = require("./data/emoji");
 Pogy.emoji = emoji;
