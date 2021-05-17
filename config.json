@@ -1,5 +1,5 @@
 {
-  "main_token": process.env.token, 
+  "main_token": "", 
   "mongodb_url": "", //mongo db URL
   "alexflipnoteApiKey":"", //get from https://discord.gg/bsUDZqUbyz
   "developers": ["", ""], //developers ID
