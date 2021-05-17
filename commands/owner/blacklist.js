@@ -67,7 +67,6 @@ member =  match ? message.mentions.members.first() || message.guild.members.fetc
         const embed = new MessageEmbed()
           .setColor('BLURPLE')
           .setTitle(`Blacklist Report`)
-          .setURL('https://docs.google.com/forms/d/e/1FAIpQLSedBS6JYEqxzXGcs1T9vb7dugZiBxftVrY3CFfk-aP1rFnnrw/viewform?usp=sf_link')
           .addField('Status', 'Added to the blacklist.')
           .addField('User', `${member.user.tag} (${member.id})`)
           .addField('Responsible', `${message.author} (${message.author.id})`)
