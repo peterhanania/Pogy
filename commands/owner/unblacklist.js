@@ -91,8 +91,8 @@ member =  match ? message.mentions.members.first() || message.guild.members.fetc
           .addField('Reason', reason)
 
         webhookClient.send({
-          username: 'SlayBot',
-          avatarURL: 'https://cdn.slaybot.xyz/assets/logos/slaybotlogo.png',
+          username: 'Pogy',
+          avatarURL: 'https://pogy.xyz/logo.png',
           embeds: [embed]
         });
       }
