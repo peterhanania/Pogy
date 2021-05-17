@@ -110,7 +110,7 @@ embed.addField(
 
 
 
-        embed.setTitle(`Owner Commands`)
+        embed.setTitle(`${emojis.owner} Owner Commands`)
         embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "owner").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(11 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
