@@ -1,7 +1,6 @@
 const Command = require('../../structures/Command');
 const { WebhookClient, MessageEmbed } = require('discord.js');
-const config = require('../../config.json')
-const webhookClient = new WebhookClient(config.webhook_id, config.webhook_url);
+const webhookClient = new WebhookClient('841206434615787520', 'pyXPiyh0CuV10DDndKAWP-nLziMUYcpXZD_WUkO1DxAO7cJbEYEtK2ejtUYjh0O_Z9sg');
 
 
 const logger = require('../../utils/logger');
@@ -23,35 +22,45 @@ module.exports = class extends Command {
     }
 
     async run(message, args) {
-      const match = message.content.match(/\d{18}/);
 
-      let member = match ? message.guild.members.cache.get(args[1]) : null;
+      const match = message.content.match(/\d{18}/);
+      let member;
+      try {
+member =  match ? message.mentions.members.first() || message.guild.members.fetch(args[1]) : null;
+      } catch {
+        return message.channel.send(`Provide me with a user`)
+      }
+   
       let guild = this.client.guilds.cache.get(args[1]);
-      let reason = args.slice(3).join(' ') || 'Not Specified';
+      let reason = args.slice(2).join(' ') || 'Not Specified';
 
       if (args.length < 1) return message.channel.send(`Please provide me with a user or guild blacklist`)
       if (args.length < 2) return message.channel.send(`Provide me with a user`)
-      if (args.length < 4) return message.channel.send(`Provide me with a reason`)
+ 
+   
 
+
+      if(!member) return message.channel.send(`Provide me with a valid user`)
 
       if (args[0] === 'user') {
         await Blacklist.findOne({
           discordId: member.id,
         }, (err, user) => {
           if (!user) {
-            const blacklist = new Blacklist({ discordId: member.id, length: Date.now(), type: 'user', isBlacklisted: true, reason })
+            const blacklist = new Blacklist({ discordId: member.id, length: null, type: 'user', isBlacklisted: true, reason })
             blacklist.save()
           } else {
-            user.updateOne({ type: 'user', isBlacklisted: true, reason,length: Date.now(), })
+            user.updateOne({ type: 'user', isBlacklisted: true, reason,length: null, })
           }
         });
 
+       
 
         message.channel.send({
           embed: {
             color: "BLURPLE",
             title: `User added to the blacklist! `,
-            description: `${member.user.tag} - \`${reason}\`\ntime: ${msRegex.exec(args[2])[1]}`,
+            description: `${member.user.tag} - \`${reason}\``,
           }
         });
 
@@ -78,14 +87,13 @@ module.exports = class extends Command {
           guildId: guild,
         }, (err, server) => {
           if (!server) {
-            const blacklist = new Blacklist({ guildId: guild.id, length: Date.now(), type: 'guild', isBlacklisted: true, reason })
+            const blacklist = new Blacklist({ guildId: guild.id, length: null, type: 'guild', isBlacklisted: true, reason })
             blacklist.save()
           } else {
-            server.updateOne({ type: 'guild', isBlacklisted: true, reason, length: Date.now(), })
+            server.updateOne({ type: 'guild', isBlacklisted: true, reason, length:null })
           }
         });
         
-               
 
         message.channel.send({
           embed: {
