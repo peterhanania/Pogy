@@ -1,7 +1,6 @@
 const Command = require('../../structures/Command');
 const { WebhookClient, MessageEmbed } = require('discord.js');
-const config = require('../../config.json')
-const webhookClient = new WebhookClient(config.webhook_id, config.webhook_url);
+const webhookClient = new WebhookClient('807251494520881232', 'JpQapDJHsWHJJasugEk3ZpWaTPhxqP9c_sYcyABjSrkxpCIvBwJzt_0G6xL1GB0wS3iy');
 const logger = require('../../utils/logger');
 const Blacklist = require('../../database/schemas/blacklist');
 
@@ -17,16 +16,24 @@ module.exports = class extends Command {
     }
 
     async run(message, args) {
-      const match = message.content.match(/\d{18}/);
-
-      let member = match ? message.guild.members.cache.get(args[1]) : null;
+       const match = message.content.match(/\d{18}/);
+      let member;
+      try {
+member =  match ? message.mentions.members.first() || message.guild.members.fetch(args[1]) : null;
+      } catch {
+        return message.channel.send(`Provide me with a user`)
+      }
+   
       let guild = this.client.guilds.cache.get(args[1]);
       let reason = args.slice(2).join(' ') || 'Not Specified';
 
-      if (args.length < 1) return message.channel.send('<:sbdeny:736927045522817106> You have to give me the blacklist type: `user` or `guild`')
-      if (args.length < 2) return message.channel.send('<:sbdeny:736927045522817106> You have to give me a user to blacklist!')
-      if (args.length < 3) return message.channel.send('<:sbdeny:736927045522817106> You have to give me a reason for blacklist!')
+      if (args.length < 1) return message.channel.send(`Please provide me with a user or guild blacklist`)
+      if (args.length < 2) return message.channel.send(`Provide me with a user`)
+   
+   
 
+
+      if(!member) return message.channel.send(`Provide me with a valid user`)
       //.then(logger.info(`I have added ${member.user.tag} to the blacklist!`, { label: 'Blacklist' }))
 
       if (args[0].includes('user')) {
@@ -91,19 +98,6 @@ module.exports = class extends Command {
           embeds: [embed]
         });
       }
-/*
-      const embed = new MessageEmbed()
-        .setTitle(`Blacklist Report`)
-        .setURL('https://docs.google.com/forms/d/e/1FAIpQLSedBS6JYEqxzXGcs1T9vb7dugZiBxftVrY3CFfk-aP1rFnnrw/viewform?usp=sf_link')
-        .addField('Status', 'Removed from the blacklist.')
-        .addField('User', `${member} (${member.id})`)
-        .addField('Responsible', `${message.author} (${message.author.id})`)
-        .addField('Reason', reason || 'Not Specified')
 
-      webhookClient.send({
-        username: 'SlayBot',
-        avatarURL: 'https://cdn.slaybot.xyz/assets/logos/slaybotlogo.png',
-        embeds: [embed]
-      });*/
     }
 };
