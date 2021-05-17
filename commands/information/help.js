@@ -42,6 +42,7 @@ module.exports = class extends Command {
         nsfw: `${emojis.nsfw}`,
         reactionrole: `${emojis.reactionrole}`,
         tickets: `${emojis.tickets}`,
+        owner: `${emojis.owner}`
       };
      
       const green = '<:purple:826033456207233045>';
@@ -58,7 +59,11 @@ module.exports = class extends Command {
       if (!args || args.length < 1) {
 
         let categories;
-        categories = this.client.utils.removeDuplicates(this.client.commands.map(cmd => cmd.category));
+       categories = this.client.utils.removeDuplicates(this.client.commands.filter(cmd => cmd.category !== 'Owner').map(cmd => cmd.category));
+
+
+        if(this.client.config.developers.includes(message.author.id)) categories = this.client.utils.removeDuplicates(this.client.commands.map(cmd => cmd.category));
+
 
         for (const category of categories) {
           embed.addField(`${emoji[category.split(" ").join("").toLowerCase()]} **${capitalize(category)}**`, `\`${prefix}help ${category.toLowerCase()}\``, true)
@@ -336,7 +341,7 @@ embed.addField(
         embed.addField('Usage',  `\`${cmd.usage}\``, true)
         embed.addField('category',  `\`${capitalize(cmd.category)}\``, true)
 
-        if(cmd.aliases && cmd.aliases.length) embed.addField('Aliases', cmd.aliases.map(alias => `\`${alias}\``, true).join(', '), true)
+        if(cmd.aliases && cmd.aliases.length && typeof(cmd.aliases) === "array") embed.addField('Aliases', cmd.aliases.map(alias => `\`${alias}\``, true).join(', '), true)
         if(cmd.cooldown && cmd.cooldown > 1) embed.addField('Cooldown', `\`${cmd.cooldown}s\``, true)
         if(cmd.examples && cmd.examples.length) embed.addField('__**Examples**__', cmd.examples.map(example => `<:purple:826033456207233045> \`${example}\``).join('\n'))
   
