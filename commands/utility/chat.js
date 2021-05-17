@@ -1,7 +1,7 @@
 const Command = require('../../structures/Command');
-const chatcord = require('chatcord');
-const chat = new chatcord.Client();
-const Guild = require('../../database/schemas/Guild');
+const Chatbot  =  require("discord-chatbot");
+const chatbot  =  new  Chatbot({name: "Pogy", gender: "Male"});
+
 module.exports = class extends Command {
     constructor(...args) {
       super(...args, {
@@ -15,8 +15,8 @@ module.exports = class extends Command {
     }
 
     async run(message, args) {
-      chat.chat(args).then(reply => {
-        message.channel.send(reply)
+     chatbot.chat(args).then(reply => {
+        message.reply(reply)
       })
     }
 };
