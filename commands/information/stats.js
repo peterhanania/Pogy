@@ -81,24 +81,24 @@ module.exports = class extends Command {
       Environment -- Node.js v12.18.4
       Servers -- ${totalGuildCount}
       ${language.users} -- ${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)}
-      ${language.channels} -- ${totalChannelCount}
+      ${language.channels} -- ${message.client.channels.cache.size}
       Shards -- ${this.client.shard ? `${this.client.shard.count}` : 'None'}
       ${language.pogyCommands} -- ${message.client.commands.size}
       Aliases -- ${message.client.aliases.size}
     `;
 
      const devs= stripIndent`
+     -------
      ${language.pogyOwners}
     • Peter_#4444
-    • W-Legit 🎄#7884
 
      ${language.pogyDevelopers}
     • Peter_#4444
-    • W-Legit 🎄#7884
 
      ${language.pogyContributor}
-    • </Kiwi>#2245
-    • MKE*FRMDAO#4444
+    • GhostSlayer#0001
+    • ΛCЄ#0001
+    -------
     `;
     const embed = new MessageEmbed()
       .setAuthor(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
