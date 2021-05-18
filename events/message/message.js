@@ -11,6 +11,7 @@ const nsfwplease = require('../../assets/json/nfsw.json');
 const mongoose = require('mongoose');
 const Guild = require('../../database/schemas/Guild');
 const User = require('../../database/schemas/User');
+const Moderation = require('../../database/schemas/logging');
 const Blacklist = require('../../database/schemas/blacklist');
 const customCommand = require('../../database/schemas/customCommand');
 const autoResponse = require('../../database/schemas/autoResponse');
@@ -107,6 +108,17 @@ if(config.datadogApiKey){
         guildId: message.guild.id
       });
 
+	       const moderation = await Moderation.findOne({
+        guildId: message.guild.id
+      });
+	    
+	    if(!moderation){
+		    
+		    Moderation.create({
+			    guildId: message.guild.id
+		    })
+		    
+	    }
 // maintenance mode 
 
 
