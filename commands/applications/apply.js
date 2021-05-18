@@ -46,7 +46,7 @@ module.exports = class extends Command {
       })
     await newAppDB.save().catch((err) => {console.log(err)})
     
-    return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(closed)) 
+    return message.channel.send(closed)
   }
   
 
@@ -56,7 +56,7 @@ module.exports = class extends Command {
       await message.author.send(new discord.MessageEmbed().setColor(message.client.color.green).setFooter('Powered by Pogy.xyz').setDescription(`${message.client.emoji.success} | You can apply to the form in **${message.guild.name}** [by clicking here](https://pogy.xyz/apply/${message.guild.id})`))
       .then(message.channel.send(`Form sent by DMs - ${message.author}`))
       .catch(()=>{
-        return message.channel.send(` ${message.client.emoji.fail} Couldn't send you the form, your dms are closed - ${message.author}`)
+        return message.channel.send(closed2)
         })
 
       
