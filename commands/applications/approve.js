@@ -45,7 +45,8 @@ app = new App({
       guildID: message.guild.id
     });
     }
-    let member = message.mentions.members.first();
+let member = message.mentions.members.last()
+ 
      
      if(!member) {
 
@@ -55,7 +56,7 @@ app = new App({
 
      } catch {
 
-return message.channel.send(`${client.emoji.fail} Provide me with a valid member in the guild`)
+member = message.member;
 
      }
         
