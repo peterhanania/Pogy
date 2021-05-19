@@ -51,8 +51,29 @@ module.exports = class extends Command {
   });
   const language = require(`../../data/language/${guildDB.language}.json`)
   
-      const mentionedMember = message.mentions.members.first()
-        || message.guild.members.cache.get(args[0])
+     let mentionedMember = message.mentions.members.last()
+     
+     if(!mentionedMember) {
+
+      try {
+
+       mentionedMember = await message.guild.members.fetch(args[0])
+
+     } catch {
+
+ return message.channel.send( new MessageEmbed()
+      .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
+      .setTitle(`${fail} Invalid User`)
+      .setDescription(`Please Mention a Valid user mention / user ID`)
+      .setTimestamp()
+      .setFooter('https://pogy.xyz')
+      .setColor(message.guild.me.displayHexColor));
+
+     }
+        
+        
+
+       }
 
     const msRegex = RegExp(/(\d+(s|m|h|w))/)
     let muteRole = await message.guild.roles.cache.get(logging.moderation.mute_role);
