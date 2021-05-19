@@ -18,7 +18,7 @@ module.exports = class extends Command {
 
     async run(message, args) {
         let client = message.client
-        let user = message.mentions.users.last() || client.users.cache.get(args[0]) || match(args.join(" ").toLowerCase(), message.guild) || message.author;
+        let user = message.mentions.members.last() || client.users.cache.get(args[0]) || match(args.join(" ").toLowerCase(), message.guild) || message.author;
 
 
         const guildDB = await Guild.findOne({
