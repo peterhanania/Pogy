@@ -50,7 +50,7 @@ guildId: message.guild.id
 const language = require(`../../data/language/${guildDB.language}.json`)
 
 
-const mentionedMember = message.mentions.members.first()
+const mentionedMember = message.mentions.members.last()
 || message.guild.members.cache.get(args[0])
 
 
