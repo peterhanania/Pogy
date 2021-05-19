@@ -58,7 +58,7 @@ const guildDB = await Guild.findOne({
 });
 let language = require(`../../data/language/${guildDB.language}.json`)
 
-    const mentionedMember = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+    const mentionedMember = message.mentions.members.last() || message.guild.members.cache.get(args[0])
     
  if (!mentionedMember) {
       return message.channel.send(new Discord.MessageEmbed()
