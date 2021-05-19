@@ -28,7 +28,7 @@ function randomInteger(min, max) {
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min +1)) + min
 }
-  const target = message.mentions.users.first()
+  const target = message.mentions.users.last()
   const authorId = message.author.id
 
   let amount = randomInteger(1,100)
