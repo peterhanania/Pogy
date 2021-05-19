@@ -30,7 +30,8 @@ message.channel.send(new discord.MessageEmbed().setColor(message.guild.me.displa
 
       return;
     }
-       let member = message.mentions.members.first();
+     let member = message.mentions.members.last()
+ 
      
      if(!member) {
 
@@ -40,7 +41,7 @@ message.channel.send(new discord.MessageEmbed().setColor(message.guild.me.displa
 
      } catch {
 
-return message.channel.send(`${client.emoji.fail} Provide me with a valid member in the guild`)
+member = message.member;
 
      }
         
