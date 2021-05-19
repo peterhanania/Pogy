@@ -51,7 +51,7 @@ guildId: message.guild.id
 const language = require(`../../data/language/${guildDB.language}.json`)
 
 
-const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+const member = message.mentions.members.last() || message.guild.members.cache.get(args[0]);
 
 if (!member)
 return message.channel.send( new MessageEmbed()
