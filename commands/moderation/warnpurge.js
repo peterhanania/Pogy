@@ -62,7 +62,7 @@ let language = require(`../../data/language/${guildDB.language}.json`)
 
 const fail = client.emoji.fail;
 const success = client.emoji.success;
-    const mentionedMember = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+    const mentionedMember = message.mentions.members.last() || message.guild.members.cache.get(args[0])
     
   if (!message.member.hasPermission('MANAGE_ROLES')) {
       return message.channel.send(new Discord.MessageEmbed()
