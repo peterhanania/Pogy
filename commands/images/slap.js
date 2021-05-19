@@ -53,7 +53,24 @@ module.exports = class extends Command {
                 }
         
                 else {
-                const member =  message.mentions.users.first()
+                let member = message.mentions.members.last();
+ 
+     
+     if(!member) {
+
+      try {
+
+       member = await message.guild.members.fetch(args[0])
+
+     } catch {
+
+member = message.member;
+
+     }
+        
+        
+
+       }
                 const mentionedMemberAvatar = member.displayAvatarURL({dynamic: false, format: "png"})
                 const messageAuthorAvatar = message.author.displayAvatarURL({dynamic: false, format: "png"})
         
