@@ -10,7 +10,7 @@ module.exports = class extends Command {
         description: 'See how gay you are',
         category: 'Fun',
         usage: '[user]',
-        examples: [ 'howgay @Slayer#3102' ],
+        examples: [ 'howgay @Peter' ],
         cooldown: 3
       });
     }
@@ -27,7 +27,7 @@ module.exports = class extends Command {
         max = Math.floor(max)
         return Math.floor(Math.random() * (max - min +1)) + min
       }
-        const target = message.mentions.users.first()
+        const target = message.mentions.users.last()
         const authorId = message.author.id
     
         let amount = randomInteger(1,100)
