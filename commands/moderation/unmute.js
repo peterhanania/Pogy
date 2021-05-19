@@ -50,7 +50,7 @@ module.exports = class extends Command {
   });
   const language = require(`../../data/language/${guildDB.language}.json`)
     const logging = await Logging.findOne({ guildId: message.guild.id })
-  const mentionedMember = message.mentions.members.first()
+  const mentionedMember = message.mentions.members.last()
   || message.guild.members.cache.get(args[0])
 
 const muteRole = message.guild.roles.cache.find(r => r.name == 'Muted')
