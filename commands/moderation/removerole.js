@@ -55,24 +55,7 @@ const language = require(`../../data/language/${guildDB.language}.json`)
 
 
 
-   let member = message.mentions.members.last();
- 
-     
-     if(!member) {
-
-      try {
-
-       member = await message.guild.members.fetch(args[0])
-
-     } catch {
-
-member = message.member;
-
-     }
-        
-        
-
-       }
+   let member = message.mentions.members.last() || message.guild.members.cache.get(args[0]);
 
      if (!member)
       return message.channel.send( new MessageEmbed()
