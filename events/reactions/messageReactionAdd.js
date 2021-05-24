@@ -331,22 +331,32 @@ let everyone = message.guild.roles.everyone;
 
 
 
-    message.guild.channels.create(chann, { type: "text" })
-    .then(async (chan) => {
-      if(pogy) {
-    chan.updateOverwrite(pogy, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
-      }
-      
-      if(everyone) {
-    chan.updateOverwrite(everyone, { VIEW_CHANNEL: false });
-      }
-      
-    chan.updateOverwrite(user, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
-    
-    if(ticketRole) {
-    chan.updateOverwrite(ticketRole, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
-    } 
- 
+        message.guild.channels.create(chann, { permissionOverwrites:[
+           {
+            allow:  ['VIEW_CHANNEL', 'SEND_MESSAGES', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS', 'MANAGE_CHANNELS'],
+            id: message.guild.me
+          },
+	      
+          {
+            allow:  ['VIEW_CHANNEL', 'SEND_MESSAGES', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS'],
+            id: user
+          },
+          {
+            allow:  ['VIEW_CHANNEL', 'SEND_MESSAGES', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS'],
+            id: ticketRole
+          },
+          
+		       {
+            deny: [ 'VIEW_CHANNEL','SEND_MESSAGES'],
+            id: message.guild.roles.everyone
+          },
+        ],
+        parent: ticketCategory.id,
+        reason: `Ticket Module`,
+        topic: `**ID:** ${user.id} | **Tag:** ${user.tag}`
+      }).then(async(chan)=>{
+
+    await chan.updateOverwrite(user, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
     await db.updateOne({ticketCase: serverCase + 1});
 
 
@@ -376,17 +386,13 @@ if(chan){
     .setColor(color)
     );
 
-   /* chan.send(new MessageEmbed()
+    chan.send(new MessageEmbed()
     .setDescription(`Please use \`${prefix}close\` to close the ticket.`)
     .setColor(message.client.color.red)
     .setFooter('https://pogy.xyz')
-    .setTimestamp())*/
+    .setTimestamp())
 
-    if(ticketCategory){
-    chan.setParent(ticketCategory.id)
-    }
-    
-    chan.setTopic(`Ticket opened by ${user.tag} (${user.id})`).catch(() => {})
+   
 
 let color2 = db.ticketLogColor
     if(color2 == "#000000") color2 = `#36393f`;
