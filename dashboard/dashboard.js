@@ -3838,7 +3838,7 @@ if(maintenance && maintenance.toggle == "true") {
         if (!content) return;
 if(storedSettings.isPremium === "false"){
   const conditional = {
-   guildId: message.guild.id
+   guildId: guild.id
 }
 const results = await customCommand.find(conditional)
 
