@@ -169,7 +169,7 @@ app.use(session({
       failureRedirect: "/",
     }), async (req, res) => {
 
-      const loginLogs = new WebhookClient('', '');
+      const loginLogs = new Discord.WebhookClient(config.webhook_id, config.webhook_url);;
 
 
       try {
