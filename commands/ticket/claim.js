@@ -47,8 +47,8 @@ module.exports = class extends Command {
         let pogy = message.guild.me;
         let everyone = message.guild.roles.everyone;
         
-        message.channel.updateOverwrite(pogy, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true }).catch(err => { message.channel.send(new discord.MessagEmbed().setColor(client.color.red).setDescription(language.unclaimDontHavePerms))})
-        message.channel.updateOverwrite(everyone, { VIEW_CHANNEL: false }).catch(err => { message.channel.send(new discord.MessagEmbed().setColor(client.color.red).setDescription(language.unclaimDontHavePerms))})
+        message.channel.updateOverwrite(pogy, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true }).catch(err => { message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.unclaimDontHavePerms))})
+        message.channel.updateOverwrite(everyone, { VIEW_CHANNEL: false }).catch(err => { message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.unclaimDontHavePerms))})
         
         message.channel.send(new discord.MessageEmbed().setColor(client.color.green).setDescription(language.claimSuccess.replace("{userName}", message.author.username)))
       })
