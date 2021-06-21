@@ -39,10 +39,10 @@ module.exports = class extends Command {
         
         message.channel.updateOverwrite(message.author, {
           VIEW_CHANNEL: true
-        }).catch(err => { message.channel.send(new discord.MessagEmbed().setColor(client.color.red).setDescription(language.unclaimDontHavePerms))})
+        }).catch(err => { message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.unclaimDontHavePerms))})
         message.channel.updateOverwrite(ticketRole.id, {
           VIEW_CHANNEL: false
-        }).catch(err => { message.channel.send(new discord.MessagEmbed().setColor(client.color.red).setDescription(language.unclaimDontHavePerms))})
+        }).catch(err => { message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.unclaimDontHavePerms))})
         
         let pogy = message.guild.me;
         let everyone = message.guild.roles.everyone;
