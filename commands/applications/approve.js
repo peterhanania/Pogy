@@ -27,7 +27,7 @@ module.exports = class extends Command {
     
     if(guildDB.isPremium === "false"){
 
-message.channel.send(new discord.MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} Slow down here, the current command is only for premium guilds.\n\n[Check Premium Here](https://pogy.xyz/premium)`))
+message.channel.send(new discord.MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} | ${language.approvepremium}.\n\n[Check Premium Here](https://pogy.xyz/premium)`))
 
       return;
     }
@@ -64,7 +64,7 @@ member = message.member;
 
        }
 
-        if(!member) return message.channel.send(`${client.emoji.fail} Provide me with a valid member in the guild`)
+        if(!member) return message.channel.send(`${client.emoji.fail} | ${language.approveerrormember}.`)
 
         const id = args[1]
        const paste =  await Paste.findOne({
@@ -73,15 +73,15 @@ member = message.member;
           _id: args[1]
         })
        
-       if(!paste)  return message.channel.send(`${client.emoji.fail} Could not find this application.`)
+       if(!paste)  return message.channel.send(`${client.emoji.fail} | ${language.approvenotfound}.`)
 
 
        let reason = args.slice(2).join(' ');
 if (!reason) reason = `${language.noReasonProvided}`;
 if (reason.length > 1024) reason = reason.slice(0, 1021) + '...';
 
-if(paste.status === "approved") return message.channel.send(`${client.emoji.fail} | This application was already approved`)
-if(paste.status === "declined") return message.channel.send(`${client.emoji.fail} | This application was already declined`)
+if(paste.status === "approved") return message.channel.send(`${client.emoji.fail} | ${language.approveapplicationapproved}`)
+if(paste.status === "declined") return message.channel.send(`${client.emoji.fail} | ${language.approveapplicationdeclined}`)
 
 paste.status = "approved",
 await paste.save().catch(()=>{});
@@ -90,9 +90,9 @@ const add_role = message.guild.roles.cache.get(app.add_role)
 if(add_role){
   await member.roles.add(add_role).catch(()=>{})
 }
-message.channel.send(new discord.MessageEmbed().setColor(message.client.color.green).setTitle(`Application Approved!`).setDescription(`${client.emoji.success} I have sucessfully approved this Application.\n\n**Application ID:** ${id}\n**Approved by:** ${message.author.tag}\n**Reason:** ${reason}`))
+message.channel.send(new discord.MessageEmbed().setColor(message.client.color.green).setTitle(language.approveapplicationdoneapprovedtitle).setDescription(`${client.emoji.success} | ${language.approveapplicationdoneapproveddescription} ${id}\n**Approved by:** ${message.author.tag}\n**Reason:** ${reason}`))
 if(app.dm === true){
-member.send(new discord.MessageEmbed().setColor(message.client.color.green).setTitle(`Form Approved!`).setDescription(`${client.emoji.success} Hey ${member.user.tag}, your form was Approved!\n\n**Application ID:** ${id}\n**Approved by:** ${message.author.tag}\n**Reason:** ${reason}`)).catch(()=>{
+member.send(new discord.MessageEmbed().setColor(message.client.color.green).setTitle(language.approveapplicationdonetitle).setDescription(`${client.emoji.success} | Hey ${member.user.tag}, ${language.approveapplicationdonemember} ${id}\n**Approved by:** ${message.author.tag}\n**Reason:** ${reason}`)).catch(()=>{
   message.channel.send(`Never Mind... I was able to approve the Application but couldn't dm ${member.user.tag} since their DMs are closed.'`)
 
 })
