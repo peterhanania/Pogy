@@ -19,11 +19,12 @@ jointocreate(client);
 
 Pogy.react = new Map()
 Pogy.fetchforguild = new Map()
-
-if(config.dashboard === "true"){
-    const Dashboard = require("./dashboard/dashboard");
-    Dashboard(client); 
-}
+ if(client.shard.ids - 1 + 2 === 1){
+    if(config.dashboard === "true"){
+        const Dashboard = require("./dashboard/dashboard");
+        Dashboard(client); 
+    }
+ }
 
         
 Pogy.start();
