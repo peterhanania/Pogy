@@ -13,6 +13,9 @@ module.exports = class extends Event {
   async run(guild) {
     logger.info(`Joined to "${guild.name}" (${guild.id})`, { label: 'Guilds' })
 
+      const shardGuildCounts = await this.client.shard.fetchClientValues('guilds.cache.size')
+      const totalGuildCount = shardGuildCounts.reduce((total, current) => total + current)
+    
     const find = await Guild.findOne({
       guildId: guild.id,
     })
@@ -90,7 +93,7 @@ logging2.moderation.mute_role = muteRole.id
     
 
   }
-
+    
     if(textChats){
       const embed = new Discord.MessageEmbed()
       .setColor('PURPLE')
@@ -115,7 +118,7 @@ logging2.moderation.mute_role = muteRole.id
     .setDescription(`Pogy was added to a new Server!`)
     .addField(`Server Name`, `\`${guild.name}\``, true)
     .addField(`Server ID`, `\`${guild.id}\``, true)
-    .setFooter(`${this.client.guilds.cache.size} guilds `,  'https://pogy.xyz/logo.png');
+    .setFooter(`${totalGuildCount} guilds `,  'https://pogy.xyz/logo.png');
 
 welcomeClient.send({
    username: 'Pogy',
@@ -130,7 +133,7 @@ if(config.datadogApiKey){
       const embed = new Discord.MessageEmbed()
       .setColor('GREEN')
       .setDescription(`I have joined the ${guild.name} server.\n\nID: ${guild.id}`)
-      .setFooter(`Gained ${guild.members.cache.size - 1} members • I'm now in ${this.client.guilds.cache.size} servers!`)
+      .setFooter(`Gained ${guild.members.cache.size - 1} members • I'm now in ${totalGuildCount} servers!`)
       .setThumbnail(guild.iconURL({ dynamic: true }) ? guild.iconURL({ dynamic: true }) : `https://guild-default-icon.herokuapp.com/${encodeURIComponent(guild.nameAcronym)}`)
       .addField('Server Owner', `${guild.owner.user.tag} / ${guild.ownerID}`)
     
