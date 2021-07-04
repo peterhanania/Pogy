@@ -68,7 +68,7 @@ const secret = config.secret;
 
   module.exports = async (client) => {
     const dataDir = path.resolve(`${process.cwd()}${path.sep}dashboard`);
-
+    process.setMaxListeners(20)
     const templateDir = path.resolve(`${dataDir}${path.sep}templates`);
 
 
