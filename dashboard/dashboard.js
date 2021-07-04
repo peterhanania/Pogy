@@ -117,7 +117,7 @@ app.use(session({
         https: "https://",
         domain: domain,
         bot: client,
-	shardedbot: client.shard,
+	shard: client.shard,
         hostname: hostname,
         pathname: pathname,
         path: req.path,
