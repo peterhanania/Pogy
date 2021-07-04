@@ -10,6 +10,10 @@ const welcomeClient = new Discord.WebhookClient(config.webhook_id, config.webhoo
 module.exports = class extends Event {
 
   async run(guild) {
+      const shardGuildCounts = await this.client.shard.fetchClientValues('guilds.cache.size')
+      const totalGuildCount = shardGuildCounts.reduce((total, current) => total + current)
+      
+      
     Guild.findOneAndDelete({
       guildId: guild.id,
     }, (err, res) => {
@@ -24,7 +28,7 @@ module.exports = class extends Event {
     .setDescription(`Pogy left a Server!`)
     .addField(`Server Name`, `\`${guild.name}\``, true)
     .addField(`Server ID`, `\`${guild.id}\``, true)
-    .setFooter(`${this.client.guilds.cache.size} guilds `,  'https://pogy.xyz/logo.png');
+    .setFooter(`${totalGuildCount} guilds `,  'https://pogy.xyz/logo.png');
 
 welcomeClient.send({
    username: 'Pogy',
@@ -44,7 +48,7 @@ if(config.datadogApiKey){
       const embed = new Discord.MessageEmbed()
       .setColor('RED')
       .setDescription(`I have left the ${guild.name} server.`)
-      .setFooter(`Lost ${guild.members.cache.size - 1} members • I'm now in ${this.client.guilds.cache.size} servers..\n\nID: ${guild.id}`)
+      .setFooter(`Lost ${guild.members.cache.size - 1} members • I'm now in ${totalGuildCount} servers..\n\nID: ${guild.id}`)
       .setThumbnail(guild.iconURL({ dynamic: true }) ? guild.iconURL({ dynamic: true }) : `https://guild-default-icon.herokuapp.com/${encodeURIComponent(guild.nameAcronym)}`)
       .addField('Server Owner', `${guild.owner} / ${guild.ownerID}`)
     
