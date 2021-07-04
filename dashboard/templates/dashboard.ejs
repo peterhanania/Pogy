@@ -33,7 +33,7 @@
 %>
 
  
-  <% if (bot.guilds.cache.get(guild.id)) { %>
+  <% if (shardedbot.broadcastEval(`this.guilds.cache.get("${guild.id}")`)) { %>
   <div class="server">
    <div class="icon-and-name">
 <img class="server-icon" src="<%= iconurl %>" alt="<% guild.name %>"/>
@@ -58,7 +58,7 @@
 %>
 
  
-  <% if (!bot.guilds.cache.get(guild.id)) { %>
+  <% if (!shardedbot.broadcastEval(`this.guilds.cache.get("${guild.id}")`)) { %>
   <div class="server">
    <div class="icon-and-name">
 <img class="server-icon" src="<%= iconurl %>" alt="<% guild.name %>"/>
