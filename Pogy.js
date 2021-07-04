@@ -21,7 +21,7 @@ module.exports = class PogyClient extends Client {
       messageCacheMaxSize: 25,
       messageCacheLifetime: 10000, 
       messageSweepInterval: 12000,
-      shardCount: 1,
+      shardCount: 4,
       ws: {
         intents: [
         "GUILDS",
