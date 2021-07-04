@@ -41,9 +41,6 @@ if(maintenance && maintenance.toggle == "true"){
     this.client.user.setPresence({ status: 'dnd' });
     this.client.user.setActivity('Under Maintenance')
 
-  
-
-logger.info(`✅ loaded Maintenance Mode `, { label: 'Status' })
 } else {
    this.client.user.setPresence({ status: 'online',  activity:  { name: `@Pogy | Shard: ${this.client.shard.ids - 1 + 2}`, type: 'PLAYING' } });
   
@@ -52,9 +49,6 @@ logger.info(`✅ loaded Maintenance Mode `, { label: 'Status' })
 
      this.client.user.setPresence({ status: 'online',  activity:  { name: `@Pogy | Shard: ${this.client.shard.ids - 1 + 2}`, type: 'PLAYING' } });
     }, 35000);
-
-
-			logger.info(`✅ loaded: Bot Status `, { label: 'Status' })
 
 }
 
