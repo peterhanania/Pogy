@@ -112,12 +112,25 @@ app.use(session({
     const renderTemplate = (res, req, template, data = {}) => {
       var hostname = req.headers.host;
       var pathname = url.parse(req.url).pathname;
+      const shardGuildCounts = await client.shard.fetchClientValues('guilds.cache.size')
+      const totalGuildCount = shardGuildCounts.reduce((total, current) => total + current)
+      const shardUserCounts = await client.shard.fetchClientValues('users.cache.size')
+      const totalUserCount = shardUserCounts.reduce((total, current) => total + current)
+      const shardChannelCounts = await client.shard.fetchClientValues('channels.cache.size')
+      const totalChannelCount = shardChannelCounts.reduce((total, current) => total + current)
 
+	    
+	    
+	    
+	    
       const baseData = {
         https: "https://",
         domain: domain,
         bot: client,
 	shard: client.shard,
+	all_servers: totalGuildCount,
+        all_users: totalUserCount,
+        all_channels: totalChannelCount,
         hostname: hostname,
         pathname: pathname,
         path: req.path,
