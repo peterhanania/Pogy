@@ -2,7 +2,7 @@
  <br>
   <a href="https://github.com/peterhanania"><img src="https://pogy.xyz/thumb.png"></a>
   <br>
-  Pogy the Discord Bot
+  Pogy the Discord Bot [ OLD VERSION ]
   <br>
 </h1>
 
@@ -43,7 +43,7 @@
 
 ## About
 
-Pogy is a discontinued discord bot that took over 4 months of work to make. I decided to make the bot open sourced to whoever wants to run a copy in their server! You can click [this](https://pogy.xyz/invite) link to invite the official Bot! Also, you can join the official [Pogy's Support Server](https://pogy.xyz/support) for assistance.
+Pogy is a discord bot that took over 4 months of work to make. I decided to make the bot open sourced to whoever wants to run a copy in their server! You can click [this](https://pogy.xyz/invite) link to invite the official Bot! Also, you can join the official [Pogy's Support Server](https://pogy.xyz/support) for assistance.
 
 If you liked this repository, feel free to leave a star ⭐ and follow me, it actually means a lot.
 
