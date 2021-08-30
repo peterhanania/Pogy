@@ -30,7 +30,7 @@ module.exports = class extends Command {
  if (args.length < 1) {
         return message.channel.send( new discord.MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`${message.client.emoji.fail} | Correct usage **enable #channel** | disable`));
+        .setDescription(`${message.client.emoji.fail} | ${language.applylogerrorchannel}`));
       }
 
       if (args.includes('disable')) {
@@ -44,7 +44,7 @@ module.exports = class extends Command {
   
           return message.channel.send( new discord.MessageEmbed()
           .setColor(message.guild.me.displayHexColor)
-          .setDescription(`${message.client.emoji.fail} | Disabled the form Module!`)); 
+          .setDescription(`${message.client.emoji.fail} | ${language.applylogdisabled}`)); 
         });
         return;
       }
@@ -53,7 +53,7 @@ module.exports = class extends Command {
 
       if (!channel)  return message.channel.send( new MessageEmbed()
       .setColor(message.guild.me.displayHexColor)
-      .setDescription(`${message.client.emoji.fail} Please provide a valid Channel`));
+      .setDescription(`${message.client.emoji.fail} | ${language.applylogvalidchannel}`));
     
       await app.findOne({
         guildID: message.guild.id
@@ -65,7 +65,7 @@ module.exports = class extends Command {
 
         return message.channel.send( new discord.MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`${message.client.emoji.success} Set the application log channel to ${channel}`)); 
+        .setDescription(`${message.client.emoji.success} | ${language.applylogSuccess} ${channel}`)); 
       });
      
     }

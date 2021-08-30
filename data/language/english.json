@@ -617,6 +617,29 @@
        "addquestionSuccess": "I have succesfully added all the questions",
        "addquestionMissingArg": "You need to specify question(s)\n\nTip: Use the | symbol to seperate each question",
 
+       "closedapplay1": "The current server does not have any form to apply to",
+       "closedapplay2": "I could not find the server's apply Log channel. Please make sure to let an admin know",
+       "applaydone" : "You can apply to the form in",
+       
+       "applylogerrorchannel" : "Correct usage **enable #channel** | disable",
+       "applylogdisabled" : "Disabled the form Module",
+       "applylogvalidchannel" : "Please provide a valid Channel",
+       "applylogSuccess" : "Set the application log channel to",
+
+       "approvepremium" : "Slow down here, the current command is only for premium guilds",
+       "approveerrormember" : "Provide me with a valid member in the guild",
+       "approvenotfound" : "Could not find this application",
+       "approveapplicationapproved" : "This application was already approved",
+       "approveapplicationdeclined": "This application was already declined",
+       "approveapplicationdoneapprovedtitle" : "Application Approved!",
+       "approveapplicationdoneapproveddescription" : "I have sucessfully approved this Application.\n\n**Application ID:**",
+       "approveapplicationdonetitle" : "Form Approved!",
+       "approveapplicationdonemember" : "your form was Approved!\n\n**Application ID:**",
+
+       "declinedeclined" : "Application Declined",
+       "declinedeclineddescription" : "I have sucessfully declined this application.\n\n**Application ID:**",
+       "declinedeclineddescriptionmember" : "your application was Declined.\n\n**Application ID:** ",
+
        "remquestion": "Please specify the valid ID of the questions",
        "remquestionSuccess": "I have successfully removed this question",
 
