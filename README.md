@@ -108,7 +108,6 @@ Your `config.json` should look like this:
 {
   "main_token": process.env.token, 
   "mongodb_url": "", //mongo db URL
-  "alexflipnoteApiKey":"", //get from https://discord.gg/bsUDZqUbyz
   "developers": ["", ""], //developers ID
   "datadogApiKey": "", // for statistics (optional)
   "dashboard":"false", 
