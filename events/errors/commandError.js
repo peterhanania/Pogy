@@ -11,7 +11,7 @@ module.exports = class extends Event {
                   if(message.channel &&
       message.channel.viewable &&
       message.channel.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
- message.channel.send(`${message.client.emoji.fail} Hey pogger! An Error just occured, make sure to report it here https://discord.gg/FqdH4sfKBg`).catch(()=>{})
+ message.channel.send(`${message.client.emoji.fail} Hey pogger! An Error just occured, make sure to report it here https://discord.gg/duBwdCvCwW `).catch(()=>{})
       }
 
    
