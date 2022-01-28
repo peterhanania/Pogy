@@ -383,7 +383,7 @@ if(config.datadogApiKey){
        metrics.increment('commands_served');
 }
 
-        if (command.disabled) return message.channel.send(`The owner has disabled the following command for now. Try again Later!\n\nFor Updates: https://discord.gg/FqdH4sfKBg`)
+        if (command.disabled) return message.channel.send(`The owner has disabled the following command for now. Try again Later!\n\nFor Updates: https://discord.gg/duBwdCvCwW`)
         if (command.nsfwOnly && !message.channel.nsfw && message.guild) return message.channel.send(`${nsfwplease[Math.round(Math.random() * (nsfwplease.length - 1))]}`)
 
         Statcord.ShardingClient.postCommand(cmd, message.author.id, this.client);
