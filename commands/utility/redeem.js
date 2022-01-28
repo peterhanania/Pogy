@@ -65,7 +65,7 @@ await message.author.send(new Discord.MessageEmbed()
       .setFooter(message.guild.name))
     } catch (err){
 console.log(err)
- message.channel.send(new Discord.MessageEmbed().setDescription(`**Congratulations!**\n\n**${message.guild.name}** Is now a premium guild! Thanks a ton!\n\nIf you have any questions please contact me [here](https://discord.gg/FqdH4sfKBg)\n\n**Could not send your Reciept via dms so here it is:**\n**Reciept ID:** ${ID}\n**Redeem Date:** ${DDate}\n**Guild Name:** ${message.guild.name}\n**Guild ID:** ${message.guild.id}\n\n**Please make sure to keep this information safe, you might need it if you ever wanna refund / transfer servers.**\n\n**Expires At:** ${expires}`).setColor(message.guild.me.displayHexColor).setFooter(message.guild.name));
+ message.channel.send(new Discord.MessageEmbed().setDescription(`**Congratulations!**\n\n**${message.guild.name}** Is now a premium guild! Thanks a ton!\n\nIf you have any questions please contact me [here](https://discord.gg/duBwdCvCwW)\n\n**Could not send your Reciept via dms so here it is:**\n**Reciept ID:** ${ID}\n**Redeem Date:** ${DDate}\n**Guild Name:** ${message.guild.name}\n**Guild ID:** ${message.guild.id}\n\n**Please make sure to keep this information safe, you might need it if you ever wanna refund / transfer servers.**\n\n**Expires At:** ${expires}`).setColor(message.guild.me.displayHexColor).setFooter(message.guild.name));
      
       return;
     }
