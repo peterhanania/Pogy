@@ -20,7 +20,7 @@ module.exports = class extends Command {
       
       const embed = new Discord.MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`${language.support}(https://discord.gg/FqdH4sfKBg) ${message.client.emoji.success}`);
+        .setDescription(`${language.support}(https://discord.gg/duBwdCvCwW) ${message.client.emoji.success}`);
 
       await message.channel.send(embed)  
     }
