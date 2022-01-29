@@ -21,7 +21,7 @@ module.exports = class extends Command {
       
       const embed = new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`${language.invite}(https://main.pogy.xyz/invite) ${message.client.emoji.success}`);
+        .setDescription(`${language.invite}(https://pogy.xyz/invite) ${message.client.emoji.success}`);
 
       await message.channel.send(embed)  
     }
