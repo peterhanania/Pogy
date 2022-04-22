@@ -71,7 +71,7 @@ array.push(`\`${i + 1}-\` ${code}`)
 }
   }
 
-  message.channel.send(new Discord.MessageEmbed()
+  message.channel.send({embeds:[new discord.MessageEmbed()
   .setColor(message.client.color.green)
   .setDescription(`**Generated ${array.length} Premium Code(s)**\n\n${array.join("\n")}\n\n**Type:** ${args[0]}\n**Expires:** ${moment(expiresAt).format("dddd, MMMM Do YYYY")}`)
   )

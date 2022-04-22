@@ -61,7 +61,7 @@ let client = message.client
       let properUsage = new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
         .setDescription(`${language.tempvc1.replace(/{prefix}/g, `${prefix}`)}`)
-        .setFooter('https://pogy.xyz')
+        .setFooter({text: 'https://pogy.xyz/'})
 
       if (args.length < 1) {
         return message.channel.send(properUsage);
@@ -74,13 +74,13 @@ let client = message.client
     .setTitle(`${fail} ${language.missingUser} `)
     .setDescription(`${language.tempvc2}`)
     .setTimestamp()
-    .setFooter('https://pogy.xyz')
-    .setColor(message.guild.me.displayHexColor));
+    .setFooter({text: 'https://pogy.xyz/'}))
+    .setColor(message.guild.me.displayHexColor);
 
         if(!vcDB.channelID || !vcDB.categoryID || !vcDB.guildId ||!vcDB.channelID === null) return message.channel.send( new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
         .setDescription(`${message.client.emoji.fail} ${language.tempvc3}`)
-        .setFooter('https://pogy.xyz'));
+        .setFooter({text: 'https://pogy.xyz/'}));
         await Vc.findOne({
           guildId: message.guild.id
       }, async (err, guild) => {
@@ -113,7 +113,7 @@ let client = message.client
           return message.channel.send( new MessageEmbed()
           .setColor(message.guild.me.displayHexColor)
           .setDescription(`${message.client.emoji.success} ${language.tempvc4}`)
-          .setFooter('https://pogy.xyz')); 
+          .setFooter({text: 'https://pogy.xyz/'})); 
         });
         return;
       } else if (args.includes('enable') || args.includes('on') ) {
@@ -122,8 +122,8 @@ let client = message.client
     .setTitle(`${fail} ${language.missingUser} `)
     .setDescription(`${language.tempvc2}`)
     .setTimestamp()
-    .setFooter('https://pogy.xyz')
-    .setColor(message.guild.me.displayHexColor));
+    .setFooter({text: 'https://pogy.xyz/'}))
+    .setColor(message.guild.me.displayHexColor);
 
      
 try {
@@ -132,7 +132,7 @@ try {
   .setAuthor(`${language.tempvc5}`, `https://www.creeda.co.in/Images/loader.gif`)
   .setDescription(`\`${language.tempvc6}\``)
   .setColor(message.guild.me.displayHexColor);    
-  const msg = await message.channel.send(embed);
+  const msg = await message.channel.send({embeds: [embed]});
 
 
 

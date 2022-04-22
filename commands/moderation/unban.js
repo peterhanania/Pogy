@@ -65,9 +65,9 @@ const embed = new MessageEmbed()
 .setAuthor(message.author.tag, message.author.displayAvatarURL())
 .setDescription(`**Proper Usage:**\n\n\`1-\` unban peter_#4444 appealed\n\`2-\` unban 710465231779790849 appealed\n\`3-\` unban all`)
 .setColor(message.client.color.red)
-.setFooter('https://pogy.xyz')
+.setFooter({text: 'https://pogy.xyz/'})
 
-message.channel.send(embed)
+message.channel.send({embeds: [embed]})
   return
 }
 
@@ -89,13 +89,13 @@ const embed = new MessageEmbed()
 .setDescription(`${client.emoji.fail} | The current guild has no banned users.`)
 .setColor(client.color.green)
 
-message.channel.send(embed).catch(()=>{})
+message.channel.send({embeds: [embed]}).catch(()=>{})
 } else {
 const embed = new MessageEmbed()
 .setDescription(`${client.emoji.success} | ${language.unbanSuccess} **${array.length}** Users from the guild. \n\n**Users:**\n${array.join(" - ")} ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
 .setColor(client.color.green)
 
-message.channel.send(embed)
+message.channel.send({embeds: [embed]})
 .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
@@ -174,7 +174,7 @@ const embed = new MessageEmbed()
 .setDescription(`${client.emoji.success} | ${language.unbanSuccess} ${userrz.tag} ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
 .setColor(client.color.green)
 
-message.channel.send(embed).catch(()=>{})
+message.channel.send({embeds: [embed]}).catch(()=>{})
 await message.guild.members.unban(userrz, `${reason} / ${language.unbanResponsible}: ${message.author.tag}`).then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
@@ -267,7 +267,7 @@ const embed = new MessageEmbed()
 .setDescription(`${client.emoji.success} | ${language.unbanSuccess} ${userr.tag} ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
 .setColor(client.color.green)
 
-message.channel.send(embed).then(async(s)=>{
+message.channel.send({embeds: [embed]}).then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
             s.delete().catch(()=>{})

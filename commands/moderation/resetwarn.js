@@ -56,7 +56,7 @@ const mentionedMember = message.mentions.members.last()
 
 
  if (!mentionedMember) {
-return message.channel.send(new discord.MessageEmbed()
+return message.channel.send({embeds:[new discord.MessageEmbed()
    .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setDescription(`${client.emoji.fail} | ${language.banUserValid}`)
     .setTimestamp(message.createdAt)
@@ -67,7 +67,7 @@ const mentionedPotision = mentionedMember.roles.highest.position
 const memberPotision = message.member.roles.highest.position
 
 if (memberPotision <= mentionedPotision) {
-return message.channel.send(new discord.MessageEmbed()
+return message.channel.send({embeds:[new discord.MessageEmbed()
   .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setDescription(`${client.emoji.fail} | ${language.rmPosition}`)
     .setTimestamp(message.createdAt)
@@ -84,7 +84,7 @@ memberID: mentionedMember.id,
 }).catch(err => console.log(err))
 
 if (!warnDoc || !warnDoc.warnings.length) {
-return message.channel.send(new discord.MessageEmbed()
+return message.channel.send({embeds:[new discord.MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setDescription(`${client.emoji.fail} | ${language.rmNoWarning}`)
     .setTimestamp(message.createdAt)

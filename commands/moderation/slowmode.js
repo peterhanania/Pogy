@@ -67,8 +67,8 @@ const language = require(`../../data/language/${guildDB.language}.json`)
     .setTitle(`${fail} Slow Mode Error`)
     .setDescription(`I can't view the provided channel`)
     .setTimestamp()
-    .setFooter('https://pogy.xyz')
-    .setColor(message.guild.me.displayHexColor));
+    .setFooter({text: 'https://pogy.xyz/'})
+    .setColor(message.guild.me.displayHexColor);
       
     const rate = args[index];
     if (!rate || rate < 0 || rate > 59) return message.channel.send( new MessageEmbed()
@@ -76,8 +76,8 @@ const language = require(`../../data/language/${guildDB.language}.json`)
     .setTitle(`${fail} Slow Mode Error`)
     .setDescription(` Please provide a rate limit between 0 and 59 seconds`)
     .setTimestamp()
-    .setFooter('https://pogy.xyz')
-    .setColor(message.guild.me.displayHexColor));
+    .setFooter({text: 'https://pogy.xyz/'})
+    .setColor(message.guild.me.displayHexColor);
     
   
     const number =  parseInt(rate);
@@ -87,8 +87,8 @@ const language = require(`../../data/language/${guildDB.language}.json`)
     .setTitle(`${fail} Slow Mode Error`)
     .setDescription(` Please provide a rate limit between 0 and 59 seconds`)
     .setTimestamp()
-    .setFooter('https://pogy.xyz')
-    .setColor(message.guild.me.displayHexColor));
+    .setFooter({text: 'https://pogy.xyz/'})
+    .setColor(message.guild.me.displayHexColor);
     };
 
 
@@ -99,8 +99,8 @@ const language = require(`../../data/language/${guildDB.language}.json`)
       .setTitle(`${fail} Slow Mode Error`)
       .setDescription(` Please make sure I have the **Manage Channels** Permission`)
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor);
 
     let reason = args.slice(index + 1).join(' ');
     if (!reason) reason = 'No Reason was Provided';

@@ -67,7 +67,7 @@ let report = args.join(' ').split('').join('')
       .addField('Member', message.member, true)
       .addField('Message', report, true)
       .addField('Bug Report ID:', `#${id}`, true)
-      .setFooter(`https://pogy.xyz`)
+      .setFooter({text: 'https://pogy.xyz/'})
       .setTimestamp()
       .setColor('GREEN');
     

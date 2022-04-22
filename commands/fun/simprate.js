@@ -47,7 +47,7 @@ function randomInteger(min, max) {
   .setColor('GREEN')
   .setTitle(`${language.simpmachine}`)
   .setDescription(`${targett} ${language.simpIs} **${amount}%** simp`)
-   message.channel.send(embed)
+   message.channel.send({embeds: [embed]})
  
    
 

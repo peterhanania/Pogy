@@ -82,9 +82,9 @@ module.exports = class extends Event {
           .addField(`Prefix`,proofita, true)
           .addField(`Usage`,proofitaa, true)
           .setDescription(`\nIf you like Pogy, Consider [voting](https://top.gg/bot/767705905235099658), or [inviting](https://discord.com/oauth2/authorize?client_id=767705905235099658&scope=bot&permissions=470150262) it to your server! Thank you for using Pogy, we hope you enjoy it, as we always look forward to improve the bot`)
-          .setFooter('Thank you for using Pogy!!')
+          .setFooter({text :'Thank you for using Pogy!!'})
           .setColor('#FF2C98')
-        message.channel.send(embed);
+        message.channel.send({embeds: [embed]});
       }
 
 if(config.datadogApiKey){
@@ -197,7 +197,7 @@ const maintenance = await Maintenance.findOne({
           let nickname =  `${afklis.oldNickname}`;
           message.member.setNickname(nickname).catch(() => {});
           await afk.deleteOne({ userID: message.author.id });
-          return   message.channel.send(new discord.MessageEmbed().setColor('GREEN').setDescription(`${language.afk7} ${afklis.reason}`)).then(m => {
+          return   message.channel.send({embeds:[new discord.MessageEmbed().setColor('GREEN').setDescription(`${language.afk7} ${afklis.reason}`)]}).then(m => {
                 setTimeout(() => {
                     m.delete().catch(() => {});
                 }, 10000);
@@ -260,7 +260,7 @@ embed.setColor(message.guild.me.displayHexColor)
 
                         } else embed.setColor(`${customCommandEmbed.color}`)
 
-return message.channel.send(embed)
+return message.channel.send({embeds: [embed]})
        }
 
 
@@ -347,9 +347,9 @@ return message.channel.send(embed)
         .setTitle(`<:wrong:822376943763980348> Missing Bot Permissions`)
         .setDescription(`Command Name: **${command.name}**\nRequired Permission: **${missingPermissions.map(p => `${p}`).join(' - ')}**`)
         .setTimestamp()
-        .setFooter('https://pogy.xyz')
+        .setFooter({text: 'https://pogy.xyz/'})
         .setColor(message.guild.me.displayHexColor);
-      return message.channel.send(embed).catch(()=>{})
+      return message.channel.send({embeds: [embed]}).catch(()=>{})
           }
         }
 
@@ -366,9 +366,9 @@ return message.channel.send(embed)
           .setTitle(`<:wrong:822376943763980348> Missing User Permissions`)
           .setDescription(`Command Name: **${command.name}**\nRequired Permission: **${missingPermissions.map(p => `${p}`).join('\n')}**`)
           .setTimestamp()
-          .setFooter('https://pogy.xyz')
+          .setFooter({text: 'https://pogy.xyz/'})
           .setColor(message.guild.me.displayHexColor);
-       return message.channel.send(embed).catch(()=>{})
+       return message.channel.send({embeds: [embed]}).catch(()=>{})
       }
 
         }

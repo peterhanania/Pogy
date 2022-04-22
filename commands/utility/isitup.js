@@ -43,6 +43,6 @@ module.exports = class extends Command {
 embed.setColor(message.client.color.blue)
 embed.setDescription(`${message.client.emoji.fail} ${language.isitup3}`)
       }
-      message.channel.send(embed)
+      message.channel.send({embeds: [embed]})
     }
 };

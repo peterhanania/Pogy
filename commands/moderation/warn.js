@@ -61,7 +61,7 @@ let language = require(`../../data/language/${guildDB.language}.json`)
     const mentionedMember = message.mentions.members.last() || message.guild.members.cache.get(args[0])
     
  if (!mentionedMember) {
-      return message.channel.send(new Discord.MessageEmbed()
+      return message.channel.send({embeds:[new discord.MessageEmbed()
           .setDescription(`${client.emoji.fail} | ${language.warnMissingUser}`)
           .setTimestamp(message.createdAt)
           .setColor(client.color.red))
@@ -71,7 +71,7 @@ let language = require(`../../data/language/${guildDB.language}.json`)
   const memberPotision = message.member.roles.highest.position
 
   if (memberPotision <= mentionedPotision) {
-      return message.channel.send(new Discord.MessageEmbed()
+      return message.channel.send({embeds:[new discord.MessageEmbed()
       .setDescription(client.emoji.fail + " | " + language.warnHigherRole)
           .setTimestamp(message.createdAt)
           .setColor(client.color.red))
@@ -130,7 +130,7 @@ mentionedMember.send(new MessageEmbed().setColor(message.client.color.red)
 .setDescription(dmEmbed)
 ).catch(()=>{})
 }
-      message.channel.send(new Discord.MessageEmbed().setColor(client.color.green).setDescription(`${language.warnSuccessful
+      message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setDescription(`${language.warnSuccessful
       
       .replace("{emoji}", client.emoji.success)
       .replace("{user}", `**${mentionedMember.user.tag}** `)}
@@ -168,7 +168,7 @@ await message.guild.members.unban(mentionedMember.user, `Auto Punish / ${languag
 
           }
 
-          message.channel.send(new Discord.MessageEmbed().setColor(message.client.color.green).setDescription(`Auto Punish triggered, ${action} **${mentionedMember.user.tag}** ${message.client.emoji.success}`))
+          message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.green).setDescription(`Auto Punish triggered, ${action} **${mentionedMember.user.tag}** ${message.client.emoji.success}`))
           
           const auto = logging.moderation.auto_punish;
           if(auto.dm && auto.dm !== "1"){

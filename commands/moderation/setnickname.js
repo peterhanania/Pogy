@@ -61,24 +61,24 @@ const language = require(`../../data/language/${guildDB.language}.json`)
       .setTitle(`${fail} Set Nickname Error`)
       .setDescription('Please provide a valid user mention / user ID')
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor);
     if (member.roles.highest.position >= message.member.roles.highest.position && member != message.member)
       return message.channel.send( new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Set Nickname Error`)
       .setDescription('The provided user has either an equal or higher role.')
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor);
 
     if (!args[1]) return message.channel.send( new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} Set Nickname Error`)
     .setDescription('Please provide a new Nickname')
     .setTimestamp()
-    .setFooter('https://pogy.xyz')
-    .setColor(message.guild.me.displayHexColor));
+    .setFooter({text: 'https://pogy.xyz/'})
+    .setColor(message.guild.me.displayHexColor);
 
 
     let nickname = args[1];
@@ -90,16 +90,16 @@ const language = require(`../../data/language/${guildDB.language}.json`)
         .setTitle(`${fail} Set Nickname Error`)
         .setDescription(`Make sure the nickname is surrounded in Quotes, **"text"**`)
         .setTimestamp()
-        .setFooter('https://pogy.xyz')
-        .setColor(message.guild.me.displayHexColor));
+        .setFooter({text: 'https://pogy.xyz/'})
+        .setColor(message.guild.me.displayHexColor);
       nickname = nickname.slice(0, nickname.indexOf('"'));
       if (!nickname.replace(/\s/g, '').length) return message.channel.send( new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Set Nickname Error`)
       .setDescription('Provide a Nickname')
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor);
     }
 
     if (nickname.length > 32) {
@@ -108,8 +108,8 @@ const language = require(`../../data/language/${guildDB.language}.json`)
       .setTitle(`${fail} Set Nickname Error`)
       .setDescription('Make sure that nickname is below 32 characters')
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor);
       
     } else {
 
@@ -130,7 +130,7 @@ const language = require(`../../data/language/${guildDB.language}.json`)
        
           .setDescription(`${success} | **${oldNickname}**'s nickname was set to **${nickname}** ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
           .setColor(message.guild.me.displayHexColor);
-        message.channel.send(embed)
+        message.channel.send({embeds: [embed]})
         .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
@@ -200,8 +200,8 @@ await logging.save().catch(()=>{})
       .setTitle(`${fail} Set Nickname Error`)
       .setDescription(`Please ensure my role is above the provided user's role.`)
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor);
       }
     }  
 

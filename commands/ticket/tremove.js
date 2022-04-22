@@ -22,7 +22,7 @@ module.exports = class extends Command {
     const language = require(`../../data/language/${guildDB.language}.json`)
     
     let userToMention = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-    if(!userToMention) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.addNotSpecifyUser))
+    if(!userToMention) return message.channel.send({embeds:[new discordw discord.MessageEmbed().setColor(client.color.red).setDescription(language.addNotSpecifyUser))
     
     await ticketSchema.findOne({
       guildID: message.guild.id
@@ -34,9 +34,9 @@ module.exports = class extends Command {
        let ticketCategory = message.guild.channels.cache.get(db.categoryID);
        let ticketLog = message.guild.channels.cache.get(db.ticketModlogID);
        
-       if(!message.member.roles.cache.has(ticketRole.id)) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.claimNotHaveRole.replace("{roleName}", ticketRole.name)))
+       if(!message.member.roles.cache.has(ticketRole.id)) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.claimNotHaveRole.replace("{roleName}", ticketRole.name)))
 
-       if(!message.channel.name.startsWith("ticket-")) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.addNotValidChannel))
+       if(!message.channel.name.startsWith("ticket-")) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.addNotValidChannel))
        
        let pogy = message.guild.me
        let everyone = message.guild.roles.everyone;

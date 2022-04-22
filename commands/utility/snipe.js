@@ -66,7 +66,7 @@ for (let i = 0; snipe.message.length  > i; i++) {
 
         
 
-        message.channel.send(embed).catch(async(err)=>{
+        message.channel.send({embeds: [embed]}).catch(async(err)=>{
           await snipe.deleteOne().catch(()=>{})
           message.channel.send(`The embed contained a huge field that couldn't fit as this is the reason i failed to send the embed. I have resetted the database as you can try rerunning the command again.`)
         })

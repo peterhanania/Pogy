@@ -26,7 +26,7 @@ module.exports = class extends Command {
 
       try {
        
-        let msg = await message.channel.send(new discord.MessageEmbed().setColor(client.color.green).setDescription(language.generating))
+        let msg = await message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setDescription(language.generating))
        
         
         let user = message.mentions.users.first() ? message.mentions.users.first().displayAvatarURL({format: 'png', size: 512}) :message.author.displayAvatarURL({format: 'png', size: 512});
@@ -35,7 +35,7 @@ module.exports = class extends Command {
             `https://nekobot.xyz/api/imagegen?type=magik&image=${user}&intensity=${numb}`
           ).then((res) => res.json());
           msg.delete({timeout: 500})
-          message.channel.send(new discord.MessageEmbed().setColor(client.color.blue).setImage(data.message))
+          message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.blue).setImage(data.message))
       
           } catch (err) {
       

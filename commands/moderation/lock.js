@@ -100,7 +100,7 @@ let verified =  message.guild.roles.cache.find(r => r.name.toLowerCase() === 've
         const embed = new MessageEmbed()
         .setDescription(`${success} | successfully Locked **${channel}** ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
         .setColor(client.color.green)
-        message.channel.send(embed)
+        message.channel.send({embeds: [embed]})
         .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{

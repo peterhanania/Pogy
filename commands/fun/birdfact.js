@@ -24,7 +24,7 @@ module.exports = class extends Command {
 
 .setColor(message.client.color.blue)
 .setDescription(`${fact}`)
-         .setFooter("/some-random-api/bird") 
+         .setFooter({text: "/some-random-api/bird"}) 
       )
     }
 };

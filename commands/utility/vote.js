@@ -52,7 +52,7 @@ module.exports = class extends Command {
       .setDescription(`__**Top.gg**__\n${checkDBLVote ? `\`In ${ms(user.lastVoted - Date.now() + DBL_INTERVAL, { long: true })}\`` : '[\`Available Now!\`](https://top.gg/bot/767705905235099658/vote)'}\n\n__**Rewards:**__\n`)
       .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic : true }))
       .setColor(message.guild.me.displayHexColor)
-      .setFooter('https://pogy.xyz')
+      .setFooter({text: 'https://pogy.xyz/'})
       .setTimestamp()
       );
     }

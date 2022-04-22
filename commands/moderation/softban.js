@@ -85,7 +85,7 @@ const embed = new MessageEmbed()
 .setDescription(`${client.emoji.success} | ${language.softbanSuccess} **${member.user.tag}** ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
 .setColor(client.color.green)
 
-message.channel.send(embed)
+message.channel.send({embeds: [embed]})
 .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{

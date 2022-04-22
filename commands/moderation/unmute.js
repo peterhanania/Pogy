@@ -56,12 +56,12 @@ module.exports = class extends Command {
 const muteRole = message.guild.roles.cache.find(r => r.name == 'Muted')
 
  if (!mentionedMember) {
-  return message.channel.send(new Discord.MessageEmbed()
+  return message.channel.send({embeds:[new discord.MessageEmbed()
       .setDescription(`${client.emoji.fail} | ${language.unmuteNoUser}`)
       .setColor(client.color.red))
 }
 else if (!muteRole) {
-  return message.channel.send(new Discord.MessageEmbed()
+  return message.channel.send({embeds:[new discord.MessageEmbed()
       .setDescription(`${client.emoji.fail} | ${language.unmuteNoMutedRole}`)
       .setColor(client.color.red))
 }
@@ -72,17 +72,17 @@ const muteDoc = await muteModel.findOne({
 })
 
 if (!muteDoc) {
-  return message.channel.send(new Discord.MessageEmbed()
+  return message.channel.send({embeds:[new discord.MessageEmbed()
       .setDescription(`${client.emoji.fail} | ${language.unmuteNotMuted}`)
       .setColor(client.color.red))
 }
 else if (mentionedMember.roles.highest.potision >= message.guild.me.roles.highest.potision) {
-  return message.channel.send(new Discord.MessageEmbed()
+  return message.channel.send({embeds:[new discord.MessageEmbed()
       .setDescription(`${client.emoji.fail} | ${language.unmuteUserRoleHigher}`)
       .setColor(client.color.red))
 }
 else if (muteRole.potision >= message.guild.me.roles.highest.potision) {
-  return message.channel.send(new Discord.MessageEmbed()
+  return message.channel.send({embeds:[new discord.MessageEmbed()
       .setDescription(`${client.emoji.fail} | ${language.unmuteRolePosition}`)
       .setColor(client.color.red))
 }
@@ -114,7 +114,7 @@ await muteDoc.deleteOne()
 
 const reason = args.slice(1).join(' ') || language.unbanNoReason
 
-    message.channel.send(new Discord.MessageEmbed().setColor(message.client.color.green).setDescription(`${message.client.emoji.success} | Unmuted **${mentionedMember.user.tag}** ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)).then(async(s)=>{
+    message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.green).setDescription(`${message.client.emoji.success} | Unmuted **${mentionedMember.user.tag}** ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)).then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
             s.delete().catch(()=>{})

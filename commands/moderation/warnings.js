@@ -70,7 +70,7 @@ module.exports = class extends Command {
         }).catch(err => console.log(err))
     
         if (!warnDoc || !warnDoc.warnings.length) {
-            return message.channel.send(new Discord.MessageEmbed()
+            return message.channel.send({embeds:[new discord.MessageEmbed()
                 .setAuthor(message.author.tag, message.author.avatarURL())
                 .setDescription(`${message.client.emoji.fail} | **${mentionedMember.user.tag}** ${language.warningsNoError}`)
                 .setTimestamp(message.createdAt)

@@ -71,8 +71,8 @@ const language = require(`../../data/language/${guildDB.language}.json`)
     .setTitle(`${fail} Clear Error`)
     .setDescription(`Please make sure I can view that channel`)
     .setTimestamp()
-    .setFooter('https://pogy.xyz')
-    .setColor(message.guild.me.displayHexColor));
+    .setFooter({text: 'https://pogy.xyz/'})
+    .setColor(message.guild.me.displayHexColor);
 
 
     const member = message.mentions.members.first() || getMemberFromMention(message, args[0]) || message.guild.members.cache.get(args[0]);
@@ -89,8 +89,8 @@ const language = require(`../../data/language/${guildDB.language}.json`)
       .setTitle(`${fail} Clear Error`)
       .setDescription(`I can only purge between 1 - 100 messages.`)
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor);
 
 
     if (!channel.permissionsFor(message.guild.me).has(['MANAGE_MESSAGES']))
@@ -99,8 +99,8 @@ const language = require(`../../data/language/${guildDB.language}.json`)
       .setTitle(`${fail} Clear Error`)
       .setDescription(`Please make sure I have the **Manage Messages** Permission!`)
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor);
 
     let reason = args.slice(1).join(' ');
     if (!reason) reason = 'None';
@@ -141,7 +141,7 @@ const language = require(`../../data/language/${guildDB.language}.json`)
             .spliceFields(1, 0, { name: 'Member', value: member, inline: true});
         }
 
-        message.channel.send(embed)
+        message.channel.send({embeds: [embed]})
       .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{

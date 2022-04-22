@@ -33,8 +33,8 @@ module.exports = class extends Command {
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setDescription(`${language.properusage} \`${prefix}autoResponse <command-name> <text-reply>\`\n\n${language.example} \`${prefix}autoResponse ping pong\``)
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor);
 
       let name = namee.toLowerCase()
       const content = args.slice(1).join(' ');
@@ -42,8 +42,8 @@ module.exports = class extends Command {
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setDescription(`${language.properusage} \`${prefix}autoResponse <command-name> <text-reply>\`\n\n${language.example} \`${prefix}autoResponse ping pong\``)
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor);
 
   
       if (namee.length > 30) return message.channel.send(`${message.client.emoji.fail} ${language.cc1}`);
@@ -75,8 +75,8 @@ message.channel.send(new MessageEmbed().setColor(message.guild.me.displayHexColo
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setDescription(`**${language.cc3}** ${name}\n\nDelete the following auto response using \`${prefix}deleteresponse <command-name>\``)
     .setTimestamp()
-    .setFooter('https://pogy.xyz')
-    .setColor(message.guild.me.displayHexColor))
+    .setFooter({text: 'https://pogy.xyz/'})
+    .setColor(message.guild.me.displayHexColor)
         } 
         else {
           return message.channel.send(`${message.client.emoji.fail} ${language.cc4}`)

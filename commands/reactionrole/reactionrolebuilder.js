@@ -33,24 +33,24 @@ module.exports = class extends Command {
   const missingPermEmbed = new MessageEmbed()
   .setAuthor(`Missing User Permissions`, message.author.displayAvatarURL())
   .setDescription(`${fail} The following command the **Administrator** Permission`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
 
 
  
   const cancelledEmbed = new MessageEmbed()
     .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${success} Reaction Builder Cancelled!`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
 
   const cancelledEmbed2 = new MessageEmbed()
     .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Wrong Response, Reaction Builder Cancelled!`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
 
     const timeEnd = new MessageEmbed()
     .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Time has Ended, Reaction Builder Cancelled!`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
 const filter = m => m.author.id === message.author.id
 
 message.channel.send("Please specify a channel! **[channel / ID]**\n\n**Type Cancel to cancel**").then(() => {
@@ -99,7 +99,7 @@ message.channel.send("Please specify a channel! **[channel / ID]**\n\n**Type Can
     if (!emoji) return message.channel.send(new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Provide me with a valid Emoji`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
    .setColor(client.color.red)
     );
 
@@ -107,7 +107,7 @@ message.channel.send("Please specify a channel! **[channel / ID]**\n\n**Type Can
     if (isCustomEmoji(emoji)) return message.channel.send(new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Do Not use custom Emojis!`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
    .setColor(client.color.red)
     );
 
@@ -120,7 +120,7 @@ await messageID.react(emoji)
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Please Provide a valid Emoji.`)
   .setColor(client.color.red)
-  .setFooter(`https://pogy.xyz`));
+  .setFooter({text: 'https://pogy.xyz/'}));
 }
               
               message.channel.send("__**Finally Pick:**__\n\n`1` - React adds the role, unreacting removes the role\n`2`- Reacting will give the role but unreaction won't remove the role\n`3` - Reacting will remove the user's role and unreacting won't give it back\n`4` - When reacting it will remove the role, unreacting will add the role\n`5` - Same concept as number 3 but removes the user's reaction\n`6` - React to recieve the role and react again to remove the role").then(() => {
@@ -138,8 +138,8 @@ await messageID.react(emoji)
                 .addField('Message ID', ID, true)
                 .addField('Message', `[Jump To Message](${messageID.url})`, true)
                 .addField('Role', role, true)
-                .setFooter('https://pogy.xyz')
-                ).then(async () => {
+                .setFooter({text: 'https://pogy.xyz/'}))
+                .then(async () => {
                   messageID.react(emoji)
                   
                    await react.reactionCreate(client, message.guild.id , ID, role.id, emoji, "false", option);//ID is MessageID, ignore "false"

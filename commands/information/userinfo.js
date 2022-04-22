@@ -202,7 +202,7 @@ if(!member.roles.cache.size || member.roles.cache.size - 1 < 1) roles = `\`None\
 
       
       
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]});
 
     }
 };

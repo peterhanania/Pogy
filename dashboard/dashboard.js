@@ -574,7 +574,7 @@ let embed;
     embed = new MessageEmbed()
     .setTitle(`A new Form was Submitted`)
     .setDescription(`**Link:** [${domain}/paste/${ticketID}](${domain}/paste/${ticketID})\n\n[or click here](${domain}/paste/${ticketID})\n\n**Form ID**: \`${ticketID}\`\n\n**Submitted by:** ${member} **(${member.user.tag} - ${member.id})**\n**Time:** ${moment(new Date()).format("dddd, MMMM Do YYYY HH:mm:ss")}`)
-    .setFooter('https://pogy.xyz')
+    .setFooter({text: 'https://pogy.xyz/'})
     .setColor('GREEN')
 
   } else {
@@ -588,7 +588,7 @@ let embed;
     embed = new MessageEmbed()
     .setTitle(`A new Form was Submitted`)
     .setDescription(`**Link:** [${domain}/paste/${ticketID}](${domain}/paste/${ticketID})\n\n[or click here](${domain}/paste/${ticketID})\n\n**Form ID**: \`${ticketID}\`\n\n**Submitted by:** ${member} **(${member.user.tag} - ${member.id})**\n**Time:** ${moment(new Date()).format("dddd, MMMM Do YYYY HH:mm:ss")}`)
-    .setFooter('https://pogy.xyz')
+    .setFooter({text: 'https://pogy.xyz/'})
     .setColor('GREEN')
   }
 

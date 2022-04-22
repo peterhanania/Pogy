@@ -72,7 +72,7 @@ if (reason.length > 1024) reason = reason.slice(0, 1021) + '...';
 .setDescription(`${client.emoji.success} | **${u.tag}** ${language.banBan} ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
 .setColor(client.color.green);
 
-message.channel.send(embed)
+message.channel.send({embeds: [embed]})
         .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
@@ -203,7 +203,7 @@ const embed = new MessageEmbed()
 .setColor(client.color.green);
 
 
-message.channel.send(embed)
+message.channel.send({embeds: [embed]})
         .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{

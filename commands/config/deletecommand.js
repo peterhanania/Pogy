@@ -34,8 +34,8 @@ module.exports = class extends Command {
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setDescription(`${language.properusage} \`${prefix}deletecommand <command-name>\`\n\n${language.example} \`${prefix}deletecommand pog\``)
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'}))
+      .setColor(message.guild.me.displayHexColor)
 
       if (name.length > 30) return message.channel.send(`${message.client.emoji.fail} ${language.cc1}`);
   
@@ -51,11 +51,10 @@ module.exports = class extends Command {
           .setTitle(`${message.client.emoji.success} Delete Command`)
           .setDescription(`${language.deletecmd1} **${name}**`)
           .setTimestamp()
-          .setFooter('https://pogy.xyz')) 
-        } 
-        else {
+          .setFooter({text: 'https://pogy.xyz/'}))
+        } else {
           message.channel.send(`${message.client.emoji.fail} ${language.deletecmd2}`)
         }
       })
     }
-};
+  }

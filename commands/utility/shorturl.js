@@ -177,7 +177,7 @@ return message.channel.send( new discord.MessageEmbed()
 
 
 await ShortUrl.create({ full: link, short: kaka, guildID:message.guild.id, memberID:message.author.id})
-message.channel.send(new discord.MessageEmbed().setDescription(`${language.urlCreated}\n\n**Short Url:** [https://pogy.xyz/url/${kaka}](https://pogy.xyz/url/${kaka})\n**Full url:** ${args[0]}\n\n**Please note that by making urls you abide by our [policy](https://pogy.xyz/url)**`).setColor(message.client.color.blue));
+message.channel.send({embeds:[new discord.MessageEmbed().setDescription(`${language.urlCreated}\n\n**Short Url:** [https://pogy.xyz/url/${kaka}](https://pogy.xyz/url/${kaka})\n**Full url:** ${args[0]}\n\n**Please note that by making urls you abide by our [policy](https://pogy.xyz/url)**`).setColor(message.client.color.blue));
    
           }
 }

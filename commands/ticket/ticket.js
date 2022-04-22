@@ -29,9 +29,9 @@ module.exports = class extends Command {
           guildID: message.guild.id,
         }, async (err, db) => {
       if(!db) return;
-      if(db.ticketType !== "message") return message.channel.send(new Discord.MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${message.client.emoji.fail} This Feature is disabled in the current guild`).setFooter('https://pogy.xyz').setTimestamp().setColor('RED'));
+      if(db.ticketType !== "message") return message.channel.send({embeds:[new discord.MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${message.client.emoji.fail} This Feature is disabled in the current guild`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
       
-      if(db.ticketToggle == "false") return message.channel.send(new Discord.MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${message.client.emoji.fail} This Feature is disabled in the current guild`).setFooter('https://pogy.xyz').setTimestamp().setColor('RED'));
+      if(db.ticketToggle == "false") return message.channel.send({embeds:[new discord.MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${message.client.emoji.fail} This Feature is disabled in the current guild`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
       
       let ticketRole = message.guild.roles.cache.get(db.supportRoleID);
       let ticketCategory = message.guild.channels.cache.get(db.categoryID)
@@ -46,7 +46,7 @@ module.exports = class extends Command {
   let reason = args.slice(0).join(" ");
 
   if(db.requireReason == "true"){
-  if (!reason) return message.channel.send(new Discord.MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${message.client.emoji.fail} Please provide a reason`).setFooter('https://pogy.xyz').setTimestamp().setColor('RED'));
+  if (!reason) return message.channel.send({embeds:[new discord.MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${message.client.emoji.fail} Please provide a reason`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
   }
 
 
@@ -71,7 +71,7 @@ let arraylength = array.length
       if(arraylength > ticketlimit || arraylength == ticketlimit) {
 
         message.react(client.emoji.fail)
-        return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(`You already have ${arraylength} open tickets, as the current guild's ticket limit is ${ticketlimit} `).setAuthor(message.author.tag, message.author.displayAvatarURL()).setFooter('https://pogy.xyz')).then(m => m.delete({timeout: 5000}))
+        return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(`You already have ${arraylength} open tickets, as the current guild's ticket limit is ${ticketlimit} `).setAuthor(message.author.tag, message.author.displayAvatarURL()).setFooter({text: 'https://pogy.xyz/'})]}).then(m => m.delete({timeout: 5000}))
       }
       
       message.react(client.emoji.check)
@@ -131,7 +131,7 @@ message.guild.channels.create(chann, { type: "text" })
 
         const embedLog = new discord.MessageEmbed()
       .setColor(color2)
-      .setFooter('https://pogy.xyz')
+      .setFooter({text: 'https://pogy.xyz/'})
       .setTitle(language.ticketNewTicketTitle)
       .setTimestamp()
       //.addField("Information" , `**User:** ${user}\n**Ticket Channel: **${chan.name}\n**Ticket:** #${serverCase}\n**Date:** ${moment(new Date()).format("dddd, MMMM Do YYYY")} `)
