@@ -1,9 +1,7 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require("../../models/economy.js")
-const mongoose = require("mongoose")
-const Discord = require("discord.js")
+ const Discord = require("discord.js")
 
 const Logging = require('../../database/schemas/logging.js')
 module.exports = class extends Command {
@@ -230,9 +228,9 @@ await logging.save().catch(()=>{})
 }
 } else {
   
-message.channel.send(new MessageEmbed()
+message.channel.send ({ embeds: [new MessageEmbed()
 .setDescription(`${client.emoji.fail} | ${language.unbanInvalidID}`)
-.setColor(client.color.red));
+.setColor(client.color.red)]});
 
 }
 
@@ -240,9 +238,9 @@ message.channel.send(new MessageEmbed()
 } else {
 
 
-message.channel.send(new MessageEmbed()
+message.channel.send ({ embeds: [new MessageEmbed()
 .setDescription(`${client.emoji.fail} | ${language.unbanInvalidID}`)
-.setColor(client.color.red));
+.setColor(client.color.red)]});
 
 }
   
@@ -252,9 +250,9 @@ message.channel.send(new MessageEmbed()
 
 const bannedUsers = await message.guild.fetchBans();
 const user = bannedUsers.get(id);
-if (!user) return message.channel.send( new MessageEmbed()
+if (!user) return message.channel.send ({ embeds: [new MessageEmbed()
 .setDescription(`${client.emoji.fail} | ${language.unbanInvalidID}`)
-.setColor(client.color.red));
+.setColor(client.color.red)]});
 
 let reason = args.slice(1).join(' ');
 if (!reason) reason = language.unbanNoReason;

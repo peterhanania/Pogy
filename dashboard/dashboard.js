@@ -9,7 +9,7 @@ const jsonconfig = require('../config.json');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const Strategy = require("passport-discord").Strategy;
-const premiumWeb = new Discord.WebhookClient(jsonconfig.webhook_id, jsonconfig.webhook_url);
+const premiumWeb = new Discord.WebhookClient({id: jsonconfig.webhook_id, url: jsonconfig.webhook_url});
 const config = require("../config");
 const ejs = require("ejs");
 
@@ -169,7 +169,7 @@ app.use(session({
       failureRedirect: "/",
     }), async (req, res) => {
 
-      const loginLogs = new Discord.WebhookClient(config.webhook_id, config.webhook_url);;
+      const loginLogs = new Discord.WebhookClient({  url: config.webhook_url});;
 
 
       try {
@@ -595,7 +595,7 @@ let embed;
 
 
 }
-member.send(new MessageEmbed().setColor('GREEN').setFooter(`Powered by https://pogy.xyz`).setTitle(`Application #${ticketID}`).setDescription(`Hey ${member.user.username}! Your form was Submitted and ready to be judged.\n\n**Form ID**: \`${ticketID}\`\n**Time:** ${moment(new Date()).format("dddd, MMMM Do YYYY HH:mm:ss")}`)).catch(()=>{});
+member.send ({ embeds: [new MessageEmbed().setColor('GREEN').setFooter(`Powered by https://pogy.xyz`).setTitle(`Application #${ticketID}`).setDescription(`Hey ${member.user.username}! Your form was Submitted and ready to be judged.\n\n**Form ID**: \`${ticketID}\`\n**Time:** ${moment(new Date()).format("dddd, MMMM Do YYYY HH:mm:ss")}`)]}).catch(()=>{});
 
 await form.save().catch(()=>{})
 channel.send(embed)

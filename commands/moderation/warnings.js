@@ -2,7 +2,6 @@ const Command = require('../../structures/Command');
 const Discord = require("discord.js")
 const moment = require("moment")
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require('../../models/economy.js');
 const { MessageEmbed } = require('discord.js');
 const warnModel = require('../../models/moderation.js');
 const mongoose = require('mongoose');
@@ -74,7 +73,7 @@ module.exports = class extends Command {
                 .setAuthor(message.author.tag, message.author.avatarURL())
                 .setDescription(`${message.client.emoji.fail} | **${mentionedMember.user.tag}** ${language.warningsNoError}`)
                 .setTimestamp(message.createdAt)
-                .setColor(client.color.red))
+                .setColor(client.color.red)]})
         }
     
         const data = []

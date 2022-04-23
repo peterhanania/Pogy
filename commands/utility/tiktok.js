@@ -68,10 +68,10 @@ module.exports = class extends Command {
   } 
   catch (error) {
     console.log(error)
- message.channel.send(new MessageEmbed()
+ message.channel.send ({ embeds: [new MessageEmbed()
       .setColor('#FF0000')
       .setDescription(`${language.tiktok10} **${args[0]}**`)
-      .setFooter(`${language.tiktok9} ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true })));
+      .setFooter(`${language.tiktok9} ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))]});
  
 }
    

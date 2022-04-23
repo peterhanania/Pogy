@@ -69,18 +69,18 @@ let client = message.client
 
  
       if (args.includes('disable') || args.includes('off') ) {
-    if(!message.member.permissions.has("MANAGE_CHANNELS")) return message.channel.send( new MessageEmbed()
+    if(!message.member.permissions.has("MANAGE_CHANNELS")) return message.channel.send ({ embeds: [new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} ${language.missingUser} `)
     .setDescription(`${language.tempvc2}`)
     .setTimestamp()
-    .setFooter({text: 'https://pogy.xyz/'}))
+    .setFooter({text: 'https://pogy.xyz/'})]})
     .setColor(message.guild.me.displayHexColor);
 
-        if(!vcDB.channelID || !vcDB.categoryID || !vcDB.guildId ||!vcDB.channelID === null) return message.channel.send( new MessageEmbed()
+        if(!vcDB.channelID || !vcDB.categoryID || !vcDB.guildId ||!vcDB.channelID === null) return message.channel.send ({ embeds: [new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
         .setDescription(`${message.client.emoji.fail} ${language.tempvc3}`)
-        .setFooter({text: 'https://pogy.xyz/'}));
+        .setFooter({text: 'https://pogy.xyz/'})]});
         await Vc.findOne({
           guildId: message.guild.id
       }, async (err, guild) => {
@@ -110,19 +110,19 @@ let client = message.client
         }
           
   
-          return message.channel.send( new MessageEmbed()
+          return message.channel.send ({ embeds: [new MessageEmbed()
           .setColor(message.guild.me.displayHexColor)
           .setDescription(`${message.client.emoji.success} ${language.tempvc4}`)
-          .setFooter({text: 'https://pogy.xyz/'})); 
+          .setFooter({text: 'https://pogy.xyz/'})]}); 
         });
         return;
       } else if (args.includes('enable') || args.includes('on') ) {
-    if(!message.member.permissions.has("MANAGE_CHANNELS")) return message.channel.send( new MessageEmbed()
+    if(!message.member.permissions.has("MANAGE_CHANNELS")) return message.channel.send ({ embeds: [new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} ${language.missingUser} `)
     .setDescription(`${language.tempvc2}`)
     .setTimestamp()
-    .setFooter({text: 'https://pogy.xyz/'}))
+    .setFooter({text: 'https://pogy.xyz/'})]})
     .setColor(message.guild.me.displayHexColor);
 
      
@@ -268,7 +268,7 @@ return;
   }, 2000)
 } catch {
 
-    message.channel.send(new MessageEmbed().setDescription(`${language.tempvc16}`).setColor(`RED`));
+    message.channel.send ({ embeds: [new MessageEmbed().setDescription(`${language.tempvc16}`).setColor(`RED`)]});
   await Vc.findOne({
         guildId: message.guild.id
     }, async (err, guild) => {

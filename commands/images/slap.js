@@ -83,7 +83,7 @@ member = message.member;
             }
             
                 } catch (err) {
-           message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.blue).setDescription(language.slapError))
+           message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.blue).setDescription(language.slapError)]})
               };
 
 

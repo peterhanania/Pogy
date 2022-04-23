@@ -24,9 +24,9 @@ module.exports = class extends Command {
       
 
       if (args.length < 1) {
-        return message.channel.send( new Discord.MessageEmbed()
+        return message.channel.send ({ embeds: [new discord.MessageEmbed()
 .setColor(message.client.color.blue)
-.setDescription(`${message.client.emoji.fail} ${language.define1}`));
+.setDescription(`${message.client.emoji.fail} ${language.define1}`)]});
       }
       
       let options = {
@@ -39,9 +39,9 @@ module.exports = class extends Command {
       response = response.list[0];
     
       if (!response) {
-        return message.channel.send( new Discord.MessageEmbed()
+        return message.channel.send ({ embeds: [new discord.MessageEmbed()
 .setColor(message.client.color.blue)
-.setDescription(`${message.client.emoji.fail} ${language.define2}`));
+.setDescription(`${message.client.emoji.fail} ${language.define2}`)]});
       }
     
     

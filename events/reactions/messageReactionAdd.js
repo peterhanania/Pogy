@@ -386,10 +386,10 @@ if(chan){
     .setColor(color)
     );
 
-    chan.send(new MessageEmbed()
+    chan.send ({ embeds: [new MessageEmbed()
     .setDescription(`Please use \`${prefix}close\` to close the ticket.`)
     .setColor(message.client.color.red)
-    .setFooter({text: 'https://pogy.xyz/'}))
+    .setFooter({text: 'https://pogy.xyz/'})]})
     .setTimestamp()
 
    

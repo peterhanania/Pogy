@@ -29,21 +29,21 @@ module.exports = class extends Command {
       const language = require(`../../data/language/${guildDB.language}.json`)
       const namee = args[0];
 
-      if (!namee) return message.channel.send( new MessageEmbed()
+      if (!namee) return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setDescription(`${language.properusage} \`${prefix}customcommand <command-name> <text-reply>\`\n\n${language.example} \`${prefix}customcommand ping pong\``)
       .setTimestamp()
       .setFooter({text: 'https://pogy.xyz/'})
-      .setColor(message.guild.me.displayHexColor);
+      .setColor(message.guild.me.displayHexColor)]});
 
       let name = namee.toLowerCase()
       const content = args.slice(1).join(' ');
-      if (!content) return message.channel.send( new MessageEmbed()
+      if (!content) return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setDescription(`${language.properusage} \`${prefix}customcommand <command-name> <text-reply>\`\n\n${language.example} \`${prefix}customcommand ping pong\``)
       .setTimestamp()
       .setFooter({text: 'https://pogy.xyz/'})
-      .setColor(message.guild.me.displayHexColor);
+      .setColor(message.guild.me.displayHexColor)]});
 
   
       if (namee.length > 30) return message.channel.send(`${message.client.emoji.fail} ${language.cc1}`);
@@ -58,7 +58,7 @@ if(guildDB.isPremium === "false"){
 const results = await customCommand.find(conditional)
 
 if(results.length >= 10){
-message.channel.send(new MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} custom Command Limit Reached **(10)**\n\n[Upgrade Premium Here for unlimited commands](https://pogy.xyz/premium)`))
+message.channel.send ({ embeds: [new MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} custom Command Limit Reached **(10)**\n\n[Upgrade Premium Here for unlimited commands](https://pogy.xyz/premium)`)]})
 
   return;
 }
@@ -70,12 +70,12 @@ message.channel.send(new MessageEmbed().setColor(message.guild.me.displayHexColo
       }, async(err, data) => {
         if (!data) {
           customCommand.create({ guildId: message.guild.id, name, content });
-          message.channel.send( new MessageEmbed()
+          message.channel.send ({ embeds: [new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setDescription(`**${language.cc3}** ${name}\n\nDelete the following command using \`${prefix}deletecommand <command-name>\``)
     .setTimestamp()
     .setFooter({text: 'https://pogy.xyz/'})
-    .setColor(message.guild.me.displayHexColor)
+    .setColor(message.guild.me.displayHexColor)]})
         } 
         else {
           return message.channel.send(`${message.client.emoji.fail} ${language.cc4}`)

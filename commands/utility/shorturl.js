@@ -159,9 +159,9 @@ let rgx =  /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\
     ];
 
 
-if(!link) return  message.channel.send( new discord.MessageEmbed()
+if(!link) return message.channel.send ({ embeds: [new discord.MessageEmbed()
   .setDescription(`${message.client.emoji.fail} | ${language.shortUrlError}`)
-  .setColor(message.client.color.red));
+  .setColor(message.client.color.red)]});
 
   if(link.includes("porn") || ipLoggers.includes(link) || link.includes("sex") || link.includes("grabify") || link.includes("iplogger") || link.includes("2no") || link.includes("yip") || link.includes("iplis")|| link.includes("02ip") || link.includes("ezstat") || link.includes("logger")) return message.channel.send(`${message.author} ${language.shorturlBlock1}`) +       talkedRecently.add(message.author.id);
   setTimeout(() => {
@@ -171,13 +171,13 @@ if(!link) return  message.channel.send( new discord.MessageEmbed()
 
 
 if(!rgx.test(args[0]))
-return message.channel.send( new discord.MessageEmbed()
+return message.channel.send ({ embeds: [new discord.MessageEmbed()
   .setDescription(`${message.client.emoji.fail} | ${language.shortUrlError}`)
-  .setColor(message.client.color.red));
+  .setColor(message.client.color.red)]});
 
 
 await ShortUrl.create({ full: link, short: kaka, guildID:message.guild.id, memberID:message.author.id})
-message.channel.send({embeds:[new discord.MessageEmbed().setDescription(`${language.urlCreated}\n\n**Short Url:** [https://pogy.xyz/url/${kaka}](https://pogy.xyz/url/${kaka})\n**Full url:** ${args[0]}\n\n**Please note that by making urls you abide by our [policy](https://pogy.xyz/url)**`).setColor(message.client.color.blue));
+message.channel.send({embeds:[new discord.MessageEmbed().setDescription(`${language.urlCreated}\n\n**Short Url:** [https://pogy.xyz/url/${kaka}](https://pogy.xyz/url/${kaka})\n**Full url:** ${args[0]}\n\n**Please note that by making urls you abide by our [policy](https://pogy.xyz/url)**`).setColor(message.client.color.blue)]});
    
           }
 }

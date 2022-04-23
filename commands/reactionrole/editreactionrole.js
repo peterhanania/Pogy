@@ -40,31 +40,31 @@ module.exports = class extends Command {
 
 
        let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.guild.channels.cache.find(ch => ch.name === args[0])
-    if (!channel) return message.channel.send(new MessageEmbed()
+    if (!channel) return message.channel.send ({ embeds: [new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Provide me with a valid Channel`)
-  .setFooter({text: 'https://pogy.xyz/'}))
+  .setFooter({text: 'https://pogy.xyz/'})]})
    .setColor(client.color.red);
     
     let ID = args[1]
-    if(!ID) return message.channel.send(new MessageEmbed()
+    if(!ID) return message.channel.send ({ embeds: [new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Provide me with a valid message ID`)
-  .setFooter({text: 'https://pogy.xyz/'}))
+  .setFooter({text: 'https://pogy.xyz/'})]})
     ;
     let messageID = await channel.messages.fetch(ID).catch(() => { 
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send ({ embeds: [new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} I could not find the following ID`)
   .setFooter({text: 'https://pogy.xyz/'})
-   .setColor(client.color.red))
+   .setColor(client.color.red)]})
     })
        let role = message.mentions.roles.first() || message.guild.roles.cache.get(args[2]) || message.guild.roles.cache.find(rl => rl.name === args[2])
-    if (!role) return message.channel.send(new MessageEmbed()
+    if (!role) return message.channel.send ({ embeds: [new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Provide me with a valid Role`)
   .setFooter({text: 'https://pogy.xyz/'})
-   .setColor(client.color.red));
+   .setColor(client.color.red)]});
 
         if(role.managed){
       return message.channel.send(`${message.client.emoji.fail} Please do not use a integration role.`)
@@ -77,7 +77,7 @@ module.exports = class extends Command {
 
     await react.reactionEdit(client, message.guild.id , ID, role.id, emoji);
     
-                message.channel.send(new MessageEmbed()
+                message.channel.send ({ embeds: [new MessageEmbed()
                 .setAuthor('Reaction Roles Edit', message.guild.iconURL(),messageID.url)
                 .setColor(client.color.green)
                 .addField('Channel', channel, true)
@@ -86,7 +86,7 @@ module.exports = class extends Command {
                 .addField('Message ID', ID, true)
                 .addField('Message', `[Jump To Message](${messageID.url})`, true)
                 .addField('Role', role, true)
-                .setFooter({text: 'https://pogy.xyz/'}))
+                .setFooter({text: 'https://pogy.xyz/'})]})
 
 
         function isCustomEmoji(emoji) {

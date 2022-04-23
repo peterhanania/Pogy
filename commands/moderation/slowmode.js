@@ -1,8 +1,7 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require("../../models/economy.js")
-const mongoose = require("mongoose")
+ const mongoose = require("mongoose")
 const Logging = require('../../database/schemas/logging.js')
 
 module.exports = class extends Command {
@@ -62,45 +61,45 @@ const language = require(`../../data/language/${guildDB.language}.json`)
       index--;
     }
 
-    if (channel.type != 'GUILD_TEXT' || !channel.viewable) return message.channel.send( new MessageEmbed()
+    if (channel.type != 'GUILD_TEXT' || !channel.viewable) return message.channel.send ({ embeds: [new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} Slow Mode Error`)
     .setDescription(`I can't view the provided channel`)
     .setTimestamp()
     .setFooter({text: 'https://pogy.xyz/'})
-    .setColor(message.guild.me.displayHexColor));
+    .setColor(message.guild.me.displayHexColor)]});
       
     const rate = args[index];
-    if (!rate || rate < 0 || rate > 59) return message.channel.send( new MessageEmbed()
+    if (!rate || rate < 0 || rate > 59) return message.channel.send ({ embeds: [new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} Slow Mode Error`)
     .setDescription(` Please provide a rate limit between 0 and 59 seconds`)
     .setTimestamp()
     .setFooter({text: 'https://pogy.xyz/'})
-    .setColor(message.guild.me.displayHexColor));
+    .setColor(message.guild.me.displayHexColor)]});
     
   
     const number =  parseInt(rate);
     if(isNaN(number)){
-      return message.channel.send( new MessageEmbed()
+      return message.channel.send ({ embeds: [new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} Slow Mode Error`)
     .setDescription(` Please provide a rate limit between 0 and 59 seconds`)
     .setTimestamp()
     .setFooter({text: 'https://pogy.xyz/'})
-    .setColor(message.guild.me.displayHexColor));
+    .setColor(message.guild.me.displayHexColor)]});
     };
 
 
 
     if (!channel.permissionsFor(message.guild.me).has(['MANAGE_CHANNELS']))
-      return message.channel.send( new MessageEmbed()
+      return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Slow Mode Error`)
       .setDescription(` Please make sure I have the **Manage Channels** Permission`)
       .setTimestamp()
       .setFooter({text: 'https://pogy.xyz/'})
-      .setColor(message.guild.me.displayHexColor));
+      .setColor(message.guild.me.displayHexColor)]});
 
     let reason = args.slice(index + 1).join(' ');
     if (!reason) reason = 'No Reason was Provided';
@@ -115,10 +114,10 @@ const language = require(`../../data/language/${guildDB.language}.json`)
       .setColor('GREEN');
 
     if (rate === '0') {
-      message.channel.send(new MessageEmbed()
+      message.channel.send ({ embeds: [new MessageEmbed()
         .setDescription(`${success} Slow Mode was successfuly disabled${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
         .setColor(message.guild.me.displayHexColor)
-      ).then(async(s)=>{
+      ]}).then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
             s.delete().catch(()=>{})
@@ -130,10 +129,10 @@ const language = require(`../../data/language/${guildDB.language}.json`)
 
     } else {
 
-      message.channel.send(new MessageEmbed()
+      message.channel.send ({ embeds: [new MessageEmbed()
         .setDescription(`${success} | Slow Mode was successfuly enabled to **1 msg /${rate}s** ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
         .setColor(message.guild.me.displayHexColor)
-      ).then(async(s)=>{
+      ]}).then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
             s.delete().catch(()=>{})

@@ -27,9 +27,9 @@ module.exports = class extends Command {
         guildId: message.guild.id
       });
   
-   if (!message.channel.name.startsWith('ticket-')) return message.channel.send(new MessageEmbed().setColor('PURPLE').setTitle('Close a ticket').setDescription(`Unable to close ticket, it seems like you aren't in any ticket channel.`)
+   if (!message.channel.name.startsWith('ticket-')) return message.channel.send ({ embeds: [new MessageEmbed().setColor('PURPLE').setTitle('Close a ticket').setDescription(`Unable to close ticket, it seems like you aren't in any ticket channel.`)
         .setFooter({text: 'https://pogy.xyz/'})
-        .setTimestamp()).then(m => {
+        .setTimestamp()]}).then(m => {
           message.delete().catch(()=>{})
         setTimeout(() => {
             m.delete().catch(()=>{})

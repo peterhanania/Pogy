@@ -89,13 +89,13 @@ const success = client.emoji.success;
 
    const amount = parseInt(args[1]);
     if (isNaN(amount) === true || !amount || amount < 0 || amount > 100)
-      return message.channel.send( new MessageEmbed()
+      return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Warn Purge Error`)
       .setDescription(`Please Provide a message count between 1 - 100 messages`)
       .setTimestamp()
       .setFooter({text: 'https://pogy.xyz/'})
-      .setColor(message.guild.me.displayHexColor));
+      .setColor(message.guild.me.displayHexColor)]});
 
     let reason = args.slice(2).join(' ');
     if (!reason) reason = 'No Reason Provided';
@@ -194,10 +194,10 @@ await message.guild.members.unban(mentionedMember.user, `Auto Punish / ${languag
             dmEmbed = `${message.client.emoji.fail} You've been ${action} from **${message.guild.name}**\n__(Auto Punish Triggered)__\n\n**Warn Count:** ${warnDoc.warnings.length}`
             };
 
-            mentionedMember.send(new MessageEmbed()
+            mentionedMember.send ({ embeds: [new MessageEmbed()
             .setColor(message.client.color.red)
             .setDescription(dmEmbed)
-            )
+            ]})
           }
 
         }

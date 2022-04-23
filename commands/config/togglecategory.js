@@ -77,15 +77,16 @@ module.exports = class extends Command {
       .setAuthor(message.author.tag, message.guild.iconURL({ dynamic: true }))
       .setDescription(description)
       .addField('Disabled Commands', disabledd, true)
-      .setFooter({text: 'https://pogy.xyz/'}))
+      .setFooter({text: 'https://pogy.xyz/'})
       .setTimestamp()
       .setColor(message.client.color.green);
+
     message.channel.send({embeds: [embed]}).catch(()=>{
                const errorEmbed = new discord.MessageEmbed()
       .setAuthor(message.author.tag, message.guild.iconURL({ dynamic: true }))
       .setDescription(description)
       .addField('Disabled Commands', `[Too Large to Display]`, true)
-      .setFooter({text: 'https://pogy.xyz/'}))
+      .setFooter({text: 'https://pogy.xyz/'})
       .setTimestamp()
       .setColor(message.client.color.green);
       message.channel.send(errorEmbed).catch(()=>{})

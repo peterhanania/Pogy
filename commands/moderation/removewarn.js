@@ -1,8 +1,7 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require("../../models/economy.js")
-const warnModel = require("../../models/moderation.js")
+ const warnModel = require("../../models/moderation.js")
 const mongoose = require("mongoose")
 const Logging = require('../../database/schemas/logging.js')
 const discord = require("discord.js")

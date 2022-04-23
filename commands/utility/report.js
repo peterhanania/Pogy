@@ -47,47 +47,47 @@ if(reportColor == '#000000') reportColor = message.guild.me.displayHexColor
 
  
       if (args.includes('disable') || args.includes('off')) {
-    if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send( new MessageEmbed()
+    if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send ({ embeds: [new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} ${language.missingUser}`)
     .setDescription(`${language.missingUser1}`)
     .setTimestamp()
-    .setFooter({text: 'https://pogy.xyz/'}))
+    .setFooter({text: 'https://pogy.xyz/'})]})
     .setColor(message.guild.me.displayHexColor);
 
-        if(guildDB.report.reportChannelID === null) return message.channel.send( new MessageEmbed()
+        if(guildDB.report.reportChannelID === null) return message.channel.send ({ embeds: [new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
         .setDescription(`${message.client.emoji.fail} ${language.report4}`)
-        .setFooter({text: 'https://pogy.xyz/'}));
+        .setFooter({text: 'https://pogy.xyz/'})]});
         await Guild.findOne({
           guildId: message.guild.id
       }, async (err, guild) => {
           guild.report.reportChannelID = null
           await guild.save().catch(()=>{})
   
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send ({ embeds: [new MessageEmbed()
           .setColor(message.guild.me.displayHexColor)
           .setDescription(`${message.client.emoji.success} ${language.report5}`)
-          .setFooter({text: 'https://pogy.xyz/'}))
+          .setFooter({text: 'https://pogy.xyz/'})]})
         return;
       })
     }
       else if(args.includes('enable')) {
-    if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send( new MessageEmbed()
+    if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send({embeds: [new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} ${language.missingUser}`)
     .setDescription(`${language.missingUser1}`)
     .setTimestamp()
-    .setFooter({text: 'https://pogy.xyz/'}))
+    .setFooter({text: 'https://pogy.xyz/'})]})
     .setColor(message.guild.me.displayHexColor);
 
       const channel = await message.mentions.channels.first();
 
       if (!channel)  return message.channel.send(properUsage)
-    if(guildDB.report.reportChannelID === channel.id) return message.channel.send( new MessageEmbed()
+    if(guildDB.report.reportChannelID === channel.id) return message.channel.send({ embeds: [ new MessageEmbed()
           .setColor(message.guild.me.displayHexColor)
           .setDescription(`${fail} ${channel} ${language.report6}`)
-          .setFooter({text: 'https://pogy.xyz/'})); 
+          .setFooter({text: 'https://pogy.xyz/'})]}); 
       await Guild.findOne({
         guildId: message.guild.id
     }, async (err, guild) => {
@@ -95,9 +95,9 @@ if(reportColor == '#000000') reportColor = message.guild.me.displayHexColor
           await guild.save().catch(()=>{})
   
 
-        return message.channel.send( new MessageEmbed()
+        return message.channel.send ({ embeds: [new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`${message.client.emoji.success} ${language.report7} ${channel}`)); 
+        .setDescription(`${message.client.emoji.success} ${language.report7} ${channel}`)]}); 
       });
     } else if (args.includes('issue')){
 
@@ -110,15 +110,15 @@ return message.channel.send({embeds: [embed]});
 }
 const serverReports = guildDB.report.reportChannelID;
 const channel = message.guild.channels.cache.get(serverReports);
-if(!channel) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report11}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED'));
+if(!channel) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report11}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
 
  var acceptReason = args.splice(1).join(' ');
- if(!acceptReason) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report12}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED'));
+ if(!acceptReason) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report12}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
-if(acceptReason.length < 5) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report13}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED'));
+if(acceptReason.length < 5) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report13}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
-   if(acceptReason.length > 600 || args.join(' ').length > 600) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report14}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED'));
+   if(acceptReason.length > 600 || args.join(' ').length > 600) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report14}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
 
 let dmEmbed = new MessageEmbed()
@@ -184,29 +184,29 @@ message.author.send(dmEmbed).catch(()=>{})
       
     } else if(args.includes('user')){
  if(guildDB.report.disableUser == "true"){
-message.channel.send( new MessageEmbed()
+message.channel.send ({ embeds: [new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`User Reports are disabled in the current guild ${message.client.emoji.fail}`)); 
+        .setDescription(`User Reports are disabled in the current guild ${message.client.emoji.fail}`)]}); 
   return;
 }     
 if(!user) return message.channel.send(properUsage)
-if(user.id === message.author.id) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report8}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED'));
+if(user.id === message.author.id) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report8}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
-if(user.bot) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report9}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED'));
+if(user.bot) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report9}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
-if(!guildDB.report.reportChannelID || !guildDB.report.reportChannelID === null) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report10}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED'));
+if(!guildDB.report.reportChannelID || !guildDB.report.reportChannelID === null) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report10}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
 let serverReports = guildDB.report.reportChannelID
 let channel = message.guild.channels.cache.get(serverReports)
-if(!channel) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report11}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED'));
+if(!channel) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report11}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
 
  var acceptReason = args.splice(2).join(' ');
- if(!acceptReason) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report12}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED'));
+ if(!acceptReason) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report12}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
-if(acceptReason.length < 5) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report13}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED'));
+if(acceptReason.length < 5) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report13}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
-   if(acceptReason.length > 600 || args.join(' ').length > 600) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report14}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED'));
+   if(acceptReason.length > 600 || args.join(' ').length > 600) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.report14}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
 
 let dmEmbed = new MessageEmbed()

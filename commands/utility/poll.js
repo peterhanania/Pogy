@@ -96,7 +96,7 @@ let msg = await message.channel.send({ embed: embed }).catch(() => {});
 if(msg){
 msg.delete().catch(()=>{})
 }
-message.channel.send(new MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} Slow down here, timed polls is only for premium guilds.\n\n[Check Premium Here](https://pogy.xyz/premium)`))
+message.channel.send ({ embeds: [new MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} Slow down here, timed polls is only for premium guilds.\n\n[Check Premium Here](https://pogy.xyz/premium)`)]})
             return;
           }
            

@@ -1,8 +1,7 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require("../../models/economy.js")
-const mongoose = require("mongoose")
+ const mongoose = require("mongoose")
 const Logging = require('../../database/schemas/logging.js')
 
 module.exports = class extends Command {

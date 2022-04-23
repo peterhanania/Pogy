@@ -35,7 +35,7 @@ module.exports = class extends Command {
       const prefix = guildDB.prefix;
 
       if(guildDB.isPremium == "false"){
-      return message.channel.send(new MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${fail} Slow down here, the current command is only for premium guilds.\n\n[Check Premium Here](https://pogy.xyz/premium)`))}
+      return message.channel.send ({ embeds: [new MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${fail} Slow down here, the current command is only for premium guilds.\n\n[Check Premium Here](https://pogy.xyz/premium)`)]})}
 
   const missingPermEmbed = new MessageEmbed()
   .setAuthor(`Missing User Permissions`, message.author.displayAvatarURL())
@@ -58,10 +58,10 @@ module.exports = class extends Command {
       await Guild.findOne({
         guildId: message.guild.id
     }, async (err, guild) => {
- if(guild.reactionDM === false) return message.channel.send(new MessageEmbed()
+ if(guild.reactionDM === false) return message.channel.send ({ embeds: [new MessageEmbed()
    .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} DMs are already disabled`)
-  .setFooter({text: 'https://pogy.xyz/'}))
+  .setFooter({text: 'https://pogy.xyz/'})]})
    .setColor(client.color.red)
  
         guild.updateOne({
@@ -69,11 +69,11 @@ module.exports = class extends Command {
         })
         .catch(err => console.error(err));
       })
-message.channel.send(new MessageEmbed()
+message.channel.send ({ embeds: [new MessageEmbed()
    .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${success} Reaction Role DMs have been disabled!`)
   .setFooter({text: 'https://pogy.xyz/'})
-   .setColor(client.color.red))
+   .setColor(client.color.red)]})
     
       } else if (args.includes('enable') || args.includes('on')) {
 
@@ -82,22 +82,22 @@ message.channel.send(new MessageEmbed()
         guildId: message.guild.id
     }, async (err, guild) => {
 
- if(guild.reactionDM === true) return message.channel.send(new MessageEmbed()
+ if(guild.reactionDM === true) return message.channel.send ({ embeds: [new MessageEmbed()
    .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} DMs are already enabled`)
   .setFooter({text: 'https://pogy.xyz/'})
-   .setColor(client.color.red))
+   .setColor(client.color.red)]})
         guild.updateOne({
           reactionDM: true
         })
         .catch(err => console.error(err));
 
  
-message.channel.send(new MessageEmbed()
+message.channel.send ({ embeds: [new MessageEmbed()
    .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${success} Reaction Role DMs have been enabled!`)
   .setFooter({text: 'https://pogy.xyz/'})
-   .setColor(client.color.red))
+   .setColor(client.color.red)]})
       })
     } else if(args[0]) {
      message.channel.send(properUsage) 
