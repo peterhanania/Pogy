@@ -23,6 +23,6 @@ module.exports = class extends Command {
         .setColor(message.guild.me.displayHexColor)
         .setDescription(`${language.invite}(https://pogy.xyz/invite) ${message.client.emoji.success}`);
 
-      await message.channel.send(embed)  
+      await message.channel.send({embeds: [embed]})  
     }
 };

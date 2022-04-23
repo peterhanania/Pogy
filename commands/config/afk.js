@@ -57,7 +57,7 @@ module.exports = class extends Command {
           .setDescription(`${language.afk5} ${content}`)
           .setColor(message.guild.me.displayHexColor)
           .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic : true }))
-          message.channel.send(embed)
+          message.channel.send({embeds: [embed]})
         newafk.save().catch((err) => console.error(err));
     }
     }

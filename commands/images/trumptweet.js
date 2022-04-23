@@ -24,7 +24,7 @@ module.exports = class extends Command {
     
       const language = require(`../../data/language/${guildDB.language}.json`)
     
-    if (!args[0]) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(`${client.emoji.fail} ${language.changeErrorValid}`));
+    if (!args[0]) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(`${client.emoji.fail} ${language.changeErrorValid}`)]});
     
         let tweet = message.content.slice(message.content.indexOf(args[0]), message.content.length);
         if (tweet.length > 68) tweet = tweet.slice(0, 65) + '...';
@@ -38,7 +38,7 @@ module.exports = class extends Command {
             .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
             .setTimestamp()
             .setColor(client.color.blue);
-          message.channel.send(embed);
+          message.channel.send({embeds: [embed]});
         } catch (err) {
           console.log(`error: ${err}, command name: Trump Tweet`)
             message.reply(language.trumpError)

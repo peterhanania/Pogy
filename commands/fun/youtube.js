@@ -45,7 +45,7 @@ module.exports = class extends Command {
             .setColor('#FF1CA4');
             
           if (message.channel.nsfw) embed.setImage(result.thumbnails.high.url);
-          message.channel.send(embed).catch(() => {});
+          message.channel.send({embeds: [embed]}).catch(() => {});
 
     }
 };

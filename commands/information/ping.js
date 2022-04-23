@@ -28,7 +28,7 @@ module.exports = class extends Command {
       .setColor(message.guild.me.displayHexColor)  
       .setFooter(`Shard #${message.guild.shardID}`);
 
-    const msg = await message.channel.send(embed);
+    const msg = await message.channel.send({embeds: [embed]});
 
 const latency = msg.createdTimestamp - message.createdTimestamp;
 

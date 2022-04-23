@@ -85,7 +85,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
      
 
       } else if(args && args.join(" ").toLowerCase() == "alt detector"  || args && args[0].toLowerCase() == "alt"){
@@ -102,7 +102,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       } else if(args && args[0].toLowerCase() == "owner"){
 
@@ -122,7 +122,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       } else if(args && args[0].toLowerCase() == "applications"  || args && args[0].toLowerCase() == "apps"){
 
@@ -141,7 +141,7 @@ embed.addField(
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
       
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
         } else if(args && args[0].toLowerCase() == "config"  || args && args[0].toLowerCase() == "configuration"){
@@ -159,7 +159,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       } else if(args && args[0].toLowerCase() == "utility"  || args && args[0].toLowerCase() == "utils"){
 
@@ -176,7 +176,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
       } else if(args && args[0].toLowerCase() == "economy"  || args && args[0].toLowerCase() == "currency"){
@@ -194,7 +194,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
         } else if(args && args[0].toLowerCase() == "fun"){
@@ -212,7 +212,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
         } else if(args && args[0].toLowerCase() == "images"  || args && args[0].toLowerCase() == "image"){
@@ -230,7 +230,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
       } else if(args && args[0].toLowerCase() == "information"  || args && args[0].toLowerCase() == "info"){
@@ -247,7 +247,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
         } else if(args && args[0].toLowerCase() == "moderation"  || args && args[0].toLowerCase() == "mod"){
 
@@ -262,7 +262,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
         } else if(args && args[0].toLowerCase() == "nsfw"){
@@ -281,7 +281,7 @@ embed.addField(
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
       if(!message.channel.nsfw) embed.setDescription(`The following Menu only belongs to NSFW Channels 👀`)
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       } else if(args && args.slice(0).join(" ").toLowerCase() == "reaction role" || args && args[0].toLowerCase() == "rr"){
 
@@ -299,7 +299,7 @@ embed.addField(
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
       
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
         } else if(args && args[0].toLowerCase() == "tickets" || args && args[0].toLowerCase() == "ticketing"){
 
@@ -316,7 +316,7 @@ embed.addField(
         embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
         embed.setTimestamp()
 
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
       
@@ -346,7 +346,7 @@ embed.addField(
         if(cmd.examples && cmd.examples.length) embed.addField('__**Examples**__', cmd.examples.map(example => `<:purple:826033456207233045> \`${example}\``).join('\n'))
   
         
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
        
       }
     }

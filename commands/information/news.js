@@ -36,10 +36,10 @@ module.exports = class extends Command {
       .setColor(message.guild.me.displayHexColor)
       .setTitle(`Pogy News`)
       .setDescription(`***__${language.datePublished}__ ${moment(guildDB.time).format("dddd, MMMM Do YYYY")}*** *__[\`(${moment(guildDB.time).fromNow()})\`](https://pogy.xyz)__*\n\n ${guildDB.news}`)
-      .setFooter('https://pogy.xyz')
+      .setFooter({text: 'https://pogy.xyz/'})
       .setTimestamp();
 
-      message.channel.send(embed).catch(() => {
+      message.channel.send({embeds: [embed]}).catch(() => {
         message.channel.send(`${language.noNews}`)
       });
     

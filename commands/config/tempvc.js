@@ -61,7 +61,7 @@ let client = message.client
       let properUsage = new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
         .setDescription(`${language.tempvc1.replace(/{prefix}/g, `${prefix}`)}`)
-        .setFooter('https://pogy.xyz')
+        .setFooter({text: 'https://pogy.xyz/'})
 
       if (args.length < 1) {
         return message.channel.send(properUsage);
@@ -69,18 +69,18 @@ let client = message.client
 
  
       if (args.includes('disable') || args.includes('off') ) {
-    if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send( new MessageEmbed()
+    if(!message.member.permissions.has("MANAGE_CHANNELS")) return message.channel.send ({ embeds: [new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} ${language.missingUser} `)
     .setDescription(`${language.tempvc2}`)
     .setTimestamp()
-    .setFooter('https://pogy.xyz')
-    .setColor(message.guild.me.displayHexColor));
+    .setFooter({text: 'https://pogy.xyz/'})]})
+    .setColor(message.guild.me.displayHexColor);
 
-        if(!vcDB.channelID || !vcDB.categoryID || !vcDB.guildId ||!vcDB.channelID === null) return message.channel.send( new MessageEmbed()
+        if(!vcDB.channelID || !vcDB.categoryID || !vcDB.guildId ||!vcDB.channelID === null) return message.channel.send ({ embeds: [new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
         .setDescription(`${message.client.emoji.fail} ${language.tempvc3}`)
-        .setFooter('https://pogy.xyz'));
+        .setFooter({text: 'https://pogy.xyz/'})]});
         await Vc.findOne({
           guildId: message.guild.id
       }, async (err, guild) => {
@@ -110,20 +110,20 @@ let client = message.client
         }
           
   
-          return message.channel.send( new MessageEmbed()
+          return message.channel.send ({ embeds: [new MessageEmbed()
           .setColor(message.guild.me.displayHexColor)
           .setDescription(`${message.client.emoji.success} ${language.tempvc4}`)
-          .setFooter('https://pogy.xyz')); 
+          .setFooter({text: 'https://pogy.xyz/'})]}); 
         });
         return;
       } else if (args.includes('enable') || args.includes('on') ) {
-    if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send( new MessageEmbed()
+    if(!message.member.permissions.has("MANAGE_CHANNELS")) return message.channel.send ({ embeds: [new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} ${language.missingUser} `)
     .setDescription(`${language.tempvc2}`)
     .setTimestamp()
-    .setFooter('https://pogy.xyz')
-    .setColor(message.guild.me.displayHexColor));
+    .setFooter({text: 'https://pogy.xyz/'})]})
+    .setColor(message.guild.me.displayHexColor);
 
      
 try {
@@ -132,7 +132,7 @@ try {
   .setAuthor(`${language.tempvc5}`, `https://www.creeda.co.in/Images/loader.gif`)
   .setDescription(`\`${language.tempvc6}\``)
   .setColor(message.guild.me.displayHexColor);    
-  const msg = await message.channel.send(embed);
+  const msg = await message.channel.send({embeds: [embed]});
 
 
 
@@ -268,7 +268,7 @@ return;
   }, 2000)
 } catch {
 
-    message.channel.send(new MessageEmbed().setDescription(`${language.tempvc16}`).setColor(`RED`));
+    message.channel.send ({ embeds: [new MessageEmbed().setDescription(`${language.tempvc16}`).setColor(`RED`)]});
   await Vc.findOne({
         guildId: message.guild.id
     }, async (err, guild) => {

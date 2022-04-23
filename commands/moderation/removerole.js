@@ -1,8 +1,7 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require("../../models/economy.js")
-const mongoose = require("mongoose")
+ const mongoose = require("mongoose")
 const Logging = require('../../database/schemas/logging.js')
 
 module.exports = class extends Command {
@@ -58,21 +57,21 @@ const language = require(`../../data/language/${guildDB.language}.json`)
    let member = message.mentions.members.last() || message.guild.members.cache.get(args[0]);
 
      if (!member)
-      return message.channel.send( new MessageEmbed()
+      return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Remove Role Error`)
       .setDescription('Please provide a valid role')
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor)]});
     if (member.roles.highest.position >= message.member.roles.highest.position)
-      return message.channel.send( new MessageEmbed()
+      return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Remove Role Error`)
       .setDescription('The Provided user has an equal or higher role.')
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor)]});
 
       const role = getRoleFromMention(message, args[1]) || message.guild.roles.cache.get(args[1]) || message.guild.roles.cache.find(rl => rl.name.toLowerCase() === args.slice(1).join(' ').toLowerCase());
 
@@ -81,21 +80,21 @@ const language = require(`../../data/language/${guildDB.language}.json`)
     if (reason.length > 1024) reason = reason.slice(0, 1021) + '...';
     
     if (!role) 
-      return message.channel.send( new MessageEmbed()
+      return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Remove Role Error`)
       .setDescription('Please provide a valid role')
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor)]});
     else if (!member.roles.cache.has(role.id))
-      return message.channel.send( new MessageEmbed()
+      return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Remove Role Error`)
       .setDescription(`The provided user does not have the role.`)
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor)]});
     else {
       try {
 
@@ -104,7 +103,7 @@ const language = require(`../../data/language/${guildDB.language}.json`)
       
           .setDescription(` ${success} | Removed **${role.name}** from **${member.user.tag}**`)
           .setColor(message.guild.me.displayHexColor);
-        message.channel.send(embed)
+        message.channel.send({embeds: [embed]})
         .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
@@ -156,13 +155,13 @@ await logging.save().catch(()=>{})
 
       } catch (err) {
 
-        message.channel.send( new MessageEmbed()
+        message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Remove Role Error`)
       .setDescription(`Unable to remove the User's Role, please check the role hiarchy and make sure My role is above the provided user.`)
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor)]});
       }
     }  
     }

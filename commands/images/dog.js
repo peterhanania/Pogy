@@ -27,9 +27,9 @@ module.exports = class extends Command {
         const img = (await res.json()).message;
         const embed = new discord.MessageEmbed()
           .setImage(img)
-          .setFooter('/dog.ceo/api/breeds/image/random')
+          .setFooter({text :'/dog.ceo/api/breeds/image/random'})
           .setColor(message.guild.me.displayHexColor)
-        message.channel.send(embed);
+        message.channel.send({embeds: [embed]});
       } catch (err) {
       console.log(`${err}, command name: dog`)
        message.reply(language.birdError)

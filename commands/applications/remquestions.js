@@ -25,7 +25,7 @@ module.exports = class extends Command {
     
 
   let number = args[0]
-  if(!number || isNaN(number) || number === "0") return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.remquestion))
+  if(!number || isNaN(number) || number === "0") return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.remquestion)]})
   
   await app.findOne({
     guildID: message.guild.id
@@ -38,13 +38,13 @@ module.exports = class extends Command {
      appLogs: ' '
     })
     await newAppDB.save().catch((err) => {console.log(err)})
-    return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.remquestion))
+    return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.remquestion)]})
     }
     
     let questions = db.questions
     let num = Number(number) - 1
     
-    if(!questions[num]) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.remquestion))
+    if(!questions[num]) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.remquestion)]})
     
     questions.splice(num, 1)
     
@@ -52,7 +52,7 @@ module.exports = class extends Command {
       questions: questions
     })
     
-    return message.channel.send(new discord.MessageEmbed().setColor(client.color.green).setDescription(language.remquestionSuccess))
+    return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setDescription(language.remquestionSuccess)]})
   })
   }
 }

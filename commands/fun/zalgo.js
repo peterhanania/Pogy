@@ -26,7 +26,7 @@ module.exports = class extends Command {
 
           if(!args[0]) return message.channel.send(`${language.zalgolize}`)
 
-          message.channel.send(new discord.MessageEmbed().setColor(client.color.blue).setDescription(`\u180E${zalgo(args, 0.2, [10, 5, 10])}`));
+          message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.blue).setDescription(`\u180E${zalgo(args, 0.2, [10, 5, 10])}`)]});
 
   
     }

@@ -39,7 +39,7 @@ module.exports = class extends Command {
         return message.channel.send(language.hackbot);
       }
       }
-      const member = message.guild.member(user);
+      const member = message.guild.members.cache.get(user);
       const mostCommon = [`${language.hack2}`, `${language.hack3}`, `${language.hack3}`, `${language.hack4}`, `${language.hack5}`, `${language.hack6}`];
       const lastdm = [
        `${language.hack7}`,

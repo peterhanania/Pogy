@@ -25,7 +25,7 @@ module.exports = class extends Command {
 
       
       let choices = ["true", "false"]
-      if(!args[0] || !choices.includes(args[0].toLowerCase())) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.aactionNotValidChoice.replace("{allChoices}", choices.join(", "))))
+      if(!args[0] || !choices.includes(args[0].toLowerCase())) return message.channel.send({embeds: [new discord.MessageEmbed().setColor(client.color.red).setDescription(language.aactionNotValidChoice.replace("{allChoices}", choices.join(", ")))]})
       
       await alt.findOne({ guildID: message.guild.id }, async (err, db) => {
         if(!db){
@@ -41,7 +41,7 @@ module.exports = class extends Command {
             
             await newGuild.save()
             
-            return message.channel.send(new discord.MessageEmbed().setColor(client.color.green).setDescription(language.atoggleSuccess.replace("{choice}", args[0])))
+            return message.channel.send({embeds: [new discord.MessageEmbed().setColor(client.color.green).setDescription(language.atoggleSuccess.replace("{choice}", args[0]))]})
         }
         
         await db.updateOne({
@@ -56,7 +56,7 @@ module.exports = class extends Command {
         choice = "off" 
       }
         
-        return message.channel.send(new discord.MessageEmbed().setColor(client.color.green).setDescription(language.atoggleSuccess.replace("{toggle}", choice)))
+        return message.channel.send({embeds: [new discord.MessageEmbed().setColor(client.color.green).setDescription(language.atoggleSuccess.replace("{toggle}", choice))]})
 
       })
    }

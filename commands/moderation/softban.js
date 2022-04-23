@@ -1,8 +1,7 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require("../../models/economy.js")
-const mongoose = require("mongoose")
+ const mongoose = require("mongoose")
   const Logging = require('../../database/schemas/logging.js')
 
 module.exports = class extends Command {
@@ -54,24 +53,24 @@ const language = require(`../../data/language/${guildDB.language}.json`)
 const member = message.mentions.members.last() || message.guild.members.cache.get(args[0]);
 
 if (!member)
-return message.channel.send( new MessageEmbed()
+return message.channel.send ({ embeds: [new MessageEmbed()
 .setDescription(`${client.emoji.fail} | ${language.softbanNoUser}`)
-.setColor(client.color.red));
+.setColor(client.color.red)]});
 
 if (member === message.member) 
-return message.channel.send( new MessageEmbed()
+return message.channel.send ({ embeds: [new MessageEmbed()
 .setDescription(`${client.emoji.fail} | ${language.softbanSelfUser}`)
-.setColor(client.color.red));
+.setColor(client.color.red)]});
 
 if (member.roles.highest.position >= message.member.roles.highest.position)
-return message.channel.send( new MessageEmbed()
+return message.channel.send ({ embeds: [new MessageEmbed()
 .setDescription(`${client.emoji.fail} | ${language.softbanEqualRole}`)
-.setColor(client.color.red));
+.setColor(client.color.red)]});
 
 if (!member.bannable)
-return message.channel.send( new MessageEmbed()
+return message.channel.send ({ embeds: [new MessageEmbed()
 .setDescription(`${client.emoji.fail} | ${language.softbanNotBannable}`)
-.setColor(client.color.red));
+.setColor(client.color.red)]});
 
 let reason = args.slice(1).join(' ');
 if (!reason) reason = language.softbanNoReason;
@@ -85,7 +84,7 @@ const embed = new MessageEmbed()
 .setDescription(`${client.emoji.success} | ${language.softbanSuccess} **${member.user.tag}** ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
 .setColor(client.color.green)
 
-message.channel.send(embed)
+message.channel.send({embeds: [embed]})
 .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{

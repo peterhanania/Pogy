@@ -29,7 +29,7 @@ module.exports = class extends Command {
           let joke = (await res.json()).joke;
           joke = joke.charAt(0).toLowerCase() + joke.slice(1);
           if (!joke.endsWith('!') && !joke.endsWith('.') && !joke.endsWith('"')) joke += '!';
-            message.channel.send(new discord.MessageEmbed().setColor('GREEN').setDescription(`hey ${user}, ${joke}`)).catch(() => {});
+            message.channel.send({embeds:[new discord.MessageEmbed().setColor('GREEN').setDescription(`hey ${user}, ${joke}`)]}).catch(() => {});
   
     }
 };

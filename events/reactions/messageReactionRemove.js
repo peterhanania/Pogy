@@ -54,13 +54,13 @@ let guildName = guild.name;
 let addEmbed = new MessageEmbed()
 .setAuthor('Role Added', `${message.client.domain}/logo.png` , `${message.url}` )
 .setDescription(`You have recieved the **${rrRole.name}** Role by reacting in ${guildName}`)
-.setFooter(`https://pogy.xyz`)
+.setFooter({text: 'https://pogy.xyz/'})
 .setColor(message.client.color.green)
 
 let remEmbed = new MessageEmbed()
 .setAuthor('Role Removed', `${message.client.domain}/logo.png` , `${message.url}` )
 .setDescription(`You have removed the **${rrRole.name}** Role by reacting in ${guildName}`)
-.setFooter(`https://pogy.xyz`)
+.setFooter({text: 'https://pogy.xyz/'})
 .setColor(message.client.color.green)
 
 

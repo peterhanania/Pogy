@@ -33,10 +33,10 @@ module.exports = class extends Command {
     })
     
     await newAppDB.save().catch((err) => {console.log(err)})
-    return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.questionNoQuest)) //No questions
+    return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.questionNoQuest)]}) //No questions
     }
     
-    if(db.questions.length === 0 || db.questions.length < 1) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.questionNoQuest)) //No questions
+    if(db.questions.length === 0 || db.questions.length < 1) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.questionNoQuest)]}) //No questions
     
     let text = ""
     let arrLength = db.questions.length
@@ -44,7 +44,7 @@ module.exports = class extends Command {
     for(let i = 0; i < arrLength; i++) {
       text += `\`${Number([i]) + 1}\` - ${arr[i]}\n`
     }
-    message.channel.send(new discord.MessageEmbed().setColor(client.color.green).addField("**" + language.questionTitle + "**", text))
+    message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).addField("**" + language.questionTitle + "**", text)]})
   })
   }
 }

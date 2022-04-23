@@ -27,9 +27,9 @@ module.exports = class extends Command {
 if (reminderstarted.has(message.author.id)) return message.channel.send(`${language.remind1}`);
 
   message.channel.send(`${language.remind2}`).catch(() => {});
-
-  message.channel.awaitMessages(m => m.author.id == message.author.id,
-                            {max: 1, time: 30000}).then(collected => {
+      let filter = m => m.author.id == message.author.id
+  message.channel.awaitMessages({filter,
+                            max: 1, time: 30000}).then(collected => {
                                   
 
 
@@ -37,15 +37,16 @@ if (reminderstarted.has(message.author.id)) return message.channel.send(`${langu
          reminderstarted.add(message.author.id);
 
          message.channel.send(`${language.remind3}`).catch(() => {});
-
-           message.channel.awaitMessages(m => m.author.id == message.author.id,
-                            {max: 1, time: 30000}).then(collected => {
+                                      let filter2 = m => m.author.id == message.author.id
+           message.channel.awaitMessages({filter2,
+                            max: 1, time: 30000}).then(collected => {
                                   
                                     if (collected.first().content.length < 1024) {
               let reminder = collected.first().content                              
 message.channel.send(`${language.remind4} **[s/m/h/d]**`)
-  message.channel.awaitMessages(m => m.author.id == message.author.id,
-                            {max: 1, time: 30000}).then(collected => {
+let filter3 = m => m.author.id == message.author.id
+  message.channel.awaitMessages({filter3,
+                            max: 1, time: 30000}).then(collected => {
                 let valid = collected.first().content;
                 let time = ms(valid);
 
@@ -58,9 +59,9 @@ if(time > 86400000 ) {
 
                               let reminderTime = valid              
 message.channel.send(`${language.remind5}`).catch(() => {});
-
-  message.channel.awaitMessages(m => m.author.id == message.author.id,
-                            {max: 1, time: 30000}).then(collected => {
+let filter4 = m => m.author.id == message.author.id
+  message.channel.awaitMessages({filter4,
+                            max: 1, time: 30000}).then(collected => {
                                    
 
                                     if (collected.first().content.toLowerCase() == 'yes') {

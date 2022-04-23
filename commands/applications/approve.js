@@ -27,7 +27,7 @@ module.exports = class extends Command {
     
     if(guildDB.isPremium === "false"){
 
-message.channel.send(new discord.MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} | ${language.approvepremium}.\n\n[Check Premium Here](https://pogy.xyz/premium)`))
+message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} | ${language.approvepremium}.\n\n[Check Premium Here](https://pogy.xyz/premium)`)]})
 
       return;
     }
@@ -90,7 +90,7 @@ const add_role = message.guild.roles.cache.get(app.add_role)
 if(add_role){
   await member.roles.add(add_role).catch(()=>{})
 }
-message.channel.send(new discord.MessageEmbed().setColor(message.client.color.green).setTitle(language.approveapplicationdoneapprovedtitle).setDescription(`${client.emoji.success} | ${language.approveapplicationdoneapproveddescription} ${id}\n**Approved by:** ${message.author.tag}\n**Reason:** ${reason}`))
+message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.green).setTitle(language.approveapplicationdoneapprovedtitle).setDescription(`${client.emoji.success} | ${language.approveapplicationdoneapproveddescription} ${id}\n**Approved by:** ${message.author.tag}\n**Reason:** ${reason}`)]})
 if(app.dm === true){
 member.send(new discord.MessageEmbed().setColor(message.client.color.green).setTitle(language.approveapplicationdonetitle).setDescription(`${client.emoji.success} | Hey ${member.user.tag}, ${language.approveapplicationdonemember} ${id}\n**Approved by:** ${message.author.tag}\n**Reason:** ${reason}`)).catch(()=>{
   message.channel.send(`Never Mind... I was able to approve the Application but couldn't dm ${member.user.tag} since their DMs are closed.'`)

@@ -70,19 +70,19 @@ let slowDownEmbed = new MessageEmbed()
 let addEmbed = new MessageEmbed()
 .setAuthor('Role Added', `${message.client.domain}/logo.png` , `${message.url}` )
 .setDescription(`You have recieved the **${rrRole.name}** Role by reacting in ${guildName}`)
-.setFooter(`https://pogy.xyz`)
+.setFooter({text: 'https://pogy.xyz/'})
 .setColor(message.client.color.green)
 
 let remEmbed = new MessageEmbed()
 .setAuthor('Role Removed', `${message.client.domain}/logo.png` , `${message.url}` )
 .setDescription(`You have removed the **${rrRole.name}** Role by reacting in ${guildName}`)
-.setFooter(`https://pogy.xyz`)
+.setFooter({text: 'https://pogy.xyz/'})
 .setColor(message.client.color.green)
 
 let errorReaction = new MessageEmbed()
 .setAuthor('Reaction Role Error', `${message.client.domain}/logo.png` , `${message.url}` )
 .setDescription(`${message.client.emoji.fail} Failed to Add the role, since I'm Missing the Manage Roles Permission.\n\nPlease let an admin Know.`)
-.setFooter(`https://pogy.xyz`)
+.setFooter({text: 'https://pogy.xyz/'})
 .setColor(message.client.color.green)
 
 if(reactionCooldown.has(user.id)) {
@@ -315,7 +315,7 @@ let arraylength = array.length
         if(ticketCooldownLol.has(user.id)) return;
          if (!message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')) return;
           if (!message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS')) return;
-        message.channel.send(new discord.MessageEmbed().setColor(message.client.color.red).setDescription(`You already have ${arraylength} open tickets, as the current guild's ticket limit is ${ticketlimit} `).setAuthor(user.tag, user.displayAvatarURL()).setFooter('https://pogy.xyz')).then(m => m.delete({timeout: 5000}));
+        message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.red).setDescription(`You already have ${arraylength} open tickets, as the current guild's ticket limit is ${ticketlimit} `).setAuthor(user.tag, user.displayAvatarURL()).setFooter({text: 'https://pogy.xyz/'})]}).then(m => m.delete({timeout: 5000}));
         ticketCooldownLol.add(user.id)
         setTimeout(()=>{
      ticketCooldownLol.delete(user.id)    
@@ -356,7 +356,7 @@ let everyone = message.guild.roles.everyone;
         topic: `**ID:** ${user.id} | **Tag:** ${user.tag}`
       }).then(async(chan)=>{
 
-    await chan.updateOverwrite(user, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
+    await chan.permissionOverwrites.edit(user, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
     await db.updateOne({ticketCase: serverCase + 1});
 
 
@@ -386,11 +386,11 @@ if(chan){
     .setColor(color)
     );
 
-    chan.send(new MessageEmbed()
+    chan.send ({ embeds: [new MessageEmbed()
     .setDescription(`Please use \`${prefix}close\` to close the ticket.`)
     .setColor(message.client.color.red)
-    .setFooter('https://pogy.xyz')
-    .setTimestamp())
+    .setFooter({text: 'https://pogy.xyz/'})]})
+    .setTimestamp()
 
    
 
@@ -399,7 +399,7 @@ let color2 = db.ticketLogColor
 
     const embedLog = new discord.MessageEmbed()
       .setColor(color2)
-      .setFooter('https://pogy.xyz')
+      .setFooter({text: 'https://pogy.xyz/'})
       .setTitle("Ticket Created")
       .setTimestamp()
       .addField("Information" , `**User:** ${user}\n**Ticket Channel: **${chan.name}\n**Ticket:** #${serverCase}\n**Date:** ${moment(new Date()).format("dddd, MMMM Do YYYY")} `)
@@ -418,7 +418,7 @@ let color2 = db.ticketLogColor
 
 		}).catch(() => {
       if (!message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')) return;
-		  message.channel.send(new discord.MessageEmbed().setColor(message.client.color.red).setDescription("There was an error creating the ticket, please check my permissions or contact support.")).then(m => m.delete({timeout: 5000})).catch(() => {})
+		  message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.red).setDescription("There was an error creating the ticket, please check my permissions or contact support.")]}).then(m => m.delete({timeout: 5000})).catch(() => {})
 		})
   };
   }

@@ -26,21 +26,21 @@ module.exports = class extends Command {
       const language = require(`../../data/language/${guildDB.language}.json`)
       
       if (args.length < 1) {
-        return message.channel.send( new MessageEmbed()
+        return message.channel.send ({ embeds: [new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`${message.client.emoji.fail} ${language.antiinvites1}`));
+        .setDescription(`${message.client.emoji.fail} ${language.antiinvites1}`)]});
       }
 
       if (!message.content.includes('enable') && !message.content.includes('disable')) {
-        return message.channel.send( new MessageEmbed()
+        return message.channel.send ({ embeds: [new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`${message.client.emoji.fail} ${language.antiinvites1}`));
+        .setDescription(`${message.client.emoji.fail} ${language.antiinvites1}`)]});
       }
 
       if (args.includes('disable')) {
-        if(guildDB.antiInvites === true) return message.channel.send( new MessageEmbed()
+        if(guildDB.antiInvites === true) return message.channel.send ({ embeds: [new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`${message.client.emoji.fail} ${language.moduleDisabled}`));
+        .setDescription(`${message.client.emoji.fail} ${language.moduleDisabled}`)]});
 
         await Guild.findOne({
           guildId: message.guild.id
@@ -50,18 +50,18 @@ module.exports = class extends Command {
           })
           .catch(err => console.error(err));
   
-          return message.channel.send( new MessageEmbed()
+          return message.channel.send ({ embeds: [new MessageEmbed()
           .setColor(message.guild.me.displayHexColor)
-          .setDescription(`${message.client.emoji.success} ${language.antiinvites3}`));
+          .setDescription(`${message.client.emoji.success} ${language.antiinvites3}`)]});
         });
         return;
       }
 
       if (args.includes('enable')) {
 
-        if(guildDB.antiInvites === true) return message.channel.send( new MessageEmbed()
+        if(guildDB.antiInvites === true) return message.channel.send ({ embeds: [new MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`${message.client.emoji.fail} ${language.moduleEnabled}`));
+        .setDescription(`${message.client.emoji.fail} ${language.moduleEnabled}`)]});
 
         await Guild.findOne({
           guildId: message.guild.id
@@ -71,9 +71,9 @@ module.exports = class extends Command {
           })
           .catch(err => console.error(err));
   
-          return message.channel.send( new MessageEmbed()
+          return message.channel.send ({ embeds: [new MessageEmbed()
           .setColor(message.guild.me.displayHexColor)
-          .setDescription(`${message.client.emoji.success} ${language.antiinvites4}`));
+          .setDescription(`${message.client.emoji.success} ${language.antiinvites4}`)]});
         });
         return;
       }

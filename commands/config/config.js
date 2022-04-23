@@ -24,7 +24,7 @@ module.exports = class extends Command {
 
 
       const language = require(`../../data/language/${guildDB.language}.json`)
-      await message.channel.send(new MessageEmbed()
+      await message.channel.send ({ embeds: [new MessageEmbed()
       .setColor(message.guild.me.displayHexColor)
       .setTitle(`${language.serversettings1}`)
       .addField(`Main Settings`, `[\`Click here\`](https://pogy.xyz/dashboard/${message.guild.id})`, true)
@@ -40,7 +40,7 @@ module.exports = class extends Command {
       .setFooter(`${message.guild.name}`)
 
       
-      )
+      ]})
       
     }
 };

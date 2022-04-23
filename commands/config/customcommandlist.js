@@ -43,7 +43,7 @@ if (!Array.isArray(array) || !array.length) {
 } else {
 embed.setDescription(array.join(" - "))
 }
-      message.channel.send(embed)
+      message.channel.send({embeds: [embed]})
        
       });
      

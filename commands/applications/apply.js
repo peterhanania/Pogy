@@ -52,7 +52,7 @@ module.exports = class extends Command {
   if(db.questions.length === 0 || db.questions.length < 1) return message.channel.send(closed) ;
   const channel = await message.guild.channels.cache.get(db.appLogs);
   if(!channel) return message.channel.send(closed);
-      await message.author.send(new discord.MessageEmbed().setColor(message.client.color.green).setFooter('Powered by Pogy.xyz').setDescription(`${message.client.emoji.success} | ${language.applaydone} **${message.guild.name}** [by clicking here](https://pogy.xyz/apply/${message.guild.id})`))
+      await message.author.send(new discord.MessageEmbed().setColor(message.client.color.green).setFooter({text: 'Powered by Pogy.xyz'}).setDescription(`${message.client.emoji.success} | ${language.applaydone} **${message.guild.name}** [by clicking here](https://pogy.xyz/apply/${message.guild.id})`))
       .then(message.channel.send(`Form sent by DMs - ${message.author}`))
       .catch(()=>{
         return message.channel.send(closed2)

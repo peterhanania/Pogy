@@ -124,7 +124,7 @@ if(!oldState || !newState) return;
 
         jointocreatemap.set(`tempvoicechannel_${vc.guild.id}_${vc.id}`, vc.id);
 
-        await vc.overwritePermissions([
+        await vc.permissionOverwrites.set([
           {
             id: user.id,
             allow: ['MANAGE_CHANNELS'],

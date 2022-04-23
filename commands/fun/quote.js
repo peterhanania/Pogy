@@ -22,7 +22,7 @@ module.exports = class extends Command {
           const language = require(`../../data/language/${guildDB.language}.json`)
 
           
- if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(`${language.managemessages}`)
+ if(!message.member.permissions.has('MANAGE_MESSAGES')) return message.channel.send(`${language.managemessages}`)
  
  let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]);
  if (channel) {
@@ -30,7 +30,7 @@ module.exports = class extends Command {
  } else channel = message.channel;
 
   // Check type and viewable
- if (channel.type != 'text' || !channel.viewable) return message.channel.send(`${language.notaccessible}`)
+ if (channel.type != 'GUILD_TEXT' || !channel.viewable) return message.channel.send(`${language.notaccessible}`)
 
 
  if (!args[0]) return message.channel.send(`${language.whatdoIsay}`);

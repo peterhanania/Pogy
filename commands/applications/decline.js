@@ -26,7 +26,7 @@ module.exports = class extends Command {
     const language = require(`../../data/language/${guildDB.language}.json`)
         if(guildDB.isPremium === "false"){
 
-message.channel.send(new discord.MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} | ${language.approvepremium}.\n\n[Check Premium Here](https://pogy.xyz/premium)`))
+message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} | ${language.approvepremium}.\n\n[Check Premium Here](https://pogy.xyz/premium)`)]})
 
       return;
     }
@@ -90,7 +90,7 @@ const rem_role = message.guild.roles.cache.get(app.remove_role)
 if(rem_role){
   await member.roles.remove(rem_role).catch(()=>{})
 }
-message.channel.send(new discord.MessageEmbed().setColor(message.client.color.green).setTitle(language.declinedeclined).setDescription(`${client.emoji.success} | ${language.declinedeclineddescription} ${id}\n**Declined by:** ${message.author.tag}\n**Reason:** ${reason}`))
+message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.green).setTitle(language.declinedeclined).setDescription(`${client.emoji.success} | ${language.declinedeclineddescription} ${id}\n**Declined by:** ${message.author.tag}\n**Reason:** ${reason}`)]})
 
 if(app.dm === true){
 member.send(new discord.MessageEmbed().setColor(message.client.color.red).setTitle(language.declinedeclined).setDescription(`${client.emoji.fail} Hey ${member.user.tag}, ${language.declinedeclineddescriptionmember} ${id}\n**Declined by:** ${message.author.tag}\n**Reason:** ${reason}`)).catch(()=>{

@@ -20,11 +20,11 @@ module.exports = class extends Command {
     
       const { fact } = data
 
-      message.channel.send( new MessageEmbed()
+      message.channel.send ({ embeds: [new MessageEmbed()
 
 .setColor(message.client.color.blue)
 .setDescription(`${fact}`)
-         .setFooter("/some-random-api/bird") 
-      )
+         .setFooter({text: "/some-random-api/bird"}) 
+        ]})
     }
 };

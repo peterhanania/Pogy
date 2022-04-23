@@ -29,9 +29,9 @@ module.exports = class extends Command {
 
 
       if (!/^\d{4}$/.test(args[0])) {
-        return message.channel.send( new MessageEmbed()
+        return message.channel.send ({ embeds: [new MessageEmbed()
 .setColor(message.client.color.blue)
-.setDescription(`${message.client.emoji.fail} ${language.discrim1}`));
+.setDescription(`${message.client.emoji.fail} ${language.discrim1}`)]});
       }
 
       let members = this.client.users.cache.filter(user => user.discriminator === args[0]).map(user => user.tag);

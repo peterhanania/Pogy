@@ -26,7 +26,7 @@ module.exports = class extends Command {
             message.channel.send(`${language.kill1}`)
         });
 
-            let userr = message.guild.member(message.mentions.users.first());
+            let userr = message.guild.members.cache.get(message.mentions.users.first());
             if(!userr) return message.channel.send(`${language.kill1}`)
             let user = userr.user.username;
      

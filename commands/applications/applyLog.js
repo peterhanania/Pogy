@@ -28,9 +28,9 @@ module.exports = class extends Command {
     
   
  if (args.length < 1) {
-        return message.channel.send( new discord.MessageEmbed()
+        return message.channel.send ({ embeds: [new discord.MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`${message.client.emoji.fail} | ${language.applylogerrorchannel}`));
+        .setDescription(`${message.client.emoji.fail} | ${language.applylogerrorchannel}`)]});
       }
 
       if (args.includes('disable')) {
@@ -42,18 +42,18 @@ module.exports = class extends Command {
           })
           .catch(err => console.error(err));
   
-          return message.channel.send( new discord.MessageEmbed()
+          return message.channel.send ({ embeds: [new discord.MessageEmbed()
           .setColor(message.guild.me.displayHexColor)
-          .setDescription(`${message.client.emoji.fail} | ${language.applylogdisabled}`)); 
+          .setDescription(`${message.client.emoji.fail} | ${language.applylogdisabled}`)]}); 
         });
         return;
       }
 
       const channel = await message.mentions.channels.first();
 
-      if (!channel)  return message.channel.send( new MessageEmbed()
+      if (!channel)  return message.channel.send ({ embeds: [new MessageEmbed()
       .setColor(message.guild.me.displayHexColor)
-      .setDescription(`${message.client.emoji.fail} | ${language.applylogvalidchannel}`));
+      .setDescription(`${message.client.emoji.fail} | ${language.applylogvalidchannel}`)]});
     
       await app.findOne({
         guildID: message.guild.id
@@ -63,9 +63,9 @@ module.exports = class extends Command {
         })
         .catch(err => console.error(err));
 
-        return message.channel.send( new discord.MessageEmbed()
+        return message.channel.send ({ embeds: [new discord.MessageEmbed()
         .setColor(message.guild.me.displayHexColor)
-        .setDescription(`${message.client.emoji.success} | ${language.applylogSuccess} ${channel}`)); 
+        .setDescription(`${message.client.emoji.success} | ${language.applylogSuccess} ${channel}`)]}); 
       });
      
     }

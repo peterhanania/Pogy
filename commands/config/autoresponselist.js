@@ -43,7 +43,7 @@ module.exports = class extends Command {
 embed.setDescription(array.join(" - "))
 }
 
-      message.channel.send(embed)
+      message.channel.send({embeds: [embed]})
       });
 
     }

@@ -26,9 +26,9 @@ module.exports = class extends Command {
       const language = require(`../../data/language/${guildDB.language}.json`)
 
       let text = args.slice(0).join(" ")
-      if(!text) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(`${client.emoji.fail} ${language.changeErrorValid}`));
+      if(!text) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(`${client.emoji.fail} ${language.changeErrorValid}`)]});
       
-        if(text.length > 50) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(`${client.emoji.fail} ${language.phubErrorCharacter}`));
+        if(text.length > 50) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(`${client.emoji.fail} ${language.phubErrorCharacter}`)]});
     
         Canvas.phub({ username: message.author.username, message: text, image: message.author.displayAvatarURL({ format: "png" }) })
           .then(attachment => message.channel.send({ files: [{attachment, name: "img.png"}] }))
