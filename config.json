@@ -1,13 +1,13 @@
 {
-  "main_token": "OTY2NTkxNDk1NTU5ODUyMDUy.YmD-eg.BPIXEoJX_73tWskNbbj3o3zxR5M", 
-  "mongodb_url": "mongodb+srv://flame:flame@cluster0.ckwql.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
-  "developers": ["402490971041824768"], 
+  "main_token": "", 
+  "mongodb_url": "", 
+  "developers": [""], 
   "datadogApiKey": "", 
   "dashboard":"false", 
   "prefix":"p!", 
   "arc":"",
   "youtube_key":"", 
   "cat_api_key":"",
-  "webhook_id":"967384850296352788", 
-  "webhook_url":"https://discord.com/api/webhooks/967384850296352788/2wuyMCD7VgGev_u7BY1Rxnz2PtopRRR-vXwwB9LHcAbYtNiuJzkFosaSlPNqRSptBp2m" 
+  "webhook_id":"", 
+  "webhook_url":"" 
 }
