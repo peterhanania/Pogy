@@ -76,22 +76,22 @@ let verified =  message.guild.roles.cache.find(r => r.name.toLowerCase() === 've
             return message.channel.send(lockchannelError2)
         }
       
-        channel.updateOverwrite(message.guild.me, { SEND_MESSAGES: true }).catch(()=>{})
+        channel.permissionOverwrites.edit(message.guild.me, { SEND_MESSAGES: true }).catch(()=>{})
      
-        channel.updateOverwrite(message.guild.id, { SEND_MESSAGES: true }).catch(()=>{})
+        channel.permissionOverwrites.edit(message.guild.id, { SEND_MESSAGES: true }).catch(()=>{})
      
-        channel.updateOverwrite(message.author.id, { SEND_MESSAGES: true }).catch(()=>{})
+        channel.permissionOverwrites.edit(message.author.id, { SEND_MESSAGES: true }).catch(()=>{})
 
         if(member){
-      channel.updateOverwrite(member, { SEND_MESSAGES: true }).catch(()=>{})
+      channel.permissionOverwrites.edit(member, { SEND_MESSAGES: true }).catch(()=>{})
         }
         
         if(memberr){
-  channel.updateOverwrite(memberr, { SEND_MESSAGES: true }).catch(()=>{})
+  channel.permissionOverwrites.edit(memberr, { SEND_MESSAGES: true }).catch(()=>{})
         }
       
       if(verified){
- channel.updateOverwrite(verified, { SEND_MESSAGES: true }).catch(()=>{})
+ channel.permissionOverwrites.edit(verified, { SEND_MESSAGES: true }).catch(()=>{})
 
       }
        

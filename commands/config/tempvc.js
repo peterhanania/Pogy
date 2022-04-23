@@ -69,7 +69,7 @@ let client = message.client
 
  
       if (args.includes('disable') || args.includes('off') ) {
-    if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send( new MessageEmbed()
+    if(!message.member.permissions.has("MANAGE_CHANNELS")) return message.channel.send( new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} ${language.missingUser} `)
     .setDescription(`${language.tempvc2}`)
@@ -117,7 +117,7 @@ let client = message.client
         });
         return;
       } else if (args.includes('enable') || args.includes('on') ) {
-    if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send( new MessageEmbed()
+    if(!message.member.permissions.has("MANAGE_CHANNELS")) return message.channel.send( new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} ${language.missingUser} `)
     .setDescription(`${language.tempvc2}`)

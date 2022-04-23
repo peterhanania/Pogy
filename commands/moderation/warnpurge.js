@@ -64,7 +64,7 @@ const fail = client.emoji.fail;
 const success = client.emoji.success;
     const mentionedMember = message.mentions.members.last() || message.guild.members.cache.get(args[0])
     
-  if (!message.member.hasPermission('MANAGE_ROLES')) {
+  if (!message.member.permissions.has('MANAGE_ROLES')) {
       return message.channel.send({embeds:[new discord.MessageEmbed()
           .setDescription(`${client.emoji.fail} ${language.warnMissingPermission}`)
           .setTimestamp(message.createdAt)

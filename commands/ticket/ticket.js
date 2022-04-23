@@ -79,15 +79,15 @@ let arraylength = array.length
 message.guild.channels.create(chann, { type: "text" })
     .then(async (chan) => {
       if(pogy) {
-    chan.updateOverwrite(pogy, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
+    chan.permissionOverwrites.edit(pogy, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
       }
-       chan.updateOverwrite(message.guild.me, { SEND_MESSAGES: true }).catch(()=>{})
-    chan.updateOverwrite(everyone, { VIEW_CHANNEL: false });
+       chan.permissionOverwrites.edit(message.guild.me, { SEND_MESSAGES: true }).catch(()=>{})
+    chan.permissionOverwrites.edit(everyone, { VIEW_CHANNEL: false });
       
-    chan.updateOverwrite(user, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
+    chan.permissionOverwrites.edit(user, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
     
     if(ticketRole) {
-    chan.updateOverwrite(ticketRole, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
+    chan.permissionOverwrites.edit(ticketRole, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
     } 
     let serverCase = db.ticketCase
     if(serverCase === null) serverCase = 1

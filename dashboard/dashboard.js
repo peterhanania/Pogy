@@ -3803,7 +3803,7 @@ if(maintenance && maintenance.toggle == "true") {
           data = req.body.json;
         if (!guild || !channel || !data) return res.status(400).send('Some data is missing');
         const fetchmember = await guild.members.fetch(user.id);
-        if (!fetchmember || !fetchmember.hasPermission('ADMINISTRATOR')) return res.status(403).send("You don't have permission.");
+        if (!fetchmember || !fetchmember.permissions.has('ADMINISTRATOR')) return res.status(403).send("You don't have permission.");
         if (!channel.permissionsFor(channel.guild.client.user).has("SEND_MESSAGES")) return res.status(403).send("I'm missing 'send message' permissions");
         if (cooldownEmbed.has(guild.id)) return res.status(403).send("Slow Down!");
         try {

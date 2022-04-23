@@ -42,16 +42,16 @@ module.exports = class extends Command {
        let everyone = message.guild.roles.everyone;
        let author = message.author
 
-    message.channel.updateOverwrite(pogy, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
+    message.channel.permissionOverwrites.edit(pogy, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
 
-    message.channel.updateOverwrite(everyone, { VIEW_CHANNEL: false });
+    message.channel.permissionOverwrites.edit(everyone, { VIEW_CHANNEL: false });
       
-    message.channel.updateOverwrite(author, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
+    message.channel.permissionOverwrites.edit(author, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
     
-    message.channel.updateOverwrite(userToMention.id, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
+    message.channel.permissionOverwrites.edit(userToMention.id, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
 
     if(ticketRole) {
-    message.channel.updateOverwrite(ticketRole, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
+    message.channel.permissionOverwrites.edit(ticketRole, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
     }
     
     message.react(client.emoji.check)

@@ -25,7 +25,7 @@ module.exports = class extends Command {
     
       const language = require(`../../data/language/${guildDB.language}.json`)
       
-    if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupNoPerms)]})
+    if(!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupNoPerms)]})
     
     let filter = m => m.author.id === message.author.id;
 
@@ -35,7 +35,7 @@ module.exports = class extends Command {
 
     message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setDescription(language.ticketsetupToChooseFrom)]})
     .then(() => {
-      message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+      message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
       .then(collected => {
         let choice = collected.first().content
         let toChooseFrom = ["reaction", "message"]
@@ -56,7 +56,7 @@ return;
         if(choice.toLowerCase() === "reaction") {
           message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(`${language.ticketsetupReaction}`).setDescription(language.ticketsetupReactionChannelID)]})
           .then(() => {
-           message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+           message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
            .then(collected2 => {
              let channel = collected2.first().content
              let channelMention = collected2.first().mentions
@@ -66,7 +66,7 @@ return;
              
              message.channel.send({embeds:[new discord.MessageEmbed().setTitle(language.ticketsetupReaction).setDescription(language.ticketsetupReactionCustomChoice).setColor(client.color.green)]})
              .then(() => {
-              message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+              message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
               .then(collected3 => {
                 let choice = collected3.first().content
                 let choices = ["custom", "bot"]
@@ -77,7 +77,7 @@ return;
                   
                   message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(language.ticketsetupReaction).setDescription(language.ticketsetupReactionCustomMessageID)]})
                   .then(() => {
-                   message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+                   message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
                    .then(async collected4 => {
                      
                     let ID = collected4.first().content
@@ -88,7 +88,7 @@ return;
                     
                     message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(language.ticketsetupReaction).setDescription(language.ticketsetupReactionCustomCategory)]})
                     .then(() => {
-                     message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+                     message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
                      .then(collected5 => {
                        let categoryChannelName = collected5.first().content
                        let categoryChannel = message.guild.channels.cache.find(ch => ch.name.toLowerCase().includes(categoryChannelName.toLowerCase())) || message.guild.channels.cache.get(categoryChannelName)
@@ -97,10 +97,10 @@ return;
                         
                        if(!categoryChannel) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupReactionCustomInvalidCategory)]}) 
 
-                       if(categoryChannel.type !== "category") return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupReactionCustomNotCategory)]})
+                       if(categoryChannel.type !== "GUILD_CATEGORY") return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupReactionCustomNotCategory)]})
                        message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(language.ticketsetupReaction).setDescription(language.ticketsetupReactionCustomRole)]})
                        .then(() => {
-                        message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+                        message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
                         .then(collected6 => {
                           let roleName = collected6.first().content
                           let roleMention = collected6.first().mentions
@@ -110,7 +110,7 @@ return;
 
                           if(!role) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupReactionCustomInvalidRole)]}) 
                         message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(language.ticketsetupReaction).setDescription(language.ticketsetupReactionCustomModLogs)]}).then(() => {
-                             message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+                             message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
                              .then(collected7 => {
                     let modlog = collected7.first().content
                     let modlogMention = collected7.first().mentions
@@ -192,17 +192,17 @@ array.push(ID)
                     
                     message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(language.ticketsetupReaction).setDescription(language.ticketsetupReactionCustomCategory)]})
                     .then(() => {
-                     message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+                     message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
                      .then(collected5 => {
                        let categoryChannelName = collected5.first().content
                        let categoryChannel = message.guild.channels.cache.find(ch => ch.name.toLowerCase().includes(categoryChannelName.toLowerCase())) || message.guild.channels.cache.get(categoryChannelName)
 
                         if (categoryChannelName.toLowerCase() === 'cancel') return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setTitle(language.ticketsetupReaction).setDescription(`${language.ticketPromptseggs}`)]})
                        if(!categoryChannel) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupReactionCustomInvalidCategory)]}) 
-                       if(categoryChannel.type !== "category") return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupReactionCustomNotCategory)]})
+                       if(categoryChannel.type !== "GUILD_CATEGORY") return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupReactionCustomNotCategory)]})
                        message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(language.ticketsetupReaction).setDescription(language.ticketsetupReactionCustomRole)]})
                        .then(() => {
-                        message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+                        message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
                         .then(collected6 => {
                           let roleName = collected6.first().content
                           let roleMention = collected6.first().mentions
@@ -214,7 +214,7 @@ array.push(ID)
                         
                         message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(language.ticketsetupReaction).setDescription(language.ticketsetupReactionCustomModLogs)]})
                         .then(() => {
-                         message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+                         message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
                           .then(collected7 => {
                     let modlog = collected7.first().content
                     let modlogMention = collected7.first().mentions
@@ -296,17 +296,17 @@ array.push(m.id)
           //return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(language.ticketsetupMessage).setDescription("Coming soon")).then(m => m.delete({timeout: 5000}))
           message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(language.ticketsetupMessage).setDescription(language.ticketsetupReactionCustomCategory)]})
                   .then(() => {
-          message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+          message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
            .then(async collected5 => {
             let categoryChannelName = collected5.first().content
             let categoryChannel = message.guild.channels.cache.find(ch => ch.name.toLowerCase().includes(categoryChannelName.toLowerCase())) || message.guild.channels.cache.get(categoryChannelName)
              if (categoryChannelName.toLowerCase() === 'cancel') return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setTitle(language.ticketsetupReaction).setDescription(`${language.ticketPromptseggs}`)]})
 
             if(!categoryChannel) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupReactionCustomInvalidCategory)]}) 
-            if(categoryChannel.type !== "category") return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupReactionCustomNotCategory)]})
+            if(categoryChannel.type !== "GUILD_CATEGORY") return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.ticketsetupReactionCustomNotCategory)]})
             message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(language.ticketsetupMessage).setDescription(language.ticketsetupReactionCustomRole)]})
             .then(() => {
-              message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+              message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
               .then(collected6 => {
                 let roleName = collected6.first().content
                 let roleMention = collected6.first().mentions
@@ -316,7 +316,7 @@ array.push(m.id)
                         
                 message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setTitle(language.ticketsetupMessage).setDescription(language.ticketsetupReactionCustomModLogs)]})
                 .then(() => {
-                 message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"]})
+                 message.channel.awaitMessages({filter,  max: 1, time: 60000, errors: ["time"]})
                  .then(collected7 => {
                     let modlog = collected7.first().content
                     let modlogMention = collected7.first().mentions

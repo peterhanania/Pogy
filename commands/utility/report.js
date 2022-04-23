@@ -47,7 +47,7 @@ if(reportColor == '#000000') reportColor = message.guild.me.displayHexColor
 
  
       if (args.includes('disable') || args.includes('off')) {
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send( new MessageEmbed()
+    if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send( new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} ${language.missingUser}`)
     .setDescription(`${language.missingUser1}`)
@@ -73,7 +73,7 @@ if(reportColor == '#000000') reportColor = message.guild.me.displayHexColor
       })
     }
       else if(args.includes('enable')) {
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send( new MessageEmbed()
+    if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send( new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} ${language.missingUser}`)
     .setDescription(`${language.missingUser1}`)

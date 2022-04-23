@@ -66,13 +66,13 @@ const language = require(`../../data/language/${guildDB.language}.json`)
       args.shift();
     } else channel = message.channel;
 
-    if (channel.type != 'text' || !channel.viewable) return message.channel.send( new MessageEmbed()
+    if (channel.type != 'GUILD_TEXT' || !channel.viewable) return message.channel.send( new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} Clear Error`)
     .setDescription(`Please make sure I can view that channel`)
     .setTimestamp()
     .setFooter({text: 'https://pogy.xyz/'})
-    .setColor(message.guild.me.displayHexColor);
+    .setColor(message.guild.me.displayHexColor));
 
 
     const member = message.mentions.members.first() || getMemberFromMention(message, args[0]) || message.guild.members.cache.get(args[0]);
@@ -90,7 +90,7 @@ const language = require(`../../data/language/${guildDB.language}.json`)
       .setDescription(`I can only purge between 1 - 100 messages.`)
       .setTimestamp()
       .setFooter({text: 'https://pogy.xyz/'})
-      .setColor(message.guild.me.displayHexColor);
+      .setColor(message.guild.me.displayHexColor));
 
 
     if (!channel.permissionsFor(message.guild.me).has(['MANAGE_MESSAGES']))
@@ -100,7 +100,7 @@ const language = require(`../../data/language/${guildDB.language}.json`)
       .setDescription(`Please make sure I have the **Manage Messages** Permission!`)
       .setTimestamp()
       .setFooter({text: 'https://pogy.xyz/'})
-      .setColor(message.guild.me.displayHexColor);
+      .setColor(message.guild.me.displayHexColor));
 
     let reason = args.slice(1).join(' ');
     if (!reason) reason = 'None';

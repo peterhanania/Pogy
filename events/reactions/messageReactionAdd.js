@@ -356,7 +356,7 @@ let everyone = message.guild.roles.everyone;
         topic: `**ID:** ${user.id} | **Tag:** ${user.tag}`
       }).then(async(chan)=>{
 
-    await chan.updateOverwrite(user, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
+    await chan.permissionOverwrites.edit(user, { VIEW_CHANNEL: true, READ_MESSAGES: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, ATTACH_FILES: true });
     await db.updateOne({ticketCase: serverCase + 1});
 
 

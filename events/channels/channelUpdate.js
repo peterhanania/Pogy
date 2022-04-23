@@ -41,9 +41,9 @@ if(color == "#000000") color = this.client.color.yellow;
 
   let type;
 
-  if(newChannel.type === "category") type = "Category";
-  if(newChannel.type === "text") type = "Text Channel";
-  if(newChannel.type === "voice") type = "Voice Channel";
+  if(newChannel.type === "GUILD_CATEGORY") type = "Category";
+  if(newChannel.type === "GUILD_TEXT") type = "Text Channel";
+  if(newChannel.type === "GUILD_VOICE") type = "Voice Channel";
 
 
   if(logging.server_events.channel_created == "true"){

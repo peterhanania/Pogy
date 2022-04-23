@@ -128,7 +128,7 @@ mentionedMember.send(new MessageEmbed().setColor(message.client.color.red)
         .catch(()=>{});
 
     for (const channel of message.guild.channels.cache) {
-        channel[1].updateOverwrite(muteRole, {
+        channel[1].permissionOverwrites.edit(muteRole, {
             SEND_MESSAGES: false,
             CONNECT: false,
         }).catch(()=>{})
