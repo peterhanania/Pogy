@@ -3,8 +3,9 @@
   <a href="https://github.com/peterhanania"><img src="https://pogy.xyz/thumb.png"></a>
   <br>
   Pogy the Discord Bot [ NEW VERSION ]
+ <br>
  Pogy has been updated to discord.js V13, we are still testing all commands and dashboard will be fixed very soon
-  <br>
+ <br>
 </h1>
 
 <h3 align=center>A fully customizable bot built with 183 commands, 12 categories and a dashboard!</h3>
