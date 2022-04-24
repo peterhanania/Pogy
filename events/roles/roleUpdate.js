@@ -36,7 +36,7 @@ if(color == "#000000") color = newRole.client.color.green
  const embed = new discord.MessageEmbed()
     .setDescription(`:pencil: ***Role Updated***`)
 
-    .setFooter(`Role ID: ${newRole.id}`)
+    .setFooter({text:`Role ID: ${newRole.id}`})
     .setTimestamp()
     .setColor(color)
 

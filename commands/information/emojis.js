@@ -31,7 +31,7 @@ let client = message.client
 
 const embed = new MessageEmbed()
   .setAuthor(`${language.emoji1}`, message.guild.iconURL({ dynamic: true }))
-      .setFooter(message.author.tag,  message.author.displayAvatarURL({ dynamic: true }))
+      .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true })})
       .setTimestamp()
       .setColor(message.guild.me.displayHexColor);
 
@@ -49,9 +49,9 @@ const embed = new MessageEmbed()
 
       embed
         .setAuthor(`${language.emoji1}`, message.guild.iconURL({ dynamic: true }))
-        .setFooter(message.author.tag,  
-          message.author.displayAvatarURL({ dynamic: true })
-        );
+        .setFooter({text: message.author.tag,  
+         iconURL: message.author.displayAvatarURL({ dynamic: true })
+        });
 
       new ReactionMenu(message.client, message.channel, message.member, embed, emojis, interval);
     }

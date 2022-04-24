@@ -147,7 +147,7 @@ const logEmbed = new MessageEmbed()
 .setAuthor(`Action: \`UnMute\` | ${mentionedMember.user.tag} | Case #${logcase}`, mentionedMember.user.displayAvatarURL({ format: 'png' }))
 .addField('User', mentionedMember, true)
 .addField('Moderator', message.member, true)
-.setFooter(`ID: ${mentionedMember.id}`)
+.setFooter({text:`ID: ${mentionedMember.id}`})
 .setTimestamp()
 .setColor(color)
 

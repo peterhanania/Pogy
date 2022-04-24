@@ -42,7 +42,7 @@ if(color == "#000000") color = message.client.color.red;
     .setDescription(`:wastebasket: ***Channel Deleted***`)
     .addField('Channel Type', message.type, true)
     .addField('Channel Name', message.name, true)
-    .setFooter(`Channel ID: ${message.id}`)
+    .setFooter({text:`Channel ID: ${message.id}`})
     .setTimestamp()
     .setColor(color)
 

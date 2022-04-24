@@ -20,7 +20,7 @@ module.exports = class extends Command {
 
       const embed = new MessageEmbed()
         .setDescription(fact)
-        .setFooter(`/dog-api.kinduff/api/fact`)
+        .setFooter({ text : `/dog-api.kinduff/api/fact`})
         .setTimestamp()
         .setColor(message.client.color.blue);
       message.channel.send({embeds: [embed]}).catch(() => {});

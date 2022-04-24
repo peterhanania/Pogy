@@ -92,7 +92,7 @@ if(colorYellow === "#000000") colorYellow = 'YELLOW';
             .addField('Channel', newChannelName, true)
             .setColor(colorGreen)
            .setTimestamp()
-           .setFooter(`ID: ${newState.member.user.id}`)
+           .setFooter({text: `ID: ${newState.member.user.id}`})
 
            if(logging.server_events.voice.join == "true"){
 
@@ -121,7 +121,7 @@ if(colorYellow === "#000000") colorYellow = 'YELLOW';
             .addField('Channel', oldChannelName, true)
             .setColor(colorRed)
            .setTimestamp()
-           .setFooter(`ID: ${newState.member.user.id}`)
+           .setFooter({text: `ID: ${newState.member.user.id}`})
 
                    if(logging.server_events.voice.leave== "true"){
 
@@ -150,7 +150,7 @@ if(colorYellow === "#000000") colorYellow = 'YELLOW';
             .addField('Joined',  newChannelName, true)
             .setColor(colorYellow)
            .setTimestamp()
-           .setFooter(`ID: ${newState.member.user.id}`)
+           .setFooter({text: `ID: ${newState.member.user.id}`})
                    if(logging.server_events.voice.move == "true"){
 
                                    if(channelEmbed &&

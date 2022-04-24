@@ -37,7 +37,7 @@ module.exports = class extends Command {
       .addField(`Server Reports`, `[\`Click here\`](https://pogy.xyz/dashboard/${message.guild.id}/reports)`, true)
       .addField(`Automod`, `[\`Click here\`](https://pogy.xyz/dashboard/${message.guild.id}/automod)`, true)
 
-      .setFooter(`${message.guild.name}`)
+      .setFooter({ text: `${message.guild.name}`})
 
       
       ]})

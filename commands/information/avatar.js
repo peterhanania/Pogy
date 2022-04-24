@@ -34,7 +34,7 @@ module.exports = class extends Command {
  const embed = new MessageEmbed()
     .setAuthor(`${language.pfpAvatar.replace("{user}", `${member.user.tag}`)}`, member.user.displayAvatarURL({ dynamic: true, size: 512 }), member.user.displayAvatarURL({ dynamic: true, size: 512 }))
       .setImage(member.user.displayAvatarURL({ dynamic: true, size: 512 }))
-      .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
+      .setFooter({text: message.member.displayName,  iconURL: message.author.displayAvatarURL({ dynamic: true })})
       .setTimestamp()
       .setColor(member.displayHexColor);
        return message.channel.send({embeds: [embed]});

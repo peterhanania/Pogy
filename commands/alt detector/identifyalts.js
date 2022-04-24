@@ -72,9 +72,9 @@ if (array.length <= interval) {
 
       embed
         .setTitle(`Alt Detector - Account age < ${days} Days`)
-        .setFooter(message.author.tag,  
-          message.author.displayAvatarURL({ dynamic: true })
-        );
+        .setFooter({text: message.author.tag,  
+         iconURL: message.author.displayAvatarURL({ dynamic: true })
+        });
 
       new ReactionMenu(message.client, message.channel, message.member, embed, array, interval);
     }

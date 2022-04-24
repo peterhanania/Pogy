@@ -34,7 +34,7 @@ const snipe = await Snipe.findOne({ guildId: message.guild.id, channel: channel.
 
 const no = new MessageEmbed()
 .setAuthor(`#${channel.name} | ${message.guild.name}`, message.guild.iconURL())
-        .setFooter(message.guild.name)
+        .setFooter({text: message.guild.name})
         .setTimestamp()
         .setColor(message.guild.me.displayHexColor)
         .setDescription(`${message.client.emoji.fail} | Couldn't find any deleted message in **${channel.name}**`)
@@ -51,7 +51,7 @@ const data = []
 
       const embed = new MessageEmbed()
         .setAuthor(`#${channel.name} | ${message.guild.name}`, message.guild.iconURL())
-        .setFooter(message.guild.name)
+        .setFooter({text: message.guild.name})
         .setTimestamp()
         .setColor(message.guild.me.displayHexColor)
 

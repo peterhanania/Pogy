@@ -52,7 +52,7 @@ if(color == "#000000") color = this.client.color.yellow;
     const embed = new discord.MessageEmbed()
     .setDescription(`:pencil: ***${type} Updated***`)
     .addField('Channel', newChannel, true)
-    .setFooter(`Channel ID: ${newChannel.id}`)
+    .setFooter({text:`Channel ID: ${newChannel.id}`})
     .setTimestamp()
     .setColor(color)
 

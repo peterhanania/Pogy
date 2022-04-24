@@ -26,7 +26,7 @@ module.exports = class extends Command {
       const embed = new MessageEmbed()
       .setDescription(`\`${language.pinging}\``)
       .setColor(message.guild.me.displayHexColor)  
-      .setFooter(`Shard #${message.guild.shardID}`);
+      .setFooter({text: `Powered By https://pogy.xyz/`});
 
     const msg = await message.channel.send({embeds: [embed]});
 
@@ -50,7 +50,7 @@ if (latency < 100) {
 
       embed.setDescription(`${koko}`)
       embed.setColor(color)
-    msg.edit(embed);
+    msg.edit({embeds:[embed]});
 
       
 

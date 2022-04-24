@@ -59,7 +59,7 @@ return message.channel.send({embeds:[new discord.MessageEmbed()
    .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setDescription(`${client.emoji.fail} | ${language.banUserValid}`)
     .setTimestamp(message.createdAt)
-    .setColor(client.color.red))
+    .setColor(client.color.red)]})
 }
 
 const mentionedPotision = mentionedMember.roles.highest.position
@@ -70,7 +70,7 @@ return message.channel.send({embeds:[new discord.MessageEmbed()
   .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setDescription(`${client.emoji.fail} | ${language.rmPosition}`)
     .setTimestamp(message.createdAt)
-    .setColor(client.color.red))
+    .setColor(client.color.red)]})
 }
 
 let reason = args.slice(1).join(' ');
@@ -87,7 +87,7 @@ return message.channel.send({embeds:[new discord.MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setDescription(`${client.emoji.fail} | ${language.rmNoWarning}`)
     .setTimestamp(message.createdAt)
-    .setColor(client.color.red))
+    .setColor(client.color.red)]})
 }
 await warnDoc.updateOne({
 modType: [],
@@ -137,7 +137,7 @@ const logEmbed = new MessageEmbed()
 .addField('User', mentionedMember, true)
 .addField('Moderator', message.member, true)
 .addField('Reason', reason, true)
-.setFooter(`ID: ${mentionedMember.id}`)
+.setFooter({text:`ID: ${mentionedMember.id}`})
 .setTimestamp()
 .setColor(color)
 

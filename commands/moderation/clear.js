@@ -188,7 +188,7 @@ const logEmbed = new MessageEmbed()
 .setAuthor(`Action: \`Purge\` | Case #${logcase}`, message.author.displayAvatarURL({ format: 'png' }))
 .addField('Moderator', message.member, true)
 .setTimestamp()
-.setFooter(`Responsible ID: ${message.author.id}`)
+.setFooter({text:`Responsible ID: ${message.author.id}`})
 .setColor(color)
 
 for (const field in fields) {

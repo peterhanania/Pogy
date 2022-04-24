@@ -138,7 +138,7 @@ const logEmbed = new MessageEmbed()
 .setAuthor(`Action: \`Remove Role\` | ${member.user.tag} | Case #${logcase}`, member.user.displayAvatarURL({ format: 'png' }))
 .addField('User', member, true)
 .addField('Moderator', message.member, true)
-.setFooter(`ID: ${member.id}`)
+.setFooter({text:`ID: ${member.id}`})
 .setTimestamp()
 .setColor(color)
 

@@ -141,7 +141,7 @@ const logEmbed = new MessageEmbed()
 .addField('Channel', channel, true)
 .addField('Moderator', message.member, true)
 .addField('Reason', reason, true)
-.setFooter(`ID: ${message.author.id}`)
+.setFooter({text:`ID: ${message.author.id}`})
 .setTimestamp()
 .setColor(color)
 

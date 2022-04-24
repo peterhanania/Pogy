@@ -35,7 +35,7 @@ module.exports = class extends Command {
           const embed = new discord.MessageEmbed()
             .setTitle(':flag_us:  Trump Tweet  :flag_us: ')
             .setImage(img)
-            .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
+            .setFooter({text: message.member.displayName,  iconURL: message.author.displayAvatarURL({ dynamic: true })})
             .setTimestamp()
             .setColor(client.color.blue);
           message.channel.send({embeds: [embed]});

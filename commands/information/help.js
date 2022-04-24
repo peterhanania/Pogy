@@ -75,7 +75,7 @@ module.exports = class extends Command {
         `);
 
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+        embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
         embed.setTimestamp()
 
 
@@ -94,7 +94,7 @@ embed.addField(
         embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "alt detector").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(9 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+        embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
         embed.setTimestamp()
         embed.addField(
         '\u200b', 
@@ -114,7 +114,8 @@ embed.addField(
         embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "owner").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(11 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
         embed.addField(
         '\u200b', 
@@ -131,7 +132,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "applications").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(11 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 
 embed.addField(
@@ -151,7 +153,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "config").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(14 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -168,7 +171,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "utility").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(10 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -186,7 +190,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "economy").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(9 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -204,7 +209,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "fun").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(10 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -222,7 +228,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "images").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(14 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -239,7 +246,8 @@ embed.addField(
               embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "information").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(11 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -254,7 +262,8 @@ embed.addField(
         embed.setTitle(` ${emojis.moderation} - Moderation`)
             embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "moderation").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(11 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -272,7 +281,8 @@ embed.addField(
             embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "nsfw").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(9 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -290,7 +300,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "reaction role").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(12 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -313,7 +324,8 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 
         return message.channel.send({embeds: [embed]})

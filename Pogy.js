@@ -20,7 +20,6 @@ module.exports = class PogyClient extends Client {
       disableMentions: 'everyone',
       messageCacheMaxSize: 25,
       messageCacheLifetime: 10000, 
-      messageSweepInterval: 12000,
       shardCount: 1,
         intents: [
         "GUILDS",

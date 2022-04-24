@@ -58,7 +58,7 @@ let log = new discord.MessageEmbed()
   .addField(`Channel`, message.channel, true)
   .addField(`${language.report25}`, `${moment(new Date()).format("dddd, MMMM Do YYYY")}`, true)
   .addField(`Suggestion`, `\`\`\`${suggestionName}\`\`\``)
-  .setFooter(message.author.tag,  message.author.displayAvatarURL({ dynamic: true }))
+  .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true })})
 
 
 if(guildDB.suggestion.suggestionChannelID !== null){
@@ -77,7 +77,7 @@ let embed = new discord.MessageEmbed()
   .setColor('PURPLE')
   .setTitle(`${language.suggesting3}`)
   .setDescription(suggestionName)
-  .setFooter(`${language.suggesting4} ${message.author.tag}`)
+  .setFooter({text:`${language.suggesting4} ${message.author.tag}`})
 
 
 
@@ -106,13 +106,13 @@ let embed = new discord.MessageEmbed()
         .replace(/{guild_name}/g, `${member.guild.name}`)
         .replace(/{guild}/g, `${member.guild.name}`)
         .replace(/{suggestion}/g, `${suggestionName}`)}`)
-    .setFooter(`${footer.replace(/{user}/g, `${member}`)
+        .setFooter({text:`${footer.replace(/{user}/g, `${member}`)
         .replace(/{user_tag}/g, `${member.user.tag}`)
         .replace(/{user_name}/g, `${member.user.username}`)
         .replace(/{user_ID}/g, `${member.id}`)
         .replace(/{guild_name}/g, `${member.guild.name}`)
         .replace(/{guild}/g, `${member.guild.name}`)
-        .replace(/{guild_ID}/g, `${member.guild.id}`)}`)
+        .replace(/{guild_ID}/g, `${member.guild.id}`)}`})
 
     if(guildDB.suggestion.timestamp == "true") theEmbed.setTimestamp()
 
@@ -161,12 +161,14 @@ let embed = new discord.MessageEmbed()
 
 
 
-  message.channel.send ({ embeds: [new MessageEmbed()
+  message.channel.send ({ embeds: [
+    new MessageEmbed()
   .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' }))
   .setDescription(`${language.suggesting6} ${channel}`)
   .setFooter({text: 'https://pogy.xyz/'})
   .setTimestamp()
-  .setColor('GREEN')]}).then(k => {
+  .setColor('GREEN')
+]}).then(k => {
 
 if(guildDB.deleteSuggestion == "true"){
         message.delete().catch(() => {})

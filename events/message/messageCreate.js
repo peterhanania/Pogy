@@ -247,7 +247,6 @@ maintenanceCooldown.delete(message.author.id)
 let embed = new MessageEmbed()
  .setTitle(customCommandEmbed.title)                                 
  .setDescription(customCommandEmbed.description)
- .setFooter(``)
 
 if( customCommandEmbed.image !== "none") embed.setImage(customCommandEmbed.image)
 if( customCommandEmbed.thumbnail !== "none") embed.setThumbnail(customCommandEmbed.thumbnail)
@@ -409,10 +408,10 @@ if(config.datadogApiKey){
     async runCommand(message, cmd, args) {
 
         if (!message.channel.permissionsFor(message.guild.me) || !message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS'))
-          return message.channel.send(`${message.client.emoji.fail} Missing bot Permissions - **Embeds Links**`)
+          return //message.channel.send(`${message.client.emoji.fail} Missing bot Permissions - **Embeds Links**`)
 
         const command = this.client.commands.get(cmd.toLowerCase()) || this.client.commands.get(this.client.aliases.get(cmd.toLowerCase()));
-        logger.info(`"${message.content}" (${command.name}) ran by "${message.author.tag}" (${message.author.id}) on guild "${message.guild.name}" (${message.guild.id}) channel "#${message.channel.name}" (${message.channel.id})`, { label: 'Command' })
+        //logger.info(`"${message.content}" (${command.name}) ran by "${message.author.tag}" (${message.author.id}) on guild "${message.guild.name}" (${message.guild.id}) channel "#${message.channel.name}" (${message.channel.id})`, { label: 'Command' })
       
         await command.run(message, args)
     }

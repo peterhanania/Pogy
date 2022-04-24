@@ -28,7 +28,7 @@ module.exports = class extends Command {
         embed.setURL(`${memeUrl}`)
         embed.setColor('RANDOM')
         embed.setImage(memeImage);
-        embed.setFooter(`👍 ${memeUpvotes} 💬 ${memeNumComments}`);
+        embed.setFooter({text: `👍 ${memeUpvotes} 💬 ${memeNumComments}`});
         message.channel.send({embeds: [embed]});
        });
       } catch(error) {

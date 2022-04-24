@@ -109,7 +109,7 @@ const language = require(`../../data/language/${guildDB.language}.json`)
     const status = (channel.rateLimitPerUser) ? 'enabled' : 'disabled';
     const embed = new MessageEmbed()
       .setTitle('Slowmode')
-      .setFooter(`To disable set the rate to 0`)
+      .setFooter({text: `To disable set the rate to 0`})
       .setTimestamp()
       .setColor('GREEN');
 
@@ -174,7 +174,7 @@ const logEmbed = new MessageEmbed()
 .setAuthor(`Action: \`Slow Mode\` | ${message.author.tag} | Case #${logcase}`, message.author.displayAvatarURL({ format: 'png' }))
 .addField('User', message.member, true)
 .addField('Reason', reason, true)
-.setFooter(`ID: ${message.author.id}`)
+.setFooter({text:`ID: ${message.author.id}`})
 .setTimestamp()
 .setColor(color)
 

@@ -213,7 +213,7 @@ const logEmbed = new MessageEmbed()
 .addField('User', mentionedMember, true)
 .addField('Moderator', message.member, true)
 .addField('Reason', reason, true)
-.setFooter(`ID: ${mentionedMember.id} | Warn ID: ${warnID}`)
+.setFooter({text:`ID: ${mentionedMember.id} | Warn ID: ${warnID}`})
 .setTimestamp()
 .setColor(color)
 

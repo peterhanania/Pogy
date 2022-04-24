@@ -62,7 +62,7 @@ module.exports = class extends Command {
       const language = require(`../../data/language/${guildDB.language}.json`)
 
      const embed = new MessageEmbed() 
-     .setFooter(`Shard #${message.guild.shardID}`)
+     .setFooter({text: `Shard #${message.guild.shardID}`})
 .setAuthor(message.guild.name, message.guild.iconURL)
 .addField(`${language.nameS}`, message.guild.name, true)
 .addField("ID", message.guild.id, true)

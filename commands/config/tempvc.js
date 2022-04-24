@@ -141,9 +141,9 @@ try {
   if(!category) { 
     await embed
       .setDescription(`**${language.tempvc7}**`)
-      .setFooter(`Pogy v2.0`)
+      .setFooter({text: `Pogy v2.0`})
       .setTimestamp();
-    msg.edit(embed) + message.guild.channels.create(`Join to Create`, {type: 'category', permissionOverwrites: [
+    msg.edit({embeds:[embed]}) + message.guild.channels.create(`Join to Create`, {type: 'category', permissionOverwrites: [
     {
         id: message.guild.id,
         allow: ['VIEW_CHANNEL'],
@@ -157,9 +157,9 @@ return;
   } else {
  embed
   .setDescription(`**${language.tempvc8}**\n\nID: ${category.id}`)
-  .setFooter(`Pogy v2.0`)
+  .setFooter({text: `Pogy v2.0`})
   .setTimestamp();
-msg.edit(embed);
+msg.edit({embeds:[embed]});
 
   }
 }, 2000)
@@ -172,9 +172,9 @@ if(!voice) {
     
 await embed
 .setDescription(`**${language.tempvc9}**`)
-.setFooter(`Pogy v2.0`)
+.setFooter({text: `Pogy v2.0`})
 .setTimestamp();
-msg.edit(embed);
+msg.edit({embeds:[embed]});
 + message.guild.channels.create('Join to create', {type: 'voice', permissionOverwrites: [
         {
             id: message.guild.id,
@@ -193,9 +193,9 @@ return;
 } else {
    embed
   .setDescription(`**${language.tempvc10}**\n\nID: ${voice.id}`)
-  .setFooter(`Pogy v2.0`)
+  .setFooter({text: `Pogy v2.0`})
   .setTimestamp();
-msg.edit(embed)
+msg.edit({embeds:[embed]})
 
 };
 }, 2000)
@@ -206,9 +206,9 @@ if(!voice || !category ) {
     embed
     .setAuthor(`Setup Fail`)
     .setDescription(`${language.tempvc11.replace(/{prefix}/g, `${prefix}`)}`)
-    .setFooter(`Pogy v2.0`)
+    .setFooter({text: `Pogy v2.0`})
     .setTimestamp();
-  msg.edit(embed);
+  msg.edit({embeds:[embed]});
   await Vc.findOne({
         guildId: message.guild.id
     }, async (err, guild) => {
@@ -241,9 +241,9 @@ return;
     embed
     .setAuthor(`${language.tempvc12}`, `${message.client.domain}/logo.png` , `${channelInv}` )
     .setDescription(`**${language.tempvc13}** ${category.name}\n**${language.tempvc13} ID:** ${category.id}\n\n**${language.tempvc14}** ${voice.name}\n**${language.tempvc14} ID:** ${voice.id}\n\n${language.tempvc15} \`${prefix}tempvc off\` `)
-    .setFooter(`Pogy v2.0`)
+    .setFooter({text: `Pogy v2.0`})
     .setTimestamp();
-  msg.edit(embed);
+  msg.edit({embeds:[embed]});
   if(channelInv && channelVoice) message.channel.send(`${channelInv}`)
   await Vc.findOne({
         guildId: message.guild.id

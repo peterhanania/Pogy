@@ -117,7 +117,7 @@ let description = suggestionMsg.embeds[0].description;
             .setColor('#2bff80')
             .setTitle(`${language.suggesting14}`)
             .setDescription(`${description}\n\n**${language.suggesting18}**\n__**${language.reason}**__ ${acceptReason}\n__**${language.suggesting19}**__ ${message.author}`)
-        suggestionMsg.edit(editedEmbed);
+        suggestionMsg.edit({embeds : [editedEmbed]});
         suggestionMsg.reactions.removeAll();
         message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${message.client.emoji.success} ${language.suggesting20} ${channel}\n\n__**${language.reason}**__ ${acceptReason}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('GREEN')]}).then(k => {
         message.delete().catch(() => {})
@@ -171,7 +171,7 @@ let description = suggestionMsg.embeds[0].description;
             .setColor(message.client.color.red)
             .setTitle(`${language.suggesting21}`)
             .setDescription(`${description}\n\n**${language.suggesting22}**\n__**${language.reason}**__ ${acceptReason}\n__**${language.suggesting23}**__ ${message.author}`)
-        suggestionMsg.edit(editedEmbed);
+        
         suggestionMsg.reactions.removeAll();
         message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${message.client.emoji.success} ${language.suggesting24} ${channel}\n\n__**${language.reason}**__ ${acceptReason}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('GREEN')]}).then(k => {
         message.delete().catch(() => {})

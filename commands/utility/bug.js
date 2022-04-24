@@ -56,7 +56,7 @@ let report = args.join(' ').split('').join('')
       .addField('User Tag', message.member.user.tag, true)
       .addField('Server',  `[${message.guild.name}](${invite ||'none '})`, true)
       .addField('Bug Report ID:', `#${id}`, true)
-      .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
+      .setFooter({text: message.member.displayName,  iconURL: message.author.displayAvatarURL({ dynamic: true })})
       .setTimestamp()
       .setColor('GREEN');
 

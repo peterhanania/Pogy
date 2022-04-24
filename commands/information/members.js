@@ -49,7 +49,7 @@ const memberRole = role
 
     const embed = new MessageEmbed()
       .setTitle(`${capitalize(memberRole.name)} ${language.list} [${members.length}]`)
-      .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+      .setFooter({text: message.author.tag, iconURL:message.author.displayAvatarURL({ dynamic: true })})
       .setTimestamp()
       .setColor(message.guild.me.displayHexColor);
 
@@ -68,9 +68,9 @@ const memberRole = role
       embed
         .setTitle(`${capitalize(memberRole.name)} ${language.list}`)
         .setThumbnail(message.guild.iconURL({ dynamic: true }))
-        .setFooter(message.author.tag,  
-          message.author.displayAvatarURL({ dynamic: true })
-        );
+        .setFooter({text: message.author.tag,  
+         iconURL: message.author.displayAvatarURL({ dynamic: true })
+        });
 
       new ReactionMenu(message.client, message.channel, message.member, embed, members, interval);
     }

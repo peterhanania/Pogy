@@ -52,7 +52,7 @@ module.exports = class extends Command {
        const embed = new MessageEmbed()
 
       .setDescription(`${language.uptime1} \`${uptime}\`.`) 
-.setFooter(`Shard #${message.guild.shardID}`)
+.setFooter({text: `Shard #${message.guild.shardID}`})
       .setColor(message.guild.me.displayHexColor);
     message.channel.send({embeds: [embed]});
 

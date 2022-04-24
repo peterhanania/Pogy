@@ -142,7 +142,7 @@ module.exports = class ReactionMenu {
     collector.on('collect', async reaction => {
       let newPage =  this.reactions[reaction.emoji.name] || this.reactions[reaction.emoji.id];
       if (typeof newPage === 'function') newPage = newPage();
-      if (newPage) await this.message.edit(newPage);
+      if (newPage) await this.message.edit({embeds: [newPage]});
       await reaction.users.remove(this.memberId);
     }); 
 

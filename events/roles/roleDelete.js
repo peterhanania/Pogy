@@ -36,7 +36,7 @@ if(color == "#000000") color = role.client.color.red
  const embed = new discord.MessageEmbed()
     .setDescription(`🗑️ ***Role Deleted***`)
     .addField('Role Name', role.name, true)
-    .setFooter(`Role ID: ${role.id}`)
+    .setFooter({text:`Role ID: ${role.id}`})
     .setTimestamp()
     .setColor(color)
 

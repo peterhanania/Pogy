@@ -20,7 +20,7 @@ module.exports = class extends Command {
       const fact = (await res.json()).fact;
       const embed = new MessageEmbed()
         .setDescription(fact)
-        .setFooter(`/catfact.ninja/fact`)
+        .setFooter({text: `/catfact.ninja/fact`})
         .setTimestamp()
         .setColor(message.client.color.blue);
       message.channel.send({embeds: [embed]}).catch(() => {});

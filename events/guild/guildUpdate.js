@@ -35,7 +35,7 @@ if(color == "#000000") color = oldGuild.client.color.yellow;
 
     const embed = new discord.MessageEmbed()
     .setDescription(`:pencil: ***Guild Updated***`)
-    .setFooter(`Guild ID: ${oldGuild.id}`)
+    .setFooter({text:`Guild ID: ${oldGuild.id}`})
     .setTimestamp()
     .setColor(color)
 

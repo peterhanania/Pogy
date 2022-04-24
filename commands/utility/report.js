@@ -137,7 +137,7 @@ let reportEmbed1 = new MessageEmbed()
 .addField(`${language.report25}`, `${moment(new Date()).format("dddd, MMMM Do YYYY")}`, true)
 .addField(`${language.report26}`, `${language.report29} #${serverCase}`, true)
 .addField(`${language.report27}`, `\`\`\`${acceptReason}\`\`\``)
-.setFooter(message.author.tag,  message.author.displayAvatarURL({ dynamic: true }))
+.setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true })})
 .setTimestamp()
 .setColor(reportColor);
 
@@ -228,7 +228,7 @@ let reportEmbed1 = new MessageEmbed()
 .addField(`${language.report25}`, `${moment(new Date()).format("dddd, MMMM Do YYYY")}`, true)
 .addField(`${language.report26}`, `${language.report29} #${serverCase}`, true)
 .addField(`${language.report27}`, `\`\`\`${acceptReason}\`\`\``)
-.setFooter(message.author.tag,  message.author.displayAvatarURL({ dynamic: true }))
+.setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true })})
 .setTimestamp()
 .setColor(reportColor);
 

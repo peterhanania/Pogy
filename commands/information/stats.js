@@ -106,7 +106,7 @@ module.exports = class extends Command {
       .addField(`${language.pogyGeneral}`, `\`\`\`css\n${tech}\`\`\``, true)
       .addField(`${language.pogyTeam}`, `\`\`\`css\n${devs}\`\`\``, true)
       .addField(`${language.pogyStats}`, `\`\`\`css\n${serverStats}\`\`\``)
-      .setFooter(`Shard #${message.guild.shardID}`)
+      .setFooter({text: `Shard #${message.guild.shardID}`})
       .setTimestamp()
       .setColor(message.guild.me.displayHexColor);
     message.channel.send({embeds: [embed]});
