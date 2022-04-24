@@ -2,7 +2,8 @@
  <br>
   <a href="https://github.com/peterhanania"><img src="https://pogy.xyz/thumb.png"></a>
   <br>
-  Pogy the Discord Bot [ OLD VERSION ]
+  Pogy the Discord Bot [ NEW VERSION ]
+ Pogy has been updated to discord.js V13, we are still testing all commands and dashboard will be fixed very soon
   <br>
 </h1>
 
