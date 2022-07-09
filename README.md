@@ -2,7 +2,7 @@
  <br>
   <a href="https://github.com/peterhanania"><img src="https://pogy.xyz/thumb.png"></a>
   <br>
-  Pogy the Discord Bot [ OLD VERSION ]
+  Pogy the Discord Bot [ NEW VERSION ]
   <br>
 </h1>
 

@@ -1,4 +1,4 @@
-const discord = require("discord.js")
+const discord = require("discord.js");
 const ticketSchema = require("../../models/tickets.js")
 const Command = require('../../structures/Command');
 const Guild = require('../../database/schemas/Guild');
