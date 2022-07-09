@@ -36,14 +36,14 @@ module.exports = class extends Command {
       .setColor('PURPLE')
       .setTitle(`${language.cc6}`)
       
-      .setFooter(message.guild.name)
+      .setFooter({text: message.guild.name})
 
 if (!Array.isArray(array) || !array.length) {
   embed.setDescription(`${language.cc5}`)
 } else {
 embed.setDescription(array.join(" - "))
 }
-      message.channel.send(embed)
+      message.channel.send({embeds: [embed]})
        
       });
      

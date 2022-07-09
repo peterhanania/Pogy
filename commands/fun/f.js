@@ -32,7 +32,7 @@ if (!args[0]) {
               const embed = new discord.MessageEmbed()
                   .setAuthor(`${message.author.username} has paid their respects.`, message.author.displayAvatarURL({ format: 'png' }))
                   .setColor('PURPLE')
-                  .setFooter(`${language.f3}`);
+                  .setFooter({text: `${language.f3}`});
               message.channel.send({ embed }).then(m => m.react('🇫')).catch(() => {});
   
   
@@ -43,7 +43,7 @@ if (!args[0]) {
                   .setAuthor('\u2000', message.author.displayAvatarURL({ format: 'png' }))
                   .setColor('PURPLE')
                   .setDescription(`${message.author} ${language.f2} ${target}`)
-                  .setFooter(`${language.f3}`);
+                  .setFooter({text: `${language.f3}`});
               message.channel.send({ embed }).then(m => m.react('🇫')).catch(() => {});
   
           }

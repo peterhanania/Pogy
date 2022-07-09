@@ -38,7 +38,7 @@ if(color == "#000000") color = emoji.client.color.red;
     .setDescription(`🗑️ ***Emoji Delete***`)
     .addField('Emoji Name', emoji.name, true)
     .addField('Emoji', emoji, true)
-    .setFooter(`Emoji ID: ${emoji.id}`)
+    .setFooter({text:`Emoji ID: ${emoji.id}`})
     .setTimestamp()
     .setColor(color)
 

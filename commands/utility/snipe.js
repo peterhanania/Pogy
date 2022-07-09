@@ -34,7 +34,7 @@ const snipe = await Snipe.findOne({ guildId: message.guild.id, channel: channel.
 
 const no = new MessageEmbed()
 .setAuthor(`#${channel.name} | ${message.guild.name}`, message.guild.iconURL())
-        .setFooter(message.guild.name)
+        .setFooter({text: message.guild.name})
         .setTimestamp()
         .setColor(message.guild.me.displayHexColor)
         .setDescription(`${message.client.emoji.fail} | Couldn't find any deleted message in **${channel.name}**`)
@@ -51,7 +51,7 @@ const data = []
 
       const embed = new MessageEmbed()
         .setAuthor(`#${channel.name} | ${message.guild.name}`, message.guild.iconURL())
-        .setFooter(message.guild.name)
+        .setFooter({text: message.guild.name})
         .setTimestamp()
         .setColor(message.guild.me.displayHexColor)
 
@@ -66,7 +66,7 @@ for (let i = 0; snipe.message.length  > i; i++) {
 
         
 
-        message.channel.send(embed).catch(async(err)=>{
+        message.channel.send({embeds: [embed]}).catch(async(err)=>{
           await snipe.deleteOne().catch(()=>{})
           message.channel.send(`The embed contained a huge field that couldn't fit as this is the reason i failed to send the embed. I have resetted the database as you can try rerunning the command again.`)
         })

@@ -40,12 +40,12 @@ module.exports = class extends Command {
             .setTitle(decodedTitle)
             .setURL(result.link)
             .setDescription(result.description)
-            .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
+            .setFooter({text: message.member.displayName,  iconURL: message.author.displayAvatarURL({ dynamic: true })})
             .setTimestamp()
             .setColor('#FF1CA4');
             
           if (message.channel.nsfw) embed.setImage(result.thumbnails.high.url);
-          message.channel.send(embed).catch(() => {});
+          message.channel.send({embeds: [embed]}).catch(() => {});
 
     }
 };

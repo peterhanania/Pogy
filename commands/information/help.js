@@ -75,7 +75,7 @@ module.exports = class extends Command {
         `);
 
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+        embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
         embed.setTimestamp()
 
 
@@ -85,7 +85,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
      
 
       } else if(args && args.join(" ").toLowerCase() == "alt detector"  || args && args[0].toLowerCase() == "alt"){
@@ -94,7 +94,7 @@ embed.addField(
         embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "alt detector").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(9 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+        embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
         embed.setTimestamp()
         embed.addField(
         '\u200b', 
@@ -102,7 +102,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       } else if(args && args[0].toLowerCase() == "owner"){
 
@@ -114,7 +114,8 @@ embed.addField(
         embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "owner").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(11 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
         embed.addField(
         '\u200b', 
@@ -122,7 +123,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       } else if(args && args[0].toLowerCase() == "applications"  || args && args[0].toLowerCase() == "apps"){
 
@@ -131,7 +132,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "applications").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(11 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 
 embed.addField(
@@ -141,7 +143,7 @@ embed.addField(
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
       
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
         } else if(args && args[0].toLowerCase() == "config"  || args && args[0].toLowerCase() == "configuration"){
@@ -151,7 +153,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "config").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(14 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -159,7 +162,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       } else if(args && args[0].toLowerCase() == "utility"  || args && args[0].toLowerCase() == "utils"){
 
@@ -168,7 +171,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "utility").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(10 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -176,7 +180,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
       } else if(args && args[0].toLowerCase() == "economy"  || args && args[0].toLowerCase() == "currency"){
@@ -186,7 +190,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "economy").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(9 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -194,7 +199,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
         } else if(args && args[0].toLowerCase() == "fun"){
@@ -204,7 +209,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "fun").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(10 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -212,7 +218,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
         } else if(args && args[0].toLowerCase() == "images"  || args && args[0].toLowerCase() == "image"){
@@ -222,7 +228,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "images").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(14 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -230,7 +237,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
       } else if(args && args[0].toLowerCase() == "information"  || args && args[0].toLowerCase() == "info"){
@@ -239,7 +246,8 @@ embed.addField(
               embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "information").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(11 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -247,14 +255,15 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
         } else if(args && args[0].toLowerCase() == "moderation"  || args && args[0].toLowerCase() == "mod"){
 
         embed.setTitle(` ${emojis.moderation} - Moderation`)
             embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "moderation").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(11 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -262,7 +271,7 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
         } else if(args && args[0].toLowerCase() == "nsfw"){
@@ -272,7 +281,8 @@ embed.addField(
             embed.setDescription(this.client.commands.filter(cmd => 
             cmd.category.toLowerCase() === "nsfw").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(9 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -281,7 +291,7 @@ embed.addField(
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
       if(!message.channel.nsfw) embed.setDescription(`The following Menu only belongs to NSFW Channels 👀`)
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       } else if(args && args.slice(0).join(" ").toLowerCase() == "reaction role" || args && args[0].toLowerCase() == "rr"){
 
@@ -290,7 +300,8 @@ embed.addField(
       
             cmd.category.toLowerCase() === "reaction role").map(cmd => `${cmd.disabled || disabledCommands.includes(cmd.name || cmd) ? red : green} \`${cmd.name} ${" ".repeat(12 - Number(cmd.name.length))}:\` ${cmd.description}`).join("\n"));
 
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 embed.addField(
         '\u200b', 
@@ -299,7 +310,7 @@ embed.addField(
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
       
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
         } else if(args && args[0].toLowerCase() == "tickets" || args && args[0].toLowerCase() == "ticketing"){
 
@@ -313,10 +324,11 @@ embed.addField(
         '[Support Server](https://pogy.xyz/support) | ' +
         '[Dashboard](https://pogy.xyz/dashboard)**'
       );
-        embed.setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
+                embed.setFooter({text: `Requested by ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+
         embed.setTimestamp()
 
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
 
       
       
@@ -346,7 +358,7 @@ embed.addField(
         if(cmd.examples && cmd.examples.length) embed.addField('__**Examples**__', cmd.examples.map(example => `<:purple:826033456207233045> \`${example}\``).join('\n'))
   
         
-        return message.channel.send(embed)
+        return message.channel.send({embeds: [embed]})
        
       }
     }

@@ -33,7 +33,7 @@ let role = message.mentions.roles.first() ||message.guild.roles.cache.get(args[0
 let embedValid = new MessageEmbed()
 .setAuthor(message.author.tag, message.author.displayAvatarURL())
 .setDescription(`${language.members2.replace(/{prefix}/g, `${prefix}`)}`)
-.setFooter('https://pogy.xyz')
+.setFooter({text: 'https://pogy.xyz/'})
 .setColor(message.guild.me.displayHexColor)
 
 if(!args[0]) return message.channel.send(embedValid)
@@ -49,7 +49,7 @@ const memberRole = role
 
     const embed = new MessageEmbed()
       .setTitle(`${capitalize(memberRole.name)} ${language.list} [${members.length}]`)
-      .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+      .setFooter({text: message.author.tag, iconURL:message.author.displayAvatarURL({ dynamic: true })})
       .setTimestamp()
       .setColor(message.guild.me.displayHexColor);
 
@@ -68,9 +68,9 @@ const memberRole = role
       embed
         .setTitle(`${capitalize(memberRole.name)} ${language.list}`)
         .setThumbnail(message.guild.iconURL({ dynamic: true }))
-        .setFooter(message.author.tag,  
-          message.author.displayAvatarURL({ dynamic: true })
-        );
+        .setFooter({text: message.author.tag,  
+         iconURL: message.author.displayAvatarURL({ dynamic: true })
+        });
 
       new ReactionMenu(message.client, message.channel, message.member, embed, members, interval);
     }

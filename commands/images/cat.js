@@ -29,10 +29,10 @@ module.exports = class extends Command {
           const img = (await res.json())[0].url;
           const embed = new discord.MessageEmbed()
             .setImage(img)
-            .setFooter(`/api.thecatapi.com/v1/images/search`)
+            .setFooter({text: `/api.thecatapi.com/v1/images/search`})
             .setTimestamp()
             .setColor(client.color.blue)
-          message.channel.send(embed);
+          message.channel.send({embeds: [embed]});
         } catch (err) {
          console.log(`${err}, command name: cat`)
          message.channel.send(language.catError)

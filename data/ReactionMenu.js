@@ -130,18 +130,19 @@ module.exports = class ReactionMenu {
    * Creates a reaction collector
    */
   createCollector() {
-    
+
     // Create collector
     const collector = this.message.createReactionCollector((reaction, user) => {
-      return (this.emojis.includes(reaction.emoji.name) || this.emojis.includes(reaction.emoji.id)) &&
-        user.id == this.memberId;
-    }, { time: this.timeout });
+      let filter = this.emojis.includes(reaction.emoji.name) || this.emojis.includes(reaction.emoji.id) &&
+      user.id == this.memberId;
+      return { filter, time: this.timeout }
+    });
     
     // On collect
     collector.on('collect', async reaction => {
       let newPage =  this.reactions[reaction.emoji.name] || this.reactions[reaction.emoji.id];
       if (typeof newPage === 'function') newPage = newPage();
-      if (newPage) await this.message.edit(newPage);
+      if (newPage) await this.message.edit({embeds: [newPage]});
       await reaction.users.remove(this.memberId);
     }); 
 

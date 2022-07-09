@@ -9,12 +9,12 @@ module.exports = class extends Event {
           .setTitle(`X Missing User Permissions`)
           .setDescription(`Required Permission: \`${permissions.replace('_', ' ')}\``)
           .setTimestamp()
-          .setFooter('https://pogy.xyz')
+          .setFooter({text: 'https://pogy.xyz/'})
           .setColor(message.guild.me.displayHexColor);
               if(message.channel &&
       message.channel.viewable &&
       message.channel.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
-               message.channel.send(embed).catch(()=>{})
+               message.channel.send({embeds: [embed]}).catch(()=>{})
       }
        
   }

@@ -1,8 +1,7 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require("../../models/economy.js")
-const mongoose = require("mongoose")
+ const mongoose = require("mongoose")
 const Logging = require('../../database/schemas/logging.js')
 
 module.exports = class extends Command {
@@ -77,22 +76,22 @@ let verified =  message.guild.roles.cache.find(r => r.name.toLowerCase() === 've
             return message.channel.send(lockchannelError2)
         }
       
-        channel.updateOverwrite(message.guild.me, { SEND_MESSAGES: true }).catch(()=>{})
+        channel.permissionOverwrites.edit(message.guild.me, { SEND_MESSAGES: true }).catch(()=>{})
      
-        channel.updateOverwrite(message.guild.id, { SEND_MESSAGES: false }).catch(()=>{})
+        channel.permissionOverwrites.edit(message.guild.id, { SEND_MESSAGES: false }).catch(()=>{})
      
-        channel.updateOverwrite(message.author.id, { SEND_MESSAGES: true }).catch(()=>{})
+        channel.permissionOverwrites.edit(message.author.id, { SEND_MESSAGES: true }).catch(()=>{})
 
         if(member){
-      channel.updateOverwrite(member, { SEND_MESSAGES: false }).catch(()=>{})
+      channel.permissionOverwrites.edit(member, { SEND_MESSAGES: false }).catch(()=>{})
         }
         
         if(memberr){
-  channel.updateOverwrite(memberr, { SEND_MESSAGES: false }).catch(()=>{})
+  channel.permissionOverwrites.edit(memberr, { SEND_MESSAGES: false }).catch(()=>{})
         }
       
       if(verified){
- channel.updateOverwrite(verified, { SEND_MESSAGES: false }).catch(()=>{})
+ channel.permissionOverwrites.edit(verified, { SEND_MESSAGES: false }).catch(()=>{})
 
       }
        
@@ -100,7 +99,7 @@ let verified =  message.guild.roles.cache.find(r => r.name.toLowerCase() === 've
         const embed = new MessageEmbed()
         .setDescription(`${success} | successfully Locked **${channel}** ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
         .setColor(client.color.green)
-        message.channel.send(embed)
+        message.channel.send({embeds: [embed]})
         .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
@@ -144,7 +143,7 @@ const logEmbed = new MessageEmbed()
 .addField('Channel', channel, true)
 .addField('Moderator', message.member, true)
 .addField('Reason', reason, true)
-.setFooter(`ID: ${message.author.id}`)
+.setFooter({text:`ID: ${message.author.id}`})
 .setTimestamp()
 .setColor(color)
 

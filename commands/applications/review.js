@@ -53,9 +53,9 @@ if (results && results.length) {
     .setTitle(`Applications - Review`)
     .setDescription(`\`\`\`\n${array.join("\n\n")}\`\`\`` || "No Pending Applications Found")
     .setColor(message.client.color.green)
-    .setFooter(message.author.tag,  
-          message.author.displayAvatarURL({ dynamic: true })
-        )
+    .setFooter({text: message.author.tag,  
+          ixonURL: message.author.displayAvatarURL({ dynamic: true })
+    })
 
 if (array.length <= interval) {
     
@@ -64,9 +64,9 @@ if (array.length <= interval) {
     .setTitle(`Applications - Review ${range}`)
     .setDescription(`\`\`\`\n${array.join("\n\n")}\`\`\``|| "No Pending Applications Found")
     .setColor(message.client.color.green)
-    .setFooter(message.author.tag,  
-          message.author.displayAvatarURL({ dynamic: true })
-        )
+        .setFooter({text: message.author.tag,  
+          ixonURL: message.author.displayAvatarURL({ dynamic: true })
+    })
       )
       
 
@@ -74,9 +74,9 @@ if (array.length <= interval) {
 
       embed
         .setTitle(`Applications - Review`)
-        .setFooter(message.author.tag,  
-          message.author.displayAvatarURL({ dynamic: true })
-        );
+        .setFooter({text: message.author.tag,  
+         iconURL: message.author.displayAvatarURL({ dynamic: true })
+        });
 
       new ReactionMenu(message.client, message.channel, message.member, embed, array, interval);
     }

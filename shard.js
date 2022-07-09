@@ -14,4 +14,8 @@ const manager = new Discord.ShardingManager('./index.js', {
 
 manager.spawn();
 
+manager.fetchClientValues('guilds.cache.size')
+  .then(results => console.log(`${results.reduce((prev, val) => prev + val, 0)} total guilds`))
+  .catch(console.error);
+
 manager.on('shardCreate', shard => logger.info(`Launching Shard ${shard.id + 1}`, { label: `Shard` }));

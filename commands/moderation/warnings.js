@@ -2,7 +2,6 @@ const Command = require('../../structures/Command');
 const Discord = require("discord.js")
 const moment = require("moment")
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require('../../models/economy.js');
 const { MessageEmbed } = require('discord.js');
 const warnModel = require('../../models/moderation.js');
 const mongoose = require('mongoose');
@@ -70,11 +69,11 @@ module.exports = class extends Command {
         }).catch(err => console.log(err))
     
         if (!warnDoc || !warnDoc.warnings.length) {
-            return message.channel.send(new Discord.MessageEmbed()
+            return message.channel.send({embeds:[new discord.MessageEmbed()
                 .setAuthor(message.author.tag, message.author.avatarURL())
                 .setDescription(`${message.client.emoji.fail} | **${mentionedMember.user.tag}** ${language.warningsNoError}`)
                 .setTimestamp(message.createdAt)
-                .setColor(client.color.red))
+                .setColor(client.color.red)]})
         }
     
         const data = []
@@ -89,7 +88,7 @@ module.exports = class extends Command {
     
     const embed = new MessageEmbed()
           .setAuthor(mentionedMember.user.tag, mentionedMember.user.displayAvatarURL({ dynamic: true }))
-          .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
+          .setFooter({text: message.member.displayName,  iconURL: message.author.displayAvatarURL({ dynamic: true })})
           .setTimestamp()
           .setColor(client.color.blue);
     

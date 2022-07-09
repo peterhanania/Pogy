@@ -28,13 +28,13 @@ module.exports = class extends Command {
 
 
       let days = args[0]
-      if(!days) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(`${message.client.emoji.fail} | Please provide a valid Days Duration`))
+      if(!days) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(`${message.client.emoji.fail} | Please provide a valid Days Duration`)]})
 
-      if(isNaN(days)) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(`${message.client.emoji.fail} | Please provide a valid Days Duration`))
+      if(isNaN(days)) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(`${message.client.emoji.fail} | Please provide a valid Days Duration`)]})
    
     let day = Number(days)
 
-    if(day > 100) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(`${message.client.emoji.fail} | You may only find alts of an account age of **100 days** or below`))
+    if(day > 100) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(`${message.client.emoji.fail} | You may only find alts of an account age of **100 days** or below`)]})
 
     let array = []
 
@@ -72,9 +72,9 @@ if (array.length <= interval) {
 
       embed
         .setTitle(`Alt Detector - Join age < ${days} Days`)
-        .setFooter(message.author.tag,  
-          message.author.displayAvatarURL({ dynamic: true })
-        );
+        .setFooter({text: message.author.tag,  
+         iconURL: message.author.displayAvatarURL({ dynamic: true })
+        });
 
       new ReactionMenu(message.client, message.channel, message.member, embed, array, interval);
     }

@@ -5,8 +5,8 @@ const Guild = require('../../database/schemas/Guild');
 const metrics = require('datadog-metrics');
 const Logging = require('../../database/schemas/logging');
 const config = require('../../config.json');
-const welcomeClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
-const webhookClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
+const welcomeClient = new Discord.WebhookClient({  url: config.webhook_url});
+const webhookClient = new Discord.WebhookClient({  url: config.webhook_url});
 
 module.exports = class extends Event {
 
@@ -47,13 +47,13 @@ const modLog = guild.channels.cache.find(c => c.name.replace('-', '').replace('s
     for (const channel of guild.channels.cache.values()) {
       try {
         if (channel.viewable && channel.permissionsFor(guild.me).has('MANAGE_ROLES')) {
-          if (channel.type === 'text') 
-            await channel.updateOverwrite(muteRole, {
+          if (channel.type === 'GUILD_TEXT') 
+            await channel.permissionOverwrites.edit(muteRole, {
               'SEND_MESSAGES': false,
               'ADD_REACTIONS': false
             });
-          else if (channel.type === 'voice' && channel.editable) // 
-            await channel.updateOverwrite(muteRole, {
+          else if (channel.type === 'GUILD_VOICE' && channel.editable) // 
+            await channel.permissionOverwrites.edit(muteRole, {
               'SPEAK': false,
               'STREAM': false
             });
@@ -115,7 +115,7 @@ logging2.moderation.mute_role = muteRole.id
     .setDescription(`Pogy was added to a new Server!`)
     .addField(`Server Name`, `\`${guild.name}\``, true)
     .addField(`Server ID`, `\`${guild.id}\``, true)
-    .setFooter(`${this.client.guilds.cache.size} guilds `,  'https://pogy.xyz/logo.png');
+    .setFooter({text:`${this.client.guilds.cache.size} guilds `,  iconURL: 'https://pogy.xyz/logo.png'});
 
 welcomeClient.send({
    username: 'Pogy',
@@ -130,7 +130,7 @@ if(config.datadogApiKey){
       const embed = new Discord.MessageEmbed()
       .setColor('GREEN')
       .setDescription(`I have joined the ${guild.name} server.\n\nID: ${guild.id}`)
-      .setFooter(`Gained ${guild.members.cache.size - 1} members • I'm now in ${this.client.guilds.cache.size} servers!`)
+      .setFooter({text: `Gained ${guild.members.cache.size - 1} members • I'm now in ${this.client.guilds.cache.size} servers!`})
       .setThumbnail(guild.iconURL({ dynamic: true }) ? guild.iconURL({ dynamic: true }) : `https://guild-default-icon.herokuapp.com/${encodeURIComponent(guild.nameAcronym)}`)
       .addField('Server Owner', `${guild.owner.user.tag} / ${guild.ownerID}`)
     

@@ -31,11 +31,11 @@ module.exports = class extends Command {
       const language = require(`../../data/language/${guildDB.language}.json`);
 
 
-      if(!args[0]) return message.channel.send(new discord.MessageEmbed().setColor(message.client.color.red).setDescription(`${message.client.emoji.fail} ${language.setPrefixMissingArgument}`))
+      if(!args[0]) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.red).setDescription(`${message.client.emoji.fail} ${language.setPrefixMissingArgument}`)]})
   
-      if(args[0].length > 5) return message.channel.send(new discord.MessageEmbed().setColor(message.client.color.red).setDescription(`${message.client.emoji.fail} ${language.setPrefixLongLength}`))
+      if(args[0].length > 5) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.red).setDescription(`${message.client.emoji.fail} ${language.setPrefixLongLength}`)]})
       
-      message.channel.send(new discord.MessageEmbed().setColor(message.client.color.green).setDescription(`${message.client.emoji.success} ${language.setPrefixChange.replace("{prefix}", args[0])}`))
+      message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.green).setDescription(`${message.client.emoji.success} ${language.setPrefixChange.replace("{prefix}", args[0])}`)]})
            await settings.updateOne({
                 prefix: args[0]
             });

@@ -28,10 +28,10 @@ module.exports = class extends Command {
         const img = (await res.json())[0];
         const embed = new discord.MessageEmbed()
           .setImage(img)
-          .setFooter(`/shibe.online/api/birds`)
+          .setFooter({text: `/shibe.online/api/birds`})
           .setTimestamp()
           .setColor(client.color.red);
-        message.channel.send(embed);
+        message.channel.send({embeds: [embed]});
    
       } catch (err) {
       console.log(`${err}, command name: bird`)

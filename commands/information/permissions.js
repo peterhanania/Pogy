@@ -33,10 +33,10 @@ module.exports = class extends Command {
     const embed = new MessageEmbed()
       .setTitle(`${member.displayName}'s Permissions`)
       .setDescription(`\`\`\`diff\n${finalPermissions.join('\n')}\`\`\``)
-      .setFooter(message.member.displayName, message.author.displayAvatarURL({ dynamic: true }))
+      .setFooter({text: message.author.tag, iconURL:message.author.displayAvatarURL({ dynamic: true })})
       .setTimestamp()
       .setColor(message.guild.me.displayHexColor);
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]});
   }
 
 }

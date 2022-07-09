@@ -1,9 +1,7 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require("../../models/economy.js")
-const mongoose = require("mongoose")
-const Logging = require('../../database/schemas/logging.js')
+ const Logging = require('../../database/schemas/logging.js')
 
 module.exports = class extends Command {
     constructor(...args) {
@@ -56,60 +54,60 @@ const language = require(`../../data/language/${guildDB.language}.json`)
     const member = getMemberFromMention(message, args[0]) || message.guild.members.cache.get(args[0]);
 
     if (!member)
-      return message.channel.send( new MessageEmbed()
+      return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Set Nickname Error`)
       .setDescription('Please provide a valid user mention / user ID')
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor)]});
     if (member.roles.highest.position >= message.member.roles.highest.position && member != message.member)
-      return message.channel.send( new MessageEmbed()
+      return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Set Nickname Error`)
       .setDescription('The provided user has either an equal or higher role.')
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor)]});
 
-    if (!args[1]) return message.channel.send( new MessageEmbed()
+    if (!args[1]) return message.channel.send ({ embeds: [new MessageEmbed()
     .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`${fail} Set Nickname Error`)
     .setDescription('Please provide a new Nickname')
     .setTimestamp()
-    .setFooter('https://pogy.xyz')
-    .setColor(message.guild.me.displayHexColor));
+    .setFooter({text: 'https://pogy.xyz/'})
+    .setColor(message.guild.me.displayHexColor)]});
 
 
     let nickname = args[1];
     if (nickname.startsWith('"')) {
       nickname = message.content.slice(message.content.indexOf(args[1]) + 1);
       if (!nickname.includes('"')) 
-        return message.channel.send( new MessageEmbed()
+        return message.channel.send ({ embeds: [new MessageEmbed()
         .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
         .setTitle(`${fail} Set Nickname Error`)
         .setDescription(`Make sure the nickname is surrounded in Quotes, **"text"**`)
         .setTimestamp()
-        .setFooter('https://pogy.xyz')
-        .setColor(message.guild.me.displayHexColor));
+        .setFooter({text: 'https://pogy.xyz/'})
+        .setColor(message.guild.me.displayHexColor)]})
       nickname = nickname.slice(0, nickname.indexOf('"'));
-      if (!nickname.replace(/\s/g, '').length) return message.channel.send( new MessageEmbed()
+      if (!nickname.replace(/\s/g, '').length) return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Set Nickname Error`)
       .setDescription('Provide a Nickname')
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor)]});
     }
 
     if (nickname.length > 32) {
-      return message.channel.send( new MessageEmbed()
+      return message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Set Nickname Error`)
       .setDescription('Make sure that nickname is below 32 characters')
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor)]});
       
     } else {
 
@@ -130,7 +128,7 @@ const language = require(`../../data/language/${guildDB.language}.json`)
        
           .setDescription(`${success} | **${oldNickname}**'s nickname was set to **${nickname}** ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
           .setColor(message.guild.me.displayHexColor);
-        message.channel.send(embed)
+        message.channel.send({embeds: [embed]})
         .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
@@ -179,7 +177,7 @@ const logEmbed = new MessageEmbed()
 .addField('User', member, true)
 .addField('Moderator', message.member, true)
 .addField('Reason', reason, true)
-.setFooter(`ID: ${member.id}`)
+.setFooter({text:`ID: ${member.id}`})
 .setTimestamp()
 .setColor(color)
 
@@ -195,13 +193,13 @@ await logging.save().catch(()=>{})
 }
       } catch (err) {
         message.client.logger.error(err.stack);
-        message.channel.send( new MessageEmbed()
+        message.channel.send ({ embeds: [new MessageEmbed()
       .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`${fail} Set Nickname Error`)
       .setDescription(`Please ensure my role is above the provided user's role.`)
       .setTimestamp()
-      .setFooter('https://pogy.xyz')
-      .setColor(message.guild.me.displayHexColor));
+      .setFooter({text: 'https://pogy.xyz/'})
+      .setColor(message.guild.me.displayHexColor)]});
       }
     }  
 

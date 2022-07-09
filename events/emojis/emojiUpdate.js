@@ -37,7 +37,7 @@ if(color == "#000000") color = oldEmoji.client.color.yellow;
     .addField('Emoji Name', `${oldEmoji.name} --> ${newEmoji.name}`, true)
     .addField('Emoji', newEmoji, true)
     .addField('Full ID', `\`<:${oldEmoji.name}:${oldEmoji.id}>\``, true)
-    .setFooter(`Emoji ID: ${oldEmoji.id}`)
+    .setFooter({text:`Emoji ID: ${oldEmoji.id}`})
     .setTimestamp()
     .setColor(color)
 

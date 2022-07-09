@@ -194,7 +194,7 @@ if(!member.roles.cache.size || member.roles.cache.size - 1 < 1) roles = `\`None\
 
     .setAuthor(`${member.user.tag}`, member.user.displayAvatarURL({ dynamic : true }))
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-      .setFooter(`ID: ${member.id}`)
+      .setFooter({text: `ID: ${member.id}`})
       .setTimestamp()
       .setColor(member.displayHexColor)
       .setDescription(`**• ${language.userh}** \`${member.user.username}\` | \`#${member.user.discriminator}\`\n** • ID:** \`${member.id}\`\n**• ${language.joinedDiscord}** \`${moment(member.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}\`\n**• ${language.joinedServer}** \`${moment(member.joinedAt).format('MMMM Do YYYY, h:mm:ss a')}\`\n**• Roles [${roles.length || '0'}]: ** ${rolesNoob || `\`${language.noRoles}\``}\n\n**• ${language.badgeslmao}** ${userFlags.map(flag => flags[flag]).join('\n') || `\`${language.noBadge}\``}\n**• ${language.botBadges}** ${badge ||`\`None\``}\n**• Last 5 Nicknames:**\n\`\`\`${nickname || `No Nicknames Tracked`}\`\`\`**• Last 5 Tags:**\n\`\`\`${usernames || `No Tags Tracked`}\`\`\` `)
@@ -202,7 +202,7 @@ if(!member.roles.cache.size || member.roles.cache.size - 1 < 1) roles = `\`None\
 
       
       
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]});
 
     }
 };

@@ -50,7 +50,7 @@ if(message.type === "text"){
     .addField('Channel', message, true)
     .addField('Channel Name', message.name, true)
     .addField('Channel Type', 'Text Channel', true)
-    .setFooter(`Channel ID: ${message.id}`)
+    .setFooter({text:`Channel ID: ${message.id}`})
     .setTimestamp()
     .setColor(color)
   
@@ -72,7 +72,7 @@ cooldown.delete(message.guild.id)
     .setDescription(`🆕 ***Channel Created***`)
     .addField('Channel Name', message.name, true)
     .addField('Channel Type', message.type, true)
-    .setFooter(`Channel ID: ${message.id}`)
+    .setFooter({text:`Channel ID: ${message.id}`})
     .setTimestamp()
     .setColor(color)
      

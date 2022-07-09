@@ -8,9 +8,9 @@ const BlacklistModel = require('../../database/schemas/blacklist');
 
 const Guild = require('../../database/schemas/Guild');
 const { WebhookClient, MessageEmbed } = require('discord.js');
-const webhookClient = new WebhookClient(config.webhook_id, config.webhook_url);
+const webhookClient = new WebhookClient({id: config.webhook_id, url: config.webhook_url});
 const Maintenance = require('../../database/schemas/maintenance')
-const premiumrip = new WebhookClient(config.webhook_id, config.webhook_url);
+const premiumrip = new WebhookClient({id: config.webhook_id, url: config.webhook_url});
 const moment = require(`moment`)
 const fetchAll = require('../../data/structures/fetchAll');
 const emojiArray = require('../../data/structures/optionArray');
@@ -102,7 +102,7 @@ const logEmbedm = new MessageEmbed()
 .setAuthor(`Action: \`Un Mute\` | ${member.user.tag} | Case #${logcase}`, member.user.displayAvatarURL({ format: 'png' }))
 .addField('User', member, true)
 .addField('Reason',  'Mute Duration Expired', true)
-.setFooter(`ID: ${member.id}`)
+.setFooter({text:`ID: ${member.id}`})
 .setTimestamp()
 .setColor(color)
 
@@ -239,8 +239,8 @@ if(msg){
                     .setTitle(poll.title)
                     .setDescription(`${language.poll4} ${language.poll6} **${resultsArr[0][1] - 1}** ${votes}`)
                     .setColor('YELLOW')
-                    .setFooter(`Ended at ${moment(new Date()).format('LLLL')}`)
-                  msg.edit(embed).catch(() => {});
+                    .setFooter({text: `Ended at ${moment(new Date()).format('LLLL')}`})
+                  msg.edit({embeds:[embed]}).catch(() => {});
                   msg.reactions.removeAll().catch(() => {});
                     if (!channel.permissionsFor(channel.guild.me).has('SEND_MESSAGES')) return;
 await poll.deleteOne().catch(() => {});
@@ -260,8 +260,8 @@ if(msg){
                     .setTitle(poll.title)
                     .setDescription(`${language.poll7} ${resultsArr[0][0]} ${language.with} ${resultsArr[0][1] - 1} ${language.votesss} `)
                     .setColor(`GREEN`)
-                    .setFooter(`Ened at ${moment(new Date()).format('LLLL')}`)
-                  msg.edit(embed).catch(() => {});
+                    .setFooter({text: `Ended at ${moment(new Date()).format('LLLL')}`})
+                  msg.edit({embeds:[embed]}).catch(() => {});
                   msg.reactions.removeAll().catch(() => {});
                     if (!channel.permissionsFor(channel.guild.me).has('SEND_MESSAGES')) return;
 await poll.deleteOne().catch(() => {});

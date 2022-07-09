@@ -9,7 +9,7 @@ const jsonconfig = require('../config.json');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const Strategy = require("passport-discord").Strategy;
-const premiumWeb = new Discord.WebhookClient(jsonconfig.webhook_id, jsonconfig.webhook_url);
+const premiumWeb = new Discord.WebhookClient({id: jsonconfig.webhook_id, url: jsonconfig.webhook_url});
 const config = require("../config");
 const ejs = require("ejs");
 
@@ -42,7 +42,7 @@ const fs = require('fs');
 const Application = require("../models/application/application.js");
 const customCommand = require('../database/schemas/customCommand.js');
 //dont touch here
-const Hook = new WebhookClient(jsonconfig.webhook_id, jsonconfig.webhook_url);
+const Hook = new WebhookClient({id: jsonconfig.webhook_id, url: jsonconfig.webhook_url});
 //
 
 let rgx = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
@@ -169,7 +169,7 @@ app.use(session({
       failureRedirect: "/",
     }), async (req, res) => {
 
-      const loginLogs = new Discord.WebhookClient(config.webhook_id, config.webhook_url);;
+      const loginLogs = new Discord.WebhookClient({  url: config.webhook_url});;
 
 
       try {
@@ -574,7 +574,7 @@ let embed;
     embed = new MessageEmbed()
     .setTitle(`A new Form was Submitted`)
     .setDescription(`**Link:** [${domain}/paste/${ticketID}](${domain}/paste/${ticketID})\n\n[or click here](${domain}/paste/${ticketID})\n\n**Form ID**: \`${ticketID}\`\n\n**Submitted by:** ${member} **(${member.user.tag} - ${member.id})**\n**Time:** ${moment(new Date()).format("dddd, MMMM Do YYYY HH:mm:ss")}`)
-    .setFooter('https://pogy.xyz')
+    .setFooter({text: 'https://pogy.xyz/'})
     .setColor('GREEN')
 
   } else {
@@ -588,14 +588,14 @@ let embed;
     embed = new MessageEmbed()
     .setTitle(`A new Form was Submitted`)
     .setDescription(`**Link:** [${domain}/paste/${ticketID}](${domain}/paste/${ticketID})\n\n[or click here](${domain}/paste/${ticketID})\n\n**Form ID**: \`${ticketID}\`\n\n**Submitted by:** ${member} **(${member.user.tag} - ${member.id})**\n**Time:** ${moment(new Date()).format("dddd, MMMM Do YYYY HH:mm:ss")}`)
-    .setFooter('https://pogy.xyz')
+    .setFooter({text: 'https://pogy.xyz/'})
     .setColor('GREEN')
   }
 
 
 
 }
-member.send(new MessageEmbed().setColor('GREEN').setFooter(`Powered by https://pogy.xyz`).setTitle(`Application #${ticketID}`).setDescription(`Hey ${member.user.username}! Your form was Submitted and ready to be judged.\n\n**Form ID**: \`${ticketID}\`\n**Time:** ${moment(new Date()).format("dddd, MMMM Do YYYY HH:mm:ss")}`)).catch(()=>{});
+member.send ({ embeds: [new MessageEmbed().setColor('GREEN').setFooter({text:`Powered by https://pogy.xyz`}).setTitle(`Application #${ticketID}`).setDescription(`Hey ${member.user.username}! Your form was Submitted and ready to be judged.\n\n**Form ID**: \`${ticketID}\`\n**Time:** ${moment(new Date()).format("dddd, MMMM Do YYYY HH:mm:ss")}`)]}).catch(()=>{});
 
 await form.save().catch(()=>{})
 channel.send(embed)
@@ -3803,7 +3803,7 @@ if(maintenance && maintenance.toggle == "true") {
           data = req.body.json;
         if (!guild || !channel || !data) return res.status(400).send('Some data is missing');
         const fetchmember = await guild.members.fetch(user.id);
-        if (!fetchmember || !fetchmember.hasPermission('ADMINISTRATOR')) return res.status(403).send("You don't have permission.");
+        if (!fetchmember || !fetchmember.permissions.has('ADMINISTRATOR')) return res.status(403).send("You don't have permission.");
         if (!channel.permissionsFor(channel.guild.client.user).has("SEND_MESSAGES")) return res.status(403).send("I'm missing 'send message' permissions");
         if (cooldownEmbed.has(guild.id)) return res.status(403).send("Slow Down!");
         try {
@@ -4320,7 +4320,7 @@ In the mean time, please explain your issue below`;
               .setDescription(reactionDescription)
 
             if (storedSettings.isPremium == "false") {
-              ticketEmbed.setFooter(`Powered by Pogy.xyz`)
+              ticketEmbed.setFooter({text : `Powered by Pogy.xyz`})
             } else {
 
               if (checkFooter) {

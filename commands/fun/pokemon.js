@@ -24,10 +24,10 @@ module.exports = class extends Command {
         .setImage(pokem.imageURL)
         .setColor('BLURPLE');
       
-      const msg = await message.channel.send({ embed });
+      const msg = await message.channel.send({embeds: [ embed ]});
 
       const filter = m => m.author.id === message.author.id;
-      const attempts = await msg.channel.awaitMessages(filter, { time: 15000, max: 1 });
+      const attempts = await msg.channel.awaitMessages({filter,  time: 15000, max: 1 });
         
       if (!attempts || !attempts.size) {
         msg.delete();

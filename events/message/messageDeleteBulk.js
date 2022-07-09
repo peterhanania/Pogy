@@ -47,7 +47,7 @@ if(color == "#000000") color = this.client.color.red;
     .setTimestamp()
     .setDescription(`**${messages.size} messages** in ${message.channel} were deleted.`)
     .setColor(message.guild.me.displayHexColor)
-    .setFooter(`${messages.size} Messages`);
+    .setFooter({text:`${messages.size} Messages`});
 
     if(channelEmbed &&
       channelEmbed.viewable &&

@@ -10,7 +10,7 @@ module.exports = async message => {
   });
   if (settings.antiLinks) return;
   if (settings.antiInvites) {
-    if (!message.member.hasPermission('ADMINISTRATOR' || 'MANAGE_GUILD' || 'BAN_MEMBERS' || 'KICK_MEMBERS' || 'MANAGE_MESSAGES')) {
+    if (!message.member.permissions.has('ADMINISTRATOR' || 'MANAGE_GUILD' || 'BAN_MEMBERS' || 'KICK_MEMBERS' || 'MANAGE_MESSAGES')) {
       const inviteLink = new RegExp(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]/g);
       if (inviteLink.test(message.content)) {
           const msgcontent = message.content

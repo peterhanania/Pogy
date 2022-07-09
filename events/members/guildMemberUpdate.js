@@ -40,7 +40,7 @@ const role = oldMember.roles.cache.difference(newMember.roles.cache).first();
     .setAuthor(`${newMember.user.tag} | Role add`, newMember.user.displayAvatarURL({ dynamic: true }))
     .setTimestamp()
     .setColor(colorGreen)
-        .setFooter(`ID: ${newMember.id}`)
+        .setFooter({text: `ID: ${newMember.id}`})
     .setDescription(`**Added Roles**\n Role: ${role}\n User: ${newMember}\n\n ${newMember} Was given the **${role.name}** Role.`);
  
        
@@ -65,7 +65,7 @@ if (oldMember.roles.cache.size > newMember.roles.cache.size) {
     .setAuthor(`${newMember.user.tag} | Role Remove`, newMember.user.displayAvatarURL({ dynamic: true }))
     .setTimestamp()
     .setColor(colorRed)
-        .setFooter(`ID: ${newMember.id}`)
+        .setFooter({text: `ID: ${newMember.id}`})
     .setDescription(`**Removed Roles**\n Role: ${role}\n User: ${newMember}\n\n The **${role.name}** role was removed from ${newMember}`);
     
     
@@ -96,7 +96,7 @@ const newNickname = newMember.nickname || '`None`';
 const nicknameEmbed = new discord.MessageEmbed()
     .setAuthor(`${newMember.user.tag} | Nickname Update`, newMember.user.displayAvatarURL({ dynamic: true }))
     .setTimestamp()
-    .setFooter(`ID: ${newMember.id}`)
+    .setFooter({text:`ID: ${newMember.id}`})
     .setColor(colorYellow)
     .setDescription(`**Nickname Update**\n ${newMember}'s **nickname** was changed.`)
     .addField('Nickname', `${oldNickname} --> ${newNickname}`);

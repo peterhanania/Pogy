@@ -20,18 +20,15 @@ module.exports = class PogyClient extends Client {
       disableMentions: 'everyone',
       messageCacheMaxSize: 25,
       messageCacheLifetime: 10000, 
-      messageSweepInterval: 12000,
       shardCount: 1,
-      ws: {
         intents: [
         "GUILDS",
         "GUILD_MEMBERS",
         "GUILD_MESSAGES",
-        "GUILD_EMOJIS",
+        //"GUILD_EMOJIS",
         'GUILD_MESSAGE_REACTIONS',
         'GUILD_VOICE_STATES'
         ],
-      },
     });
     
     this.validate(options);

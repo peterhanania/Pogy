@@ -38,7 +38,7 @@ if(color == "#000000") color = role.client.color.green
     .setDescription(`🆕 ***Role Created***`)
     .addField('Role', role, true)
     .addField('Role Name', role.name, true)
-    .setFooter(`Role ID: ${role.id}`)
+    .setFooter({text:`Role ID: ${role.id}`})
     .setTimestamp()
     .setColor(color)
 
