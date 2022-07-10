@@ -254,11 +254,11 @@ var url = req.protocol + '://' + req.get('host') + req.originalUrl;
     });
 
     app.get("/support", (req, res) => {
-      res.redirect(`https://discord.gg/duBwdCvCwW`)
+      res.redirect(`https://discord.gg/mNZuKEqCg2`)
     });
 
     app.get("/server", (req, res) => {
-      res.redirect(`https://discord.gg/duBwdCvCwW`)
+      res.redirect(`https://discord.gg/mNZuKEqCg2`)
     });
 
    app.get('/invite', function(req, res) {
