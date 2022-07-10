@@ -6,6 +6,8 @@
   <br>
 </h1>
 
+
+
 <h3 align=center>A fully customizable bot built with 183 commands, 12 categories and a dashboard!</h3>
 
 
@@ -40,6 +42,14 @@
   •
   <a href="#credits">Credits</a>
 </p>
+
+
+<h3> New versions (not maintained by me and hence I am not responsible for them)</h3>
+
+### [Aeona](https://github.com/deepsarda/Aeona)
+
+### [Pogy for v13](https://github.com/WLegit/Pogy)
+
 
 ## About
 
