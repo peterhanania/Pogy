@@ -2,7 +2,7 @@
  <br>
   <a href="https://github.com/peterhanania"><img src="https://pogy.xyz/thumb.png"></a>
   <br>
-  Pogy the Discord Bot [ OLD VERSION ]
+  Pogy the Discord Bot [ Discord.js v12 ]
   <br>
 </h1>
 
@@ -47,6 +47,7 @@ Pogy is a discord bot that took over 4 months of work to make. I decided to make
 
 If you liked this repository, feel free to leave a star ⭐ and follow me, it actually means a lot.
 
+To view Pogy's discord.js v13 Repo (beta) -> [Click Here](https://github.com/peterhanania/pogy-v3)
 ## Features
 
 **183+** commands and **12** different categories!
