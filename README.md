@@ -47,9 +47,6 @@ Pogy is a discord bot that took over 4 months of work to make. I decided to make
 
 If you liked this repository, feel free to leave a star ⭐ and follow me, it actually means a lot.
 
-To view Pogy's discord.js v13 Repo (beta) -> [Click Here](https://github.com/peterhanania/pogy-v3)
-## Features
-
 **183+** commands and **12** different categories!
 
   * **alt detector:** Blocks alts from the guild
@@ -150,7 +147,7 @@ TOKEN=BOT_TOKEN
 `https://domain/window`
 `https://domain/thanks`
 
-Pease make sure you have enabled `Privileged Intents` on your Discord [developer portal](https://discordapp.com/developers/applications/). You can find these intents under the "Bot" section, and there are two ticks you have to switch on. For more information on Gateway Intents, check out [this](https://discordjs.guide/popular-topics/intents.html#the-intents-bit-field-wrapper) link.
+Please make sure you have enabled `Privileged Intents` on your Discord [developer portal](https://discordapp.com/developers/applications/). You can find these intents under the "Bot" section, and there are two ticks you have to switch on. For more information on Gateway Intents, check out [this](https://discordjs.guide/popular-topics/intents.html#the-intents-bit-field-wrapper) link.
 
 You can launch the bot with `node shard.js` 
 
@@ -164,8 +161,6 @@ You can launch the bot with `node shard.js`
 ### Colors
 
 - You can change the colors in `data/colors.js`
-
-
 
 ## License
 
@@ -182,3 +177,4 @@ You can donate Pogy and make it stronger than ever [by clicking here](https://pa
 * **Slayer** - *Contributor - Command Handler base* [github](https://github.com/GhostSlayer)
 * **Ace** - *Contributor - Embed builder* [github](https://github.com/Glitchii)
 * **Majo** - *Dashboard base + css* - [github](https://github.com/IgorKowalczyk/)
+* **loom** - *Contributor + Translation* - [github](https://github.com/loom4k/)
