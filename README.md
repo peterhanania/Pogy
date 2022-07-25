@@ -45,7 +45,7 @@
 
 Pogy is a discord bot that took over 4 months of work to make. I decided to make the bot open sourced to whoever wants to run a copy in their server! You can click [this](https://pogy.xyz/invite) link to invite the official Bot! Also, you can join the official [Pogy's Support Server](https://pogy.xyz/support) for assistance.
 
-If you liked this repository, feel free to leave a star ⭐ and follow me, it actually means a lot.
+If you like this repository, feel free to leave a star ⭐ and follow me, it actually means a lot.
 
 **183+** commands and **12** different categories!
 
@@ -80,8 +80,8 @@ Pogy even has the following features on the website
 </h1>
 
   
- **Webhooks: (for Developer)**
- With Pogy You can even log everything using webhooks. ( you will have to change each webhook using visual studio code )
+**Webhooks: (for developers)**
+With Pogy You can even log everything using webhooks. ( you will have to change each webhook using visual studio code )
 
 <h1 align="center">
   <a href="https://github.com/peterhanania"><img src="https://i.imgur.com/vbGuLdL.jpg"></a>
