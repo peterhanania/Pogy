@@ -45,7 +45,7 @@
 
 Pogy is a discord bot that took over 4 months of work to make. I decided to make the bot open sourced to whoever wants to run a copy in their server! You can click [this](https://pogy.xyz/invite) link to invite the official Bot! Also, you can join the official [Pogy's Support Server](https://pogy.xyz/support) for assistance.
 
-If you liked this repository, feel free to leave a star ⭐ and follow me, it actually means a lot.
+If you like this repository, feel free to leave a star ⭐ and follow me, it actually means a lot.
 
 **183+** commands and **12** different categories!
 
@@ -80,8 +80,8 @@ Pogy even has the following features on the website
 </h1>
 
   
- **Webhooks: (for Developer)**
- With Pogy You can even log everything using webhooks. ( you will have to change each webhook using visual studio code )
+**Webhooks: (for developers)**
+With Pogy You can even log everything using webhooks. ( you will have to change each webhook using visual studio code )
 
 <h1 align="center">
   <a href="https://github.com/peterhanania"><img src="https://i.imgur.com/vbGuLdL.jpg"></a>
@@ -105,16 +105,16 @@ Your `config.json` should look like this:
 ```
 {
   "main_token": process.env.token, 
-  "mongodb_url": "", //mongo db URL
-  "developers": ["", ""], //developers ID
-  "datadogApiKey": "", // for statistics (optional)
-  "dashboard":"false", 
-  "prefix":"p!", //prefix
-  "arc":"",//arc.io source (optional)
-  "youtube_key":"", //youtube api key from https://console.cloud.google.com/apis/
-  "cat_api_key":"",// https://thecatapi.com/signup
-  "webhook_id":"", //read config.json
-  "webhook_url":"" //read config.json
+  "mongodb_url": "", // Mongo DB URL
+  "developers": ["", ""], // Developers ID
+  "datadogApiKey": "", // For Statistics (optional)
+  "dashboard": "false", 
+  "prefix": "p!", // Prefix
+  "arc": "", // Arc.io Source (optional)
+  "youtube_key": "", // Youtube api key from https://console.cloud.google.com/apis/
+  "cat_api_key": "",// https://thecatapi.com/signup
+  "webhook_id": "", // Read config.json
+  "webhook_url": "" // Read config.json
 }
 
 ```
@@ -123,15 +123,15 @@ Your `config.js` should look like this:
 ```
 module.exports = {
  "verification": "",
- "description": "", //description
+ "description": "", // Description
  "domain": "", // domain
- "google_analitics": "", // google analitics
+ "google_analitics": "", // Google Analitics
  "token": process.env.TOKEN,
- "https":"https://", // leave as is
+ "https":"https://", // Leave as is
  "port":"5003",
 
- "client_id":"", // bot client ID
- "secret":""// bot client secret for auth
+ "client_id":"", // Bot client ID
+ "secret":""// Bot client secret for auth
 
 }
 ```
@@ -140,16 +140,16 @@ Your `.env` file should be:
 TOKEN=BOT_TOKEN
 ```
 
-### for dashboard set up read https://github.com/IgorKowalczyk/majobot
+### For the Dashboard set up please read https://github.com/IgorKowalczyk/majo.exe#-self-hosting-dashboard
 
-**callbacks on auth dev portal:**
+**Callbacks on Auth Dev Portal:**
 `https://domain/callback`
 `https://domain/window`
 `https://domain/thanks`
 
-Please make sure you have enabled `Privileged Intents` on your Discord [developer portal](https://discordapp.com/developers/applications/). You can find these intents under the "Bot" section, and there are two ticks you have to switch on. For more information on Gateway Intents, check out [this](https://discordjs.guide/popular-topics/intents.html#the-intents-bit-field-wrapper) link.
+Please make sure you have enabled `Privileged Intents` on your Discord [developer portal](https://discordapp.com/developers/applications/). You can find these intents under the "Bot" section, and there are two ticks you have to switch on. For more information on Gateway Intents, check out [this link](https://discordjs.guide/popular-topics/intents.html#the-intents-bit-field-wrapper).
 
-You can launch the bot with `node shard.js` 
+You can launch the bot with `npm run start` (make sure you have node and npm installed).
 
 **Important Note:** Pogy has so many bugs and requires a lot of js knowledge. You will have some difficulty running the bot if you have no experience in discord.js. 
 
@@ -159,22 +159,23 @@ You can launch the bot with `node shard.js`
 2- `data/emoji.js`
 
 ### Colors
-
 - You can change the colors in `data/colors.js`
 
 ## License
-
 Released under the [Apache License](http://www.apache.org/licenses/LICENSE-2.0) license.
 
 ## Donate
-
 You can donate Pogy and make it stronger than ever [by clicking here](https://paypal.me/pogybot)!
 
 ## Credits
-
 * **Peter Hanania** - *head developer* - [github](https://github.com/peterhanania)
 * **Wlegit** - *developer*  - [github](https://github.com/wlegit)
 * **Slayer** - *Contributor - Command Handler base* [github](https://github.com/GhostSlayer)
 * **Ace** - *Contributor - Embed builder* [github](https://github.com/Glitchii)
 * **Majo** - *Dashboard base + css* - [github](https://github.com/IgorKowalczyk/)
-* **loom** - *Contributor + Translation* - [github](https://github.com/loom4k/)
+* **loom** - *Contributor + Translation* - [github](https://github.com/loom4k/) [website](https://loom4k.me)
+
+## Localization `README.md`'s
+|          Language          |
+| -------------------------- |
+| [French](README-fr.md)     |
