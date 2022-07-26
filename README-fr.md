@@ -180,3 +180,4 @@ Vous pouvez faire une donation pour rendre Pogy encore plus fort [en cliquant ic
 * **Ace** - *Contributeur - Builder d'embeds* [github](https://github.com/Glitchii)
 * **Majo** - *Paneau de Contrôle + CSS* - [github](https://github.com/IgorKowalczyk/)
 * **loom** - *Contributor + Traduction* - [github](https://github.com/loom4k/)
+* **Mezo** - *German Translation* - [github](https://github.com/mezotv/) [website](https://devdominik.com)
