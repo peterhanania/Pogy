@@ -177,11 +177,3 @@ Puedes donar a Pogy y hacerlo más fuerte que nunca [haciendo clic aquí](https:
 * **loom** - *Colaborador + Traducción* - [github](https://github.com/loom4k/) [website](https://loom4k.me)
 * **Mezo** - *Traducción al alemán* - [github](https://github.com/mezotv/) [website](https://devdominik.com)
 * **Janisky** - *Traducción al español (README)* - [github](https://github.com/Janisky/)
-
-
-## Localización `README.md`
-|          Idiomas          |
-| -------------------------- |
-| [Francés](README-fr.md)    |
-| [Alemán](README-de.md)     |
-| [Español](README-es.md)    |
