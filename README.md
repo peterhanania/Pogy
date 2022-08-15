@@ -1,6 +1,6 @@
 <h1 align="center">
  <br>
-  <a href="https://github.com/peterhanania"><img src="https://pogy.xyz/thumb.png"></a>
+  <a href="https://github.com/peterhanania"><img src="https://v2.pogy.xyz/thumb.png"></a>
   <br>
   Pogy the Discord Bot [ Discord.js v12 ]
   <br>
@@ -40,6 +40,9 @@
   •
   <a href="#credits">Credits</a>
 </p>
+
+
+## ⚠️ [Find the new Discord.js v13 updated code by clicking here](https://github.com/Pogy-Bot/Pogy/) ⚠️
 
 ## About
 
