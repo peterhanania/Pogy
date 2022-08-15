@@ -176,3 +176,4 @@ You can donate Pogy and make it stronger than ever [by clicking here](https://pa
 * **Majo** - *Dashboard base + css* - [github](https://github.com/IgorKowalczyk/)
 * **loom** - *Contributor + Translation* - [github](https://github.com/loom4k/) [website](https://loom4k.me)
 * **Mezo** - *German Translation* - [github](https://github.com/mezotv/) [website](https://devdominik.com)
+* **Janisky** - *Spanish Translation (README)* - [github](https://github.com/Janisky/)
