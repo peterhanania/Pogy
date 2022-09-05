@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
 const crypto = require("crypto");
 const config = require('../../config.json');
-const webhookClient = new Discord.WebhookClient(config.webhook_id, config.webhook_url);
+const webhookClient = new Discord.WebhookClient({  url: config.webhook_url});
 const Guild = require('../../database/schemas/Guild');
 module.exports = class extends Command {
     constructor(...args) {
@@ -28,16 +28,16 @@ module.exports = class extends Command {
       var id = crypto.randomBytes(4).toString('hex');
       
       if (args.length < 1) {
-        return message.channel.send( new MessageEmbed()
+        return message.channel.send ({ embeds: [new MessageEmbed()
 .setColor(message.client.color.blue)
-.setDescription(`${message.client.emoji.fail} ${language.suggest1}`));
+.setDescription(`${message.client.emoji.fail} ${language.suggest1}`)]});
 
       }
     
       if (args.length < 3) {
-        return message.channel.send( new MessageEmbed()
+        return message.channel.send ({ embeds: [new MessageEmbed()
 .setColor(message.client.color.blue)
-.setDescription(`${message.client.emoji.fail} ${language.suggest2}`));
+.setDescription(`${message.client.emoji.fail} ${language.suggest2}`)]});
       }
 
 //args.join(' ').split('').join('')
@@ -68,7 +68,7 @@ let report = args.join(' ').split('').join('')
       .addField('Member', message.member, true)
       .addField('Message', report, true)
       .addField('Suggestion ID:', `#${id}`, true)
-      .setFooter(`https://pogy.xyz`)
+      .setFooter({text: 'https://pogy.xyz/'})
       .setTimestamp()
       .setColor('GREEN');
      

@@ -37,16 +37,16 @@ let suggestColor = guildDB.suggestion.suggestioncolor
 if(suggestColor == '#000000') suggestColor = message.guild.me.displayHexColor
 
 
-if(!guildDB.suggestion.suggestionChannelID || !guildDB.suggestion.suggestionChannelID === null) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.suggesting1}`).setFooter('https://pogy.xyz').setTimestamp().setColor('RED'));
+if(!guildDB.suggestion.suggestionChannelID || !guildDB.suggestion.suggestionChannelID === null) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.suggesting1}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
 let suggestion = guildDB.suggestion.suggestionChannelID
 let channel = message.guild.channels.cache.get(suggestion)
-if(!channel) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.suggesting2}`).setFooter('https://pogy.xyz').setTimestamp().setColor('RED'));
+if(!channel) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.suggesting2}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
   
 let suggestionName = args.slice(0).join(" ")
-if(!suggestionName) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.suggest1}`).setFooter('https://pogy.xyz').setTimestamp().setColor('RED'));
+if(!suggestionName) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.suggest1}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
-if(args.join(' ').length > 600) return message.channel.send(new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.suggesting17}`).setFooter('https://pogy.xyz').setTimestamp().setColor('RED'));
+if(args.join(' ').length > 600) return message.channel.send ({ embeds: [new MessageEmbed().setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' })).setDescription(`${fail} ${language.suggesting17}`).setFooter({text: 'https://pogy.xyz/'}).setTimestamp().setColor('RED')]});
 
 let log = new discord.MessageEmbed()
   .setColor(suggestColor)
@@ -161,12 +161,12 @@ let embed = new discord.MessageEmbed()
 
 
 
-  message.channel.send(new MessageEmbed()
+  message.channel.send ({ embeds: [new MessageEmbed()
   .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png' }))
   .setDescription(`${language.suggesting6} ${channel}`)
-  .setFooter('https://pogy.xyz')
+  .setFooter({text: 'https://pogy.xyz/'})
   .setTimestamp()
-  .setColor('GREEN')).then(k => {
+  .setColor('GREEN')]}).then(k => {
 
 if(guildDB.deleteSuggestion == "true"){
         message.delete().catch(() => {})

@@ -59,7 +59,7 @@ let wipeEmbed3 = new MessageEmbed()
 .setColor(message.client.color.green)
 .setAuthor(message.author.tag, message.author.displayAvatarURL())
 .setDescription(`The Current Guild has no Existing Reaction Roles!`)
-.setFooter(`https://pogy.xyz`)
+.setFooter({text: 'https://pogy.xyz/'})
 
 message.channel.send(wipeEmbed3)
 
@@ -70,7 +70,7 @@ let wipeEmbed = new MessageEmbed()
 .setColor(message.client.color.green)
 .setAuthor(message.author.tag, message.author.displayAvatarURL())
 .setDescription(`Successfuly deleted **${results.length}** ${resultsHehe}`)
-.setFooter(`https://pogy.xyz`)
+.setFooter({text: 'https://pogy.xyz/'})
 
 
 message.channel.send(wipeEmbed)

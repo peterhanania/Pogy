@@ -27,14 +27,14 @@ module.exports = class extends Command {
           
           let languages = ["english", "french", "spanish"]
           
-          if(!args[0]) return message.channel.send(new discord.MessageEmbed().setColor(message.client.color.red).setDescription(`${message.client.emoji.fail} | ${language.setLangMissingArgument}`))
+          if(!args[0]) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.red).setDescription(`${message.client.emoji.fail} | ${language.setLangMissingArgument}`)]})
           
           
           let setLangInvalidOption = language.setLangInvalidOption.replace("{languages}", languages.join(", "))
-          if(!languages.includes(args[0].toLowerCase())) return message.channel.send(new discord.MessageEmbed().setColor(message.client.color.red).setDescription(`${message.client.emoji.fail} | ${setLangInvalidOption}`))
+          if(!languages.includes(args[0].toLowerCase())) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.red).setDescription(`${message.client.emoji.fail} | ${setLangInvalidOption}`)]})
           
           let setLangChange = language.setLangChange.replace("{language}", args[0].toLowerCase())
-          message.channel.send(new discord.MessageEmbed().setColor(message.client.color.green).setDescription(`${message.client.emoji.success} | ${setLangChange}`))
+          message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.green).setDescription(`${message.client.emoji.success} | ${setLangChange}`)]})
           
           await guildDB.updateOne({
                     language: args[0].toLowerCase()

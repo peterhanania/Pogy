@@ -23,7 +23,7 @@ module.exports = class extends Command {
         .setFooter(`/catfact.ninja/fact`)
         .setTimestamp()
         .setColor(message.client.color.blue);
-      message.channel.send(embed).catch(() => {});
+      message.channel.send({embeds: [embed]}).catch(() => {});
 
     }
 };

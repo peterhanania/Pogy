@@ -47,13 +47,13 @@ let client = message.client
 let embedValid = new MessageEmbed()
 .setAuthor(message.author.tag, message.author.displayAvatarURL())
 .setDescription(`${language.poll1.replace(/{prefix}/g, `${prefix}`)}`)
-.setFooter('https://pogy.xyz')
+.setFooter({text: 'https://pogy.xyz/'})
 .setColor(message.guild.me.displayHexColor)
 
 let embedValid2 = new MessageEmbed()
 .setAuthor(message.author.tag, message.author.displayAvatarURL())
 .setDescription(`__**${language.poll2}**${language.poll1.replace(/{prefix}/g, `${prefix}`)}`)
-.setFooter('https://pogy.xyz')
+.setFooter({text: 'https://pogy.xyz/'})
 .setColor(message.guild.me.displayHexColor)
 
 
@@ -96,7 +96,7 @@ let msg = await message.channel.send({ embed: embed }).catch(() => {});
 if(msg){
 msg.delete().catch(()=>{})
 }
-message.channel.send(new MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} Slow down here, timed polls is only for premium guilds.\n\n[Check Premium Here](https://pogy.xyz/premium)`))
+message.channel.send ({ embeds: [new MessageEmbed().setColor(message.guild.me.displayHexColor).setDescription(`${message.client.emoji.fail} Slow down here, timed polls is only for premium guilds.\n\n[Check Premium Here](https://pogy.xyz/premium)`)]})
             return;
           }
            

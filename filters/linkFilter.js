@@ -9,7 +9,7 @@ module.exports = async message => {
   });
 
   if (settings.antiLinks) {
-    if (!message.member.hasPermission('ADMINISTRATOR' || 'MANAGE_GUILD' || 'BAN_MEMBERS' || 'KICK_MEMBERS' || 'MANAGE_MESSAGES')) {
+    if (!message.member.permissions.has('ADMINISTRATOR' || 'MANAGE_GUILD' || 'BAN_MEMBERS' || 'KICK_MEMBERS' || 'MANAGE_MESSAGES')) {
       if (hasLink(message.content)) {
     
         return deleteLink(message);

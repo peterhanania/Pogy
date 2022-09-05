@@ -1,8 +1,7 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require("../../models/economy.js")
-const mongoose = require("mongoose")
+ const mongoose = require("mongoose")
 const ms = require("ms")
 const muteModel = require("../../models/mute.js")
 const Discord = require("discord.js");
@@ -57,14 +56,14 @@ module.exports = class extends Command {
     let muteRole = await message.guild.roles.cache.get(logging.moderation.mute_role);
 
      if (!mentionedMember) {
-        return message.channel.send(new Discord.MessageEmbed()
+        return message.channel.send({embeds:[new discord.MessageEmbed()
             .setDescription(`${client.emoji.fail} | ${language.banUserValid}`)
-            .setColor(client.color.red))
+            .setColor(client.color.red)]})
     }
     else if (!msRegex.test(args[1])) {
-        return message.channel.send(new Discord.MessageEmbed()
+        return message.channel.send({embeds:[new discord.MessageEmbed()
             .setDescription(`${client.emoji.fail} | ${language.muteTime}`)
-            .setColor(client.color.red))
+            .setColor(client.color.red)]})
     }
 
     if (!muteRole) {
@@ -80,14 +79,14 @@ module.exports = class extends Command {
     }
 
     if (mentionedMember.roles.highest.position >= message.guild.me.roles.highest.position) {
-        return message.channel.send(new Discord.MessageEmbed()
+        return message.channel.send({embeds:[new discord.MessageEmbed()
             .setDescription(`${client.emoji.fail} | ${language.muteRolePosition}`)
-            .setColor(client.color.red))
+            .setColor(client.color.red)]})
     }
     else if (muteRole.position >= message.guild.me.roles.highest.position) {
-        return message.channel.send(new Discord.MessageEmbed()
+        return message.channel.send({embeds:[new discord.MessageEmbed()
             .setDescription(`${client.emoji.fail} | ${language.muteRolePositionBot}`)
-            .setColor(client.color.red))
+            .setColor(client.color.red)]})
     }
 
     const isMuted = await muteModel.findOne({
@@ -96,9 +95,9 @@ module.exports = class extends Command {
     })
 
     if (isMuted) {
-        return message.channel.send(new Discord.MessageEmbed()
+        return message.channel.send({embeds:[new discord.MessageEmbed()
             .setDescription(`${client.emoji.fail} | ${language.muteMuted}`)
-            .setColor(client.color.red))
+            .setColor(client.color.red)]})
     }
 let reason = args.slice(1).join(' ');
 if (!reason) reason = `${language.noReasonProvided}`;
@@ -114,11 +113,11 @@ dmEmbed = `${message.client.emoji.fail} You've been muted in **${message.guild.n
 dmEmbed = `${message.client.emoji.fail} You've been muted in **${message.guild.name}** for **${msRegex.exec(args[1])[1]}**\n\n__**Moderator:**__ ${message.author} **(${message.author.tag})**\n__**Reason:**__ ${reason}`
   }
 
-mentionedMember.send(new MessageEmbed().setColor(message.client.color.red)
+mentionedMember.send ({ embeds: [new MessageEmbed().setColor(message.client.color.red)
 .setDescription(dmEmbed)
-).catch(()=>{})
+]}).catch(()=>{})
 }
-    message.channel.send(new Discord.MessageEmbed().setColor(message.client.color.green).setDescription(`${message.client.emoji.success} | Muted **${mentionedMember.user.tag}** for **${msRegex.exec(args[1])[1]}** ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)).then(async(s)=>{
+    message.channel.send({embeds:[new discord.MessageEmbed().setColor(message.client.color.green).setDescription(`${message.client.emoji.success} | Muted **${mentionedMember.user.tag}** for **${msRegex.exec(args[1])[1]}** ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)]}).then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
             s.delete().catch(()=>{})
@@ -128,7 +127,7 @@ mentionedMember.send(new MessageEmbed().setColor(message.client.color.red)
         .catch(()=>{});
 
     for (const channel of message.guild.channels.cache) {
-        channel[1].updateOverwrite(muteRole, {
+        channel[1].permissionOverwrites.edit(muteRole, {
             SEND_MESSAGES: false,
             CONNECT: false,
         }).catch(()=>{})

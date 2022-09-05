@@ -35,39 +35,39 @@ module.exports = class extends Command {
   const missingPermEmbed = new MessageEmbed()
   .setAuthor(`Missing User Permissions`, message.author.displayAvatarURL())
   .setDescription(`${fail} The following command the **Administrator** Permission`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
    .setColor(client.color.red)
 
 
       
       let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.guild.channels.cache.find(ch => ch.name === args[0])
-    if (!channel) return message.channel.send(new MessageEmbed()
+    if (!channel) return message.channel.send ({ embeds: [new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Provide me with a valid Channel`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
    .setColor(client.color.red)
-    );
+    ]});
     
     let ID = args[1]
-    if(!ID) return message.channel.send(new MessageEmbed()
+    if(!ID) return message.channel.send ({ embeds: [new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Provide me with a valid message ID`)
-  .setFooter(`https://pogy.xyz`)
-    );
-    let messageID = await channel.messages.fetch(ID).catch(() => { return message.channel.send(new MessageEmbed()
+  .setFooter({text: 'https://pogy.xyz/'})
+    ]});
+    let messageID = await channel.messages.fetch(ID).catch(() => { return message.channel.send ({ embeds: [new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} I could not find the following ID`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
    .setColor(client.color.red)
-    ); })
+    ]}); })
 
     let role = message.mentions.roles.first() || message.guild.roles.cache.get(args[2]) || message.guild.roles.cache.find(rl => rl.name === args[2])
-    if (!role) return message.channel.send(new MessageEmbed()
+    if (!role) return message.channel.send ({ embeds: [new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Provide me with a valid Role`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
    .setColor(client.color.red)
-    );
+    ]});
 
     if(role.managed){
       return message.channel.send(`${message.client.emoji.fail} Please do not use a integration role.`)
@@ -75,30 +75,30 @@ module.exports = class extends Command {
       
      let emoji = args[3]
 
-    if (!emoji) return message.channel.send(new MessageEmbed()
+    if (!emoji) return message.channel.send ({ embeds: [new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Provide me with a valid Emoji`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
    .setColor(client.color.red)
-    );
+    ]});
 
-    if (isCustomEmoji(args[3])) return message.channel.send(new MessageEmbed()
+    if (isCustomEmoji(args[3])) return message.channel.send ({ embeds: [new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Do Not use custom Emojis!`)
-  .setFooter(`https://pogy.xyz`)
+  .setFooter({text: 'https://pogy.xyz/'})
    .setColor(client.color.red)
-    );
+    ]});
 
 try {
 
 await messageID.react(emoji)
 
 } catch(err){
- return message.channel.send(new MessageEmbed()
+ return message.channel.send ({ embeds: [new MessageEmbed()
      .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`${fail} Please Provide a valid Emoji.`)
   .setColor(client.color.red)
-  .setFooter(`https://pogy.xyz`));
+  .setFooter({text: 'https://pogy.xyz/'})]});
 }
  
     
@@ -110,7 +110,7 @@ await messageID.react(emoji)
     
     await react.reactionCreate(client, message.guild.id , ID, role.id, emoji, "false", option);
     
-                message.channel.send(new MessageEmbed()
+                message.channel.send ({ embeds: [new MessageEmbed()
                 .setAuthor('Reaction Roles', message.guild.iconURL(),messageID.url)
                 .setColor(client.color.green)
                 .addField('Channel', channel, true)
@@ -119,7 +119,7 @@ await messageID.react(emoji)
                 .addField('Message ID', ID, true)
                 .addField('Message', `[Jump To Message](${messageID.url})`, true)
                 .addField('Role', role, true)
-                .setFooter('https://pogy.xyz'))
+                .setFooter({text: 'https://pogy.xyz/'})]})
 
         function isCustomEmoji(emoji) {
       return emoji.split(":").length == 1 ? false : true;

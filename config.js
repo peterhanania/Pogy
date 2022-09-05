@@ -3,7 +3,7 @@ module.exports = {
  "description": "Pogy is a multi-purpose discord bot ready to skill up and boost up your Discord server!",
  "domain": "", // domain
  "google_analitics": "", // google analitics
- "token": process.env.TOKEN,
+ "token": process.env.token",
  "https":"https://", // leave as is
  "port":"5003",
 

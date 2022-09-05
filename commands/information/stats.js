@@ -109,7 +109,7 @@ module.exports = class extends Command {
       .setFooter(`Shard #${message.guild.shardID}`)
       .setTimestamp()
       .setColor(message.guild.me.displayHexColor);
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]});
     
     }
 };

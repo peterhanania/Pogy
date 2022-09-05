@@ -54,7 +54,7 @@ module.exports = class extends Command {
       .setDescription(`${language.uptime1} \`${uptime}\`.`) 
 .setFooter(`Shard #${message.guild.shardID}`)
       .setColor(message.guild.me.displayHexColor);
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]});
 
     }
 };

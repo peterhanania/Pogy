@@ -1,9 +1,7 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
 const Guild = require("../../database/schemas/Guild.js");
-const Economy = require("../../models/economy.js")
-const mongoose = require("mongoose")
-const Discord = require("discord.js")
+ const Discord = require("discord.js")
 
 const Logging = require('../../database/schemas/logging.js')
 module.exports = class extends Command {
@@ -65,9 +63,9 @@ const embed = new MessageEmbed()
 .setAuthor(message.author.tag, message.author.displayAvatarURL())
 .setDescription(`**Proper Usage:**\n\n\`1-\` unban peter_#4444 appealed\n\`2-\` unban 710465231779790849 appealed\n\`3-\` unban all`)
 .setColor(message.client.color.red)
-.setFooter('https://pogy.xyz')
+.setFooter({text: 'https://pogy.xyz/'})
 
-message.channel.send(embed)
+message.channel.send({embeds: [embed]})
   return
 }
 
@@ -89,13 +87,13 @@ const embed = new MessageEmbed()
 .setDescription(`${client.emoji.fail} | The current guild has no banned users.`)
 .setColor(client.color.green)
 
-message.channel.send(embed).catch(()=>{})
+message.channel.send({embeds: [embed]}).catch(()=>{})
 } else {
 const embed = new MessageEmbed()
 .setDescription(`${client.emoji.success} | ${language.unbanSuccess} **${array.length}** Users from the guild. \n\n**Users:**\n${array.join(" - ")} ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
 .setColor(client.color.green)
 
-message.channel.send(embed)
+message.channel.send({embeds: [embed]})
 .then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
@@ -174,7 +172,7 @@ const embed = new MessageEmbed()
 .setDescription(`${client.emoji.success} | ${language.unbanSuccess} ${userrz.tag} ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
 .setColor(client.color.green)
 
-message.channel.send(embed).catch(()=>{})
+message.channel.send({embeds: [embed]}).catch(()=>{})
 await message.guild.members.unban(userrz, `${reason} / ${language.unbanResponsible}: ${message.author.tag}`).then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
@@ -230,9 +228,9 @@ await logging.save().catch(()=>{})
 }
 } else {
   
-message.channel.send(new MessageEmbed()
+message.channel.send ({ embeds: [new MessageEmbed()
 .setDescription(`${client.emoji.fail} | ${language.unbanInvalidID}`)
-.setColor(client.color.red));
+.setColor(client.color.red)]});
 
 }
 
@@ -240,9 +238,9 @@ message.channel.send(new MessageEmbed()
 } else {
 
 
-message.channel.send(new MessageEmbed()
+message.channel.send ({ embeds: [new MessageEmbed()
 .setDescription(`${client.emoji.fail} | ${language.unbanInvalidID}`)
-.setColor(client.color.red));
+.setColor(client.color.red)]});
 
 }
   
@@ -252,9 +250,9 @@ message.channel.send(new MessageEmbed()
 
 const bannedUsers = await message.guild.fetchBans();
 const user = bannedUsers.get(id);
-if (!user) return message.channel.send( new MessageEmbed()
+if (!user) return message.channel.send ({ embeds: [new MessageEmbed()
 .setDescription(`${client.emoji.fail} | ${language.unbanInvalidID}`)
-.setColor(client.color.red));
+.setColor(client.color.red)]});
 
 let reason = args.slice(1).join(' ');
 if (!reason) reason = language.unbanNoReason;
@@ -267,7 +265,7 @@ const embed = new MessageEmbed()
 .setDescription(`${client.emoji.success} | ${language.unbanSuccess} ${userr.tag} ${logging && logging.moderation.include_reason === "true" ?`\n\n**Reason:** ${reason}`:``}`)
 .setColor(client.color.green)
 
-message.channel.send(embed).then(async(s)=>{
+message.channel.send({embeds: [embed]}).then(async(s)=>{
           if(logging && logging.moderation.delete_reply === "true"){
             setTimeout(()=>{
             s.delete().catch(()=>{})

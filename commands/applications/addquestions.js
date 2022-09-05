@@ -31,7 +31,7 @@ module.exports = class extends Command {
   if(guildDB.isPremium === true) {
     maxQuestions = 25
   }
-    if(!questions) return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.addquestionMissingArg))
+    if(!questions) return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.addquestionMissingArg)]})
   let split = questions.split("|")
   
   await app.findOne({
@@ -45,7 +45,7 @@ module.exports = class extends Command {
     let actualArr = arr.concat(split)
     console.log(actualArr)
     if(actualArr.length > maxQuestions) {
-      return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.addquestionMoreThanLength.replace("{amountLength}", maxQuestions)))
+      return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.addquestionMoreThanLength.replace("{amountLength}", maxQuestions))]})
     }
     let newAppDB = new app({
      guildID: message.guild.id,
@@ -55,20 +55,20 @@ module.exports = class extends Command {
     })
     await newAppDB.save().catch((err) => {console.log(err)})
     
-    return message.channel.send(new discord.MessageEmbed().setColor(client.color.green).setDescription(language.addquestionSuccess))
+    return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setDescription(language.addquestionSuccess)]})
   }
   
     let ar = await db.questions
     let actualArr = ar.concat(split)
 
     if(actualArr.length > maxQuestions) {
-      return message.channel.send(new discord.MessageEmbed().setColor(client.color.red).setDescription(language.addquestionMoreThanLength.replace("{amountLength}", maxQuestions)))
+      return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.red).setDescription(language.addquestionMoreThanLength.replace("{amountLength}", maxQuestions))]})
     }
     await db.updateOne({
       questions: actualArr
     })
     
-    return message.channel.send(new discord.MessageEmbed().setColor(client.color.green).setDescription(language.addquestionSuccess))
+    return message.channel.send({embeds:[new discord.MessageEmbed().setColor(client.color.green).setDescription(language.addquestionSuccess)]})
 })
   
   }

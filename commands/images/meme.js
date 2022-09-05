@@ -29,7 +29,7 @@ module.exports = class extends Command {
         embed.setColor('RANDOM')
         embed.setImage(memeImage);
         embed.setFooter(`👍 ${memeUpvotes} 💬 ${memeNumComments}`);
-        message.channel.send(embed);
+        message.channel.send({embeds: [embed]});
        });
       } catch(error) {
         this.client.emit("apiError", error, message);
